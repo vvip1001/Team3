@@ -30,8 +30,7 @@
             </div>
             <div class="modal-body">모달 내용</div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-basic"
-                  onclick="location.href='boardDelete.do?boardseq=${boardDetail.boardseq }'">예</button>
+               <button type="button" class="btn btn-basic">예</button>
                <button type="button" class="btn btn-basic" data-dismiss="modal">아니오</button>
             </div>
          </div>
