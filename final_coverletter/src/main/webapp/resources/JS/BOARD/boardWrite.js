@@ -20,7 +20,6 @@ $(document).ready(function() {
 
 /*---------- 글작성 : board write func ----------*/
 function boardWrite() {
-	$('#myModal').modal('show');
 	// values
 	var form = $('form');
 	var title = $('#title').val();

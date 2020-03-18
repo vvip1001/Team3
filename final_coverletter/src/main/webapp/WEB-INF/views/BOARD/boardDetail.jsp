@@ -21,7 +21,6 @@
 
 	<div class="container">
 		<h1>자유게시판</h1>
-
 		<table class="table table-bordered">
 			<!-- 게시글 영역 -->
 			<tbody>
@@ -52,22 +51,24 @@
 				<tr>
 					<td colspan="3" class="reply-label">댓 글</td>
 				</tr>
-				<tr>
+				<tr class="reply-area">
 					<td colspan="4">
 						<div class="reply-insert-area">
 							<input type="text" class="form-control"
 								placeholder="바르고 고운말을 사용합시다." aria-label="Recipient's username"
-								aria-describedby="button-addon2">
+								aria-describedby="button-addon2"
+								onkeydown="onKeyDown(${boardDetail.boardseq }, ${boardDetail.groupno });">
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2" onclick="replyInsert();">입력</button>
+									id="button-addon2"
+									onclick="replyInsert(${boardDetail.boardseq }, ${boardDetail.groupno });">입력</button>
 							</div>
 						</div>
 					</td>
 				</tr>
-				<tr class="reply">
-					<c:forEach items="${replyList }" var="reply">
 
+				<c:forEach items="${replyList }" var="reply">
+					<tr class="reply">
 						<th>${reply.joinemail }</th>
 						<td>${reply.content }</td>
 						<td><c:choose>
@@ -78,9 +79,9 @@
 									<span><a href="#">답글</a></span>
 								</c:otherwise>
 							</c:choose></td>
+					</tr>
+				</c:forEach>
 
-					</c:forEach>
-				</tr>
 			</tfoot>
 		</table>
 	</div>
@@ -99,8 +100,9 @@
 				</div>
 				<div class="modal-body">...</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary"
+						onclick="boardDelete(${boardDetail.boardseq });">예</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
 				</div>
 			</div>
 		</div>

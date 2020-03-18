@@ -18,24 +18,24 @@ import com.job.coverletter.model.board.dto.BoardDto;
 public class BoardController {
 	// 게시판
 	private Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
+
 	@Autowired
 	private BoardBiz boardBiz;
-	
-	//글목록
-	@RequestMapping(value = "/BOARD/boardList.do", method= RequestMethod.GET)
+
+	// 글목록
+	@RequestMapping(value = "/BOARD/boardList.do", method = RequestMethod.GET)
 	public String boardList(Model model) {
 		model.addAttribute("boardList", boardBiz.boardList());
 		return "BOARD/boardList";
 	}
-	
-	//글작성 페이지
-	@RequestMapping(value ="/BOARD/boardWriteForm.do", method= RequestMethod.GET)
+
+	// 글작성 페이지
+	@RequestMapping(value = "/BOARD/boardWriteForm.do", method = RequestMethod.GET)
 	public String boardWriteForm() {
 		return "BOARD/boardWrite";
 	}
-	
-	//글작성
+
+	// 글작성
 	@RequestMapping(value = "/BOARD/boardWrite.do", method = RequestMethod.POST)
 	public String boardWrite(@ModelAttribute("BoardDto") BoardDto dto) {
 		dto.setJoinemail("mintparc@gmail.com");
@@ -46,29 +46,46 @@ public class BoardController {
 			return "redirect:/BOARD/boardWriteForm.do";
 		}
 	}
-	
-	//글상세 + 댓글상세
-	@RequestMapping(value ="/BOARD/boardDetail.do", method= RequestMethod.GET)
+
+	// 글상세 + 댓글상세
+	@RequestMapping(value = "/BOARD/boardDetail.do", method = RequestMethod.GET)
 	public String boardDetail(Model model, int boardseq, int groupno) {
-		//글
+		// 글
 		BoardDto boardDetail = boardBiz.boardDetail(boardseq);
-		//댓글
+		// 댓글
 		List<BoardDto> replyList = boardBiz.replyList(groupno);
 		model.addAttribute("boardDetail", boardDetail);
 		model.addAttribute("replyList", replyList);
 		return "BOARD/boardDetail";
 	}
-	
-	//글수정
-	
-	//글삭제
-	@RequestMapping(value ="/BOARD/boardDelete.do", method= RequestMethod.DELETE)
+
+	// 글수정
+
+	// 글삭제
+	@RequestMapping(value = "/BOARD/boardDelete.do")
 	public String boardDelete(int boardseq) {
 		boardBiz.boardDelete(boardseq);
-		return "redirect:boardList.do";
+		return "redirect:BOARD/boardList.do";
 	}
-	
-	//에러
+
+	// 댓글작성
+	@RequestMapping(value = "/BOARD/replyInsert.do")
+	public String replyInsert(@ModelAttribute("BoardDto") BoardDto dto, Model model) {
+		boardBiz.replyInsert(dto);
+		// 글
+		BoardDto boardDetail = boardBiz.boardDetail(dto.getBoardseq());
+		// 댓글
+		List<BoardDto> replyList = boardBiz.replyList(dto.getGroupno());
+		model.addAttribute("boardDetail", boardDetail);
+		model.addAttribute("replyList", replyList);
+		return "BOARD/boardDetail";
+	}
+
+	// 대댓글작성
+
+	// 댓글삭제
+
+	// 에러
 	@RequestMapping(value = "/error.do", method = RequestMethod.GET)
 	public void errpage() throws Exception {
 		logger.info("예외 발생");

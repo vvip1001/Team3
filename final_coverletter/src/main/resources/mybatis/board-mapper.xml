@@ -23,7 +23,7 @@
 	<insert id="boardInsert" parameterType="boardDto">
 		INSERT INTO BOARD
 		(BOARDSEQ, GROUPNO, GROUPSEQ, JOINEMAIL, TITLE, CONTENT, REGDATE)
-		VALUES (BOARD_SEQ.NEXTVAL, 1, 0, #{joinemail}, #{title}, #{content},
+		VALUES (BOARD_SEQ.NEXTVAL, GROUPNO_SEQ.NEXTVAL, 0, #{joinemail}, #{title}, #{content},
 		SYSDATE)
 	</insert>
 

@@ -93,13 +93,20 @@ public class BoardDaoImpl implements BoardDao {
 	// 댓글작성
 	@Override
 	public int replyInsert(BoardDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "replyUpdate", dto);
+			res = sqlSession.insert(NAMESPACE + "replyInsert", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : boardDelete");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	// 대댓글작성
 	@Override
-	public int rereplyInsert(int boardseq) {
+	public int rereplyInsert(BoardDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

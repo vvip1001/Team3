@@ -27,7 +27,7 @@ public interface BoardBiz {
 	public int replyInsert(BoardDto dto);
 
 	// 대댓글작성
-	public int rereplyInsert(int boardseq);
+	public int rereplyInsert(BoardDto dto);
 
 	// 댓글삭제
 	public int replyDelete(int boardseq);
