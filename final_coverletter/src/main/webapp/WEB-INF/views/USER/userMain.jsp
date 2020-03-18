@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>마이페이지</title>
+<!-- include JQeury/CSS/JS -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/USER/userMain.js"></script>
+<link href="${pageContext.request.contextPath}/resources/CSS/USER/userMain.css" rel="stylesheet">
+
+</head>
+<body>
+<%@ include file="../ALL/header_login.jsp"%>
+   <div class="topside">
+   
+   </div>
+   <div class="userContainer">
+      <div class="side">
+      
+      </div>
+      
+      <div class="center1">
+         <div class="topside"></div>
+         <div class="center1height" align="center">
+            <br>
+            <img alt="#" src="img/ex.png">
+            <h2>김라이언 님</h2>
+            <br>
+            <br>
+            <button class="btn" onclick="#">개인정보 수정</button>
+            <br>
+            <br>
+            <span style="font-weight: bold;">---나의 이력---</span>
+            <br>
+            <button class="btn" onclick="#">인적사항</button>
+            <br>
+            <button class="btn" onclick="#">취업센터</button>
+         </div>
+         <div class="center1heightside"></div>
+         
+         
+      </div>
+      
+      <div class="centerside">
+      
+      </div>      
+      <div class="center2">
+         <div class="topside">
+   
+         </div>
+         <div class="center2height">
+            <h2>나의 준비현황</h2>
+         </div>
+         <div class="center2heightside">
+         
+         </div>
+         <div class="center2height">
+            <h2>나의 IT역량</h2>
+         </div>
+         <div class="center2heightside">
+         
+         </div>
+         <div class="center2height">
+            <h2>나의 스펙</h2>
+         </div>
+         <div class="center2heightside">
+         
+         </div>
+         <div class="center2calendar">
+            <h2>채용일정 켈린더</h2>
+         </div>
+         <div class="center2calendarside">
+         
+         </div>
+      
+      </div>
+      
+      <div class="side">
+      
+      </div>
+      
+   </div>
+
+</body>
+</html>

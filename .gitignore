@@ -1,0 +1,188 @@
+2020년 3월 17일 화요일
+[이형권] [오후 6:47] 예스
+[재현이] [오후 8:20] 정현형 MariaDB 연동완료했고 값도 제대로 나오내요
+[재현이] [오후 8:20] 내일 바로 쓰시면 될거 같아요
+[여정현] [오후 8:35] 오케이
+[재현이] [오후 8:39] 파일: final설정 .txt
+[재현이] [오후 8:40] 저희 지금까지 넣은 설정 간략하게 정리했어요 참고 하세요
+[박 하] [오후 8:40] 와우 감사합니다ㅠㅠㅠㅠ
+[재현이] [오후 8:40] 나중에 다들 필요하시면 제가 아는 선에서 설정 정리해 드릴게요
+[박 하] [오후 8:42] 넹넹 감사해여
+2020년 3월 18일 수요일
+[박 하] [오전 9:03] https://getbootstrap.com/docs/4.4/getting-started/introduction/
+[박 하] [오전 9:04] <!-- include bootstrap -->
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+[박 하] [오전 9:12] 
+<!-- include bootstrap -->
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+-------------------------------------jsp파일에 기본으로 넣어줄거~~
+
+<div class="container">
+</div>
+
+-------------------------------------container영역
+[박 하] [오전 9:18] @charset "utf-8";
+
+/*헤더 - 로그인 */
+/*-- web font --*/
+@font-face {
+   font-family: 'GmarketSansMedium';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+#headerwap {
+   box-sizing: border-box;
+   font-size: 20px;
+   background-color: #00bf6f;
+   height: 50px;
+   width: 100%;
+   color: white;
+   display: flex;
+   font-family: 'GmarketSan...
+[박 하] [오전 9:18] @charset "utf-8";
+
+/*헤더_not logout  */
+/*-- web font --*/
+@font-face {
+   font-family: 'GmarketSansMedium';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+#headerwap {
+   box-sizing: border-box;
+   font-size: 20px;
+   background-color: #00bf6f;
+   height: 50px;
+   width: 100%;
+   color: white;
+   display: flex;
+   font-family: 'Gmar...
+[박 하] [오전 9:35] * {
+   box-sizing: border-box;
+}
+[박 하] [오전 9:39] .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+[박 하] [오전 9:43] 부트스트랩 도큐먼트 사이트보내드릴게영
+[박 하] [오전 9:43] https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp
+[박 하] [오전 9:44] https://getbootstrap.com/docs/4.4/getting-started/introduction/
+[조수민] [오전 9:51] <%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+   *{
+      padding: 0;
+      margin: 0;
+   }
+   #headerwap{
+      padding:4px;
+      box-sizing:border-box;
+      font-size:25px;
+      background-color: #00bf6f;
+      height:50px;
+      width:100%;
+      color: white;
+      float: left;
+   }
+   #logo{
+   
+      margin-left: 25px;
+      width: 80...
+[박 하] [오전 10:04] 
+# Created by https://www.gitignore.io/api/eclipse
+# Edit at https://www.gitignore.io/?templates=eclipse
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# CDT- autotools
+.autotools
+
+# Java annotation processor (AP...
+[박 하] [오전 10:23] # Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+### Eclipse Patch ###
+# Eclipse Core
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Annotation Processing
+.apt_generated
+
+.sts4-cache/
+
+# End of https://www.gitignore.io/api/eclipse
+
+### CUSTOM ###
+# target folder
+*/target
+
+# dbeaver
+*/.dbeaver
+
+# settings
+.settings

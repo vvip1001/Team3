@@ -1,0 +1,55 @@
+   .userContainer{
+      display:flex;
+      height:auto;
+      width: 100%;
+      background-color:white; 
+      text-align: center;
+   }
+   .side{
+      background-color:#ebe6e6;
+      flex: 0.1;
+   }
+   .center1{
+      flex: 0.3;
+      }
+   .center1height{
+      height: 1250px;
+      
+   }
+   .center1heightside{
+      height: 20px;
+      background-color:#ebe6e6;
+   }
+   .centerside{
+      background-color:#ebe6e6;
+      flex: 0.05;
+   }
+      
+   .center2{
+      flex: 1.7;
+      }
+   .center2height{
+      height: 230px;
+      
+   }
+   .center2heightside{
+      height: 20px;
+      background-color:#ebe6e6;
+   }
+   .center2calendar{
+      height: 500px;
+   }
+   .center2calendarside{
+      height: 20px;
+      background-color:#ebe6e6;
+   }
+   .topside{
+      height: 20px;
+      background-color:#ebe6e6;
+   }
+   .btn{
+      height: 35px;
+      width: 120px;
+      background-color: gray;
+      color: white;
+   }
