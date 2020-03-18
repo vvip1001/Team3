@@ -17,13 +17,22 @@
 	rel="stylesheet">
 
 <!-- include summernote -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css"
+	rel="stylesheet">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 
 </head>
 <body>
-	
 	<div class="container">
 		<h1>자유게시판</h1>
 
@@ -39,28 +48,33 @@
 			</div>
 
 			<div id="btn-group">
-				<input type="submit" value="작성" class="btn" onclick="boardWrite();">
+				<input type="button" value="작성" class="btn" onclick="boardWrite();">
 				<input type="button" value="취소" class="btn"
 					onclick="location.href='boardList.do'">
 			</div>
 		</form>
 	</div>
-	
+
 	<!-- 모달 영역 -->
-   <div class="modal fade" id="myModal" tabindex="-1">
-      <div class="modal-dialog" role="document">
-         <div class="modal-content">
-            <div class="modal-header">
-               <h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
-            </div>
-            <div class="modal-body">모달 내용</div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-basic">예</button>
-               <button type="button" class="btn btn-basic" data-dismiss="modal">아니오</button>
-            </div>
-         </div>
-      </div>
-   </div>
-	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">...</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

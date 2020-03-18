@@ -3,7 +3,7 @@ function deleteAlert() {
 	$('.modal-title').addClass('glyphicon glyphicon-alert');
 	$('.modal-title').text(' 경고!');
 	$('.modal-body').text('글을 삭제하시겠습니까? \n 삭제된 글은 다시 복구되지 않습니다.');
-	$('#modalBox').modal('show');
+	$('#myModal').modal('show');
 }
 
 /*---------- 댓글 : replyInsert func ----------*/
