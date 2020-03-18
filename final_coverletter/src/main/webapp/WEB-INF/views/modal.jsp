@@ -22,7 +22,7 @@
 <body>
 
 <!-- 모달 영역 -->
-   <div id="modalBox" class="modal fade" id="myModal" tabindex="-1">
+   <div class="modal fade" id="myModal" tabindex="-1">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">

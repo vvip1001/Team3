@@ -36,7 +36,7 @@ function boardWrite() {
 		$('.modal-title').addClass('glyphicon glyphicon-alert');
 		$('.modal-title').text(' ERROR');
 		$('.modal-body').text('내용을 입력해주세요.');
-		$('#modalBox').modal('show');
+		$('#myModal').modal('show');
 	}
 	
 }
