@@ -45,10 +45,10 @@ public class BoardDaoImpl implements BoardDao {
 
 	// 글상세
 	@Override
-	public BoardDto boardDetail(int boardseq) {
-		BoardDto dto = null;
+	public BoardDto boardDetail(BoardDto dto) {
+		//BoardDto dto = null;
 		try {
-			dto = sqlSession.selectOne(NAMESPACE + "boardDetail", boardseq);
+			dto = sqlSession.selectOne(NAMESPACE + "boardDetail", dto);
 		} catch (Exception e) {
 			System.out.println("[error] : boardDetail");
 			e.printStackTrace();
@@ -79,10 +79,10 @@ public class BoardDaoImpl implements BoardDao {
 
 	// 댓글상세
 	@Override
-	public List<BoardDto> replyList(int groupno) {
+	public List<BoardDto> replyList(BoardDto dto) {
 		List<BoardDto> list = new ArrayList<BoardDto>();
 		try {
-			list = sqlSession.selectList(NAMESPACE + "replyList", groupno);
+			list = sqlSession.selectList(NAMESPACE + "replyList", dto);
 		} catch (Exception e) {
 			System.out.println("[error] : replyList");
 			e.printStackTrace();

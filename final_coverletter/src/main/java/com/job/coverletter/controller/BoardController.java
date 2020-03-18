@@ -23,7 +23,7 @@ public class BoardController {
 	private BoardBiz boardBiz;
 
 	// 글목록
-	@RequestMapping(value = "/BOARD/boardList.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/BOARD/boardList.do")
 	public String boardList(Model model) {
 		model.addAttribute("boardList", boardBiz.boardList());
 		return "BOARD/boardList";
@@ -49,11 +49,11 @@ public class BoardController {
 
 	// 글상세 + 댓글상세
 	@RequestMapping(value = "/BOARD/boardDetail.do", method = RequestMethod.GET)
-	public String boardDetail(Model model, int boardseq, int groupno) {
+	public String boardDetail(Model model, @ModelAttribute("BoardDto") BoardDto dto) {
 		// 글
-		BoardDto boardDetail = boardBiz.boardDetail(boardseq);
+		BoardDto boardDetail = boardBiz.boardDetail(dto);
 		// 댓글
-		List<BoardDto> replyList = boardBiz.replyList(groupno);
+		List<BoardDto> replyList = boardBiz.replyList(dto);
 		model.addAttribute("boardDetail", boardDetail);
 		model.addAttribute("replyList", replyList);
 		return "BOARD/boardDetail";
@@ -65,7 +65,7 @@ public class BoardController {
 	@RequestMapping(value = "/BOARD/boardDelete.do")
 	public String boardDelete(int boardseq) {
 		boardBiz.boardDelete(boardseq);
-		return "redirect:BOARD/boardList.do";
+		return "redirect:/BOARD/boardList.do";
 	}
 
 	// 댓글작성
@@ -73,17 +73,28 @@ public class BoardController {
 	public String replyInsert(@ModelAttribute("BoardDto") BoardDto dto, Model model) {
 		boardBiz.replyInsert(dto);
 		// 글
-		BoardDto boardDetail = boardBiz.boardDetail(dto.getBoardseq());
+		BoardDto boardDetail = boardBiz.boardDetail(dto);
 		// 댓글
-		List<BoardDto> replyList = boardBiz.replyList(dto.getGroupno());
+		List<BoardDto> replyList = boardBiz.replyList(dto);
 		model.addAttribute("boardDetail", boardDetail);
 		model.addAttribute("replyList", replyList);
-		return "BOARD/boardDetail";
+		return "/BOARD/boardDetail";
 	}
 
 	// 대댓글작성
 
 	// 댓글삭제
+	@RequestMapping(value = "/BOARD/replyDelete.do")
+	public String replyDelete(@ModelAttribute("BoardDto") BoardDto dto, int replyseq, Model model) {
+		boardBiz.boardDelete(replyseq);
+		// 글
+		BoardDto boardDetail = boardBiz.boardDetail(dto);
+		// 댓글
+		List<BoardDto> replyList = boardBiz.replyList(dto);
+		model.addAttribute("boardDetail", boardDetail);
+		model.addAttribute("replyList", replyList);
+		return "/BOARD/boardDetail";
+	}
 
 	// 에러
 	@RequestMapping(value = "/error.do", method = RequestMethod.GET)

@@ -28,7 +28,7 @@
 	</insert>
 
 	<!-- 글상세 -->
-	<select id="boardDetail" resultType="boardDto">
+	<select id="boardDetail" parameterType="boardDto" resultType="boardDto">
 		SELECT BOARDSEQ, GROUPNO,
 		GROUPSEQ, TITLETAB, JOINEMAIL, TITLE, CONTENT, FILEPATH, REGDATE
 		FROM
@@ -77,7 +77,7 @@
 
 
 	<!-- 댓글상세 -->
-	<select id="replyList" parameterType="int" resultType="boardDto">
+	<select id="replyList" parameterType="boardDto" resultType="boardDto">
 		SELECT BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, TITLE, CONTENT,
 		FILEPATH, REGDATE
 		FROM BOARD

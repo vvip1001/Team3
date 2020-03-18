@@ -30,9 +30,9 @@ public class BoardBizImpl implements BoardBiz {
 
 	//글상세
 	@Override
-	public BoardDto boardDetail(int boardseq) {
+	public BoardDto boardDetail(BoardDto dto) {
 		// TODO Auto-generated method stub
-		return boardDao.boardDetail(boardseq);
+		return boardDao.boardDetail(dto);
 	}
 
 	//글수정
@@ -51,9 +51,9 @@ public class BoardBizImpl implements BoardBiz {
 
 	//댓글상세
 	@Override
-	public List<BoardDto> replyList(int groupno) {
+	public List<BoardDto> replyList(BoardDto dto) {
 		// TODO Auto-generated method stub
-		return boardDao.replyList(groupno);
+		return boardDao.replyList(dto);
 	}
 
 	//댓글작성

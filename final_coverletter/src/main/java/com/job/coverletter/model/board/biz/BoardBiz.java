@@ -12,7 +12,7 @@ public interface BoardBiz {
 	public int boardInsert(BoardDto dto);
 
 	// 글상세
-	public BoardDto boardDetail(int boardseq);
+	public BoardDto boardDetail(BoardDto dto);
 
 	// 글수정
 	public int boardUpdate(BoardDto dto);
@@ -21,7 +21,7 @@ public interface BoardBiz {
 	public int boardDelete(int boardseq);
 
 	// 댓글상세
-	public List<BoardDto> replyList(int groupno);
+	public List<BoardDto> replyList(BoardDto dto);
 
 	// 댓글작성
 	public int replyInsert(BoardDto dto);
