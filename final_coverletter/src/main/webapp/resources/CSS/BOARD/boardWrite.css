@@ -1,0 +1,23 @@
+h1 {
+	text-align: center;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+
+/*---------- 글쓰기 영역 ----------*/
+form {
+	width: 70%;
+	margin: 50px auto;
+}
+
+#title {
+	width: 100%;
+	padding: 5px;
+}
+
+#btn-group{
+	text-align: center;
+}

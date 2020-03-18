@@ -1,0 +1,84 @@
+h1 {
+	text-align: center;
+}
+
+/*---------- 테이블 ----------*/
+
+.header-bar th{
+	text-align: center;
+}
+
+tbody tr:hover {
+	background-color: #f2f2f2;
+	cursor: default;
+}
+
+#title {
+	text-align: left;
+	padding-left: 10px;
+}
+
+/*---------- 검색바 ----------*/
+.search-bar {
+	border: 0px;
+}
+
+.search-bar span {
+	left: 10px;
+    top: 10px;
+    position: absolute;
+}
+
+.search-form {
+	border: none;
+	height: 35px;
+	position: relative;
+}
+
+.search-input {
+	border-radius: 15px;
+	right: 3px;
+	transition: all 0.3s ease-in-out;
+	border: 1px solid #ccc;
+	font-size: 12px;
+	height: 30px;
+	padding: 4px 8px;
+	position: absolute;
+	width: 20%;
+	bottom: 5%;
+	color:black;
+}
+
+.search-form input:focus {
+	width: 80%;
+}
+
+.search-input:focus {
+	outline: none;
+}
+
+button.search-btn {
+	border: none;
+	height: 30px;
+	font-size: 12px;
+	position: absolute;
+	width: 30px;
+}
+
+.search-form input:focus ~ button.search-btn {
+	background: #00BF6F;
+	color: black;
+}
+
+.search-form button {
+	transition: all 0.3s ease-in-out;
+}
+
+.search-form button.search-btn {
+	background: #ccc;
+	border-radius: 50%;
+	height: 23px;
+	right: 7px;
+	transition: all 0.3s ease-in-out;
+	width: 23px;
+}
