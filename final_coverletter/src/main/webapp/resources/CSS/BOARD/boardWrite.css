@@ -9,8 +9,7 @@ h2 {
 
 /*---------- 글쓰기 영역 ----------*/
 form {
-	width: 70%;
-	margin: 50px auto;
+	margin: 20px;
 }
 
 #title {
@@ -18,6 +17,18 @@ form {
 	padding: 5px;
 }
 
+/*---------- 글쓰기 영역 : 버튼 ----------*/
 #btn-group{
+	margin: 20px;
 	text-align: center;
+	position: relative;
+}
+
+#btn-group input[type="submit"], #btn-group input[type="button"] {
+	width: 200px;
+}
+
+#btn-group input[type="submit"]:hover, #btn-group input[type="button"]:hover {
+	background-color: #00BF6F;
+	color: #fff;
 }
