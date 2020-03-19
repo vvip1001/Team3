@@ -21,7 +21,10 @@ CREATE TABLE JOINUSER
     CONSTRAINT USER_PK PRIMARY KEY (JOINEMAIL)
 );
 
+SELECT * FROM JOINUSER;
 
+INSERT INTO JOINUSER(JOINSEQ,JOINEMAIL,JOINNAME,JOINPW,JOINBIRTH,JOINSEX,PHONE, SINGUP )
+VALUES(JOIN_SEQ.NEXTVAL, 'abc@naver.com', 'name', 'abc', '19990101', 'F', '010-0000-0000', 'Y');
 
 
 
@@ -73,25 +76,27 @@ CREATE TABLE SKILL
 --파일 업로드 다운로드 댓글 게시판
 
 DROP SEQUENCE BOARD_SEQ;
+DROP SEQUENCE GROUPNO_SEQ;
 DROP TABLE BOARD;
 
 CREATE SEQUENCE BOARD_SEQ;
+CREATE SEQUENCE GROUPNO_SEQ;
 
 CREATE TABLE BOARD
 (
     BOARDSEQ     NUMBER            NOT NULL, 	
     GROUPNO      NUMBER			   NOT NULL, 	-- 그룹 번호
     GROUPSEQ     NUMBER			   NOT NULL, 	-- 같은 그룹내의 순서
-    TITLETAB     NUMBER			   NOT NULL, 	-- 탭 구분
+    TITLETAB     NUMBER			   		   , 	-- 탭 구분(첫글null, 댓글0, 대댓1)
     JOINEMAIL    VARCHAR2(200)     NOT NULL, 	-- 이메일(ID) 작성자
-    TITLE        VARCHAR2(1000)    NOT NULL, 	-- 제목	
+    TITLE        VARCHAR2(1000)    		   , 	-- 제목(댓글은 제목없음)
     CONTENT      VARCHAR2(4000)    NOT NULL, 	-- 내용
     FILEPATH     VARCHAR2(1000), 				-- 파일 경로
     REGDATE      DATE              NOT NULL, 
     CONSTRAINT BOARD_PK PRIMARY KEY (BOARDSEQ)
 );
 
-
+SELECT * FROM BOARD;
 
 --======================================================================================================
 -- 자기소개서 

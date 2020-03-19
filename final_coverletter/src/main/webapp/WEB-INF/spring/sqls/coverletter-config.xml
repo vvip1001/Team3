@@ -6,12 +6,13 @@
 		<!-- companyDto 마리아DB로 이동 -->
 		<typeAlias type="com.job.coverletter.model.coverletter.dto.CoverLetterDto" alias="coverLetterDto"/>
 		<typeAlias type="com.job.coverletter.model.jabcalendar.dto.JabCalendarDto" alias="jabCalendarDto"/>
-		<typeAlias type="com.job.coverletter.model.joinUser.dto.JoinUserDto" alias="joinUserDto"/>
+		<typeAlias type="com.job.coverletter.model.joinUser.dto.JoinUserDto" alias="joinuserDto"/>
 		<typeAlias type="com.job.coverletter.model.school.dto.SchoolDto" alias="schoolDto"/>
 		<typeAlias type="com.job.coverletter.model.skill.dto.SkillDto" alias="skillDto"/>
 		<typeAlias type="com.job.coverletter.model.supportPay.dto.SupportPayDto" alias="supportPayDto"/>
 		<!-- join된 Dto 추가 -->
 	</typeAliases>
+
 
 
 

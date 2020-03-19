@@ -94,7 +94,7 @@
 
 /* boby부분 */
 body {
-   background-color: #ebe6e6;
+   background-color: #ebe6e6 !important;
 }
 
 .container {
@@ -103,4 +103,7 @@ body {
     margin-right: auto;
     margin-left: auto;
     background-color: #fff;
+}
+a{
+	cursor: pointer; 
 }
