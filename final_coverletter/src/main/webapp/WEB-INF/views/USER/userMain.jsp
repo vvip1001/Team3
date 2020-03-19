@@ -9,10 +9,17 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/USER/userMain.js"></script>
 <link href="${pageContext.request.contextPath}/resources/CSS/USER/userMain.css" rel="stylesheet">
+<!-- include modal -->
+<script type="text/javascript"
+   src="https://getbootstrap.com/docs/3.4/javascript/#modals"></script>
+<script
+   src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+   src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 </head>
 <body>
-<%@ include file="../ALL/header_login.jsp"%>
+	<%@ include file="../ALL/header_login.jsp"%>
    <div class="topside">
    
    </div>
@@ -29,12 +36,12 @@
             <h2>김라이언 님</h2>
             <br>
             <br>
-            <button class="btn" onclick="#">개인정보 수정</button>
+            <button class="btn" id="userUpdate">개인정보 수정</button>
             <br>
             <br>
             <span style="font-weight: bold;">---나의 이력---</span>
             <br>
-            <button class="btn" onclick="#">인적사항</button>
+            <button class="btn" onclick="location.href='userDetail.do'">인적사항</button>
             <br>
             <button class="btn" onclick="#">취업센터</button>
          </div>
@@ -82,6 +89,34 @@
       </div>
       
    </div>
+   
+   
+<!-- Modal -->
+<div class="modal fade" role="dialog" id="modal">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" align="center">개인정보수정</h3>
+      </div>
+      <div class="modal-body" align="center">
+        <p>
+        	새 비밀번호<br>
+        	<input type="text" id="pw"><br>
+        	비밀번호 확인<br>
+        	<input type="password" id="pwConfirm">
+        </p>
+      </div>
+      <div class="modal-footer"  >
+        <button type="button" id="soo" class="btn btn-default" data-dismiss="modal" onclick="#">확	인</button>
+        <br><br>
+        <div id="deleteDiv">탈퇴하러가기  <a href="#" id="delete">회원탈퇴</a></div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 </body>
 </html>
