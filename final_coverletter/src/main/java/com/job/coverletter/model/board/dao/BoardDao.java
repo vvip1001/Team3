@@ -20,7 +20,7 @@ public interface BoardDao {
 	public int boardUpdate(BoardDto dto);
 	
 	//글삭제
-	public int boardDelete(int boardseq);
+	public int boardDelete(int groupno);
 	
 	//댓글상세
 	public List<BoardDto> replyList(BoardDto dto);

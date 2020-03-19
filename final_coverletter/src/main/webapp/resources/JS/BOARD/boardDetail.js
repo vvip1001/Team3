@@ -14,7 +14,7 @@
 /*---------- 모달 : deleteAlert func ----------*/
 function deleteAlert(text) {
 	//글과 댓글 삭제 (고유 글번호)
-	var board = $('#board-boardseq').val();
+	var board = $('#board-groupno').val();
 	var reply = $('#reply-boardseq').val();	
 	
 	$('.modal-title').addClass('glyphicon glyphicon-alert');
@@ -31,8 +31,8 @@ function deleteAlert(text) {
 }
 
 /*---------- 글삭제 : boardDelete func ----------*/
-function boardDelete(boardseq) {
-	location.href = 'boardDelete.do?boardseq=' + boardseq;
+function boardDelete(groupno) {
+	location.href = 'boardDelete.do?groupno=' + groupno;
 }
 
 /*---------- 댓글삭제 : replyDelete func ----------*/

@@ -42,11 +42,11 @@ public class BoardBizImpl implements BoardBiz {
 		return boardDao.boardUpdate(dto);
 	}
 
-	//글삭제
+	//글삭제 (달린 댓글도 다 같이 삭제)
 	@Override
-	public int boardDelete(int boardseq) {
+	public int boardDelete(int groupno) {
 		// TODO Auto-generated method stub
-		return boardDao.boardDelete(boardseq);
+		return boardDao.boardDelete(groupno);
 	}
 
 	//댓글상세

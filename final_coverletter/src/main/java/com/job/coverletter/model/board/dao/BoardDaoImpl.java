@@ -17,7 +17,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Qualifier("sqlSessionTemPlate")
 	private SqlSessionTemplate sqlSession;
 
-	// 글목록
+	//글목록
 	@Override
 	public List<BoardDto> boardList() {
 		List<BoardDto> list = new ArrayList<BoardDto>();
@@ -30,7 +30,7 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
-	// 글작성
+	//글작성
 	@Override
 	public int boardInsert(BoardDto dto) {
 		int res = 0;
@@ -43,7 +43,7 @@ public class BoardDaoImpl implements BoardDao {
 		return res;
 	}
 
-	// 글상세
+	//글상세
 	@Override
 	public BoardDto boardDetail(BoardDto dto) {
 		//BoardDto dto = null;
@@ -57,19 +57,19 @@ public class BoardDaoImpl implements BoardDao {
 		return dto;
 	}
 
-	// 글수정
+	//글수정
 	@Override
 	public int boardUpdate(BoardDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	// 글삭제
+	//글삭제 (달린 댓글도 다 같이 삭제)
 	@Override
-	public int boardDelete(int boardseq) {
+	public int boardDelete(int groupno) {
 		int res = 0;
 		try {
-			res = sqlSession.delete(NAMESPACE + "boardDelete", boardseq);
+			res = sqlSession.delete(NAMESPACE + "boardDelete", groupno);
 		} catch (Exception e) {
 			System.out.println("[error] : boardDelete");
 			e.printStackTrace();
@@ -77,7 +77,7 @@ public class BoardDaoImpl implements BoardDao {
 		return res;
 	}
 
-	// 댓글상세
+	//댓글상세
 	@Override
 	public List<BoardDto> replyList(BoardDto dto) {
 		List<BoardDto> list = new ArrayList<BoardDto>();
@@ -90,7 +90,7 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
-	// 댓글작성
+	//댓글작성
 	@Override
 	public int replyInsert(BoardDto dto) {
 		int res = 0;
@@ -104,14 +104,14 @@ public class BoardDaoImpl implements BoardDao {
 		return res;
 	}
 
-	// 대댓글작성
+	//대댓글작성
 	@Override
 	public int rereplyInsert(BoardDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	// 댓글삭제
+	//댓글삭제
 	@Override
 	public int replyDelete(int boardseq) {
 		// TODO Auto-generated method stub

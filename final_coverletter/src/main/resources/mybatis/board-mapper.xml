@@ -39,12 +39,11 @@
 	<!-- 글수정 -->
 
 
-
 	<!-- 글삭제 -->
 	<delete id="boardDelete" parameterType="int">
 		DELETE
 		FROM BOARD
-		WHERE BOARDSEQ = #{boardseq}
+		WHERE GROUPNO = #{groupno}
 	</delete>
 
 	<!-- 댓글작성1 : 그룹시퀀스 업데이트 -->

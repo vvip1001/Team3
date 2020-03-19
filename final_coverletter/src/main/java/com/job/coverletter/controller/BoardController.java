@@ -74,8 +74,8 @@ public class BoardController {
 	
 	//글삭제
 	@RequestMapping(value = "/BOARD/boardDelete.do")
-	public String boardDelete(int boardseq) {
-		boardBiz.boardDelete(boardseq);
+	public String boardDelete(int groupno) {
+		boardBiz.boardDelete(groupno);
 		return "redirect:/BOARD/boardList.do";
 	}
 
