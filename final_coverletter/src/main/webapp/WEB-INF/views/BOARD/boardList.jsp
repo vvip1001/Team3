@@ -23,7 +23,7 @@
 		<h1>자유게시판</h1>
 
 		<input type="button" value="글작성" class="btn"
-			onclick="location.href='boardWriteForm.do'">
+			onclick="location.href='BOARD_boardWriteForm.do'">
 
 		<table class="table table-bordered">
 			<col width="100" />
@@ -62,7 +62,7 @@
 							<tr>
 								<td>${dto.boardseq }</td>
 								<td id="title"><a
-									href="boardDetail.do?boardseq=${dto.boardseq }&groupno=${dto.groupno }">${dto.title }</a></td>
+									href="BOARD_boardDetail.do?boardseq=${dto.boardseq }">${dto.title }</a></td>
 								<td>${dto.regdate }</td>
 								<td>${dto.joinemail }</td>
 							</tr>

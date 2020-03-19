@@ -15,16 +15,14 @@
 		SELECT BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, TITLE, CONTENT,
 		FILEPATH, REGDATE
 		FROM BOARD
-		WHERE GROUPSEQ = 0
+		WHERE GROUPSEQ = 1
 		ORDER BY BOARDSEQ DESC
 	</select>
 
 	<!-- 글작성 -->
 	<insert id="boardInsert" parameterType="boardDto">
-		INSERT INTO BOARD
-		(BOARDSEQ, GROUPNO, GROUPSEQ, JOINEMAIL, TITLE, CONTENT, REGDATE)
-		VALUES (BOARD_SEQ.NEXTVAL, GROUPNO_SEQ.NEXTVAL, 0, #{joinemail}, #{title}, #{content},
-		SYSDATE)
+		INSERT INTO BOARD (BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, TITLE, CONTENT, REGDATE)
+		VALUES (BOARD_SEQ.NEXTVAL, BOARD_SEQ.CURRVAL, 1, 0, #{joinemail}, #{title}, #{content}, SYSDATE)
 	</insert>
 
 	<!-- 글상세 -->
@@ -50,41 +48,62 @@
 	<update id="replyUpdate" parameterType="boardDto">
 		UPDATE BOARD
 		SET GROUPSEQ = GROUPSEQ + 1
-		WHERE GROUPNO IN (
-		SELECT GROUPNO
-		FROM BOARD
-		WHERE BOARDSEQ = #{boardseq}
-		AND GROUPSEQ > 0
-		)
+		WHERE GROUPNO = (SELECT GROUPNO FROM BOARD WHERE BOARDSEQ = #{boardseq})
+		AND GROUPSEQ > 1
 	</update>
 
 	<!-- 댓글작성2 : 댓글작성 -->
 	<insert id="replyInsert" parameterType="boardDto">
-		INSERT INTO BOARD(BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, CONTENT,
-		REGDATE)
+		INSERT INTO BOARD(BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, CONTENT, REGDATE)
 		VALUES (
-		BOARD_SEQ.NEXTVAL,
-		#{groupno},
-		1,
-		0,
-		#{joinemail}, #{content}, SYSDATE
+			BOARD_SEQ.NEXTVAL,
+			(SELECT GROUPNO FROM BOARD WHERE BOARDSEQ = #{boardseq}),
+			(SELECT GROUPSEQ FROM BOARD WHERE BOARDSEQ = #{boardseq}) + 1,
+			(SELECT TITLETAB FROM BOARD WHERE BOARDSEQ = #{boardseq}) + 1,
+			#{joinemail}, #{content}, SYSDATE
 		)
 	</insert>
+	
 
-	<!-- 대댓글작성1 : -->
-
-
+	<!-- 대댓글작성1 : 그룹시퀀스 업데이트 -->
+	<update id="rereUpdate" parameterType="boardDto">
+		UPDATE BOARD
+		SET GROUPSEQ = GROUPSEQ + 1
+		WHERE GROUPNO = (SELECT GROUPNO FROM BOARD WHERE BOARDSEQ = #{boardseq})
+		AND GROUPSEQ > (SELECT GROUPSEQ FROM BOARD WHERE BOARDSEQ = #{boardseq})
+	</update>
+	
+	<!-- 대댓글작성2 : 대댓글작성 -->
+	<insert id="rereInsert" parameterType="boardDto">
+		INSERT INTO BOARD (BOARDSEQ, GROUPNO, GROUPSEQ,  TITLETAB, JOINEMAIL, CONTENT, REGDATE)
+		VALUES (
+			BOARD_SEQ.NEXTVAL, 
+			(SELECT GROUPNO FROM BOARD WHERE BOARDSEQ = #{boardseq}),
+			(SELECT GROUPSEQ FROM BOARD WHERE BOARDSEQ = #{boardseq}) + 1,
+			(SELECT TITLETAB FROM BOARD WHERE BOARDSEQ = #{boardseq}) + 1,
+			#{joinemail}, #{content}, SYSDATE)
+	</insert>
 
 	<!-- 댓글상세 -->
 	<select id="replyList" parameterType="boardDto" resultType="boardDto">
-		SELECT BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, TITLE, CONTENT,
-		FILEPATH, REGDATE
+		SELECT BOARDSEQ, GROUPNO, GROUPSEQ,  TITLETAB, JOINEMAIL, CONTENT, REGDATE
 		FROM BOARD
-		WHERE GROUPNO = #{groupno} AND GROUPSEQ != 0
-		ORDER BY REGDATE DESC
+		WHERE GROUPNO IN (
+			SELECT GROUPNO
+			FROM BOARD
+			WHERE BOARDSEQ = #{boardseq}	
+		)
+		AND TITLETAB != 0
+		ORDER BY GROUPNO DESC, GROUPSEQ ASC
 	</select>
 
 	<!-- 댓글삭제 -->
-
-
+	<delete id="replyDelete" parameterType="int">
+		DELETE
+		FROM BOARD
+		WHERE BOARDSEQ = #{boardseq}
+	</delete>
+	
+	
+	
 </mapper>

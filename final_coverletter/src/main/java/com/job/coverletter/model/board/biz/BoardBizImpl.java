@@ -65,16 +65,16 @@ public class BoardBizImpl implements BoardBiz {
 
 	//대댓글작성
 	@Override
-	public int rereplyInsert(BoardDto dto) {
+	public int rereInsert(BoardDto dto) {
 		// TODO Auto-generated method stub
-		return boardDao.rereplyInsert(dto);
+		return boardDao.rereInsert(dto);
 	}
 
 	//댓글삭제
 	@Override
-	public int replyDelete(int boardseq) {
+	public int replyDelete(int groupno) {
 		// TODO Auto-generated method stub
-		return boardDao.replyDelete(boardseq);
+		return boardDao.replyDelete(groupno);
 	}
 
 	

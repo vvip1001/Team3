@@ -48,7 +48,7 @@
 				
 				<!-- eq : 로그인 기능 완성되면 로그인 세션 이메일로 바꿔야 됨 -->
 				<c:choose>
-					<c:when test="${boardDetail.joinemail eq 'mintparc@gmail.com' }">
+					<c:when test="${boardDetail.joinemail eq 'login@email.com' }">
 						<tr>
 							<td colspan="4"><span>
 							<a href="#" onclick="location.href='boardUpdateForm.do?boardseq=${boardDetail.boardseq }'">수정</a>|
@@ -70,11 +70,15 @@
 							<input type="text" class="form-control"
 								placeholder="바르고 고운말을 사용합시다." aria-label="Recipient's username"
 								aria-describedby="button-addon2"
-								onkeydown="onKeyDown('login@email.com', ${boardDetail.boardseq }, ${boardDetail.groupno });">
+								onkeydown="onKeyDown(${boardDetail.boardseq }, ${boardDetail.groupno });">
+
+								
+
+
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button"
 									id="button-addon2"
-									onclick="replyInsert('login@email.com', ${boardDetail.boardseq }, ${boardDetail.groupno });">입력</button>
+									onclick="replyInsert(${boardDetail.boardseq });">입력</button>
 							</div>
 						</div>
 					</td>
@@ -83,17 +87,15 @@
 				<!-- eq & rereply 함수 : 로그인 기능 완성되면 로그인 세션 이메일로 바꿔야 됨 -->
 				<c:forEach items="${replyList }" var="reply">
 					<tr class="reply">
-						<input type="hidden" value="${reply.boardseq }"
-							id="reply-boardseq">
 						<th>${reply.joinemail }</th>
 						<td>${reply.content }</td>
 					<td>
 						<c:choose>		
 								<c:when test="${reply.joinemail eq 'login@email.com' }">
-									<span><a href="#" onclick="deleteAlert('댓글');">삭제</a></span>
+									<span><a href="#" onclick="deleteAlert('댓글', ${reply.boardseq });">삭제</a></span>
 								</c:when>
 								<c:otherwise>
-									<span><a href="#" onclick="rereply('${reply.joinemail }', 'login@email.com' ,${reply.groupno }, ${reply.groupseq }); " >답글</a></span>
+									<span><a href="#" onclick="rereply('${reply.joinemail}', ${reply.boardseq }); " >답글</a></span>
 								</c:otherwise>
 							</c:choose>
 						</td>

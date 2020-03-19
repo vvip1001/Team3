@@ -98,7 +98,7 @@ public class BoardDaoImpl implements BoardDao {
 			res = sqlSession.update(NAMESPACE + "replyUpdate", dto);
 			res = sqlSession.insert(NAMESPACE + "replyInsert", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : boardDelete");
+			System.out.println("[error] : replyInsert");
 			e.printStackTrace();
 		}
 		return res;
@@ -106,16 +106,29 @@ public class BoardDaoImpl implements BoardDao {
 
 	//대댓글작성
 	@Override
-	public int rereplyInsert(BoardDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int rereInsert(BoardDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "rereUpdate", dto);
+			res = sqlSession.insert(NAMESPACE + "rereInsert", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : rereInsert");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	//댓글삭제
 	@Override
-	public int replyDelete(int boardseq) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int replyDelete(int groupno) {
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE + "replyDelete", groupno);
+		} catch (Exception e) {
+			System.out.println("[error] : replyDelete");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 }

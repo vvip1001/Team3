@@ -29,8 +29,8 @@ public interface BoardDao {
 	public int replyInsert(BoardDto dto);
 	
 	//대댓글작성
-	public int rereplyInsert(BoardDto dto);
+	public int rereInsert(BoardDto dto);
 	
 	//댓글삭제
-	public int replyDelete(int boardseq);
+	public int replyDelete(int groupno);
 }
