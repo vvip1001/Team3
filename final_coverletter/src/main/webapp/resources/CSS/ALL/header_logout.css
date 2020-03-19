@@ -104,3 +104,6 @@ body {
     margin-left: auto;
     background-color: #fff;
 }
+a{
+	cursor: pointer; 
+}

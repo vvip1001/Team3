@@ -1,5 +1,7 @@
+<%@page import="com.job.coverletter.model.joinUser.dto.JoinUserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +23,10 @@
                <span><a href="#">채용검색</a> </span>
             </div>
             <div id="menu2">
-               <span><a href="#">로그인</a></span>
+               
+               <span><a href="login.do">로그인</a></span>
                <span >|</span>
-               <span><a href="#">회원가입</a></span>
+               <span><a href="join.do">회원가입</a></span>
             </div>    
    </div>
 

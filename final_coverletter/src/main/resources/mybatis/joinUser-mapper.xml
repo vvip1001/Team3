@@ -9,6 +9,50 @@
 <!--   	<result property="" column=""/>  -->
 <!--   	<result property="" column=""/> -->
 <!--   </resultMap> -->
+ 	
+ 	
+ 	<resultMap type="joinuserDto" id="userMap">
+ 		<result property="joinseq" column="JOINSEQ"/>
+ 		<result property="joinemail" column="JOINEMAIL"/>
+ 		<result property="joinname" column="JOINNAME"/>
+ 		<result property="joinpw" column="JOINPW"/>
+ 		<result property="joinbirth" column="JOINBIRTH"/>
+ 		<result property="joinsex" column="JOINSEX"/>
+ 		<result property="photo" column="PHOTO"/>
+ 		<result property="mililtary" column="MILILTARY"/>
+ 		<result property="phone" column="PHONE"/>
+ 		<result property="address" column="ADDRESS"/>
+ 		<result property="kakao" column="KAKAO"/>
+ 		<result property="singup" column="SIGNUP"/>
+ 	</resultMap>
+ 	
+ 	<!--개인정보 -->
+ 	<select id="loginuser" parameterType="string">
+ 		SELECT * FROM JOINUSER WHERE USEREMAIL = #{useremail}
+ 	</select>
+ 	
+ 	<!-- 회원가입 -->
+ 	<insert id="joinuser" parameterType="joinUserDto">
+ 		INSERT INTO JOINUSER (JOINSEQ, JOINEMAIL, JOINNAME, JOINPW, JOINSEX, SINGUP)
+ 		VALUES (JOIN_SEQ.NEXTVAL, #{joinemail},#{joinname},#{joinpw},#{joinbirth},#{joinsex},'Y') 
+ 	</insert>
+	
+	<!-- 정보수정 -->
+	<update id="updateuser" parameterType="joinuserDto">
+		UPDATE JOINUSER USERPW = #{userpw}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="userdelete" >
+		DELETE JOINUSER WHERE USEREMAIL = #{useremail}
+	</delete>
  
+ 	<!-- login -->
+ 	<select id="login" parameterType="joinUserDto" resultType="joinuserDto">
+ 		SELECT JOINSEQ, JOINEMAIL, JOINNAME, JOINPW, JOINBIRTH, JOINSEX, PHOTO, MILILTARY, PHONE, ADDRESS, KAKAO, SINGUP
+ 		FROM JOINUSER
+ 		WHERE JOINEMAIL = #{joinemail}
+ 		AND JOINPW = #{joinpw}
+ 	</select>
  
 </mapper>

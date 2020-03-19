@@ -1,3 +1,4 @@
+<%@page import="com.job.coverletter.model.joinUser.dto.JoinUserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +13,8 @@
 
 </head>
 <body>
+
+
 <%@ include file="../ALL/header_login.jsp"%>
    	<div class="container" style="background-color: #ebe6e6;">
 		<div id="MaintopDiv">
@@ -86,12 +89,8 @@
 		<div class="totalCompany">
 			<h5>전체</h5>
 		
-		</div>
-		
-		
+		</div>		
      
-      
-  
 	</div>
 </body>
 </html>
