@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	private JoinUserBiz joinUserBiz;
 	
-	
+	//마이페이지
 	@RequestMapping(value="/USER/userMain.do", method=RequestMethod.GET)
 	public String userMain() {
 		logger.info("userMain go");
@@ -36,7 +36,7 @@ public class UserController {
 		return "USER/userMain";
 	}
 	
-	@RequestMapping(value = "/main.do")
+	@RequestMapping(value = "/MAIN/main.do")
 	public String main() {
 		logger.info("main page");
 		
@@ -45,14 +45,14 @@ public class UserController {
 	
 	
 	// join
-	@RequestMapping(value = "/join.do")
+	@RequestMapping(value = "/MAIN/join.do", method = RequestMethod.GET)
 	public String join() {
 		logger.info("joinpage go");
 
 		return "MAIN/join";	
 	}
 	
-	@RequestMapping(value = "/joinRes.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/MAIN/joinRes.do", method = RequestMethod.POST)
 	public String joinRes(Model model, JoinUserDto dto) {
 		logger.info("회원가입");
 		
@@ -69,7 +69,7 @@ public class UserController {
 	
 	
 	// login
-	@RequestMapping(value = "/login.do")
+	@RequestMapping(value = "/MAIN/login.do")
 	public String login() {
 		logger.info("login page");
 		
@@ -98,7 +98,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value = "/logout.do")
+	@RequestMapping(value = "/MAIN/logout.do")
 	public String logout(HttpSession session) {
 		logger.info("logout");
 		
