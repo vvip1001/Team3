@@ -68,6 +68,7 @@ public class BoardController {
 	//글수정
 	@RequestMapping(value = "/BOARD/boardUpdate.do")
 	public String boardUpdate(@ModelAttribute("BoardDto") BoardDto dto) {
+		
 		return null;
 	}
 	
