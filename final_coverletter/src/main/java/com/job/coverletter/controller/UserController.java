@@ -26,4 +26,15 @@ public class UserController {
 		return "USER/userMain";
 	}
 	
+	@RequestMapping(value="/USER/userDetail.do", method=RequestMethod.GET)
+	public String userDetail() {
+		logger.info("userDetail go");
+		
+		
+		return "USER/userDetail";
+	}
+	
+	
+	
+	
 }
