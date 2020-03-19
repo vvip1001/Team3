@@ -25,8 +25,6 @@
 	
 	function login(){
 		
-		
-		
 		var joinemail = $("#joinemail").val().trim();
 		var joinpw = $("#joinpw").val().trim();
 		//console.log("joinemail : " + joinemail + " / joinpw : " + joinpw);
