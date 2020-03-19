@@ -14,9 +14,40 @@ h1 {
 }
 
 th {
-	text-align : center;
-	width: 20%;
+		
+display: table-cell;
+	text-align : center !important;
+	width: 15%;
+	font-size: 17px;
 }
+
+th div {
+	display: inline-block;
+	vertical-align: middle;
+	width: 40%;
+	height : 100%;
+	text-align: center;
+}
+
+
+td {
+	padding: 15px !important;
+}
+
+
+/*---------- 테이블 : 본문 영역 ----------*/
+#board-content {
+	height: 300px;
+}
+
+.reply-content {
+	width: 60%;
+}
+
+.reply-update-delete, .reply-date {
+	text-align: center;
+}
+
 
 /*---------- 댓글영역 ----------*/
 .reply-insert-area {

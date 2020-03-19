@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	
 <!DOCTYPE html>
 <html>
@@ -63,8 +64,8 @@
 								<td>${dto.boardseq }</td>
 								<td id="title"><a
 									href="BOARD_boardDetail.do?boardseq=${dto.boardseq }">${dto.title }</a></td>
-								<td>${dto.regdate }</td>
-								<td>${dto.joinemail }</td>
+								<td class="board-date"><fmt:formatDate value="${dto.regdate}" pattern="yy-MM-dd HH:mm" /></td>
+								<td class="board-email">${dto.joinemail }</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

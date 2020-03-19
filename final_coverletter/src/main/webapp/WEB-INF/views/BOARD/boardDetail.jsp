@@ -19,10 +19,11 @@
 </head>
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
-
+	<c:set var="login" value="login@email.com"/>
+	
 	<div class="container">
 		<h1>자유게시판</h1>
-		<table class="table table-bordered">
+		<table class="table table-bordered" class="shadow p-3 mb-5 bg-white rounded">
 			<!-- 게시글 영역 -->
 			<input type="hidden" value="${boardDetail.boardseq }"
 				id="board-boardseq">
@@ -30,28 +31,28 @@
 				id="board-groupno">
 			<tbody>
 				<tr>
-					<th>제목</th>
+					<th><div>제목</div></th>
 					<td colspan="3">${boardDetail.title }</td>
 				</tr>
 				<tr>
-					<th>작성자</th>
+					<th><div>작성자</div></th>
 					<td colspan="3">${boardDetail.joinemail }</td>
 				</tr>
 				<tr>
-					<th>작성일</th>
+					<th><div>작성일</div></th>
 					<td colspan="3">${boardDetail.regdate }</td>
 				</tr>
 				<tr>
-					<th>내용</th>
-					<td colspan="3">${boardDetail.content }</td>
+					<th><div>내용</div></th>
+					<td colspan="3" id="board-content">${boardDetail.content }</td>
 				</tr>
 				
 				<!-- eq : 로그인 기능 완성되면 로그인 세션 이메일로 바꿔야 됨 -->
 				<c:choose>
-					<c:when test="${boardDetail.joinemail eq 'login@email.com' }">
+					<c:when test="${boardDetail.joinemail eq login }">
 						<tr>
 							<td colspan="4"><span>
-							<a href="#" onclick="location.href='boardUpdateForm.do?boardseq=${boardDetail.boardseq }'">수정</a>|
+							<a href="#" onclick="location.href='BOARD_boardUpdateForm.do?boardseq=${boardDetail.boardseq }'">수정</a>|
 							<a href="#" onclick="deleteAlert('글');">삭제</a></span></td>
 						</tr>
 					</c:when>
@@ -71,14 +72,10 @@
 								placeholder="바르고 고운말을 사용합시다." aria-label="Recipient's username"
 								aria-describedby="button-addon2"
 								onkeydown="onKeyDown(${boardDetail.boardseq }, ${boardDetail.groupno });">
-
-								
-
-
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button"
 									id="button-addon2"
-									onclick="replyInsert(${boardDetail.boardseq });">입력</button>
+									onclick="replyInsert(${boardDetail.boardseq });">입  력</button>
 							</div>
 						</div>
 					</td>
@@ -87,11 +84,11 @@
 				<!-- eq & rereply 함수 : 로그인 기능 완성되면 로그인 세션 이메일로 바꿔야 됨 -->
 				<c:forEach items="${replyList }" var="reply">
 					<tr class="reply">
-						<th>${reply.joinemail }</th>
-						<td>${reply.content }</td>
-					<td>
+						<th class="reply-email">${reply.joinemail }</th>
+						<td class="reply-content">${reply.content }</td>
+						<td class="reply-update-delete">
 						<c:choose>		
-								<c:when test="${reply.joinemail eq 'login@email.com' }">
+								<c:when test="${reply.joinemail eq login }">
 									<span><a href="#" onclick="deleteAlert('댓글', ${reply.boardseq });">삭제</a></span>
 								</c:when>
 								<c:otherwise>
@@ -99,7 +96,7 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-					<td><fmt:formatDate value="${reply.regdate}" pattern="yy-MM-dd HH:mm" /></td>
+						<td class="reply-date"><fmt:formatDate value="${reply.regdate}" pattern="yy-MM-dd HH:mm" /></td>
 					</tr>
 				</c:forEach>
 

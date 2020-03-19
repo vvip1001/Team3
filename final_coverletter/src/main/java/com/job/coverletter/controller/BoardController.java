@@ -25,7 +25,7 @@ public class BoardController {
 	private BoardBiz boardBiz;
 	
 	//로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
-	String login = "mint@email.com";
+	String login = "login@email.com";
 
 	// 글목록
 	@RequestMapping(value = "/BOARD_boardList.do")
@@ -69,6 +69,10 @@ public class BoardController {
 	// 글수정 페이지
 	@RequestMapping(value = "/BOARD_boardUpdateForm.do")
 	public String boardUpdateForm(Model model, int boardseq) {
+		BoardDto dto = new BoardDto();
+		dto.setBoardseq(boardseq);
+		BoardDto boardDetail = boardBiz.boardDetail(dto);
+		model.addAttribute("boardDetail", boardDetail);
 		return "BOARD/boardUpdate";
 	}
 

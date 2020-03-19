@@ -18,6 +18,10 @@ tbody tr:hover {
 	padding-left: 10px;
 }
 
+.board-date, .board-email {
+	text-align: center;
+}
+
 /*---------- 검색바 ----------*/
 .search-bar {
 	border: 0px;
