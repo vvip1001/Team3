@@ -1,3 +1,4 @@
+<%@page import="com.job.coverletter.model.joinUser.dto.JoinUserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +13,13 @@
 
 </head>
 <body>
-<%@ include file="../ALL/header_login.jsp"%>
+
+
+
+
+<%@ include file="../ALL/header_logout.jsp"%>
+
+
    	<div class="container">
 
 	</div>

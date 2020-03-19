@@ -12,6 +12,8 @@
 	<a href ="MAIN/SelectOne.do"> 회사</a> <br/>
 	<a href ="USER/userMain.do"> 마페</a> <br/>
 	
+	<a href="MAIN/join.do">회원가입</a>
+	
 	
 </body>
 </html>
