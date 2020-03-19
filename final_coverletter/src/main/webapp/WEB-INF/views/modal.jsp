@@ -30,6 +30,18 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+   <div class="modal fade" id="myModal" tabindex="-1">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
+            </div>
+            <div class="modal-body">모달 내용</div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-basic">예</button>
+               <button type="button" class="btn btn-basic" data-dismiss="modal">아니오</button>
+            </div>
+         </div>
       </div>
       <div class="modal-body">
         <p>Modal body text goes here.</p>

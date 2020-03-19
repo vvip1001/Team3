@@ -11,9 +11,10 @@
 	<a href ="error.do"> 에러 </a> <br/>
 	<a href ="MAIN/SelectOne.do"> 회사</a> <br/>
 	<a href ="USER/userMain.do"> 마페</a> <br/>
-	
-	<a href="MAIN/join.do">회원가입</a>
-	
+	<a href="MAIN/join.do">회원가입</a><br/>
+	<!-- 박하 테스트 영역 -->
+	<a href ="BOARD/boardList.do">자유게시판</a><br/>
+
 	
 </body>
 </html>
