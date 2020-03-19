@@ -50,8 +50,9 @@
 				<c:choose>
 					<c:when test="${boardDetail.joinemail eq 'mintparc@gmail.com' }">
 						<tr>
-							<td colspan="4"><span><a href="#">수정</a>|<a href="#"
-									onclick="deleteAlert('글');">삭제</a></span></td>
+							<td colspan="4"><span>
+							<a href="#" onclick="location.href='boardUpdateForm.do?boardseq=${boardDetail.boardseq }'">수정</a>|
+							<a href="#" onclick="deleteAlert('글');">삭제</a></span></td>
 						</tr>
 					</c:when>
 				</c:choose>
