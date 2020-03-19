@@ -1,0 +1,72 @@
+.container{
+	background-color: #ebe6e6;
+	
+}
+
+#MaintopDiv {
+	text-align: center;
+}
+
+
+.company {
+	padding-right: 2%;
+	padding-left: 4%;
+	height: 230px;
+	width: 98%;
+	
+}
+
+.companySide {
+	height: 10px;
+	background-color: #ebe6e6;
+}
+
+
+/* 회사정보 Div */
+.companyItem{
+	background-color: white;
+	border: 1px solid gray;
+	text-align: center;
+	height: 80%;
+	width: 23%; 
+	float: left;
+	margin-left: 1%;
+	padding-top: 2%;
+	padding-bottom: 1%;
+}
+
+
+/* 회사정보 Div top*/
+.companyItemTop{
+	padding-bottom: 10px;
+	height: 36.5%;
+	
+}
+
+.companyImg{
+	height:	95%;
+	width: 70%;
+}
+
+.companyItemBottom{
+	height: 55%;
+	
+}
+
+.endDate{
+	text-align: left;
+	padding-left: 5%;
+	font-size: 10px;
+}
+
+
+
+
+
+
+
+
+
+.totalCompany{
+	height: auto;
+}

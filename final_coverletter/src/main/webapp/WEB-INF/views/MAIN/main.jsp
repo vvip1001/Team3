@@ -13,8 +13,85 @@
 </head>
 <body>
 <%@ include file="../ALL/header_login.jsp"%>
-   	<div class="container">
-
+   	<div class="container" style="background-color: #ebe6e6;">
+		<div id="MaintopDiv">
+			<h1>[자소서 성공 페이지]</h1>
+		</div>
+		
+		<div class="companySide"></div>
+		<div class="company">
+			<h5>웹 개발자</h5>
+			
+			<div class="companyItem">
+				<div class="companyItemTop">
+					<img class="companyImg" src="https://image.rocketpunch.com/company/114788/globalinformation_logo_1581308381.png?s=400x400&t=inside"/>
+				</div>
+				<div class="companyItemBottom">
+					<h6>(주)글로벌인포메이션</h6>
+					<div>PHP 웹프로그래머</div><br/><br/>
+					<footer class="endDate">04/01 마감</footer>
+				</div>
+			</div>
+			
+			<div class="companyItem">
+				<div class="companyItemTop">
+					<img class="companyImg" src="https://image.rocketpunch.com/company/98782/reverselab_logo_1561621769.png?s=400x400&t=inside"/>
+				</div>
+				<div class="companyItemBottom">
+					<h6>(주)리버스랩</h6>
+					<div>PHP 웹프로그래머</div><br/><br/>
+					<footer class="endDate">04/01 마감</footer>
+				</div>
+			</div>
+			
+			<div class="companyItem">
+				<div class="companyItemTop">
+					<img class="companyImg" src="https://static.rocketpunch.com/images/company/company.png"/>
+				</div>
+				<div class="companyItemBottom">
+					<h6>(주)SK스타트업스튜디오</h6>
+					<div>PHP 웹프로그래머</div><br/><br/>
+					<footer class="endDate">04/01 마감</footer>
+				</div>
+			</div>
+			
+			<div class="companyItem">
+				<div class="companyItemTop">
+					<img class="companyImg" src="https://image.rocketpunch.com/company/20839/harinio_logo_1577707068.png?s=400x400&t=inside"/>
+				</div>
+				<div class="companyItemBottom">
+					<h6>(주)트렌비</h6>
+					<div>PHP 웹프로그래머</div><br/><br/>
+					<footer class="endDate">04/01 마감</footer>
+				</div>
+			</div>
+			
+		
+			
+		</div>
+		
+		<div class="companySide"></div>
+		<div class="company">
+			<h5>프론트앤드</h5>
+		
+		</div>
+		
+		<div class="companySide"></div>
+		<div class="company">
+			<h5>백앤드</h5>
+			
+		</div>
+		
+		<div class="companySide"></div>
+		<div class="totalCompany">
+			<h5>전체</h5>
+		
+		</div>
+		
+		
+     
+      
+  
 	</div>
 </body>
 </html>
