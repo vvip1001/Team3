@@ -21,11 +21,11 @@
             </div>
             <div id="menu2">
                <span >|</span>
-               <span><a>마이페이지</a></span>
-               <span><a>취업센터</a></span>
-               <span><a>자유게시판</a></span>
+               <span><a href="#">마이페이지</a></span>
+               <span><a href="#">취업센터</a></span>
+               <span><a href="#">자유게시판</a></span>
                <span >|</span>
-               <span><a>로그아웃</a></span>
+               <span><a href="#">로그아웃</a></span>
             </div>    
    </div>
 
