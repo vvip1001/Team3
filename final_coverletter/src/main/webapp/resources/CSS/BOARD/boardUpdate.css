@@ -1,13 +1,14 @@
-/*---------- body 영역 ----------*/
-
+/*---------- 타이틀 영역 ----------*/
 h1 {
-	text-align: center;
+	text-align: center !important;
+	margin: 4% 0% 4% 0% !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
 }
 
 h2 {
 	font-size: 20px;
 }
-
 
 /*---------- 글쓰기 영역 ----------*/
 form {

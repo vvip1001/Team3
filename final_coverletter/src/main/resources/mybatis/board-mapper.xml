@@ -10,6 +10,23 @@
 	<!-- <result property="" column=""/> -->
 	<!-- </resultMap> -->
 
+	<!-- 게시글 개수 -->
+	<select id="boardListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE GROUPSEQ = 1
+		ORDER BY BOARDSEQ DESC
+	</select>
+	
+	<!-- 페이징 -->
+	<select id="boardListP" parameterType="boardDto" resultType="boardDto">
+		SELECT BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, TITLE, CONTENT,
+		FILEPATH, REGDATE
+		FROM BOARD
+		WHERE GROUPSEQ = 1
+		ORDER BY BOARDSEQ DESC
+	</select>
+	
 	<!-- 글목록 -->
 	<select id="boardList" resultType="boardDto">
 		SELECT BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, TITLE, CONTENT,
@@ -35,6 +52,11 @@
 	</select>
 
 	<!-- 글수정 -->
+	<update id="boardUpdate" parameterType="boardDto">
+		UPDATE BOARD
+		SET TITLE = #{title}, CONTENT = #{content}
+		WHERE BOARDSEQ = #{boardseq}
+	</update>
 
 
 	<!-- 글삭제 -->

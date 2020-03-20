@@ -19,10 +19,12 @@
 </head>
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
-	<c:set var="login" value="login@email.com"/>
+	<c:set var="login" value="mint@email.com"/>
 	
 	<div class="container">
 		<h1>자유게시판</h1>
+		<input type="button" value="글목록" class="btn"
+			onclick="location.href='BOARD_boardList.do'">
 		<table class="table table-bordered" class="shadow p-3 mb-5 bg-white rounded">
 			<!-- 게시글 영역 -->
 			<input type="hidden" value="${boardDetail.boardseq }"
@@ -51,8 +53,8 @@
 				<c:choose>
 					<c:when test="${boardDetail.joinemail eq login }">
 						<tr>
-							<td colspan="4"><span>
-							<a href="#" onclick="location.href='BOARD_boardUpdateForm.do?boardseq=${boardDetail.boardseq }'">수정</a>|
+							<td colspan="4"><span class="board-update-delete">
+							<a href="#" onclick="location.href='BOARD_boardUpdateForm.do?boardseq=${boardDetail.boardseq }'">수정</a> |
 							<a href="#" onclick="deleteAlert('글');">삭제</a></span></td>
 						</tr>
 					</c:when>

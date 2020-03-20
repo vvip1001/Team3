@@ -2,19 +2,16 @@
 $(document).ready(function() {
     $('.summernote').summernote({
           height: 300,					//에디터 높이
-          disableDragAndDrop: true,
           toolbar: [
-              ['style', ['style']],
-              ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-              ['fontface', ['fontname']],
-              ['textsize', ['fontsize']],
-              ['color', ['color']],
-              ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
-              ['height', ['height']],
-              ['table', ['table']],
-              ['insert', ['link','picture']],
-              ['Misc',['undo','redo']]
-          ],
+        	  ['style', ['style']],
+        	  ['font', ['bold', 'italic', 'underline', 'clear']],
+        	  ['color', ['color']],
+        	  ['height', ['height']],
+        	  ['table', ['table']],
+        	  ['insert', ['link', 'picture', 'hr']],
+        	  ['view', ['fullscreen', 'codeview']],
+        	  ['help', ['help']]
+          ]
     });
  });
 

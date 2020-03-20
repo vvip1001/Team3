@@ -33,10 +33,13 @@
 </head>
 <body>
 	<div class="container">
-		<form method="post" action="BOARD_boardWrite.do">
+		<h1>자유게시판</h1>
+	
+		<form method="post" action="BOARD_boardUpdate.do">
+			<input type="hidden" value="${boardDetail.boardseq }" name="boardseq">
 			<div class="board-title">
 				<h2>제목</h2>
-				<input type="text" value="${boardDetail.title }" name="title" id="title">
+				<input type="text" value="${boardDetail.title }" name="title" id="title" class="form-control">
 			</div>
 
 			<div class="board-write">
@@ -45,11 +48,28 @@
 			</div>
 
 			<div id="btn-group">
-				<input type="button" value="작성" class="btn" onclick="boardWrite();">
+				<input type="button" value="작성" class="btn" onclick="boardUpdate();">
 				<input type="button" value="취소" class="btn"
 					onclick="location.href='BOARD_boardList.do'">
 			</div>
 		</form>
+	</div>
+	<!-- 모달 영역 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">...</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+					
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

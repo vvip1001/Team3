@@ -13,6 +13,20 @@ public class BoardBizImpl implements BoardBiz {
 	
 	@Autowired
 	private BoardDao boardDao;
+	
+	// 총 게시글 수
+	@Override
+	public int boardListCount() {
+		// TODO Auto-generated method stub
+		return boardDao.boardListCount();
+	}
+
+	//페이징
+	@Override
+	public List<BoardDto> boardListP(BoardDto dto) {
+		// TODO Auto-generated method stub
+		return boardDao.boardListP(dto);
+	}
 
 	//글목록
 	@Override
@@ -77,5 +91,6 @@ public class BoardBizImpl implements BoardBiz {
 		return boardDao.replyDelete(groupno);
 	}
 
+	
 	
 }

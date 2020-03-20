@@ -1,11 +1,16 @@
+/*---------- 타이틀 영역 ----------*/
 h1 {
-	text-align: center;
+	text-align: center !important;
+	margin: 4% 0% 4% 0% !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
 }
 
 /*---------- 테이블 ----------*/
 
 .header-bar th{
 	text-align: center;
+	    background-color: #f0f0f0;
 }
 
 tbody tr:hover {
@@ -13,12 +18,28 @@ tbody tr:hover {
 	cursor: default;
 }
 
-#title {
+/* 글제목 */
+.board-title {
 	text-align: left;
 	padding-left: 10px;
+	cursor:pointer;
+}
+
+/* 글번호, 작성일, 이메일 정렬 */
+.board-seq, .board-date, .board-email {
+	text-align: center;
+}
+
+.board-seq {
+	width: 10%;
 }
 
 .board-date, .board-email {
+	width: 15%;
+}
+
+/* 작성된 글이 없습니다. */
+#boardlist-null {
 	text-align: center;
 }
 

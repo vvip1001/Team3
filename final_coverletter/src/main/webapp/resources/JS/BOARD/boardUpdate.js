@@ -3,35 +3,25 @@ $(function() {
 	
 });
 
-/*---------- HTML태그제거 : removeHTML func ----------*/
-function removeHTML (text) {
-	text = text.replace(/<br\/>/ig, "\n");
-	text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
-	return text;
-}
-
 /*---------- 썸머노트API summernote api ----------*/
 $(document).ready(function() {
     $('.summernote').summernote({
           height: 300,					//에디터 높이
-          disableDragAndDrop: true,
           toolbar: [
-              ['style', ['style']],
-              ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-              ['fontface', ['fontname']],
-              ['textsize', ['fontsize']],
-              ['color', ['color']],
-              ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
-              ['height', ['height']],
-              ['table', ['table']],
-              ['insert', ['link','picture']],
-              ['Misc',['undo','redo']]
-          ],
+        	  ['style', ['style']],
+        	  ['font', ['bold', 'italic', 'underline', 'clear']],
+        	  ['color', ['color']],
+        	  ['height', ['height']],
+        	  ['table', ['table']],
+        	  ['insert', ['link', 'picture', 'hr']],
+        	  ['view', ['fullscreen', 'codeview']],
+        	  ['help', ['help']]
+          ]
     });
  });
 
 /*---------- 글작성 : board write func ----------*/
-function boardWrite() {
+function boardUpdate() {
 	// values
 	var form = $('form');
 	var title = $('#title').val();

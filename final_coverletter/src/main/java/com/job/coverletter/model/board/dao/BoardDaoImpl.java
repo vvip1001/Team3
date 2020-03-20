@@ -17,6 +17,32 @@ public class BoardDaoImpl implements BoardDao {
 	@Qualifier("sqlSessionTemPlate")
 	private SqlSessionTemplate sqlSession;
 
+	// 총 게시글 수
+	@Override
+	public int boardListCount() {
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "boardListCount"); 
+		} catch (Exception e) {
+			System.out.println("[error] : boardListCount");
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	// 페이징
+	@Override
+	public List<BoardDto> boardListP(BoardDto dto) {
+		List<BoardDto> list = new ArrayList<BoardDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "boardListP", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : boardListP");
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	//글목록
 	@Override
 	public List<BoardDto> boardList() {
@@ -60,8 +86,14 @@ public class BoardDaoImpl implements BoardDao {
 	//글수정
 	@Override
 	public int boardUpdate(BoardDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "boardUpdate", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : boardUpdate");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	//글삭제 (달린 댓글도 다 같이 삭제)
@@ -130,5 +162,6 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		return res;
 	}
+
 
 }

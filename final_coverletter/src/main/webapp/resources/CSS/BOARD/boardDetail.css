@@ -1,5 +1,9 @@
+/*---------- 타이틀 영역 ----------*/
 h1 {
-	text-align: center;
+	text-align: center !important;
+	margin: 4% 0% 4% 0% !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
 }
 
 /*---------- 테이블 ----------*/
@@ -36,10 +40,24 @@ td {
 
 
 /*---------- 테이블 : 본문 영역 ----------*/
+/* 본문글 기본 높이 */
 #board-content {
-	height: 300px;
+	height: 200px;
 }
 
+
+/* 글수정, 삭제 영역 */
+.board-update-delete {
+	text-align: right;
+	margin-left: 93%;
+}
+
+.board-update-delete a {
+	color: black;
+	text-decoration: none;
+}
+
+/*---------- 댓글영역 ----------*/
 .reply-content {
 	width: 60%;
 }
@@ -48,8 +66,6 @@ td {
 	text-align: center;
 }
 
-
-/*---------- 댓글영역 ----------*/
 .reply-insert-area {
     width: 100%;
     display: flex;

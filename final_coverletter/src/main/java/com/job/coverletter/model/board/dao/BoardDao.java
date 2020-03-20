@@ -6,6 +6,11 @@ import com.job.coverletter.model.board.dto.BoardDto;
 
 public interface BoardDao {
 	String NAMESPACE = "com.job.coverletter.Board.";
+	// 총 게시글 수
+	public int boardListCount();
+	
+	// 페이징
+	public List<BoardDto> boardListP(BoardDto dto);
 	
 	//글목록
 	public List<BoardDto> boardList();

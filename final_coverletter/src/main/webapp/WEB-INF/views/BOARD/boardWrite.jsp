@@ -39,7 +39,7 @@
 		<form method="post" action="BOARD_boardWrite.do">
 			<div class="board-title">
 				<h2>제목</h2>
-				<input type="text" placeholder="제목을 입력하세요." name="title" id="title">
+				<input type="text" placeholder="제목을 입력하세요." name="title" id="title" class="form-control">
 			</div>
 
 			<div class="board-write">

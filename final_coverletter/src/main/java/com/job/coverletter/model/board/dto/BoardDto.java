@@ -30,6 +30,9 @@ public class BoardDto {
     // 작성일 
     private Date regdate;
     
+    /*---------- 페이징 ----------*/
+    private int StartIndex;
+    private int CntPerPage;
     
     
     public BoardDto() {
@@ -121,7 +124,26 @@ public class BoardDto {
     public void setRegdate(Date regdate) {
         this.regdate = regdate;
     }
+    
+   
+    /*---------- 페이징 ----------*/
+	public int getStartIndex() {
+		return StartIndex;
+	}
 
+	public void setStartIndex(int startIndex) {
+		StartIndex = startIndex;
+	}
+
+	public int getCntPerPage() {
+		return CntPerPage;
+	}
+
+	public void setCntPerPage(int cntPerPage) {
+		CntPerPage = cntPerPage;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "BoardDto [boardseq=" + boardseq + ", groupno=" + groupno + ", groupseq=" + groupseq + ", titletab="

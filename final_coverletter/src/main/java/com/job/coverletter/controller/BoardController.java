@@ -2,7 +2,7 @@ package com.job.coverletter.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.board.biz.BoardBiz;
 import com.job.coverletter.model.board.dto.BoardDto;
 
@@ -25,12 +27,33 @@ public class BoardController {
 	private BoardBiz boardBiz;
 	
 	//로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
-	String login = "login@email.com";
+	String login = "mint@email.com";
 
 	// 글목록
-	@RequestMapping(value = "/BOARD_boardList.do")
+	@RequestMapping(value = "/BOARD_boardList.do", method = RequestMethod.GET)
 	public String boardList(Model model) {
 		model.addAttribute("boardList", boardBiz.boardList());
+		return "BOARD/boardList";
+	}
+	
+	// 글목록 + 페이징 test!
+	@RequestMapping(value = "/BOARD_boardListP.do", method = RequestMethod.GET)
+	public String boardListP(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue="1") int curPage, HttpServletRequest request, Model model) {
+		
+		// 총 게시글 수
+		int listCnt = boardBiz.boardListCount();
+		
+		Pagination pagination = new Pagination(listCnt, curPage);
+//		pagination.setStartIndex(pagination.getStartIndex());
+//		pagination.setCurPage(pagination.getPageSize());
+		dto.setStartIndex(pagination.getStartIndex());
+        dto.setCntPerPage(pagination.getPageSize());
+        
+		List<BoardDto> list = boardBiz.boardListP(dto);
+		model.addAttribute("boardList", list);
+		model.addAttribute("listCnt", listCnt);
+		model.addAttribute("pagination", pagination);
+		
 		return "BOARD/boardList";
 	}
 
@@ -77,17 +100,22 @@ public class BoardController {
 	}
 
 	// 글수정
-	@RequestMapping(value = "/BOARD_boardUpdate.do")
+	@RequestMapping(value = "/BOARD_boardUpdate.do", method = RequestMethod.POST)
 	public String boardUpdate(@ModelAttribute("BoardDto") BoardDto dto) {
-
-		return null;
+		int res = boardBiz.boardUpdate(dto);
+		
+		if (res > 0) {
+			return "redirect:/BOARD_boardList.do";
+		} else {
+			return "redirect:/BOARD_boardWriteForm.do";
+		}
 	}
 
 	// 글삭제
 	@RequestMapping(value = "/BOARD_boardDelete.do")
 	public String boardDelete(int groupno) {
 		boardBiz.boardDelete(groupno);
-		return "redirect:/BOARD/boardList.do";
+		return "redirect:/BOARD_boardList.do";
 	}
 
 	// 댓글작성
