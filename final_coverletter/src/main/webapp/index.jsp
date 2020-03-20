@@ -14,7 +14,7 @@
 	<a href="MAIN/join.do">회원가입</a><br/>
 	<!-- 박하 테스트 영역 -->
 	<a href ="BOARD_boardList.do">자유게시판</a><br/>
-	<a href ="BOARD_boardListP.do">자유게시판 페이징 테스트</a><br/>
+	<a href ="BOARD_boardListPaging.do">자유게시판 페이징 테스트</a><br/>
 	
 </body>
 </html>

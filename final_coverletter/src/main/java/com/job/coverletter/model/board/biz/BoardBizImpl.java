@@ -23,9 +23,9 @@ public class BoardBizImpl implements BoardBiz {
 
 	//페이징
 	@Override
-	public List<BoardDto> boardListP(BoardDto dto) {
+	public List<BoardDto> boardListPaging(BoardDto dto) {
 		// TODO Auto-generated method stub
-		return boardDao.boardListP(dto);
+		return boardDao.boardListPaging(dto);
 	}
 
 	//글목록

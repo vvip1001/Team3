@@ -3,14 +3,14 @@ package com.job.coverletter.all;
 //페이징처리
 public class Pagination {
 
-	// 한 페이지당 게시글 수
-	private int pageSize = 3;
+	// 한 페이지당 게시글 수 (목록에 표시될 글 개수)
+	private int pageSize = 10;
 
-	// 한 블록(range) 당 페이지 수 (< 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 >)
-	private int rangeSize = 3;
+	// 한 블록(range) 당 페이지 수 (예를 들어 10개면 << 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 >>)
+	private int rangeSize = 5;
 
 	// 현재 페이지
-	private int curPage = 1;
+	private int curPage;
 
 	// 현재 블록
 	private int curRange = 1;
@@ -43,32 +43,19 @@ public class Pagination {
 		super();
 	}
 
-	public Pagination(int pageSize, int rangeSize, int curPage, int curRange, int listCnt, int pageCnt, int rangeCnt,
-			int startPage, int endPage, int startIndex, int prevPage, int nextPage) {
-		super();
-		this.pageSize = pageSize;
-		this.rangeSize = rangeSize;
-		this.curPage = curPage;
-		this.curRange = curRange;
-		this.listCnt = listCnt;
-		this.pageCnt = pageCnt;
-		this.rangeCnt = rangeCnt;
-		this.startPage = startPage;
-		this.endPage = endPage;
-		this.startIndex = startIndex;
-		this.prevPage = prevPage;
-		this.nextPage = nextPage;
-	}
-
-	/*---------- 페이징 메서드 ----------*/
+	/*---------- 페이징 생성자 ----------*/
 	// boardController param : 총 게시물 수, 현재 페이지
 	public Pagination(int listCnt, int curPage) {
 		/*
 		 * 페이징 처리 순서 1. 총 페이지 수 2. 총 블록 수 (range) 3. 블록 세팅 (range setting)
 		 */
 
-		// 현재 페이지
+		// 총 페이지 수
 		setPageCnt(listCnt);
+		
+		// 현재 페이지
+		setCurPage(curPage);
+		
 		// 총 게시글 수
 		setListCnt(listCnt);
 		
@@ -117,10 +104,14 @@ public class Pagination {
 
 	/*---------- 쿼리문 작성을 위한 시작 인덱스  ----------*/
 	public void setStartIndex(int curPage) {
-		this.startIndex = (curPage - 1) * pageSize;
+		this.startIndex = ((curPage - 1) * pageSize);
+	}
+	
+	public void setListCnt(int listCnt) {
+	this.listCnt = listCnt;
 	}
 
-	/*---------- getter setter  ----------*/
+	/*---------- 기본 getter setter  ----------*/
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -143,14 +134,6 @@ public class Pagination {
 
 	public void setCurPage(int curPage) {
 		this.curPage = curPage;
-	}
-
-	public int getListCnt() {
-		return listCnt;
-	}
-
-	public void setListCnt(int listCnt) {
-		this.listCnt = listCnt;
 	}
 
 	public int getStartPage() {
@@ -189,6 +172,10 @@ public class Pagination {
 		return curRange;
 	}
 
+	public int getListCnt() {
+		return listCnt;
+	}
+
 	public int getPageCnt() {
 		return pageCnt;
 	}
@@ -200,6 +187,7 @@ public class Pagination {
 	public int getStartIndex() {
 		return startIndex;
 	}
+
 
 	
 }

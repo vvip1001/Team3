@@ -135,6 +135,7 @@ public class BoardDto {
 		StartIndex = startIndex;
 	}
 
+	//페이지 사이즈?
 	public int getCntPerPage() {
 		return CntPerPage;
 	}

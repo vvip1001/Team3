@@ -32,10 +32,10 @@ public class BoardDaoImpl implements BoardDao {
 	
 	// 페이징
 	@Override
-	public List<BoardDto> boardListP(BoardDto dto) {
+	public List<BoardDto> boardListPaging(BoardDto dto) {
 		List<BoardDto> list = new ArrayList<BoardDto>();
 		try {
-			list = sqlSession.selectList(NAMESPACE + "boardListP", dto);
+			list = sqlSession.selectList(NAMESPACE + "boardListPaging", dto);
 		} catch (Exception e) {
 			System.out.println("[error] : boardListP");
 			e.printStackTrace();

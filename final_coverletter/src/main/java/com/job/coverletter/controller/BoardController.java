@@ -37,19 +37,19 @@ public class BoardController {
 	}
 	
 	// 글목록 + 페이징 test!
-	@RequestMapping(value = "/BOARD_boardListP.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/BOARD_boardListPaging.do", method = RequestMethod.GET)
 	public String boardListP(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue="1") int curPage, HttpServletRequest request, Model model) {
 		
 		// 총 게시글 수
 		int listCnt = boardBiz.boardListCount();
 		
 		Pagination pagination = new Pagination(listCnt, curPage);
-//		pagination.setStartIndex(pagination.getStartIndex());
-//		pagination.setCurPage(pagination.getPageSize());
 		dto.setStartIndex(pagination.getStartIndex());
-        dto.setCntPerPage(pagination.getPageSize());
+        dto.setCntPerPage(pagination.getPageSize() * curPage);
+        System.out.println("시작글번호 : " + dto.getStartIndex());
+        System.out.println("표시될글개수 : " + dto.getCntPerPage());
         
-		List<BoardDto> list = boardBiz.boardListP(dto);
+		List<BoardDto> list = boardBiz.boardListPaging(dto);
 		model.addAttribute("boardList", list);
 		model.addAttribute("listCnt", listCnt);
 		model.addAttribute("pagination", pagination);
@@ -71,7 +71,7 @@ public class BoardController {
 
 		int res = boardBiz.boardInsert(dto);
 		if (res > 0) {
-			return "redirect:/BOARD_boardList.do";
+			return "redirect:/BOARD_boardListPaging.do";
 		} else {
 			return "redirect:/BOARD_boardWriteForm.do";
 		}
@@ -105,7 +105,7 @@ public class BoardController {
 		int res = boardBiz.boardUpdate(dto);
 		
 		if (res > 0) {
-			return "redirect:/BOARD_boardList.do";
+			return "redirect:/BOARD_boardListPaging.do";
 		} else {
 			return "redirect:/BOARD_boardWriteForm.do";
 		}
@@ -115,7 +115,7 @@ public class BoardController {
 	@RequestMapping(value = "/BOARD_boardDelete.do")
 	public String boardDelete(int groupno) {
 		boardBiz.boardDelete(groupno);
-		return "redirect:/BOARD_boardList.do";
+		return "redirect:/BOARD_boardListPaging.do";
 	}
 
 	// 댓글작성

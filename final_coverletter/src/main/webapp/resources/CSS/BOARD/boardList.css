@@ -1,3 +1,9 @@
+/*---------- container 영역 ----------*/
+.board-list {
+	height: 600px;
+	padding: 0% 1% 0% 1%;
+}
+
 /*---------- 타이틀 영역 ----------*/
 h1 {
 	text-align: center !important;
@@ -106,4 +112,18 @@ button.search-btn {
 	right: 7px;
 	transition: all 0.3s ease-in-out;
 	width: 23px;
+}
+
+/*---------- 페이징 ----------*/
+#paging-nav {
+	text-align: center;
+}
+
+#paging-nav a {
+	color: black;
+}
+
+.paging-focus{
+	background-color: #00bf6f !important;
+	color : #fff !important;
 }

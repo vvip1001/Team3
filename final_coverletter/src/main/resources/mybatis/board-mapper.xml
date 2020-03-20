@@ -10,7 +10,7 @@
 	<!-- <result property="" column=""/> -->
 	<!-- </resultMap> -->
 
-	<!-- 게시글 개수 -->
+	<!-- 글목록 : 게시글 개수 -->
 	<select id="boardListCount" resultType="int">
 		SELECT COUNT(*)
 		FROM BOARD
@@ -18,12 +18,15 @@
 		ORDER BY BOARDSEQ DESC
 	</select>
 	
-	<!-- 페이징 -->
-	<select id="boardListP" parameterType="boardDto" resultType="boardDto">
-		SELECT BOARDSEQ, GROUPNO, GROUPSEQ, TITLETAB, JOINEMAIL, TITLE, CONTENT,
-		FILEPATH, REGDATE
-		FROM BOARD
-		WHERE GROUPSEQ = 1
+	<!-- 글목록 : (페이징) StartIndex(시작인덱스), CntPerPage(마지막인덱스) 가져오기 -->
+	<select id="boardListPaging" parameterType="boardDto" resultType="boardDto">
+		SELECT *
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY BOARDSEQ DESC) NUM, B.*
+			FROM BOARD B
+			WHERE GROUPSEQ = 1		
+		)
+		WHERE NUM BETWEEN #{StartIndex} + 1 AND #{CntPerPage}
 		ORDER BY BOARDSEQ DESC
 	</select>
 	

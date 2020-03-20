@@ -9,7 +9,7 @@ public interface BoardBiz {
 	public int boardListCount();
 	
 	// 페이징
-	public List<BoardDto> boardListP(BoardDto dto);
+	public List<BoardDto> boardListPaging(BoardDto dto);
 		
 	//글목록
 	public List<BoardDto> boardList();
