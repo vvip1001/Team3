@@ -14,7 +14,7 @@ CREATE TABLE JOINUSER
     JOINSEX      CHAR(1)          NOT NULL, 
     PHOTO        VARCHAR2(500), 
     MILILTARY    VARCHAR2(100), 
-    PHONE        CHAR(13)         NOT NULL, 
+    PHONE        CHAR(13), 
     ADDRESS      VARCHAR2(200), 
     KAKAO        VARCHAR2(200), 				-- 카카오API에 사용
     SINGUP       CHAR(1)          NOT NULL, 	-- 가입유무
