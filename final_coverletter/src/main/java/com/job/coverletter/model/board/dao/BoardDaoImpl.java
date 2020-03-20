@@ -30,25 +30,12 @@ public class BoardDaoImpl implements BoardDao {
 		return res;
 	}
 	
-	// 페이징
-	@Override
-	public List<BoardDto> boardListPaging(BoardDto dto) {
-		List<BoardDto> list = new ArrayList<BoardDto>();
-		try {
-			list = sqlSession.selectList(NAMESPACE + "boardListPaging", dto);
-		} catch (Exception e) {
-			System.out.println("[error] : boardListP");
-			e.printStackTrace();
-		}
-		return list;
-	}
-	
 	//글목록
 	@Override
-	public List<BoardDto> boardList() {
+	public List<BoardDto> boardList(BoardDto dto) {
 		List<BoardDto> list = new ArrayList<BoardDto>();
 		try {
-			list = sqlSession.selectList(NAMESPACE + "boardList");
+			list = sqlSession.selectList(NAMESPACE + "boardList", dto);
 		} catch (Exception e) {
 			System.out.println("[error] : boardList");
 			e.printStackTrace();

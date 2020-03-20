@@ -24,13 +24,17 @@
 	<div class="container">
 		<h1>자유게시판</h1>
 		<input type="button" value="글목록" class="btn"
-			onclick="location.href='BOARD_boardList.do'">
+			onclick="location.href='BOARD_boardList.do?curPage=${curPage }'">
 		<table class="table table-bordered" class="shadow p-3 mb-5 bg-white rounded">
-			<!-- 게시글 영역 -->
+			
 			<input type="hidden" value="${boardDetail.boardseq }"
 				id="board-boardseq">
 			<input type="hidden" value="${boardDetail.groupno }"
 				id="board-groupno">
+			<input type="hidden" value="${curPage }"
+				id="board-curpage">
+				
+			<!-- 게시글 영역 -->
 			<tbody>
 				<tr>
 					<th><div>제목</div></th>

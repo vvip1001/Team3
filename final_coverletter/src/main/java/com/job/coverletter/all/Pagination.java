@@ -6,7 +6,7 @@ public class Pagination {
 	// 한 페이지당 게시글 수 (목록에 표시될 글 개수)
 	private int pageSize = 10;
 
-	// 한 블록(range) 당 페이지 수 (예를 들어 10개면 << 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 >>)
+	// 한 블록(range)당 페이지 수 (예를 들어 10개면 << 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 >> )
 	private int rangeSize = 5;
 
 	// 현재 페이지
@@ -45,33 +45,31 @@ public class Pagination {
 
 	/*---------- 페이징 생성자 ----------*/
 	// boardController param : 총 게시물 수, 현재 페이지
+	// 페이징 처리 순서 1. 총 페이지 수 2. 총 블록 수 (range) 3. 블록 세팅 (range setting)
 	public Pagination(int listCnt, int curPage) {
-		/*
-		 * 페이징 처리 순서 1. 총 페이지 수 2. 총 블록 수 (range) 3. 블록 세팅 (range setting)
-		 */
 
 		// 총 페이지 수
 		setPageCnt(listCnt);
-		
-		// 현재 페이지
-		setCurPage(curPage);
-		
+
 		// 총 게시글 수
 		setListCnt(listCnt);
-		
+
 		// 총 페이지 수
 		setPageCnt(listCnt);
-		
+
 		// 총 블록 수
 		setRangeCnt(pageCnt);
-		
+
 		// 블록 세팅
 		rangeSetting(curPage);
-		
+
+		// 현재 페이지
+		setCurPage(curPage);
+
 		// db쿼리문 작성
 		setStartIndex(curPage);
 	}
-	
+
 	/*---------- 총 페이지 수  ----------*/
 	public void setPageCnt(int listCnt) {
 		this.pageCnt = (int) Math.ceil(listCnt * 1.0 / pageSize);
@@ -106,9 +104,9 @@ public class Pagination {
 	public void setStartIndex(int curPage) {
 		this.startIndex = ((curPage - 1) * pageSize);
 	}
-	
+
 	public void setListCnt(int listCnt) {
-	this.listCnt = listCnt;
+		this.listCnt = listCnt;
 	}
 
 	/*---------- 기본 getter setter  ----------*/
@@ -188,6 +186,4 @@ public class Pagination {
 		return startIndex;
 	}
 
-
-	
 }

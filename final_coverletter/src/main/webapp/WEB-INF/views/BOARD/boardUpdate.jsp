@@ -48,7 +48,7 @@
 			</div>
 
 			<div id="btn-group">
-				<input type="button" value="작성" class="btn" onclick="boardUpdate();">
+				<input type="button" value="수정" class="btn" onclick="boardUpdate();">
 				<input type="button" value="취소" class="btn"
 					onclick="location.href='BOARD_boardList.do'">
 			</div>

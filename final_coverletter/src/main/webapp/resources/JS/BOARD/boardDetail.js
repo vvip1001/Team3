@@ -19,14 +19,18 @@ function deleteAlert(text, replyseq) {
 
 /*---------- 글삭제 : boardDelete func ----------*/
 function boardDelete(groupno) {
-	location.href = 'BOARD_boardDelete.do?groupno=' + groupno;
+	//현재 페이지
+	var curPage = $('#board-curpage').val();
+	location.href = 'BOARD_boardDelete.do?groupno=' + groupno  + '&curPage=' + curPage;
 }
 
 /*---------- 댓글삭제 : replyDelete func ----------*/
 function replyDelete(replyseq) {
+	//현재 페이지
+	var curPage = $('#board-curpage').val();
 	//부모글고유번호
 	var parentboardseq = $('#board-boardseq').val();
-	location.href = 'BOARD_replyDelete.do?boardseq=' + replyseq + '&parentboardseq=' + parentboardseq;
+	location.href = 'BOARD_replyDelete.do?boardseq=' + replyseq + '&parentboardseq=' + parentboardseq  + '&curPage=' + curPage;
 }
 
 /*---------- 댓글(엔터치면 입력) : onKeyDown func ----------*/
@@ -40,9 +44,12 @@ function onKeyDown(boardseq) {
 function replyInsert(boardseq) {
 	//댓글 작성내용
 	var content = $('.form-control').val();
+	
+	//현재 페이지
+	var curPage = $('#board-curpage').val();
 
 	//새댓글 (부모 boardseq,  content)
-	location.href = 'BOARD_replyInsert.do?boardseq=' + boardseq + '&content=' + content;
+	location.href = 'BOARD_replyInsert.do?boardseq=' + boardseq + '&content=' + content + '&curPage=' + curPage;
 	
 	//댓글작성폼 초기화
 	$('.form-control').val(' ');
@@ -77,8 +84,11 @@ function rereInsert(boardseq) {
 	//부모글고유번호
 	var parentboardseq = $('#board-boardseq').val();
 	
+	//현재 페이지
+	var curPage = $('#board-curpage').val();
+	
 	//새대댓글 (부모댓글 boardseq, content, 글고유번호)
-	location.href = 'BOARD_rereInsert.do?boardseq=' + boardseq + '&content=' + content +'&parentboardseq=' + parentboardseq;
+	location.href = 'BOARD_rereInsert.do?boardseq=' + boardseq + '&content=' + content +'&parentboardseq=' + parentboardseq +'&curPage=' + curPage ;
 	//댓글작성폼 초기화
 	$('.form-control').val(' ');
 }

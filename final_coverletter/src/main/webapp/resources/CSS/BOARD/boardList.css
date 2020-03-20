@@ -10,6 +10,7 @@ h1 {
 	margin: 4% 0% 4% 0% !important;
     font-size: 36px !important;
     font-weight: 700 !important;
+    cursor: default;
 }
 
 /*---------- 테이블 ----------*/
@@ -80,8 +81,9 @@ tbody tr:hover {
 	color:black;
 }
 
+/* 검색창 늘어나는 길이 */
 .search-form input:focus {
-	width: 80%;
+	width: 60%;
 }
 
 .search-input:focus {
@@ -98,7 +100,7 @@ button.search-btn {
 
 .search-form input:focus ~ button.search-btn {
 	background: #00BF6F;
-	color: black;
+	color: #fff;
 }
 
 .search-form button {
@@ -123,6 +125,7 @@ button.search-btn {
 	color: black;
 }
 
+/* 현재 페이지 색상 */
 .paging-focus{
 	background-color: #00bf6f !important;
 	color : #fff !important;

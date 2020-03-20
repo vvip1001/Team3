@@ -17,6 +17,8 @@
 	href="${pageContext.request.contextPath}/resources/CSS/BOARD/boardList.css"
 	rel="stylesheet">
 
+<!-- web font icon -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css">
 </head>
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
@@ -41,7 +43,7 @@
 						<td colspan="4" class="search-form"><span>검색</span> <input
 							type="text" class="search-input" placeholder="search">
 							<button type="submit" class="search-btn">
-								<i class="fa fa-search fa-lg"></i>
+								<i class="fa fa-search"></i>
 							</button></td>
 					</tr>
 
@@ -67,7 +69,7 @@
 									<td class="board-seq"><fmt:formatNumber
 											value="${dto.boardseq }" pattern="000" /></td>
 									<td class="board-title"
-										onClick="location.href='BOARD_boardDetail.do?boardseq=${dto.boardseq }'">${dto.title }</td>
+										onClick="boardDetail(${dto.boardseq });">${dto.title }</td>
 									<td class="board-date"><fmt:formatDate
 											value="${dto.regdate}" pattern="yy-MM-dd HH:mm" /></td>
 									<td class="board-email">${dto.joinemail }</td>
@@ -78,7 +80,8 @@
 				</tbody>
 			</table>
 		</div>
-
+		<!-- 글목록 영역 끝 -->
+	
 		<!-- 페이징 영역 -->
 		<nav aria-label="Page navigation" id="paging-nav">
 			<ul class="pagination">
@@ -96,8 +99,8 @@
 					end="${pagination.endPage }">
 					<c:choose>
 						<c:when test="${pageNum eq  pagination.curPage}">
-							<li onClick="paging('${pageNum }')"><a href="#"
-								class="paging-focus">${pageNum }</a></li>
+							<li onClick="paging('${pageNum }')">
+							<a href="#" class="paging-focus">${pageNum }</a></li>
 						</c:when>
 						<c:otherwise>
 							<li onClick="paging('${pageNum }')"><a href="#">${pageNum }</a></li>
@@ -119,6 +122,28 @@
 
 			</ul>
 		</nav>
+		<!-- 페이징 영역 끝 -->
+		
+		<!-- 검색 영역 -->
+		<div class="form-group row justify-content-center">
+			<div class="w100" style="padding-right: 10px">
+				<select class="form-control form-control-sm" name="searchType"
+					id="searchType">
+					<option value="title">제목</option>
+					<option value="Content">본문</option>
+					<option value="reg_id">작성자</option>
+				</select>
+			</div>
+			<div class="w300" style="padding-right: 10px">
+				<input type="text" class="form-control form-control-sm"
+					name="keyword" id="keyword">
+			</div>
+			<div>
+				<button class="btn btn-sm btn-primary" name="btnSearch"
+					id="btnSearch">검색</button>
+			</div>
+		</div>
+
 	</div>
 </body>
 </html>

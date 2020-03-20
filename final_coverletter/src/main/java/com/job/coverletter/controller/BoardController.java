@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.board.biz.BoardBiz;
@@ -29,27 +30,20 @@ public class BoardController {
 	//로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
 	String login = "mint@email.com";
 
-	// 글목록
+	// 글목록(페이징기능)
 	@RequestMapping(value = "/BOARD_boardList.do", method = RequestMethod.GET)
-	public String boardList(Model model) {
-		model.addAttribute("boardList", boardBiz.boardList());
-		return "BOARD/boardList";
-	}
-	
-	// 글목록 + 페이징 test!
-	@RequestMapping(value = "/BOARD_boardListPaging.do", method = RequestMethod.GET)
 	public String boardListP(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue="1") int curPage, HttpServletRequest request, Model model) {
 		
 		// 총 게시글 수
 		int listCnt = boardBiz.boardListCount();
 		
+		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);
-		dto.setStartIndex(pagination.getStartIndex());
+		dto.setStartIndex(pagination.getStartIndex());				
         dto.setCntPerPage(pagination.getPageSize() * curPage);
-        System.out.println("시작글번호 : " + dto.getStartIndex());
-        System.out.println("표시될글개수 : " + dto.getCntPerPage());
-        
-		List<BoardDto> list = boardBiz.boardListPaging(dto);
+
+		List<BoardDto> list = boardBiz.boardList(dto);
+		
 		model.addAttribute("boardList", list);
 		model.addAttribute("listCnt", listCnt);
 		model.addAttribute("pagination", pagination);
@@ -71,7 +65,7 @@ public class BoardController {
 
 		int res = boardBiz.boardInsert(dto);
 		if (res > 0) {
-			return "redirect:/BOARD_boardListPaging.do";
+			return "redirect:/BOARD_boardList.do";
 		} else {
 			return "redirect:/BOARD_boardWriteForm.do";
 		}
@@ -79,13 +73,14 @@ public class BoardController {
 
 	// 글상세 + 댓글상세
 	@RequestMapping(value = "/BOARD_boardDetail.do", method = RequestMethod.GET)
-	public String boardDetail(Model model, @ModelAttribute("BoardDto") BoardDto dto) {
+	public String boardDetail(Model model, @ModelAttribute("BoardDto") BoardDto dto, int curPage) {
 		// 글
 		BoardDto boardDetail = boardBiz.boardDetail(dto);
 		// 댓글
 		List<BoardDto> replyList = boardBiz.replyList(dto);
 		model.addAttribute("boardDetail", boardDetail);
 		model.addAttribute("replyList", replyList);
+		model.addAttribute("curPage", curPage);
 		return "BOARD/boardDetail";
 	}
 
@@ -105,7 +100,7 @@ public class BoardController {
 		int res = boardBiz.boardUpdate(dto);
 		
 		if (res > 0) {
-			return "redirect:/BOARD_boardListPaging.do";
+			return "redirect:/BOARD_boardList.do";
 		} else {
 			return "redirect:/BOARD_boardWriteForm.do";
 		}
@@ -115,36 +110,36 @@ public class BoardController {
 	@RequestMapping(value = "/BOARD_boardDelete.do")
 	public String boardDelete(int groupno) {
 		boardBiz.boardDelete(groupno);
-		return "redirect:/BOARD_boardListPaging.do";
+		return "redirect:/BOARD_boardList.do";
 	}
 
 	// 댓글작성
 	@RequestMapping(value = "/BOARD_replyInsert.do")
-	public String replyInsert(@ModelAttribute("BoardDto") BoardDto dto, Model model) {
+	public String replyInsert(@ModelAttribute("BoardDto") BoardDto dto, int curPage, Model model) {
 		// 댓글작성자 : 로그인 완성되면 로그인 세션 아이디로 바꿔야됨
 		dto.setJoinemail(login);
 		boardBiz.replyInsert(dto);
 
-		return "redirect:/BOARD_boardDetail.do?boardseq="+ dto.getBoardseq() +"&groupno=" + dto.getGroupno();
+		return "redirect:/BOARD_boardDetail.do?boardseq="+ dto.getBoardseq() +"&groupno=" + dto.getGroupno() +"&curPage=" + curPage;
 	}
 
 	// 대댓글작성
 	@RequestMapping(value = "/BOARD_rereInsert.do")
-	public String rereInsert(@ModelAttribute("BoardDto") BoardDto dto, int parentboardseq, Model model) {
+	public String rereInsert(@ModelAttribute("BoardDto") BoardDto dto, int parentboardseq, int curPage, Model model) {
 		// 댓글작성자 : 로그인 완성되면 로그인 세션 아이디로 바꿔야됨
 		dto.setJoinemail(login);
 		boardBiz.rereInsert(dto);
 
-		return "redirect:/BOARD_boardDetail.do?boardseq="+ parentboardseq +"&groupno=" + dto.getGroupno();
+		return "redirect:/BOARD_boardDetail.do?boardseq="+ parentboardseq +"&groupno=" + dto.getGroupno() +"&curPage=" + curPage;
 	}
 
 	// 댓글삭제
 	@RequestMapping(value = "/BOARD_replyDelete.do")
-	public String replyDelete(@ModelAttribute("BoardDto") BoardDto dto, int parentboardseq, Model model) {
+	public String replyDelete(@ModelAttribute("BoardDto") BoardDto dto, int parentboardseq, int curPage, Model model) {
 		boardBiz.replyDelete(dto.getBoardseq());
 
-		return "redirect:/BOARD_boardDetail.do?boardseq="+ parentboardseq +"&groupno=" + dto.getGroupno();
-	}
+		return "redirect:/BOARD_boardDetail.do?boardseq="+ parentboardseq +"&groupno=" + dto.getGroupno() + "&curPage=" + curPage;
+	} 
 
 	// 에러
 	@RequestMapping(value = "/error.do", method = RequestMethod.GET)
