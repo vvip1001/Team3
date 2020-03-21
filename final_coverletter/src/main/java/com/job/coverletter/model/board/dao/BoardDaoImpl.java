@@ -19,10 +19,10 @@ public class BoardDaoImpl implements BoardDao {
 
 	// 총 게시글 수
 	@Override
-	public int boardListCount() {
+	public int boardListCount(BoardDto dto) {
 		int res = 0;
 		try {
-			res = sqlSession.selectOne(NAMESPACE + "boardListCount"); 
+			res = sqlSession.selectOne(NAMESPACE + "boardListCount", dto); 
 		} catch (Exception e) {
 			System.out.println("[error] : boardListCount");
 			e.printStackTrace();

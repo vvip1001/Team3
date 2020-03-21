@@ -21,7 +21,6 @@ function boardDetail(boardseq) {
 
 /*---------- 검 색 : search func ----------*/
 function search(curPage) {
-	var curPage = $('.paging-focus').text();
 	
 	// category : 제목(title), 본문(content), 작성자(joinemail)
 	var category = $('#search-category').val();
@@ -29,7 +28,7 @@ function search(curPage) {
 	var keyword = $('#keyword').val();
 	
 	// controller
-	location.href='BOARD_boardList.do?curPage=' + curPage + '&category=' + category + '&keyword=' + keyword;
+	location.href='BOARD_boardList.do?category=' + category + '&keyword=' + keyword;
 }
 
 /*---------- 검색(엔터치면 입력) : onKeyDown func ----------*/

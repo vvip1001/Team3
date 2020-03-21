@@ -15,15 +15,15 @@
 		SELECT COUNT(*)
 		FROM BOARD
 		WHERE GROUPSEQ = 1
-		<trim prefix = "WHERE" prefixOverrides = "AND">
-		<if test="category == 'title' and keyword != NULL and keyword != ''">
-			TITLE LIKE ('%' || #{keyword} || '%')
+		<trim prefix = "AND" prefixOverrides = "AND">
+		<if test="category == 'title' and keyword != null and keyword != ''">
+			AND TITLE LIKE ('%' || #{keyword} || '%')
 		</if>
-		<if test="category == 'content' and keyword != NULL and keyword != ''">
-			CONTENT LIKE ('%' || #{keyword} || '%')
+		<if test="category == 'content' and keyword != null and keyword != ''">
+			AND CONTENT LIKE ('%' || #{keyword} || '%')
 		</if>
-		<if test="category == 'joinemail' and keyword != NULL and keyword != ''">
-			JOINEMAIL LIKE ('%' || #{keyword} || '%')
+		<if test="category == 'joinemail' and keyword != null and keyword != ''">
+			AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
 		</if>
 	</trim>
 	</select>
@@ -35,14 +35,14 @@
 			SELECT A.*, ROW_NUMBER() OVER(ORDER BY BOARDSEQ DESC) AS RNUM
 			FROM BOARD A
 			WHERE GROUPSEQ = 1
-				<trim prefix = "WHERE" prefixOverrides = "AND">
-					<if test="category == 'title' and keyword != NULL and keyword != ''">
+				<trim prefix = "AND" prefixOverrides = "AND">
+					<if test="category == 'title' and keyword != null and keyword != ''">
 						AND TITLE LIKE ('%' || #{keyword} || '%')
 					</if>
-					<if test="category == 'content' and keyword != NULL and keyword != ''">
+					<if test="category == 'content' and keyword != null and keyword != ''">
 						AND CONTENT LIKE ('%' || #{keyword} || '%')
 					</if>
-					<if test="category == 'joinemail' and keyword != NULL and keyword != ''">
+					<if test="category == 'joinemail' and keyword != null and keyword != ''">
 						AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
 					</if>
 				</trim>

@@ -6,7 +6,7 @@ import com.job.coverletter.model.board.dto.BoardDto;
 
 public interface BoardBiz {
 	// 총 게시글 수
-	public int boardListCount();
+	public int boardListCount(BoardDto dto);
 
 	// 글목록 (페이징)
 	public List<BoardDto> boardList(BoardDto dto);

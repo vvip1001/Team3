@@ -16,9 +16,9 @@ public class BoardBizImpl implements BoardBiz {
 
 	// 총 게시글 수
 	@Override
-	public int boardListCount() {
+	public int boardListCount(BoardDto dto) {
 		// TODO Auto-generated method stub
-		return boardDao.boardListCount();
+		return boardDao.boardListCount(dto);
 	}
 
 	// 글목록 (페이징)

@@ -8,7 +8,7 @@ public interface BoardDao {
 	String NAMESPACE = "com.job.coverletter.Board.";
 
 	// 총 게시글 수
-	public int boardListCount();
+	public int boardListCount(BoardDto dto);
 
 	// 글목록 (페이징)
 	public List<BoardDto> boardList(BoardDto dto);
