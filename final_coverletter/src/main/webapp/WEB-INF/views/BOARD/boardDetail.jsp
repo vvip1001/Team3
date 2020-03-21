@@ -58,7 +58,7 @@
 					<c:when test="${boardDetail.joinemail eq login }">
 						<tr>
 							<td colspan="4"><span class="board-update-delete">
-							<a href="#" onclick="location.href='BOARD_boardUpdateForm.do?boardseq=${boardDetail.boardseq }'">수정</a> |
+							<a href="#" onclick="location.href='BOARD_boardUpdateForm.do?boardseq=${boardDetail.boardseq }&curPage=${curPage }'">수정</a> |
 							<a href="#" onclick="deleteAlert('글');">삭제</a></span></td>
 						</tr>
 					</c:when>

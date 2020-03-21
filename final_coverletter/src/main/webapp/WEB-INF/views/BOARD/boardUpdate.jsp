@@ -36,6 +36,7 @@
 		<h1>자유게시판</h1>
 	
 		<form method="post" action="BOARD_boardUpdate.do">
+			<input type="hidden" value="${boardDetail.curPage }" name="curPage">
 			<input type="hidden" value="${boardDetail.boardseq }" name="boardseq">
 			<div class="board-title">
 				<h2>제목</h2>

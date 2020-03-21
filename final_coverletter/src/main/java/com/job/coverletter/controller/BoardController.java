@@ -35,7 +35,7 @@ public class BoardController {
 	public String boardListP(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue="1") int curPage, HttpServletRequest request, Model model) {
 		
 		// 총 게시글 수
-		int listCnt = boardBiz.boardListCount();
+		int listCnt = boardBiz.boardListCount(dto);
 		
 		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);
@@ -86,21 +86,21 @@ public class BoardController {
 
 	// 글수정 페이지
 	@RequestMapping(value = "/BOARD_boardUpdateForm.do")
-	public String boardUpdateForm(Model model, int boardseq) {
+	public String boardUpdateForm(Model model, int boardseq, int curPage) {
 		BoardDto dto = new BoardDto();
 		dto.setBoardseq(boardseq);
 		BoardDto boardDetail = boardBiz.boardDetail(dto);
+		boardDetail.setCurPage(curPage);
 		model.addAttribute("boardDetail", boardDetail);
 		return "BOARD/boardUpdate";
 	}
 
 	// 글수정
 	@RequestMapping(value = "/BOARD_boardUpdate.do", method = RequestMethod.POST)
-	public String boardUpdate(@ModelAttribute("BoardDto") BoardDto dto) {
+	public String boardUpdate(Model model, @ModelAttribute("BoardDto") BoardDto dto) {
 		int res = boardBiz.boardUpdate(dto);
-		
 		if (res > 0) {
-			return "redirect:/BOARD_boardList.do";
+			return "redirect:/BOARD_boardList.do?curPage=" + dto.getCurPage();
 		} else {
 			return "redirect:/BOARD_boardWriteForm.do";
 		}

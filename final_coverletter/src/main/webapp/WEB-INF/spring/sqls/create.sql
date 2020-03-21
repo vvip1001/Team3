@@ -72,10 +72,10 @@ FROM (
 				AND TITLE LIKE ('%' || #{keyword} || '%')
 			</if>
 			<if test="category == 'content' AND keyword != NULL AND keyword != ''">
-				AND CONTENT LIKE ('%' || #{keyword} || '%')
+				AND CONTENT LIKE ('%' || '본문' || '%')
 			</if>
 			<if test="category == 'joinemail' AND keyword != NULL AND keyword != ''">
-				AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
+				AND JOINEMAIL LIKE ('%' || '작성자' || '%')
 			</if>
 		</trim>
 	) B	
@@ -85,6 +85,7 @@ ORDER BY BOARDSEQ DESC
 
 
 
-
+SELECT *
+FROM BOARD
 
 
