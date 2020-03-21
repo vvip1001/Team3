@@ -18,12 +18,13 @@
 	rel="stylesheet">
 
 <!-- web font icon -->
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css">
 </head>
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
 	<div class="container">
-		
+
 		<!-- 글목록 영역 -->
 		<div class="board-list">
 			<h1>자유게시판</h1>
@@ -38,13 +39,29 @@
 				<col width="100" />
 
 				<thead>
-					<!-- 테이블 : 검색영역 -->
+				<!-- 테이블 : 검색 영역 -->
 					<tr>
-						<td colspan="4" class="search-form"><span>검색</span> <input
-							type="text" class="search-input" placeholder="search">
-							<button type="submit" class="search-btn">
-								<i class="fa fa-search"></i>
-							</button></td>
+						<td>
+							<div class="search-label">검색</div>
+						</td>
+						<td colspan="3" class="search-form">
+							<div class="search-select">
+								<select class="form-control form-control-sm" name="search-category"
+									id="search-category">
+									<option value="title">제목</option>
+									<option value="content">본문</option>
+									<option value="joinemail">작성자</option>
+								</select>
+							</div>
+							<div class="search-input">
+								<input type="text" class="form-control form-control-sm"
+									name="keyword" id="keyword">
+							</div>
+							<div class="search-btn-group">
+								<button class="btn btn-sm btn-primary"
+									id="search-btn" onclick="search(curPage);" onkeydown="onKeyDown(curPage);">검 색</button>
+							</div>
+						</td>
 					</tr>
 
 					<!-- 테이블 : 게시글 목록 영역 -->
@@ -81,7 +98,7 @@
 			</table>
 		</div>
 		<!-- 글목록 영역 끝 -->
-	
+
 		<!-- 페이징 영역 -->
 		<nav aria-label="Page navigation" id="paging-nav">
 			<ul class="pagination">
@@ -99,8 +116,8 @@
 					end="${pagination.endPage }">
 					<c:choose>
 						<c:when test="${pageNum eq  pagination.curPage}">
-							<li onClick="paging('${pageNum }')">
-							<a href="#" class="paging-focus">${pageNum }</a></li>
+							<li onClick="paging('${pageNum }')"><a href="#"
+								class="paging-focus">${pageNum }</a></li>
 						</c:when>
 						<c:otherwise>
 							<li onClick="paging('${pageNum }')"><a href="#">${pageNum }</a></li>
@@ -123,26 +140,8 @@
 			</ul>
 		</nav>
 		<!-- 페이징 영역 끝 -->
-		
-		<!-- 검색 영역 -->
-		<div class="form-group row justify-content-center">
-			<div class="w100" style="padding-right: 10px">
-				<select class="form-control form-control-sm" name="searchType"
-					id="searchType">
-					<option value="title">제목</option>
-					<option value="Content">본문</option>
-					<option value="reg_id">작성자</option>
-				</select>
-			</div>
-			<div class="w300" style="padding-right: 10px">
-				<input type="text" class="form-control form-control-sm"
-					name="keyword" id="keyword">
-			</div>
-			<div>
-				<button class="btn btn-sm btn-primary" name="btnSearch"
-					id="btnSearch">검색</button>
-			</div>
-		</div>
+
+
 
 	</div>
 </body>

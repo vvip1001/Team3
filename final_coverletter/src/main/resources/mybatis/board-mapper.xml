@@ -15,18 +15,40 @@
 		SELECT COUNT(*)
 		FROM BOARD
 		WHERE GROUPSEQ = 1
+		<trim prefix = "WHERE" prefixOverrides = "AND">
+		<if test="category == 'title' and keyword != NULL and keyword != ''">
+			TITLE LIKE ('%' || #{keyword} || '%')
+		</if>
+		<if test="category == 'content' and keyword != NULL and keyword != ''">
+			CONTENT LIKE ('%' || #{keyword} || '%')
+		</if>
+		<if test="category == 'joinemail' and keyword != NULL and keyword != ''">
+			JOINEMAIL LIKE ('%' || #{keyword} || '%')
+		</if>
+	</trim>
 	</select>
 	
 	<!-- 글목록(페이징) : StartIndex(시작인덱스), CntPerPage(마지막인덱스) 가져오기 -->
 	<select id="boardList" parameterType="boardDto" resultType="boardDto">
-		SELECT *
+		SELECT B.*
 		FROM (
-			SELECT ROW_NUMBER() OVER (ORDER BY BOARDSEQ DESC) NUM, B.*
-			FROM BOARD B
-			WHERE GROUPSEQ = 1		
-		)
-		WHERE NUM BETWEEN #{StartIndex} + 1 AND #{CntPerPage}
-		ORDER BY BOARDSEQ DESC
+			SELECT A.*, ROW_NUMBER() OVER(ORDER BY BOARDSEQ DESC) AS RNUM
+			FROM BOARD A
+			WHERE GROUPSEQ = 1
+				<trim prefix = "WHERE" prefixOverrides = "AND">
+					<if test="category == 'title' and keyword != NULL and keyword != ''">
+						AND TITLE LIKE ('%' || #{keyword} || '%')
+					</if>
+					<if test="category == 'content' and keyword != NULL and keyword != ''">
+						AND CONTENT LIKE ('%' || #{keyword} || '%')
+					</if>
+					<if test="category == 'joinemail' and keyword != NULL and keyword != ''">
+						AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
+					</if>
+				</trim>
+			) B	
+			WHERE RNUM BETWEEN  #{StartIndex} + 1 AND #{CntPerPage}
+			ORDER BY BOARDSEQ DESC
 	</select>
 
 	<!-- 글작성 -->

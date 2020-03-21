@@ -50,70 +50,31 @@ tbody tr:hover {
 	text-align: center;
 }
 
-/*---------- 검색바 ----------*/
-.search-bar {
-	border: 0px;
-}
-
-.search-bar span {
-	left: 10px;
-    top: 10px;
-    position: absolute;
-}
-
+/*---------- 검색영역 ----------*/
 .search-form {
-	border: none;
-	height: 35px;
-	position: relative;
+	text-align: center;
+	border: 0px;
+	width: 100%;
+}
+
+.search-select {
+	width: 20%;
+	display: inline-block;
 }
 
 .search-input {
-	border-radius: 15px;
-	right: 3px;
-	transition: all 0.3s ease-in-out;
-	border: 1px solid #ccc;
-	font-size: 12px;
-	height: 30px;
-	padding: 4px 8px;
-	position: absolute;
-	width: 20%;
-	bottom: 5%;
-	color:black;
-}
-
-/* 검색창 늘어나는 길이 */
-.search-form input:focus {
 	width: 60%;
+	display: inline-block;
 }
 
-.search-input:focus {
-	outline: none;
+.search-btn-group {
+	width: 20%;
+	display: inline;
 }
 
-button.search-btn {
-	border: none;
-	height: 30px;
-	font-size: 12px;
-	position: absolute;
-	width: 30px;
-}
-
-.search-form input:focus ~ button.search-btn {
-	background: #00BF6F;
-	color: #fff;
-}
-
-.search-form button {
-	transition: all 0.3s ease-in-out;
-}
-
-.search-form button.search-btn {
-	background: #ccc;
-	border-radius: 50%;
-	height: 23px;
-	right: 7px;
-	transition: all 0.3s ease-in-out;
-	width: 23px;
+#search-btn {
+	border-color: #00bf6f !important;
+	background-color: #00bf6f !important;
 }
 
 /*---------- 페이징 ----------*/
@@ -130,3 +91,5 @@ button.search-btn {
 	background-color: #00bf6f !important;
 	color : #fff !important;
 }
+
+
