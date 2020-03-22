@@ -16,9 +16,9 @@ public class JoinUserDaoImpl implements JoinUserDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int insertUser(JoinUserDto joinuser) {
+	public int insertUser(JoinUserDto dto) {
 
-		return sqlSession.insert("com.job.coverletter.JoinUser.joinuser",joinuser);
+		return sqlSession.insert("com.job.coverletter.JoinUser.joinuser",dto);
 	}
 
 	@Override
@@ -27,9 +27,9 @@ public class JoinUserDaoImpl implements JoinUserDao {
 	}
 
 	@Override
-	public int updateJoinuser(JoinUserDto joinuser) {
+	public int updateJoinuser(JoinUserDto dto) {
 
-		return sqlSession.update("com.job.coverletter.JoinUser.updateuser",	joinuser);
+		return sqlSession.update("com.job.coverletter.JoinUser.updateuser",	dto);
 	}
 
 	@Override
@@ -39,17 +39,16 @@ public class JoinUserDaoImpl implements JoinUserDao {
 	}
 	
 	
-
-	@Override
-	public int checkemail(HashMap<String, Object> ech) {
-
-		return 0;
-	}
-
 	@Override
 	public JoinUserDto login(JoinUserDto dto) {
 		
 		return sqlSession.selectOne("com.job.coverletter.JoinUser.login", dto);
+	}
+
+	@Override
+	public int checkemail(JoinUserDto dto) {
+		
+		return sqlSession.selectOne("com.job.coverletter.JoinUser.checkEmail",dto);
 	}
 	
 	

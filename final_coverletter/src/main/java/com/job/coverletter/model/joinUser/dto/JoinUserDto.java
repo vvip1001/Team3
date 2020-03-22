@@ -1,23 +1,39 @@
 package com.job.coverletter.model.joinUser.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+
+
 public class JoinUserDto {
 
     // 회원번호(SEQ) 
     private int joinseq;
 
     // 이메일(ID) 
+    @NotEmpty(message = "값을 입력해주세요")
+    @Email(message = "이메일 형식이 틀렸습니다.")
     private String joinemail;
 
     // 이름 
+    @NotEmpty(message = "값을 입력해주세요")
     private String joinname;
 
     // 비밀번호 
+    @NotEmpty(message = "값을 입력해주세요")
+    @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "숫자 영어 혼합으로 6~20자리로")
     private String joinpw;
 
     // 생년월일 
+    @NotEmpty(message = "값을 입력해주세요")
+    @Pattern(regexp = "^[0-9]*$", message = "형식을 맞춰주세요")
+    @Length(min = 8, max = 8, message = "형식을 맞춰주세요")
     private String joinbirth;
 
     // 성별 
+    @NotEmpty(message = "값을 입력해주세요")
     private String joinsex;
 
     // 사진 
