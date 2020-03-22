@@ -1,8 +1,7 @@
-	$(function() {
+$(function() {
 		$("#error").hide();
-		$("#M_error").hide();
+		
 	});
-
 
 	
 	//일반 로그인 
@@ -46,3 +45,9 @@
 			});
 		}
 	}
+	
+	function modal() {
+		$('#modal').modal('show');
+		$("#M_error").hide();
+	}
+	

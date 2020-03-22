@@ -26,14 +26,14 @@
 		
 	}
 
-	input{
+	.login input {
 	    display: table-cell;
 	    vertical-align: middle;
 	    height: 50px;
 	    width: 100%;
 	    border: 1px solid black;
 	    border-radius: 5px 5px 5px 5px; 
-	    font-size: 20pt;   
+	     
 	}
 	
 	.logininfo{
@@ -83,4 +83,19 @@
 
 	#error{
 		color: red;
+	}
+
+	.M_table{
+		border-spacing: 10px;
+		border-collapse: separate;
+	}
+	
+	.M_table input{
+		height: 30px;
+		border-radius: 5px 5px 5px 5px;
+		margin-right: 6px;
+	}
+	
+	.modal-content {
+		margin-top: 38%;
 	}

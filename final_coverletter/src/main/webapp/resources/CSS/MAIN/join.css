@@ -1,6 +1,3 @@
-@charset "utf-8";
-
-
 #info{
 	font-size: 15px;
 	color: #DF7401;
@@ -26,7 +23,7 @@ th{
 	text-align: center; 
 }
 
-.register {
+#jointable input[type="text"] {
 	display: table-cell;
 	vertical-align: middle;
 	height: 40px;
@@ -48,7 +45,7 @@ th{
 	height: fit-content;
 }
 
-#checkidbtn{
+.checkcell button{
 	width: 60%;
 	height: 40px;
 	background-color: #00bf6f;
@@ -71,7 +68,7 @@ th{
 	font-size: 15px;
 }
 
-#joinsex{
+#joinsex {
 	display: table-cell;
 	vertical-align: middle;
 	width: 8%;
