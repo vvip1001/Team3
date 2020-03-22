@@ -28,7 +28,7 @@ public class UserController {
 	private JoinUserBiz joinUserBiz;
 	
 	//마이페이지
-	@RequestMapping(value="/USER/userMain.do", method=RequestMethod.GET)
+	@RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
 	public String userMain() {
 		logger.info("userMain go");
 		
@@ -37,7 +37,7 @@ public class UserController {
 	}
 	
 
-	@RequestMapping(value="/USER/userDetail.do", method=RequestMethod.GET)
+	@RequestMapping(value="/USER_userDetail.do", method=RequestMethod.GET)
 	public String userDetail() {
 		logger.info("userDetail go");
 		
@@ -46,10 +46,7 @@ public class UserController {
 	}
 	
 	
-	
-	
-
-	@RequestMapping(value = "/MAIN/main.do")
+	@RequestMapping(value = "/MAIN_main.do")
 	public String main() {
 		logger.info("main page");
 		
@@ -58,16 +55,18 @@ public class UserController {
 	
 	
 	// join
-	@RequestMapping(value = "/MAIN/join.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/USER_join.do", method = RequestMethod.GET)
 	public String join() {
 		logger.info("joinpage go");
 
 		return "MAIN/join";	
 	}
 	
-	@RequestMapping(value = "/MAIN/joinRes.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/USER_joinRes.do", method = RequestMethod.POST)
 	public String joinRes(Model model, JoinUserDto dto) {
 		logger.info("회원가입");
+		
+		System.out.println("================JoinUserDto : " + dto);
 		
 		int res = joinUserBiz.insertUser(dto);
 		
@@ -82,25 +81,25 @@ public class UserController {
 	
 	
 	// login
-	@RequestMapping(value = "/MAIN/login.do")
+	@RequestMapping(value = "/USER_login.do")
 	public String login() {
 		logger.info("login page");
 		
 		return "MAIN/login";
 	}
 	
-	@RequestMapping(value = "/loginAjax.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/USER_loginAjax.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Boolean> loginAjax(HttpSession session, @RequestBody JoinUserDto dto){
 		
 		logger.info("login ajax로 넘겨주는 controller : " + dto);
 		
-		JoinUserDto res = joinUserBiz.login(dto);
+		JoinUserDto loginDto = joinUserBiz.login(dto);
 		
 		boolean check = false;
 		
-		if(res != null) {
-			session.setAttribute("login", res);
+		if(loginDto != null) {
+			session.setAttribute("login", loginDto);
 			check = true;
 		}
 		
@@ -108,10 +107,11 @@ public class UserController {
 		map.put("check", check);
 		
 		return map;
+		
 	}
 	
 	
-	@RequestMapping(value = "/MAIN/logout.do")
+	@RequestMapping(value = "/USER_logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		logger.info("logout");
 		

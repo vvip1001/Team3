@@ -32,8 +32,8 @@
  	</select>
  	
  	<!-- 회원가입 -->
- 	<insert id="joinuser" parameterType="joinUserDto">
- 		INSERT INTO JOINUSER (JOINSEQ, JOINEMAIL, JOINNAME, JOINPW, JOINSEX, SINGUP)
+ 	<insert id="joinuser" parameterType="joinuserDto">
+ 		INSERT INTO JOINUSER (JOINSEQ, JOINEMAIL, JOINNAME, JOINPW, JOINBIRTH, JOINSEX, SINGUP)
  		VALUES (JOIN_SEQ.NEXTVAL, #{joinemail},#{joinname},#{joinpw},#{joinbirth},#{joinsex},'Y') 
  	</insert>
 	
@@ -48,7 +48,7 @@
 	</delete>
  
  	<!-- login -->
- 	<select id="login" parameterType="joinUserDto" resultType="joinuserDto">
+ 	<select id="login" parameterType="joinuserDto" resultType="joinUserDto">
  		SELECT JOINSEQ, JOINEMAIL, JOINNAME, JOINPW, JOINBIRTH, JOINSEX, PHOTO, MILILTARY, PHONE, ADDRESS, KAKAO, SINGUP
  		FROM JOINUSER
  		WHERE JOINEMAIL = #{joinemail}
