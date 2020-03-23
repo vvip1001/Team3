@@ -36,17 +36,16 @@ public class JoinUserBizImpl implements JoinUserBiz {
 		return joinuserdao.deletejoinuser(joinemail);
 	}
 
-	@Override
-	public int checkemail(HashMap<String, Object> ech) {
-		
-		
-		return joinuserdao.checkemail(ech);
-	}
-
+	
 	@Override
 	public JoinUserDto login(JoinUserDto dto) {
 		
 		return joinuserdao.login(dto);
+	}
+
+	@Override
+	public String checkemail(String joinemail) {
+		return joinuserdao.checkemail(joinemail);
 	}
 
 }

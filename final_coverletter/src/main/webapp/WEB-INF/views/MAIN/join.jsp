@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,95 +13,96 @@
 <link href="${pageContext.request.contextPath}/resources/CSS/MAIN/join.css" rel="stylesheet">
 
 
-<style type="text/css">
-
-h1{
-	text-align: center;
-}
-#info{
-	text-align: right;
-}
-
-table {
-	margin-left: 33%;
-}
-
-</style>
 </head>
+
 <body>
-<%@ include file="../ALL/header_login.jsp"%>
+	<%@ include file="../ALL/header_logout.jsp"%>
+
    <div class="container" style="height: 800px;">
-         <form action="joinRes.do" method="post">
+	
+         <f:form modelAttribute="joinuserDto" action="USER_joinRes.do" method="post">
         
-         <h1>환영합니다</h1>
-         <table>
+         <h1 id="hello">환영합니다</h1>
+         <table id="jointable">
+         	
             <tbody>
                <tr>
-                  <td id="info">*은 필수입니다.</td>
+                  <td id="info" colspan="2" align="right">* 값은 필수입니다.</td>
                <tr>
                   <th>이 메 일*</th>
-                  <td><input type="text" id="joinemail" name="joinemail" placeholder="이메일을 입력하세요">
-                     <input type="button" value="중복 확인">
-                  </td>
+                  <td class="joininfo"><input type="text" id="joinemail" name="joinemail" class="register" placeholder="이메일을 입력하세요"></td>
+                  <td class="checkcell"><input type="button" id="checkidbtn" onclick="checkid();"value="중복확인"/></td>
                </tr>
                <tr>
-               	<td colspan="2" align="center" id="idcheck" >아이디 유효성</td>
+                <th></th>
+               	<td colspan="2" align="left" id="idcheck" >
+               		<f:errors path="joinemail" />
+               	</td>
                </tr>
                <tr>
                   <th>이    름*</th>
-                  <td><input type="text" id="joinname" name="joinname" placeholder="이름을 입력하세요" ></td></br>
+                  <td class="joininfo"><input type="text" id="joinname" name="joinname" class="register" placeholder="이름을 입력하세요" ></td></br>
                </tr>
                 <tr>
-               	<td colspan="2" align="center" id="namecheck" >이름 유효성</td>
+                <th></th>
+               	<td colspan="2" align="left" id="namecheck" >
+               		<f:errors path="joinname" />
+               	</td>
                </tr>
                <tr>
                   <th>비밀번호*</th>
-                  <td><input type="text" id="joinpw" name="joinpw" placeholder="비밀번호를 입력하세요"></td>
+                  <td class="joininfo"><input type="text" id="joinpw" name="joinpw" class="register" placeholder="비밀번호를 입력하세요"></td>
                </tr>
                 <tr>
-               	<td colspan="2" align="center" id="pwcheck" >비밀번호유효성</td>
+                <th></th>
+               	<td colspan="2" align="left" id="pwcheck"  >
+               		<f:errors path="joinpw" />
+               	</td>
+               </tr>
+               <tr>             
+                  <th>비밀번호 확인*</th>
+                  <td class="joininfo"><input type="text" id="joinpw2" class="register" placeholder="비밀번호를 확인하세요"></td>
                </tr>
                <tr>
-                  <th>비밀번호 입력*</th>
-                  <td><input type="text" id="pwcheck" name="pwcheck" placeholder="비밀번호를 확인하세요"></td>
-               </tr>
-               <tr>
-               	<td colspan="2" align="center" id="pwcheck2" >비밀번호유효성</td>
+               <th></th>
+               	<td colspan="2" align="left" id="pwcheck2">
+               		
+               	</td>
                </tr>
                <tr>
                   <th>생년월일*</th>
-                  <td>
-                     <select>
-                        <option></option>
-                     </select>
-                     <select>
-                        <option></option>
-                     </select>
-                     <select>
-                        <option></option>
-                     </select>
+                  <td class="joininfo">
+                     <input type="text" name="joinbirth" id="joinbirth" class="register" placeholder="yyyynnmm 숫자만입력해주세요">
                   </td>
                </tr>
                 <tr>
-               	<td colspan="2" align="center" id="birthcheck" >생년월일 유효성</td>
+                <th></th>
+               	<td colspan="2" align="left" id="birthcheck" >
+               		<f:errors path="joinbirth"/>
+               	</td>
                </tr>
                <tr>
                   <th>성   별*</th>
-                  <td><input type="radio" name="joinsex" value="female">여자
-                     <input type="radio" name="joinsex" value="male">남자
+                  <td><input type="radio" name="joinsex" id="joinsex" value="F">
+                  	  <label>여성</label>
+                     <input type="radio" name="joinsex" id="joinsex" value="M">
+                     <label>남성</label>                  
                   </td>
                </tr>
                 <tr>
-               	<td colspan="2" align="center" id="sexcheck" >성별 유효성</td>
+                <th></th>
+               	<td colspan="2" align="left" id="sexcheck" >
+               		<f:errors path="joinsex"/>
+               	</td>
                </tr>
             </tbody>
                <tr>
-                  <td colspan="2" align="center">
-                     <button type="submit" >회원가입</button>
+                  <td colspan="2" align="center" >
+                     <button id="join" type="submit" >회원가입</button>
                   </td>
                </tr>
          </table>
-         </form>
+         </f:form>
       </div>
 </body>
 </html>

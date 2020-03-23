@@ -25,7 +25,7 @@
                <span><a href="#">취업센터</a></span>
                <span><a href="BOARD_boardList.do">자유게시판</a></span>
                <span >|</span>
-               <span><a href="#">로그아웃</a></span>
+               <span><a href="USER_logout.do">로그아웃</a></span>
             </div>    
    </div>
 

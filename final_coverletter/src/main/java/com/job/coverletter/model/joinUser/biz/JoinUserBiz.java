@@ -6,16 +6,16 @@ import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 
 public interface JoinUserBiz {
 	
-	int insertUser(JoinUserDto joinuser);
+	int insertUser(JoinUserDto dto);
 	
 	JoinUserDto selectOne(String joinemail);
 	
-	int updateJoinuser(JoinUserDto joinuser);
+	int updateJoinuser(JoinUserDto dto);
 	
 	int deletejoinuser(String joinemail);
 	
 	JoinUserDto login(JoinUserDto dto);
 	
-	int checkemail (HashMap<String, Object> ech);
+	String checkemail (String joinemail);
 
 }
