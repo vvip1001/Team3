@@ -13,8 +13,6 @@ import org.elasticsearch.client.Request;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 
-import com.google.gson.Gson;
-
 public class ElasticApi {
 
 	private String host = "localhost";
