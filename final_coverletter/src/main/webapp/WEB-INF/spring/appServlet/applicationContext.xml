@@ -153,7 +153,7 @@
 			<property name="basenames">
 				<list>
 				<!-- message 패키지의 error.properties 파일 -->
-					<value>/message/message</value>
+					<value>classpath:/message/message</value>
 				</list>
 			</property>
 			<property name="cacheSeconds">
