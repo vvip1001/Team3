@@ -44,9 +44,8 @@ public class JoinUserBizImpl implements JoinUserBiz {
 	}
 
 	@Override
-	public int checkemail(JoinUserDto dto) {
-
-		return joinuserdao.checkemail(dto);
+	public String checkemail(String joinemail) {
+		return joinuserdao.checkemail(joinemail);
 	}
 
 }

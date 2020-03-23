@@ -17,6 +17,6 @@ public interface JoinUserDao {
 	
 	JoinUserDto login(JoinUserDto dto);
 	
-	int checkemail (JoinUserDto dto);
+	String checkemail (String joinemail);
 
 }

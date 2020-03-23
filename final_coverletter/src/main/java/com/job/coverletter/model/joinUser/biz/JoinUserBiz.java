@@ -16,6 +16,6 @@ public interface JoinUserBiz {
 	
 	JoinUserDto login(JoinUserDto dto);
 	
-	int checkemail (JoinUserDto dto);
+	String checkemail (String joinemail);
 
 }

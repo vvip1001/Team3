@@ -31,7 +31,7 @@
                <tr>
                   <th>이 메 일*</th>
                   <td class="joininfo"><input type="text" id="joinemail" name="joinemail" class="register" placeholder="이메일을 입력하세요"></td>
-                  <td class="checkcell"><button id="checkidbtn" onclick="checkid();">중복확인</button></td>
+                  <td class="checkcell"><input type="button" id="checkidbtn" onclick="checkid();"value="중복확인"/></td>
                </tr>
                <tr>
                 <th></th>

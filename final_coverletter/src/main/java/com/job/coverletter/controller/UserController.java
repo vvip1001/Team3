@@ -80,13 +80,19 @@ public class UserController {
 	
 	//email중복체크
 	
-		@RequestMapping(value="/USER_emailcheck.do", method = RequestMethod.GET)
+		@RequestMapping(value="/USER_emailcheck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 		@ResponseBody
-		public int checkemail(JoinUserDto dto) {
+		public String checkemail(@ModelAttribute("joinemail") String joinemail) {  
+			logger.info("이메일중복체크");	
+			String res = joinUserBiz.checkemail(joinemail);
 			
-			int result = joinUserBiz.checkemail(dto);
 			
-			return result;
+			if(res != "중복") {
+				return res; 
+				
+			} else {
+				return res;
+			}
 		}
 	
 	@RequestMapping(value = "/USER_joinRes.do", method = RequestMethod.POST)
