@@ -29,7 +29,6 @@ public class ElasticApi {
 	 * @param jsonData
 	 * @return
 	 */
-	
 	public Map<String, Object> callElasticApi(String method, String url, Object obj, String jsonData) {	// 나는 get만 사용할 것임
 		Map<String, Object> result = new HashMap<String, Object>();
 
