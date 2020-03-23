@@ -76,12 +76,9 @@ CREATE TABLE SKILL
 --파일 업로드 다운로드 댓글 게시판
 
 DROP SEQUENCE BOARD_SEQ;
-DROP SEQUENCE GROUPNO_SEQ;
 DROP TABLE BOARD;
 
-CREATE SEQUENCE BOARD_SEQ;
-CREATE SEQUENCE GROUPNO_SEQ;
-
+CREATE SEQUENCE BOARD_SEQ START WITH 1 INCREMENT BY 1;
 CREATE TABLE BOARD
 (
     BOARDSEQ     NUMBER            NOT NULL, 	
@@ -108,18 +105,17 @@ CREATE SEQUENCE COVERLETTER_SEQ;
 
 CREATE TABLE COVERLETTER
 (
-    COVERLETTERSEQ    NUMBER            NOT NULL, 
-    JOINEMAIL         VARCHAR2(200)     NOT NULL, 
-    CVCATEGORY        VARCHAR2(30)      NOT NULL, 
-    QUESTION          VARCHAR2(1000)    NOT NULL, 
-    TITLE             VARCHAR2(500)     NOT NULL, 
-    SUBTITLE          VARCHAR2(500)     NOT NULL, 
-    CONTENT           VARCHAR2(3000)    NOT NULL, 
-    REGDATE           DATE              NOT NULL, 
-    FILEPATH          VARCHAR2(1000)    NOT NULL, 
+    COVERLETTERSEQ    NUMBER            NOT NULL, 	
+    JOINEMAIL         VARCHAR2(200)     NOT NULL, 	-- 이메일
+    CVCATEGORY		  VARCHAR2(30)		NOT NULL,	-- 카테고리
+    QUESTION          VARCHAR2(1000)	NOT NULL, 	-- 항목(질문)
+    TITLE             VARCHAR2(500)		NOT NULL, 	-- 제목
+    SUBTITLE          VARCHAR2(500)		NOT NULL,   -- 소제목(내용의 핵심 키워드)
+    CONTENT           VARCHAR2(3000)	NOT NULL,   -- 내용
+    REGDATE           DATE				NOT NULL,   -- 작성일
+    FILEPATH		  VARCHAR2(1000)	NOT NULL,	-- 파일 경로
     CONSTRAINT COVERLETTER_PK PRIMARY KEY (COVERLETTERSEQ)
 );
-
 
 
 --=====================================================================================================================
