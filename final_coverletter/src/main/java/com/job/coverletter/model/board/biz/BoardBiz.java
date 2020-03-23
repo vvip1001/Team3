@@ -5,8 +5,11 @@ import java.util.List;
 import com.job.coverletter.model.board.dto.BoardDto;
 
 public interface BoardBiz {
-	// 글목록
-	public List<BoardDto> boardList();
+	// 총 게시글 수
+	public int boardListCount(BoardDto dto);
+
+	// 글목록 (페이징)
+	public List<BoardDto> boardList(BoardDto dto);
 
 	// 글작성
 	public int boardInsert(BoardDto dto);
@@ -17,8 +20,8 @@ public interface BoardBiz {
 	// 글수정
 	public int boardUpdate(BoardDto dto);
 
-	// 글삭제
-	public int boardDelete(int boardseq);
+	// 글삭제 (달린 댓글도 다 같이 삭제)
+	public int boardDelete(int groupno);
 
 	// 댓글상세
 	public List<BoardDto> replyList(BoardDto dto);
@@ -27,8 +30,8 @@ public interface BoardBiz {
 	public int replyInsert(BoardDto dto);
 
 	// 대댓글작성
-	public int rereplyInsert(BoardDto dto);
+	public int rereInsert(BoardDto dto);
 
 	// 댓글삭제
-	public int replyDelete(int boardseq);
+	public int replyDelete(int groupno);
 }

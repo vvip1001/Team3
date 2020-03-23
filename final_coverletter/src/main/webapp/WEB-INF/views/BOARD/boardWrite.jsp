@@ -36,10 +36,10 @@
 	<div class="container">
 		<h1>자유게시판</h1>
 
-		<form method="post" action="boardWrite.do">
+		<form method="post" action="BOARD_boardWrite.do">
 			<div class="board-title">
 				<h2>제목</h2>
-				<input type="text" placeholder="제목을 입력하세요." name="title" id="title">
+				<input type="text" placeholder="제목을 입력하세요." name="title" id="title" class="form-control">
 			</div>
 
 			<div class="board-write">
@@ -50,7 +50,7 @@
 			<div id="btn-group">
 				<input type="button" value="작성" class="btn" onclick="boardWrite();">
 				<input type="button" value="취소" class="btn"
-					onclick="location.href='boardList.do'">
+					onclick="location.href='BOARD_boardList.do'">
 			</div>
 		</form>
 	</div>
@@ -61,16 +61,13 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					
 					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 				</div>
 				<div class="modal-body">...</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+					
 				</div>
 			</div>
 		</div>
