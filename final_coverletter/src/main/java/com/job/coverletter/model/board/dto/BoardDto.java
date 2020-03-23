@@ -2,6 +2,8 @@ package com.job.coverletter.model.board.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardDto {
 	// 시퀀스 
     private int boardseq;
@@ -30,6 +32,7 @@ public class BoardDto {
     // 작성일 
     private Date regdate;
     
+    private MultipartFile uploadFile;
     /*---------- 페이징 ----------*/
     private int StartIndex;
     private int CntPerPage;
@@ -165,6 +168,16 @@ public class BoardDto {
 		return CntPerPage;
 	}
 
+
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+
 	public void setCntPerPage(int cntPerPage) {
 		CntPerPage = cntPerPage;
 	}
@@ -196,6 +209,7 @@ public class BoardDto {
 
     
 	
+
 	@Override
 	public String toString() {
 		return "BoardDto [boardseq=" + boardseq + ", groupno=" + groupno + ", groupseq=" + groupseq + ", titletab="

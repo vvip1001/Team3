@@ -52,6 +52,10 @@
 					<th><div>내용</div></th>
 					<td colspan="3" id="board-content">${boardDetail.content }</td>
 				</tr>
+				<tr>
+					<th>파일</th>
+					<td colspan="3"><a href="download.do?name=${boardDetail.filepath}">${boardDetail.filepath}</a></td>
+				</tr>
 				
 				<!-- eq : 로그인 기능 완성되면 로그인 세션 이메일로 바꿔야 됨 -->
 				<c:choose>
