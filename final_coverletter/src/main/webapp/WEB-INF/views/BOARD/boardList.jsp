@@ -55,11 +55,11 @@
 							</div>
 							<div class="search-input">
 								<input type="text" class="form-control form-control-sm"
-									name="keyword" id="keyword">
+									name="keyword" id="keyword" onkeydown="onKeyDown();">
 							</div>
 							<div class="search-btn-group">
 								<button class="btn btn-sm btn-primary"
-									id="search-btn" onclick="search(curPage);" onkeydown="onKeyDown(curPage);">검 색</button>
+									id="search-btn" onclick="search();" >검 색</button>
 							</div>
 						</td>
 					</tr>
@@ -140,8 +140,6 @@
 			</ul>
 		</nav>
 		<!-- 페이징 영역 끝 -->
-
-
 
 	</div>
 </body>

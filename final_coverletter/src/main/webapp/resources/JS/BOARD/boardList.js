@@ -20,7 +20,7 @@ function boardDetail(boardseq) {
 }
 
 /*---------- 검 색 : search func ----------*/
-function search(curPage) {
+function search() {
 	
 	// category : 제목(title), 본문(content), 작성자(joinemail)
 	var category = $('#search-category').val();
@@ -32,8 +32,8 @@ function search(curPage) {
 }
 
 /*---------- 검색(엔터치면 입력) : onKeyDown func ----------*/
-function onKeyDown(curPage) {
+function onKeyDown() {
     if(event.keyCode == 13) {
-         search(curPage);
+         search();
     }
 }
