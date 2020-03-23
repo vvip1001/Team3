@@ -47,7 +47,7 @@
 	<!-- Root Logger (수정)-->
 	<root>
 		<!-- <priority value="warn" />     이전 -->
-		<priority value="warn" />    <!-- 추가 trace -->
+		<priority value="trace" />    <!-- 추가 -->
 		<appender-ref ref="console" />
 	</root>
 	
