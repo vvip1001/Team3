@@ -24,9 +24,9 @@
             </div>
             <div id="menu2">
                
-               <span><a href="login.do">로그인</a></span>
+               <span><a href="USER_login.do">로그인</a></span>
                <span >|</span>
-               <span><a href="join.do">회원가입</a></span>
+               <span><a href="USER_join.do">회원가입</a></span>
             </div>    
    </div>
 

@@ -2,19 +2,16 @@
 $(document).ready(function() {
     $('.summernote').summernote({
           height: 300,					//에디터 높이
-          disableDragAndDrop: true,
           toolbar: [
-              ['style', ['style']],
-              ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-              ['fontface', ['fontname']],
-              ['textsize', ['fontsize']],
-              ['color', ['color']],
-              ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
-              ['height', ['height']],
-              ['table', ['table']],
-              ['insert', ['link','picture']],
-              ['Misc',['undo','redo']]
-          ],
+        	  ['style', ['style']],
+        	  ['font', ['bold', 'italic', 'underline', 'clear']],
+        	  ['color', ['color']],
+        	  ['height', ['height']],
+        	  ['table', ['table']],
+        	  ['insert', ['link', 'picture', 'hr']],
+        	  ['view', ['fullscreen', 'codeview']],
+        	  ['help', ['help']]
+          ]
     });
  });
 
@@ -31,7 +28,7 @@ function boardWrite() {
 	// 글작성
 	if((title.trim() != '') && (content.trim() != '')){
 		form.commandName = 'BoardDto';
-		form.action = 'boardWrite.do';
+		form.action = 'BOARD_boardWrite.do';
 		form.submit();
 	} else if ((title.trim() == '') || (content.trim() == '')) {
 	// 유효성검사

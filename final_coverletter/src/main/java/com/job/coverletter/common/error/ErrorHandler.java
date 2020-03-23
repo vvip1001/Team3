@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ErrorHandler {
 	private static final Logger logger = LoggerFactory.getLogger(ErrorHandler.class);
 	
-	@ExceptionHandler(Exception.class) 		// 파라미터로 받는 예외를 받아서 처리하는 메서드
+	//@ExceptionHandler(Exception.class) 		// 파라미터로 받는 예외를 받아서 처리하는 메서드
 	public ModelAndView commonException(Exception e) {
 		logger.info(e.toString());
 		ModelAndView modelAndView = new ModelAndView();

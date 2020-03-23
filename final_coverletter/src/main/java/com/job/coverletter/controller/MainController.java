@@ -20,16 +20,14 @@ public class MainController {
 	private CompanyBiz companyBiz;
 	
 	
-	@RequestMapping(value="MAIN/SelectOne.do", method=RequestMethod.GET)
+	@RequestMapping(value="MAIN_main.do", method=RequestMethod.GET)
 	public String selectOne(Model model) {
-		logger.info("Main selectOne");
-		
-		CompanyDto companyDto = companyBiz.selectOne(10);
-		model.addAttribute("companyDto", companyDto);
-		
-		System.out.println("CompanyDto : " + companyDto);
+		logger.info("Main go");
 		return "MAIN/main";
 	}
+	
+	
+	
 	
 	
 	

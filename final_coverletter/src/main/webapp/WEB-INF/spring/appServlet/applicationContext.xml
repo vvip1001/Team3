@@ -153,7 +153,7 @@
 			<property name="basenames">
 				<list>
 				<!-- message 패키지의 error.properties 파일 -->
-					<value>com.mvc.updown.msg.error</value>
+					<value>/message/message</value>
 				</list>
 			</property>
 			<property name="cacheSeconds">
