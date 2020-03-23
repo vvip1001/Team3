@@ -14,15 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.job.coverletter.all.Pagination;
+import com.job.coverletter.model.board.dto.BoardDto;
+import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
+import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 import com.job.coverletter.model.joinUser.biz.JoinUserBiz;
 import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 
@@ -33,6 +36,9 @@ public class UserController {
 	
 	@Autowired
 	private JoinUserBiz joinUserBiz;
+	
+	@Autowired
+	private CoverLetterBiz coverletterBiz;
 	
 	//마이페이지
 	@RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
@@ -124,11 +130,6 @@ public class UserController {
 		
 	}
 	
-	
-	
-	
-	
-	
 	// login
 	@RequestMapping(value = "/USER_login.do")
 	public String login() {
@@ -169,5 +170,58 @@ public class UserController {
 		return "MAIN/main";
 	}
 	
- 	
+	
+	/*-----------------------------박하 : CV, PF 다운로드 게시판-------------------------------------*/
+ 	//CV(이력서)다운로드 게시판
+	@RequestMapping(value = "/USER_CVList.do", method = RequestMethod.GET)
+	public String CVList(@ModelAttribute("CoverLetterDto") CoverLetterDto dto, @RequestParam(defaultValue = "1") int curPage,
+			HttpServletRequest request, Model model) {
+ 		
+		// CVCATEGORY = CV
+		dto.setCvcategory("CV");
+		
+		//총 게시글 수
+		int listCnt = coverletterBiz.CVListCount(dto);
+		
+		//페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
+		Pagination pagination = new Pagination(listCnt, curPage);
+		dto.setStartIndex(pagination.getStartIndex());
+		dto.setCntPerPage(pagination.getPageSize() * curPage);
+
+		List<CoverLetterDto> list = coverletterBiz.CVList(dto);
+
+		model.addAttribute("CVList", list);
+		model.addAttribute("listCnt", listCnt);
+		model.addAttribute("pagination", pagination);
+
+ 		return "USER/userCVdown";
+ 	}
+	
+	//PF(포트폴리오)다운로드 게시판
+	@RequestMapping(value = "/USER_PFList.do", method = RequestMethod.GET)
+	public String PFList(@ModelAttribute("CoverLetterDto") CoverLetterDto dto, @RequestParam(defaultValue = "1") int curPage,
+			HttpServletRequest request, Model model) {
+ 		
+		// CVCATEGORY = PF
+		dto.setCvcategory("PF");
+		
+		//총 게시글 수
+		int listCnt = coverletterBiz.CVListCount(dto);
+		
+		//페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
+		Pagination pagination = new Pagination(listCnt, curPage);
+		dto.setStartIndex(pagination.getStartIndex());
+		dto.setCntPerPage(pagination.getPageSize() * curPage);
+
+		List<CoverLetterDto> list = coverletterBiz.CVList(dto);
+
+		model.addAttribute("PFList", list);
+		model.addAttribute("listCnt", listCnt);
+		model.addAttribute("pagination", pagination);
+
+ 		return "USER/userPFdown";
+	}
+	
+	
+	
 }

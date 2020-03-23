@@ -17,13 +17,10 @@
 <body>
 <%@ include file="../ALL/header_login.jsp"%>
 
-   <div class="container">
+    <div class="container">
 		<!-- 글목록 영역 -->
 		<div class="board-list">
 			<h1>포트폴리오 다운로드 게시판</h1>
-
-			<input type="button" value="글작성" class="btn"
-				onclick="location.href='BOARD_boardWriteForm.do'">
 
 			<table class="table table-bordered">
 				<col width="100" />
@@ -37,7 +34,7 @@
 						<td>
 							<div class="search-label">검색</div>
 						</td>
-						<td colspan="3" class="search-form">
+						<td colspan="4" class="search-form">
 							<div class="search-select">
 								<select class="form-control form-control-sm" name="search-category"
 									id="search-category">
@@ -68,19 +65,19 @@
 
 				<tbody>
 					<c:choose>
-						<c:when test="${empty boardList }">
+						<c:when test="${empty PFList }">
 							<tr>
 								<td colspan="5" id="boardlist-null">작성된 글이 없습니다.</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${boardList }" var="dto">
+							<c:forEach items="${PFList }" var="dto">
 								<tr>
 									<td class="board-cb"><input type="checkbox"></td>
 									<td class="board-seq"><fmt:formatNumber
-											value="${dto.boardseq }" pattern="000" /></td>
+											value="${dto.coverletterseq }" pattern="000" /></td>
 									<td class="board-title"
-										onClick="boardDetail(${dto.boardseq });">${dto.title }</td>
+										onClick="boardDetail(${dto.coverletterseq });">${dto.title }</td>
 									<td class="board-date"><fmt:formatDate
 											value="${dto.regdate}" pattern="yy-MM-dd HH:mm" /></td>
 									<td class="board-down"><input type="button" value="다운로드"></td>
@@ -133,7 +130,7 @@
 
 			</ul>
 		</nav>
-		<!-- 페이징 영역 끝 -->     
+		<!-- 페이징 영역 끝 -->        
    </div>
 </body>
 </html>

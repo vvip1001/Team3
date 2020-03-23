@@ -33,6 +33,7 @@ public class BoardDto {
     private Date regdate;
     
     private MultipartFile uploadFile;
+   
     /*---------- 페이징 ----------*/
     private int StartIndex;
     private int CntPerPage;
@@ -190,7 +191,7 @@ public class BoardDto {
 		this.curPage = curPage;
 	}
 
-	// 검색
+	/*---------- 검색 ----------*/
 	public String getCategory() {
 		return category;
 	}
