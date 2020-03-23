@@ -48,11 +48,10 @@ public class JoinUserDaoImpl implements JoinUserDao {
 	@Override
 	public String checkemail(String joinemail) {
 		JoinUserDto dto = sqlSession.selectOne("com.job.coverletter.JoinUser.checkEmail", joinemail);
-		System.out.println("============="+dto.getJoinemail());
-		String result =	null;
-		result = dto.getJoinemail();
 		
-		if(result == null) {
+		
+		
+		if(dto == null) {
 			return "사용가능";
 		} else {
 			return "중복";
