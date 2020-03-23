@@ -36,7 +36,7 @@
 	<div class="container">
 		<h1>자유게시판</h1>
 
-		<form method="post" action="boardWrite.do">
+		<form method="post" action="boardWrite.do" enctype="multipart/form-data">
 			<div class="board-title">
 				<h2>제목</h2>
 				<input type="text" placeholder="제목을 입력하세요." name="title" id="title">
@@ -45,6 +45,10 @@
 			<div class="board-write">
 				<h2>내용</h2>
 				<textarea rows="100" cols="100" class="summernote" name="content"></textarea>
+			</div>
+			
+			<div class="fileInput">
+				<input type="file" name="uploadFile" id="fileupload"/>
 			</div>
 
 			<div id="btn-group">

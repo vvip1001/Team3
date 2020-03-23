@@ -98,6 +98,8 @@ CREATE TABLE BOARD
 
 SELECT * FROM BOARD;
 
+DELETE FROM BOARD WHERE JOINEMAIL = 'mintparc@gmail.com';
+
 --======================================================================================================
 -- 자기소개서 
 DROP SEQUENCE COVERLETTER_SEQ;

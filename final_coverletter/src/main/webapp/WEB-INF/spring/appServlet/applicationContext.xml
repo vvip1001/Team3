@@ -161,7 +161,10 @@
 			</property>
 			<property name="defaultEncoding" value="UTF-8"/>
 		</bean>
-	
+	<!-- 
+	<bean id="fileDownload" class="com.job.coverletter.controller.DownloadView"/>
+	 -->
+
 	
 	
 </beans>

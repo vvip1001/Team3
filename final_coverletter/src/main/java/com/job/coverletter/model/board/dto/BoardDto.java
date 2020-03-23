@@ -2,6 +2,8 @@ package com.job.coverletter.model.board.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardDto {
 	// 시퀀스 
     private int boardseq;
@@ -30,7 +32,7 @@ public class BoardDto {
     // 작성일 
     private Date regdate;
     
-    
+    private MultipartFile uploadFile;
     
     public BoardDto() {
 		super();
@@ -121,6 +123,14 @@ public class BoardDto {
     public void setRegdate(Date regdate) {
         this.regdate = regdate;
     }
+
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 	@Override
 	public String toString() {
