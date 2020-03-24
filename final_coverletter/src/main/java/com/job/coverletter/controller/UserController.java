@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +40,9 @@ public class UserController {
 	
 	@Autowired
 	private CoverLetterBiz coverletterBiz;
+	
+	// 로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
+	String login = "cv@email.net";
 	
 	//마이페이지
 	@RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
@@ -179,6 +183,7 @@ public class UserController {
  		
 		// CVCATEGORY = CV
 		dto.setCvcategory("CV");
+		dto.setJoinemail(login);
 		
 		//총 게시글 수
 		int listCnt = coverletterBiz.CVListCount(dto);
@@ -204,6 +209,7 @@ public class UserController {
  		
 		// CVCATEGORY = PF
 		dto.setCvcategory("PF");
+		dto.setJoinemail(login);
 		
 		//총 게시글 수
 		int listCnt = coverletterBiz.CVListCount(dto);
@@ -222,6 +228,11 @@ public class UserController {
  		return "USER/userPFdown";
 	}
 	
-	
+	//다중삭제
+	@RequestMapping(value = "/USER_CVMultiDelete.do", method = RequestMethod.POST)
+	public String CVMultiDelete(@RequestParam(name = "chk") String[] coverletterseq) {
+		coverletterBiz.CVMultiDelete(coverletterseq);
+		return "redirect:/CVList.do";
+	}
 	
 }

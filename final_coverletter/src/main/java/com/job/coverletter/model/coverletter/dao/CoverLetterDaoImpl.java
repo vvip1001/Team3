@@ -1,14 +1,15 @@
 package com.job.coverletter.model.coverletter.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 
 @Repository
@@ -42,5 +43,22 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	// 다중삭제
+	@Override
+	public int CVMultiDelete(String[] coverletterseq) {
+		int res = 0;
+		
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put("coverletterseq", coverletterseq);
+		try {
+			res = sqlSession.delete(NAMESPACE + "CVMultiDelete", map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 }

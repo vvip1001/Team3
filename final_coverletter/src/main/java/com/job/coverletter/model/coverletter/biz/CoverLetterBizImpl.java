@@ -26,4 +26,11 @@ public class CoverLetterBizImpl implements CoverLetterBiz {
 		// TODO Auto-generated method stub
 		return coverletterdao.CVList(dto);
 	}
+
+	// 다중삭제
+	@Override
+	public int CVMultiDelete(String[] coverletterseq) {
+		// TODO Auto-generated method stub
+		return coverletterdao.CVMultiDelete(coverletterseq);
+	}
 }
