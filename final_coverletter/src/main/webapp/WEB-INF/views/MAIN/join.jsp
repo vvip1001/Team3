@@ -9,26 +9,9 @@
 <title>회원가입</title>
 <!-- include JQeury/CSS/JS -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/join.js"></script>
-<link href="${pageContext.request.contextPath}/resources/CSS/MAIN/join.css" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/join.js?ver=2"></script>
+<link href="${pageContext.request.contextPath}/resources/CSS/MAIN/join.css?ver=1" rel="stylesheet">
 </head>
-<script type="text/javascript">
-
-
-
-
-</script>
-
-<c:choose>
-   <c:when test="${empty joinuserDto}">
-   
-   </c:when>
-   
-   <c:otherwise>
-
-
-   </c:otherwise>      
-</c:choose>
 
 <body>
    <%@ include file="../ALL/header_logout.jsp"%>
@@ -50,7 +33,7 @@
                   <tr>
                      <th>이 메 일*</th>
                      <td class="joininfo"><input type="text" id="joinemail" name="joinemail" class="register" readonly="readonly" placeholder="이메일을 입력을 위해 클릭하세요." onclick="checkid();"></td>
-                     <td class="checkcell"><input type="button" id="checkidbtn" value="중복확인"/></td> 
+                     <td class="checkcell"></td> 
                   </tr>
                   <tr>
                    <th></th>
@@ -87,7 +70,7 @@
                   </tr>
                   <tr>
                   <th></th>
-                     <td colspan="2" align="left" id="pwcheck2">
+                     <td colspan="2" align="left" id="pwcheck2" >
                         
                      </td>
                   </tr>
@@ -105,9 +88,9 @@
                   </tr>
                   <tr>
                      <th>성   별*</th>
-                     <td><input type="radio" name="joinsex" id="joinsex" value="F">
+                     <td><input type="radio" name="joinsex" class="joinsex" id="joinsexF" value="F">
                           <label>여성</label>
-                        <input type="radio" name="joinsex" id="joinsex" value="M">
+                        <input type="radio" name="joinsex" class="joinsex" id="joinsexM" value="M">
                         <label>남성</label>                  
                      </td>
                   </tr>
@@ -138,7 +121,7 @@
                   <tr>
                      <th>이 메 일*</th>
                      <td class="joininfo"><input type="text" id="joinemail" name="joinemail" class="register" value="${joinuserDto.joinemail}"></td>
-                     <td class="checkcell"><input type="button" id="checkidbtn" onclick="checkid();"value="중복확인"/></td> 
+                     <td class="checkcell"></td> 
                   </tr>
                   <tr>
                    <th></th>
@@ -190,9 +173,9 @@
                   </tr>
                   <tr>
                      <th>성   별*</th>
-                     <td><input type="radio" name="joinsex" id="joinsex" value="F" checked="${joinuserDto.joinsex eq 'F'? 'checked' : '' }">         
+                     <td><input type="radio" name="joinsex" class="joinsex" id="joinsexF" value="F" checked="${joinuserDto.joinsex eq 'F'? 'checked' : '' }">         
                           <label>여성</label>
-                        <input type="radio" name="joinsex" id="joinsex" value="M" checked="${joinuserDto.joinsex eq 'M'? 'checked' : '' }">
+                        <input type="radio" name="joinsex" class="joinsex" id="joinsexM" value="M" checked="${joinuserDto.joinsex eq 'M'? 'checked' : '' }">
                         <label>남성</label>                  
                      </td>
                   </tr>
@@ -215,4 +198,12 @@
       </c:choose> 
       </div>
 </body>
+<script type="text/javascript">
+
+
+
+
+</script>
+
 </html>
+

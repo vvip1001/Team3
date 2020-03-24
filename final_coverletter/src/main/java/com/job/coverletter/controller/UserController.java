@@ -79,13 +79,11 @@ public class UserController {
    }
    
    //email중복체크
-   
       @RequestMapping(value="/USER_emailcheck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
       @ResponseBody
       public String checkemail(@ModelAttribute("joinemail") String joinemail) {  
          logger.info("이메일중복체크");   
          String res = joinUserBiz.checkemail(joinemail);
-         
          
          if(res != "중복") {
             return res; 
@@ -110,9 +108,7 @@ public class UserController {
       }
       
       System.out.println("================JoinUserDto : " + dto);
-      
-      
-      
+     
       int res = joinUserBiz.insertUser(dto);
       
       if(res > 0) {
@@ -184,6 +180,7 @@ public class UserController {
    @RequestMapping(value="/USER_mailSend.do", method=RequestMethod.POST)
    public String mailSend(Model model, String EmailName) {
       logger.info("mailSend");
+    
       model.addAttribute("EmailName",EmailName);
       return "MAIN/mailSend";
       }
