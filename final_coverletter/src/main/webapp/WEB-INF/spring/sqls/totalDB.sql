@@ -99,25 +99,46 @@ DELETE FROM BOARD WHERE JOINEMAIL = 'mintparc@gmail.com';
 
 --======================================================================================================
 -- 자기소개서 
+DROP SEQUENCE TOTAL_SEQ;
 DROP SEQUENCE COVERLETTER_SEQ;
+DROP SEQUENCE PORTFOLIO_SEQ;
+
 DROP TABLE COVERLETTER;
 
 
+--전체 시퀀스
+CREATE SEQUENCE TOTAL_SEQ;
+
+-- 자소서 == 이력서 시퀀스
 CREATE SEQUENCE COVERLETTER_SEQ;
+
+-- 포폴 시퀀스
+CREATE SEQUENCE PORTFOLIO_SEQ;
+
+
 
 CREATE TABLE COVERLETTER
 (
-    COVERLETTERSEQ    NUMBER            NOT NULL, 	
+    TOTALSEQ	      NUMBER            NOT NULL,   -- 전체 시퀀스 	
     JOINEMAIL         VARCHAR2(200)     NOT NULL, 	-- 이메일
     CVCATEGORY		  VARCHAR2(30)		NOT NULL,	-- 카테고리
-    QUESTION          VARCHAR2(1000)	NOT NULL, 	-- 항목(질문)
+ 	GROPUSEQ		  NUMBER			NOT NULL, 	-- 자소서, 포폴용 각각의 시퀀스
+    QUESTION          VARCHAR2(1000), 				-- 항목(질문)
     TITLE             VARCHAR2(500)		NOT NULL, 	-- 제목
-    SUBTITLE          VARCHAR2(500)		NOT NULL,   -- 소제목(내용의 핵심 키워드)
-    CONTENT           VARCHAR2(3000)	NOT NULL,   -- 내용
+    SUBTITLE          VARCHAR2(500), 				-- 소제목(내용의 핵심 키워드)
+    CONTENT           VARCHAR2(3000),			    -- 내용
     REGDATE           DATE				NOT NULL,   -- 작성일
-    FILEPATH		  VARCHAR2(1000)	NOT NULL
-    CONSTRAINT COVERLETTER_PK PRIMARY KEY (COVERLETTERSEQ)
+    FILEPATH		  VARCHAR2(1000),
+    CONSTRAINT COVERLETTER_PK PRIMARY KEY (TOTALSEQ),
+    CONSTRAINT COVERLETTER_CK01 CHECK (CVCATEGORY IN('자소서','포폴'))
 );
+
+
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'UESR@GMAIL.COMM', '자소서', COVERLETTER_SEQ.NEXTVAL, '자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
+
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'UESR@GMAIL.COMM', '포폴', PORTFOLIO_SEQ.NEXTVAL, NULL, '제목:', NULL, NULL, SYSDATE, '파일')
+
+SELECT * FROM COVERLETTER;
 
 
 --=====================================================================================================================

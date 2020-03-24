@@ -1,5 +1,7 @@
 package com.job.coverletter.model.company.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,9 +17,22 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Resource
 	private SqlSessionTemplate sqlSessionTemPlateMariaDB;
 
+	
+	
+	@Override
+	public List<CompanyDto> selectList() {
+		return sqlSessionTemPlateMariaDB.selectList(NAMESPACE + "selectList");
+	}
+	
+	// 하나 선택
 	@Override
 	public CompanyDto selectOne(int companyseq) {
 		return sqlSessionTemPlateMariaDB.selectOne(NAMESPACE + "selectOne", companyseq);
 	}
+
+
+
+
+	
 
 }

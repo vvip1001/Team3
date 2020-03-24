@@ -10,6 +10,11 @@
 	<!--   	<result property="" column=""/> -->
 	<!--   </resultMap> -->
  
+ 
+ 	<select id="selectList" resultType="companyDto">
+ 		SELECT * FROM company order by rand() limit 10
+ 	</select>
+ 
  	<select id="selectOne" resultType="companyDto">
  		SELECT * FROM company where companyseq = #{companyseq}
  	</select>
