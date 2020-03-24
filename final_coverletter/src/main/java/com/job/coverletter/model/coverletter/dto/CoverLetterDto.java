@@ -10,6 +10,12 @@ public class CoverLetterDto {
     // 이메일(ID) 
     private String joinemail;
 
+    // 구분 
+    private String cvcategory;
+
+    // 각각 구분 시퀀스 
+    private int gropuseq;
+
     // 항목(질문) 
     private String question;
 
@@ -24,27 +30,31 @@ public class CoverLetterDto {
 
     // 작성일 
     private Date regdate;
-    
-    
-    
+
+    // 파일경로 
+    private String filepath;
     
 
     public CoverLetterDto() {
 		super();
 	}
 
-	public CoverLetterDto(int coverletterseq, String joinemail, String question, String title, String subtitle,
-			String content, Date regdate) {
+	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int gropuseq, String question,
+			String title, String subtitle, String content, Date regdate, String filepath) {
 		super();
 		this.coverletterseq = coverletterseq;
 		this.joinemail = joinemail;
+		this.cvcategory = cvcategory;
+		this.gropuseq = gropuseq;
 		this.question = question;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.content = content;
 		this.regdate = regdate;
+		this.filepath = filepath;
 	}
 
+	
 	public int getCoverletterseq() {
         return coverletterseq;
     }
@@ -59,6 +69,22 @@ public class CoverLetterDto {
 
     public void setJoinemail(String joinemail) {
         this.joinemail = joinemail;
+    }
+
+    public String getCvcategory() {
+        return cvcategory;
+    }
+
+    public void setCvcategory(String cvcategory) {
+        this.cvcategory = cvcategory;
+    }
+
+    public int getGropuseq() {
+        return gropuseq;
+    }
+
+    public void setGropuseq(int gropuseq) {
+        this.gropuseq = gropuseq;
     }
 
     public String getQuestion() {
@@ -101,13 +127,21 @@ public class CoverLetterDto {
         this.regdate = regdate;
     }
 
-    
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
+    }
+
 	@Override
 	public String toString() {
-		return "Coverletter [coverletterseq=" + coverletterseq + ", joinemail=" + joinemail + ", question=" + question
-				+ ", title=" + title + ", subtitle=" + subtitle + ", content=" + content + ", regdate=" + regdate + "]";
+		return "Coverletter [coverletterseq=" + coverletterseq + ", joinemail=" + joinemail + ", cvcategory="
+				+ cvcategory + ", gropuseq=" + gropuseq + ", question=" + question + ", title=" + title + ", subtitle="
+				+ subtitle + ", content=" + content + ", regdate=" + regdate + ", filepath=" + filepath + "]";
 	}
-
+    
     
 
 }

@@ -19,17 +19,6 @@
 
 </script>
 
-<c:choose>
-	<c:when test="${empty joinuserDto}">
-	
-	</c:when>
-	
-	<c:otherwise>
-
-
-	</c:otherwise>		
-</c:choose>
-
 <body>
 	<%@ include file="../ALL/header_logout.jsp"%>
 
