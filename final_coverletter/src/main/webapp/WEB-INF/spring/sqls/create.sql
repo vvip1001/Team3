@@ -28,12 +28,47 @@ ORDER BY BOARDSEQ DESC
 	AND (TITLE LIKE '%' || '제목' || '%' OR CONTENT LIKE '%' || '본문' || '%' OR JOINEMAIL LIKE '%' || '아이디' || '%')
 </select>
 
+--===========================================================================
+--CHART
+INSERT INTO SKILL (SKILLSEQ, JOINEMAIL, CATEGORY, CONTEST, REGDATE)
+VALUES (SKILL_SEQ.NEXTVAL, 'cv@email.com', '공모전', '카카오 IT 공모전', '202001')
 
+SELECT LANGUAGESCORE, COUNT(CONTEST), COUNT(CATEGORY)
+FROM SKILL
+WHERE JOINEMAIL = 'cv@email.com'
+GROUP BY LANGUAGESCORE
 
+INSERT INTO SCHOOL VALUES 
+(SCHOOL_SEQ.NEXTVAL, 'cv@email.com', '대졸', '한국대학교', '201503', '201902', '심리학', '4.0/4.5');
 
+--어학점수(가장 최근 취득한 점수만)
+SELECT *
+FROM (
+	SELECT (LANGUAGESCORE/10), ROW_NUMBER() OVER(ORDER BY REGDATE DESC) AS RNUM
+	FROM SKILL
+	WHERE JOINEMAIL = 'cv@email.com'
+	AND CATEGORY = '어학'
+)
+WHERE RNUM = 1
 
+--공모전, 자격증
+SELECT COUNT(CONTEST) * 10, COUNT(CERTIFICATE) * 10
+FROM SKILL
+WHERE JOINEMAIL = 'cv@email.com'
 
+--학점
+SELECT GRADE
+FROM SCHOOL
+WHERE JOINEMAIL = 'cv@email.com'
 
+--학력
+SELECT *
+FROM (
+	SELECT CAREER, ROW_NUMBER() OVER(ORDER BY GRADUATE DESC) AS RNUM
+	FROM SCHOOL
+	WHERE JOINEMAIL = 'cv@email.com'
+)
+WHERE RNUM = 1
 
 
 

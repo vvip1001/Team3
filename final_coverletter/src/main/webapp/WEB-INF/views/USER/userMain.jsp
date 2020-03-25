@@ -120,49 +120,23 @@
 $(function() {
 	itChartLabel = [];
 	itChartData = [];
-	createITChart();
 	
 	$.each(${itSkill }, function(idx, obj) {
 		itChartLabel.push(obj.skill);
 		itChartData.push(obj.score);   
 	});
     createITChart();
-});
-
-function createITChart() {
-	var ctx = document.getElementById('ITChart').getContext('2d');
-	var myChart = new Chart(ctx, {
-		type : 'bar',
-		data : {
-			labels : itChartLabel,
-			datasets : [ {
-				data : itChartData,
-				backgroundColor : [ '#c6f1a2', '#a8d966', '#43a367', '#385380', '#fbf27c' ],
-				barPercentage: 0.5
-				} ]
-			},
-		options : {
-			responsive : false,
-			scales : {
-				xAxes : [ {
-				gridLines : {
-					display : true
-					},
-				ticks : {
-					display : true
-					}
-				} ],
-				yAxes : [ {
-					gridLines : {
-						display : true
-					},
-					ticks : {
-						display : true
-					}
-				} ]
-			}
-		}
+    
+    myChartLabel = [];
+	myChartData = [];
+	
+	$.each(${mySkill }, function(idx, obj) {
+		$.each(obj, function(idx2, obj2) {
+			myChartLabel.push(idx2);
+			myChartData.push(obj2);
+		});	
 	});
-}
+    createMYChart();
+});
 </script>
 </html>

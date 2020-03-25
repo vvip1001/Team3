@@ -44,7 +44,7 @@ CREATE TABLE SCHOOL
     ADMISSION     VARCHAR2(20)     NOT NULL,  -- 입학년월
     GRADUATE      VARCHAR2(20)     NOT NULL,  -- 졸업년월 (재학중, 중퇴)
     MAJOR         VARCHAR2(100), 			  -- 전공명
-    GRADE         CHAR(4), 					  -- 학점
+    GRADE         CHAR(20), 					  -- 학점
     CONSTRAINT SCHOOL_PK PRIMARY KEY (SCHOOLSEQ)
 );
 
@@ -72,8 +72,6 @@ CREATE TABLE SKILL
     CONSTRAINT SKILL_PK PRIMARY KEY (SKILLSEQ)
 );
 
-INSERT INTO SKILL (SKILLSEQ, JOINEMAIL, CATEGORY, ITSKILL,ITSCORE)
-VALUES (SKILL_SEQ.NEXTVAL, 'cv@email.com', '언어', 'CSS', 1)
 
 --======================================================================================================
 --파일 업로드 다운로드 댓글 게시판

@@ -53,9 +53,13 @@ public class UserController {
 	public String userMain(Model model) {
 		logger.info("userMain go");
 		
-		// 차트
+		// IT역량 차트
 		JSONArray itSkill = skillBiz.selectItSkill();
 		model.addAttribute("itSkill", itSkill);
+		
+		// 스펙 차트
+		JSONArray mySkill = skillBiz.selectMySkill();
+		model.addAttribute("mySkill", mySkill);
 		
 		return "USER/userMain";
 	}
