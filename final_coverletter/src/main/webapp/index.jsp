@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="WEB-INF/views/ALL/header_login.jsp"%>
 	<a href ="home.do"> 이동 </a> <br/>
 	<a href ="error.do"> 에러 </a> <br/>
 	<a href ="MAIN_SelectOne.do"> 회사</a> <br/>
@@ -17,7 +18,7 @@
 	<a href ="BOARD_boardList.do">자유게시판</a><br/>
 	<a href ="USER_CVList.do">이력서게시판</a><br/>
 	<a href ="USER_PFList.do">포폴게시판</a><br/>
-	
+	<a href ="JOB_jobCenter.do">취업센터</a><br/>
 
 	
 </body>

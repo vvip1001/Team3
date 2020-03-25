@@ -118,19 +118,19 @@
 <!-- chart.js 영역 -->
 <script type="text/javascript">
 $(function() {
+	//IT역량차트
 	itChartLabel = [];
 	itChartData = [];
-	
-	$.each(${itSkill }, function(idx, obj) {
+	$.each(${itSkill}, function(idx, obj) {
 		itChartLabel.push(obj.skill);
 		itChartData.push(obj.score);   
 	});
     createITChart();
     
+    //스펙차트
     myChartLabel = [];
 	myChartData = [];
-	
-	$.each(${mySkill }, function(idx, obj) {
+	$.each(${mySkill}, function(idx, obj) {
 		$.each(obj, function(idx2, obj2) {
 			myChartLabel.push(idx2);
 			myChartData.push(obj2);
