@@ -45,20 +45,5 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		return list;
 	}
 
-	// 다중삭제
-	@Override
-	public int CVMultiDelete(String[] coverletterseq) {
-		int res = 0;
-		
-		Map<String, String[]> map = new HashMap<String, String[]>();
-		map.put("coverletterseq", coverletterseq);
-		try {
-			res = sqlSession.delete(NAMESPACE + "CVMultiDelete", map);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return res;
-	}
+
 }

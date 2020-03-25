@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,11 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.job.coverletter.all.Pagination;
-import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 import com.job.coverletter.model.joinUser.biz.JoinUserBiz;
 import com.job.coverletter.model.joinUser.dto.JoinUserDto;
+import com.job.coverletter.model.skill.biz.SkillBiz;
+
+import net.sf.json.JSONArray;
 
 @Controller
 public class UserController {
@@ -41,14 +42,20 @@ public class UserController {
 	@Autowired
 	private CoverLetterBiz coverletterBiz;
 	
+	@Autowired
+	private SkillBiz skillBiz;
+	
 	// 로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
 	String login = "cv@email.net";
 	
 	//마이페이지
 	@RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
-	public String userMain() {
+	public String userMain(Model model) {
 		logger.info("userMain go");
 		
+		// 차트
+		JSONArray itSkill = skillBiz.selectItSkill();
+		model.addAttribute("itSkill", itSkill);
 		
 		return "USER/userMain";
 	}
@@ -176,7 +183,7 @@ public class UserController {
 	
 	
 	/*-----------------------------박하 : CV, PF 다운로드 게시판-------------------------------------*/
- 	//CV(이력서)다운로드 게시판
+ 	// CV(이력서)다운로드 게시판
 	@RequestMapping(value = "/USER_CVList.do", method = RequestMethod.GET)
 	public String CVList(@ModelAttribute("CoverLetterDto") CoverLetterDto dto, @RequestParam(defaultValue = "1") int curPage,
 			HttpServletRequest request, Model model) {
@@ -185,10 +192,10 @@ public class UserController {
 		dto.setCvcategory("CV");
 		dto.setJoinemail(login);
 		
-		//총 게시글 수
+		// 총 게시글 수
 		int listCnt = coverletterBiz.CVListCount(dto);
 		
-		//페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
+		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);
 		dto.setStartIndex(pagination.getStartIndex());
 		dto.setCntPerPage(pagination.getPageSize() * curPage);
@@ -202,7 +209,7 @@ public class UserController {
  		return "USER/userCVdown";
  	}
 	
-	//PF(포트폴리오)다운로드 게시판
+	// PF(포트폴리오) 다운로드 게시판
 	@RequestMapping(value = "/USER_PFList.do", method = RequestMethod.GET)
 	public String PFList(@ModelAttribute("CoverLetterDto") CoverLetterDto dto, @RequestParam(defaultValue = "1") int curPage,
 			HttpServletRequest request, Model model) {
@@ -211,10 +218,10 @@ public class UserController {
 		dto.setCvcategory("PF");
 		dto.setJoinemail(login);
 		
-		//총 게시글 수
+		// 총 게시글 수
 		int listCnt = coverletterBiz.CVListCount(dto);
 		
-		//페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
+		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);
 		dto.setStartIndex(pagination.getStartIndex());
 		dto.setCntPerPage(pagination.getPageSize() * curPage);
@@ -228,11 +235,7 @@ public class UserController {
  		return "USER/userPFdown";
 	}
 	
-	//다중삭제
-	@RequestMapping(value = "/USER_CVMultiDelete.do", method = RequestMethod.POST)
-	public String CVMultiDelete(@RequestParam(name = "chk") String[] coverletterseq) {
-		coverletterBiz.CVMultiDelete(coverletterseq);
-		return "redirect:/CVList.do";
-	}
+	
+	
 	
 }

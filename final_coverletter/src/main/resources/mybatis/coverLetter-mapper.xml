@@ -52,12 +52,4 @@
 	</select>
 
 
-	<!-- 다중삭제 -->
-	<delete id="CVMultiDelete" parameterType="map">
-		DELETE FROM COVERLETTER WHERE COVERLETTERSEQ IN
-		<foreach collection="coverletterseq" item="seq" open="(" separator="," close=")">
-			#{seq}
-		</foreach>
-	</delete>
-
 </mapper>

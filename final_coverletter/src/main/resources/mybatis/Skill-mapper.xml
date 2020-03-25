@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.job.coverletter.Skill"> <!-- 인터페이스 이름 형식으로 할 것 -->
-  
-  
-  <!-- 결과 리턴시 DTO와 칼럼이 일치 하지 않을때 사용 -->
-  <!-- property dto 속성, column 대응할 칼럼명 -->
-<!--   <resultMap type="" id="loginMap"> -->
-<!--   	<result property="" column=""/>  -->
-<!--   	<result property="" column=""/> -->
-<!--   </resultMap> -->
- 
- 
+
+
+	<!-- 결과 리턴시 DTO와 칼럼이 일치 하지 않을때 사용 -->
+	<!-- property dto 속성, column 대응할 칼럼명 -->
+	<!-- <resultMap type="" id="loginMap"> -->
+	<!-- <result property="" column=""/> -->
+	<!-- <result property="" column=""/> -->
+	<!-- </resultMap> -->
+
+	<!-- it역량차트 : -->
+	<select id="selectItSkill" parameterType="skillDto" resultType="map">
+		SELECT ITSKILL, ITSCORE
+		FROM SKILL
+		WHERE JOINEMAIL = #{joinemail}
+	</select>
+
+	<!-- 스킬차트 : 어학시험점수, 참여공모전수, -->
+	<select id="selectMySkill" parameterType="String"
+		resultType="map">
+		SELECT A.LANGUAGESCORE, COUNT(A.CONTEST),
+		COUNT(A.CATEGORY), B.GRADE, B.CAREER
+		FROM SKILL A
+		JOIN SCHOOL B
+		ON
+		A.JOINEMAIL = B.JOINEMAIL
+		WHERE JOINEMAIL = #{joinemail}
+	</select>
+
 </mapper>

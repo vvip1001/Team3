@@ -12,7 +12,5 @@ public interface CoverLetterBiz {
 	// 이력서, 포트폴리오 다운로드 게시판 글 목록
 	public List<CoverLetterDto> CVList(CoverLetterDto dto);
 	
-	// 다중삭제
-	public int CVMultiDelete(String[] coverletterseq);
-
+	
 }

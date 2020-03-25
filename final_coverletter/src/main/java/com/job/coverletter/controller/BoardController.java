@@ -87,42 +87,44 @@ public class BoardController {
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
 
-		try {
-			inputStream = file.getInputStream();
-			// 경로
-			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-			System.out.println("upload real path : " + path);
-
-			File storage = new File(path);
-			if (!storage.exists()) {
-				storage.mkdir();
-			} // 해당 파일이 있으면 넘어간다.
-
-			File newFile = new File(path + "/" + name);
-			if (!newFile.exists()) {
-				newFile.createNewFile();
-			} // 새로운 파일이 없으면
-
-			outputStream = new FileOutputStream(newFile); // 업로드 되는 파일
-
-			int read = 0;
-			byte[] b = new byte[(int) file.getSize()];
-			while ((read = inputStream.read(b)) != -1) {
-				outputStream.write(b, 0, read);
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+		if(name != null) {
 			try {
-				inputStream.close();
-				outputStream.close();
+				inputStream = file.getInputStream();
+				// 경로
+				String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+				System.out.println("upload real path : " + path);
+
+				File storage = new File(path);
+				if (!storage.exists()) {
+					storage.mkdir();
+				} // 해당 파일이 있으면 넘어간다.
+
+				File newFile = new File(path + "/" + name);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+				} // 새로운 파일이 없으면
+
+				outputStream = new FileOutputStream(newFile); // 업로드 되는 파일
+
+				int read = 0;
+				byte[] b = new byte[(int) file.getSize()];
+				while ((read = inputStream.read(b)) != -1) {
+					outputStream.write(b, 0, read);
+				}
+
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					inputStream.close();
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-		}
-
-		dto.setFilepath(name);
+			dto.setFilepath(name);
+		} 
+		
 		dto.setJoinemail(login);
 
 		int res = boardBiz.boardInsert(dto);
