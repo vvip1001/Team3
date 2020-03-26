@@ -108,16 +108,11 @@ SELECT B.*
 			ORDER BY BOARDSEQ DESC
 
 --======================================================================================================
-<<<<<<< HEAD
 -- 자기소개서 
 DROP SEQUENCE TOTAL_SEQ;
 DROP SEQUENCE COVERLETTER_SEQ;
 DROP SEQUENCE PORTFOLIO_SEQ;
 
-=======
-DROP SEQUENCE COVERLETTER_SEQ;
-DROP SEQUENCE PORTFOLIO_SEQ;
->>>>>>> 953ffdcff20acadd499d57a5ed6ffff178c2868e
 DROP TABLE COVERLETTER;
 
 
@@ -165,7 +160,6 @@ CREATE SEQUENCE JOBCALENDAR_SEQ;
 
 CREATE TABLE JOBCALENDAR
 (
-<<<<<<< HEAD
     JOBCALENDARSEQ    NUMBER           NOT NULL, 	
     JOINEMAIL         VARCHAR2(200)	   NOT NULL, 
     COMPANYNAMESEQ	  NUMBER		   NOT NULL,	-- 회사테이블 프라이머리키
@@ -176,18 +170,6 @@ CREATE TABLE JOBCALENDAR
 );
 
 
-
-
-=======
-    JOBCALENDARSEQ     NUMBER          	   NOT NULL,    
-    JOINEMAIL          VARCHAR2(200)       NOT NULL, 
-    COMPANYNAMESEQ     NUMBER         	   NOT NULL,   -- 회사테이블 프라이머리키
-    COMPANYNAME        VARCHAR2(20)    	   NOT NULL,    -- 회사명
-    BUSINESS       	   VARCHAR2(1000)	   NOT NULL,       -- 채용제목
-    ENDDATE            VARCHAR2(20)  	   NOT NULL,    -- 마감일
-    CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ)
-); 
->>>>>>> 953ffdcff20acadd499d57a5ed6ffff178c2868e
 --=====================================================================================================================
 -- 후원 내역 테이블
 DROP SEQUENCE SUPPORTPAY_SEQ;
