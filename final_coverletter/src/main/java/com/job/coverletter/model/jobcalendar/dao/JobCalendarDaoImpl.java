@@ -1,5 +1,6 @@
 package com.job.coverletter.model.jobcalendar.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
 
 @Repository
@@ -17,11 +19,25 @@ public class JobCalendarDaoImpl implements JobCalendarDao {
 
 	@Override
 	public int boardJobListCount(JobCalendarDto dto) {
-		return 0;
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "boardJobListCount", dto); 
+		} catch (Exception e) {
+			System.out.println("[error] : boardJobListCount");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public List<JobCalendarDto> boardJobList(JobCalendarDto dto) {
-		return null;
+		List<JobCalendarDto> list = new ArrayList<JobCalendarDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "boardJobList", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : boardJobList");
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
