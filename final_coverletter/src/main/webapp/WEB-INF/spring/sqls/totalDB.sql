@@ -173,7 +173,7 @@ CREATE TABLE JOBCALENDAR
 --=====================================================================================================================
 -- 후원 내역 테이블
 DROP SEQUENCE SUPPORTPAY_SEQ;
-DROP TABLE SUPPORTPAY_SEQ;
+DROP TABLE SUPPORTPAY;
 
 
 CREATE SEQUENCE SUPPORTPAY_SEQ;
