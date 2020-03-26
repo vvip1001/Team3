@@ -18,18 +18,18 @@ public class JoinUserDto {
     private String joinemail;
 
     // 이름 
-    @NotEmpty(message = "값을 입력해주세요")
+    @NotEmpty()
     private String joinname;
 
     // 비밀번호 
-    @NotEmpty(message = "값을 입력해주세요")
-    @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "숫자 영어 혼합으로 6~20자리로")
+    @NotEmpty()
+    @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "비밀번호를 입력하세요.")
     private String joinpw;
 
     // 생년월일 
-    @NotEmpty(message = "값을 입력해주세요")
-    @Pattern(regexp = "^[0-9]*$", message = "형식을 맞춰주세요")
-    @Length(min = 8, max = 8, message = "형식을 맞춰주세요")
+    @NotEmpty(message = "")
+    @Pattern(regexp = "^[0-9]*$")
+    @Length(min = 8, max = 8)
     private String joinbirth;
 
     // 성별 

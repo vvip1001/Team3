@@ -8,12 +8,14 @@
 <title>이메일 체크</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/MAIN/emailChk.css?ver=2">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk.js?ver=2"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk_login.js?ver=2"></script>
 </head>
 <%
 int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
 %>
 <body>
+	
+
 
    <form name="a" action="USER_mailSend.do" method="post" target="iframe2">
    <input type="hidden" id="number" name="number" value="<%=RandomNumber%>" >
@@ -37,6 +39,7 @@ int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
    <input type="button"  id="chk" value="인증성공" onclick="EmailChk();" style="display: none;" ><br>
    </div>
    </fieldset>
+   
    </form>
 </body>
 <iframe name="iframe2" style="display: none;"></iframe>

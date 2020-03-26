@@ -1,20 +1,23 @@
 /*부모 veiw에게 값 전달*/
 function EmailChk() {
-	console.log(opener.window.document.getElementsByName("joinemail")[0]);
-	opener.window.document.getElementsByName("joinemail")[0].value = document
-			.getElementById("EmailID").value;
-	window.close();
+
+   console.log(opener.window.document.getElementsByName("joinemail")[0]);
+   opener.window.document.getElementsByName("joinemail")[0].value = document
+         .getElementById("EmailID").value;
+   window.close();
 }
 function EmailChk2(RandomNumber) {
-	if (RandomNumber == document.getElementById("EmailCode").value) {
-		alert("인증되었습니다.");
-		$("#chk").show();
-		$("#chk2").hide();
-		$("#EmailCode").hide();
-	} else if (RandomNumber != document.getElementById("EmailCode").value) {
-		alert("인증번호를 확인하시오.");
-	}
+   if (RandomNumber == document.getElementById("EmailCode").value) {
+      alert("인증되었습니다.");
+      $("#chk").show();
+      $("#chk2").hide();
+      $("#EmailCode").hide();
+   } else if (RandomNumber != document.getElementById("EmailCode").value) {
+      alert("인증번호를 확인하시오.");
+   }
 }
+
+
 function validate() {
 	var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	var email = document.getElementById("emailCheck");
@@ -50,4 +53,5 @@ function validate() {
 			}
 		})
 	}
+
 }

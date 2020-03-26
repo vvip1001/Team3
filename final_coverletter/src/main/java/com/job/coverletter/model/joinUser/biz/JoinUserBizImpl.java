@@ -25,9 +25,9 @@ public class JoinUserBizImpl implements JoinUserBiz {
 	}
 
 	@Override
-	public int updateJoinuser(JoinUserDto joinuser) {
+	public int updateJoinuser(JoinUserDto dto) {
 
-		return joinuserdao.updateJoinuser(joinuser);
+		return joinuserdao.updateJoinuser(dto);
 	}
 
 	@Override

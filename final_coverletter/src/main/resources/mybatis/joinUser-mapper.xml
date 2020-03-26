@@ -39,7 +39,8 @@
 	
 	<!-- 정보수정 -->
 	<update id="updateuser" parameterType="joinuserDto">
-		UPDATE JOINUSER USERPW = #{userpw}
+		UPDATE JOINUSER SET JOINPW = #{joinpw}
+		WHERE JOINEMAIL = #{joinemail}
 	</update>
 	
 	<!-- 회원탈퇴 -->
