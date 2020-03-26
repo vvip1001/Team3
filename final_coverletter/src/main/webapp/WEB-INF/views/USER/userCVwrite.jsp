@@ -31,7 +31,7 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- 자소서 제목 영역 끝-->
 	<!-- 중간 여백 영역 -->
 	<div id="fake-div"></div>
 
@@ -59,9 +59,7 @@
 					<div class="col-md-2">
 						<fieldset class="cv-box">
 							<legend class="legend">작성</legend>
-							<textarea rows="10" cols="10">
-							
-							</textarea>
+							<textarea class="textarea"></textarea>
 						</fieldset>
 						
 						<button class="btn">음성입력</button>
@@ -69,9 +67,7 @@
 					<div class="col-md-2">
 						<fieldset class="cv-box">
 							<legend class="legend">검사</legend>
-							<textarea rows="10" cols="10">
-							
-							</textarea>
+							<textarea class="textarea"></textarea>
 						</fieldset>
 						
 						<button class="btn">맞춤법검사</button>
@@ -82,5 +78,6 @@
 		</div>
 
 	</div>
+	<!-- 자소서 작성 영역 끝-->
 </body>
 </html>
