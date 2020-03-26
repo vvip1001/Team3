@@ -1,6 +1,6 @@
-package com.job.coverletter.model.jabcalendar.dto;
+package com.job.coverletter.model.jobcalendar.dto;
 
-public class JabCalendarDto {
+public class JobCalendarDto {
 	// 시퀀스 
     private int jabcalendarseq;
 
@@ -15,11 +15,11 @@ public class JabCalendarDto {
     
     
 
-    public JabCalendarDto() {
+    public JobCalendarDto() {
 		super();
 	}
 
-	public JabCalendarDto(int jabcalendarseq, String joinemail, String companyname, String enddate) {
+	public JobCalendarDto(int jabcalendarseq, String joinemail, String companyname, String enddate) {
 		super();
 		this.jabcalendarseq = jabcalendarseq;
 		this.joinemail = joinemail;
