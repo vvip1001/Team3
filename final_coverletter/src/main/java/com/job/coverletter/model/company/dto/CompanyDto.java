@@ -18,7 +18,7 @@ public class CompanyDto {
     // 한 줄 소개 
     private String oneintro;
 
-    // 모집대상 웹, 프론트, 백, ...
+    // 채용분야  웹, 프론트, 백, ...
     private String business;
 
     // 주요업무 

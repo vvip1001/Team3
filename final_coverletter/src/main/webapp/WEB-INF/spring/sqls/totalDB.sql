@@ -108,8 +108,16 @@ SELECT B.*
 			ORDER BY BOARDSEQ DESC
 
 --======================================================================================================
+<<<<<<< HEAD
+-- 자기소개서 
+DROP SEQUENCE TOTAL_SEQ;
 DROP SEQUENCE COVERLETTER_SEQ;
 DROP SEQUENCE PORTFOLIO_SEQ;
+
+=======
+DROP SEQUENCE COVERLETTER_SEQ;
+DROP SEQUENCE PORTFOLIO_SEQ;
+>>>>>>> 953ffdcff20acadd499d57a5ed6ffff178c2868e
 DROP TABLE COVERLETTER;
 
 
@@ -126,19 +134,26 @@ CREATE SEQUENCE PORTFOLIO_SEQ;
 
 CREATE TABLE COVERLETTER
 (
-    TOTALSEQ       	  NUMBER            NOT NULL,   -- 전체 시퀀스    
-    JOINEMAIL         VARCHAR2(200)     NOT NULL,   -- 이메일
-    CVCATEGORY        VARCHAR2(30)      NOT NULL,   -- 카테고리
-    GROUPSEQ      	  NUMBER         	NOT NULL,   -- 자소서, 포폴용 각각의 시퀀스
-    QUESTION          VARCHAR2(1000)			,   -- 항목(질문)
-    TITLE             VARCHAR2(500)     NOT NULL,   -- 제목
-    SUBTITLE          VARCHAR2(500)				,   -- 소제목(내용의 핵심 키워드)
-    CONTENT           VARCHAR2(3000)			,   -- 내용
-    REGDATE           DATE          	NOT NULL,   -- 작성일
-    FILEPATH      	  VARCHAR2(1000)			,
+    TOTALSEQ	      NUMBER            NOT NULL,   -- 전체 시퀀스 	
+    JOINEMAIL         VARCHAR2(200)     NOT NULL, 	-- 이메일
+    CVCATEGORY		  VARCHAR2(30)		NOT NULL,	-- 카테고리
+ 	GROPUSEQ		  NUMBER			NOT NULL, 	-- 자소서, 포폴용 각각의 시퀀스
+    QUESTION          VARCHAR2(1000), 				-- 항목(질문)
+    TITLE             VARCHAR2(500)		NOT NULL, 	-- 제목
+    SUBTITLE          VARCHAR2(500), 				-- 소제목(내용의 핵심 키워드)
+    CONTENT           VARCHAR2(3000),			    -- 내용
+    REGDATE           DATE				NOT NULL,   -- 작성일
+    FILEPATH		  VARCHAR2(1000),
     CONSTRAINT COVERLETTER_PK PRIMARY KEY (TOTALSEQ),
     CONSTRAINT COVERLETTER_CK01 CHECK (CVCATEGORY IN('자소서','포폴'))
 );
+
+
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'UESR@GMAIL.COMM', '자소서', COVERLETTER_SEQ.NEXTVAL, '자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
+
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'UESR@GMAIL.COMM', '포폴', PORTFOLIO_SEQ.NEXTVAL, NULL, '제목:', NULL, NULL, SYSDATE, '파일')
+
+SELECT * FROM COVERLETTER;
 
 --=====================================================================================================================
 -- 채용일정 캘린더
@@ -150,6 +165,20 @@ CREATE SEQUENCE JOBCALENDAR_SEQ;
 
 CREATE TABLE JOBCALENDAR
 (
+<<<<<<< HEAD
+    JOBCALENDARSEQ    NUMBER           NOT NULL, 	
+    JOINEMAIL         VARCHAR2(200)	   NOT NULL, 
+    COMPANYNAMESEQ	  NUMBER		   NOT NULL,	-- 회사테이블 프라이머리키
+    COMPANYNAME       VARCHAR2(20)     NOT NULL, 	-- 회사명
+    BUSINESS		  VARCHAR2(1000)   NOT NULL,	-- 채용제목
+    ENDDATE           VARCHAR2(20)     NOT NULL, 	-- 마감일
+    CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JABCALENDARSEQ)
+);
+
+
+
+
+=======
     JOBCALENDARSEQ     NUMBER          	   NOT NULL,    
     JOINEMAIL          VARCHAR2(200)       NOT NULL, 
     COMPANYNAMESEQ     NUMBER         	   NOT NULL,   -- 회사테이블 프라이머리키
@@ -158,6 +187,7 @@ CREATE TABLE JOBCALENDAR
     ENDDATE            VARCHAR2(20)  	   NOT NULL,    -- 마감일
     CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ)
 ); 
+>>>>>>> 953ffdcff20acadd499d57a5ed6ffff178c2868e
 --=====================================================================================================================
 -- 후원 내역 테이블
 DROP SEQUENCE SUPPORTPAY_SEQ;

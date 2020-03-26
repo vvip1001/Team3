@@ -13,31 +13,31 @@ import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
 
 @Repository
 public class JobCalendarDaoImpl implements JobCalendarDao {
-	
-	@Autowired  @Qualifier("sqlSessionTemPlate")
-	private SqlSessionTemplate sqlSession;
+   
+   @Autowired  @Qualifier("sqlSessionTemPlate")
+   private SqlSessionTemplate sqlSession;
 
-	@Override
-	public int boardJobListCount(JobCalendarDto dto) {
-		int res = 0;
-		try {
-			res = sqlSession.selectOne(NAMESPACE + "boardJobListCount", dto); 
-		} catch (Exception e) {
-			System.out.println("[error] : boardJobListCount");
-			e.printStackTrace();
-		}
-		return res;
-	}
+   @Override
+   public int boardJobListCount(JobCalendarDto dto) {
+      int res = 0;
+      try {
+         res = sqlSession.selectOne(NAMESPACE + "boardJobListCount", dto); 
+      } catch (Exception e) {
+         System.out.println("[error] : boardJobListCount");
+         e.printStackTrace();
+      }
+      return res;
+   }
 
-	@Override
-	public List<JobCalendarDto> boardJobList(JobCalendarDto dto) {
-		List<JobCalendarDto> list = new ArrayList<JobCalendarDto>();
-		try {
-			list = sqlSession.selectList(NAMESPACE + "boardJobList", dto);
-		} catch (Exception e) {
-			System.out.println("[error] : boardJobList");
-			e.printStackTrace();
-		}
-		return list;
-	}
+   @Override
+   public List<JobCalendarDto> boardJobList(JobCalendarDto dto) {
+      List<JobCalendarDto> list = new ArrayList<JobCalendarDto>();
+      try {
+         list = sqlSession.selectList(NAMESPACE + "boardJobList", dto);
+      } catch (Exception e) {
+         System.out.println("[error] : boardJobList");
+         e.printStackTrace();
+      }
+      return list;
+   }
 }
