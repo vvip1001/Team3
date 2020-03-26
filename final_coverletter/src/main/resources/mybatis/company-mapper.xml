@@ -9,14 +9,28 @@
 	<!--   	<result property="" column=""/>  -->
 	<!--   	<result property="" column=""/> -->
 	<!--   </resultMap> -->
- 
- 
- 	<select id="selectList" resultType="companyDto">
- 		SELECT * FROM company order by rand() limit 10
- 	</select>
+
  
  	<select id="selectOne" resultType="companyDto">
  		SELECT * FROM company where companyseq = #{companyseq}
  	</select>
+ 
+ 
+ 	<!-- 페이징 카운트 -->
+ 	<select id="companyListCount" resultType="int">
+ 		SELECT COUNT(*) FROM company
+ 	</select>
+ 	
+ 	
+ 	<!-- 글목록(페이징) : StartIndex(시작인덱스), CntPerPage(마지막인덱스) 가져오기 -->
+	<select id="selectList" parameterType="companyDto" resultType="companyDto">
+		select R1.* FROM(
+			SELECT companyseq,  imgurl, business, enddate, oneintro, mainfield, languages, companyname, location, salary, target
+		    FROM company order by companyseq desc
+		) R1
+		LIMIT #{listSize} OFFSET #{startList}
+	</select>
+ 	
+ 	
  
 </mapper>

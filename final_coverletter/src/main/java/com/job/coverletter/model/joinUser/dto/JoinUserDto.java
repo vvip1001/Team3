@@ -14,7 +14,7 @@ public class JoinUserDto {
 
     // 이메일(ID) 
     @NotEmpty(message = "값을 입력해주세요")
-    @Email(message = "이메일 형식이 틀렸습니다.")
+    @Email(message = "이메일 형식이 틀렸습니다.")	// @Email 자동 유효성 검사
     private String joinemail;
 
     // 이름 
