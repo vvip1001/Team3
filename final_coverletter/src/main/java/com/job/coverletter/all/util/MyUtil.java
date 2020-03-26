@@ -11,9 +11,10 @@ public class MyUtil {
 			String res = "";
 			if(text.length() >= textLen) {
 				res += text.substring(0, textLen) + "...";
-			} 
-		
-		return res;
+				return res;
+			} else {
+				return text;
+			}
 	}
 
 	

@@ -302,6 +302,15 @@ public class CompanyDto {
         this.mainfield = mainfield;
     }
     
+	public String getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
+	}
+
+
 	@Override
 	public String toString() {
 		return "CompanyDto [companyseq=" + companyseq + ", groupno=" + groupno + ", companyname=" + companyname
