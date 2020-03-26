@@ -49,8 +49,6 @@ public class JoinUserDaoImpl implements JoinUserDao {
 	public String checkemail(String joinemail) {
 		JoinUserDto dto = sqlSession.selectOne("com.job.coverletter.JoinUser.checkEmail", joinemail);
 		
-		
-		
 		if(dto == null) {
 			return "사용가능";
 		} else {

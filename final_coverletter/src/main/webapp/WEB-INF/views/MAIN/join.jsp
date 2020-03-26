@@ -18,8 +18,6 @@
 
    <div class="container" style="height: 800px;">
    
-   
-   
    <c:choose>
       <c:when test="${empty joinuserDto}">
          <f:form modelAttribute="joinuserDto" action="USER_joinRes.do" method="post" onsubmit="return confirmSubmit()">
@@ -198,12 +196,5 @@
       </c:choose> 
       </div>
 </body>
-<script type="text/javascript">
-
-
-
-
-</script>
-
 </html>
 

@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +32,9 @@ import org.springframework.web.util.WebUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.board.biz.BoardBiz;
 import com.job.coverletter.model.board.dto.BoardDto;
-
 
 @Controller
 public class BoardController {
@@ -47,28 +43,30 @@ public class BoardController {
 
 	@Autowired
 	private BoardBiz boardBiz;
-	
-	//로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
+
+	// 로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
 	String login = "mint@email.com";
 
 	// 글목록(페이징기능)
 	@RequestMapping(value = "/BOARD_boardList.do", method = RequestMethod.GET)
-	public String boardListP(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue="1") int curPage, HttpServletRequest request, Model model) {
-		
+
+	public String boardList(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue = "1") int curPage,
+			HttpServletRequest request, Model model) {
+
 		// 총 게시글 수
 		int listCnt = boardBiz.boardListCount(dto);
-		
+
 		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);
-		dto.setStartIndex(pagination.getStartIndex());				
-        dto.setCntPerPage(pagination.getPageSize() * curPage);
+		dto.setStartIndex(pagination.getStartIndex());
+		dto.setCntPerPage(pagination.getPageSize() * curPage);
 
 		List<BoardDto> list = boardBiz.boardList(dto);
-		
+
 		model.addAttribute("boardList", list);
 		model.addAttribute("listCnt", listCnt);
 		model.addAttribute("pagination", pagination);
-		
+
 		return "BOARD/boardList";
 	}
 
@@ -78,65 +76,88 @@ public class BoardController {
 		return "BOARD/boardWrite";
 	}
 
+	// 글작성
+	@RequestMapping(value = "/BOARD_boardWrite.do", method = RequestMethod.POST)
+	public String boardWrite(@ModelAttribute("BoardDto") BoardDto dto, HttpServletRequest request) {
 
-	//글작성
-	@RequestMapping(value = "/BOARD/boardWrite.do", method = RequestMethod.POST)
-	public String boardWrite(@ModelAttribute("BoardDto") BoardDto dto , HttpServletRequest request) {
-		
 		MultipartFile file = dto.getUploadFile();
-		String name = file.getOriginalFilename();
 
-		
-//		이름과 설명을 넘김.
-
-		InputStream inputStream = null;
-		OutputStream outputStream = null;
-
-		try {
-			inputStream = file.getInputStream();
-			//경로
-			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-			System.out.println("upload real path : " + path);
-			
-			File storage = new File(path);
-			if (!storage.exists()) {
-				storage.mkdir();
-			}//해당 파일이 있으면 넘어간다.
-
-			File newFile = new File(path + "/" + name);
-			if (!newFile.exists()) {
-				newFile.createNewFile();
-			}//새로운 파일이 없으면 
-
-			outputStream = new FileOutputStream(newFile); // 업로드 되는 파일
-			
-
-			int read = 0;
-			byte[] b = new byte[(int) file.getSize()];
-			while ((read = inputStream.read(b)) != -1) {
-				outputStream.write(b, 0, read);
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+		if (file.getSize() != 0) {
+			String name = file.getOriginalFilename();
+			System.out.println("----------------------------------------");
+			System.out.println("file = " + file.getSize());
 			try {
-				inputStream.close();
-				outputStream.close();
+				System.out.println("file = " + file.getInputStream());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println("name = " + name);
+
+
+//			이름과 설명을 넘김.
+
+			InputStream inputStream = null;
+			OutputStream outputStream = null;
+
+			try {
+				inputStream = file.getInputStream();
+				// 경로
+				String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+				System.out.println("upload real path : " + path);
+
+				File storage = new File(path);
+				if (!storage.exists()) {
+					storage.mkdir();
+				} // 해당 파일이 있으면 넘어간다.
+
+				File newFile = new File(path + "/" + name);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+				} // 새로운 파일이 없으면
+
+				outputStream = new FileOutputStream(newFile); // 업로드 되는 파일
+
+				int read = 0;
+				byte[] b = new byte[(int) file.getSize()];
+				while ((read = inputStream.read(b)) != -1) {
+					outputStream.write(b, 0, read);
+				}
+
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					inputStream.close();
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			System.out.println("if문 들어왔다");
+			dto.setFilepath(name);
+			dto.setJoinemail(login);
+
+			int res = boardBiz.boardInsert(dto);
+			if (res > 0) {
+				return "redirect:/BOARD_boardList.do";
+			} else {
+				return "redirect:/BOARD_boardWriteForm.do";
+			}
+		} else {
+			System.out.println("else문 들어왔다");
+			String name = "";
+			dto.setFilepath(name);
+			dto.setJoinemail(login);
+
+			int res = boardBiz.boardInsert(dto);
+			if (res > 0) {
+				return "redirect:/BOARD_boardList.do";
+			} else {
+				return "redirect:/BOARD_boardWriteForm.do";
 			}
 		}
-		
-		dto.setFilepath(name);
-		dto.setJoinemail(login);
 
-		int res = boardBiz.boardInsert(dto);
-		if (res > 0) {
-			return "redirect:/BOARD_boardList.do";
-		} else {
-			return "redirect:/BOARD_boardWriteForm.do";
-		}
 	}
 
 	// 글상세 + 댓글상세
@@ -188,7 +209,8 @@ public class BoardController {
 		dto.setJoinemail(login);
 		boardBiz.replyInsert(dto);
 
-		return "redirect:/BOARD_boardDetail.do?boardseq="+ dto.getBoardseq() +"&groupno=" + dto.getGroupno() +"&curPage=" + curPage;
+		return "redirect:/BOARD_boardDetail.do?boardseq=" + dto.getBoardseq() + "&groupno=" + dto.getGroupno()
+				+ "&curPage=" + curPage;
 	}
 
 	// 대댓글작성
@@ -198,7 +220,8 @@ public class BoardController {
 		dto.setJoinemail(login);
 		boardBiz.rereInsert(dto);
 
-		return "redirect:/BOARD_boardDetail.do?boardseq="+ parentboardseq +"&groupno=" + dto.getGroupno() +"&curPage=" + curPage;
+		return "redirect:/BOARD_boardDetail.do?boardseq=" + parentboardseq + "&groupno=" + dto.getGroupno()
+				+ "&curPage=" + curPage;
 	}
 
 	// 댓글삭제
@@ -206,8 +229,9 @@ public class BoardController {
 	public String replyDelete(@ModelAttribute("BoardDto") BoardDto dto, int parentboardseq, int curPage, Model model) {
 		boardBiz.replyDelete(dto.getBoardseq());
 
-		return "redirect:/BOARD_boardDetail.do?boardseq="+ parentboardseq +"&groupno=" + dto.getGroupno() + "&curPage=" + curPage;
-	} 
+		return "redirect:/BOARD_boardDetail.do?boardseq=" + parentboardseq + "&groupno=" + dto.getGroupno()
+				+ "&curPage=" + curPage;
+	}
 
 	// 에러
 	@RequestMapping(value = "/error.do", method = RequestMethod.GET)
@@ -215,9 +239,9 @@ public class BoardController {
 		logger.info("예외 발생");
 		throw new Exception();
 	}
-	
-	//파일 다운로드
-	@RequestMapping("/download.do")
+
+	// 파일 다운로드
+	@RequestMapping(value = "/download.do", method = RequestMethod.POST)
 	@ResponseBody
 	public byte[] fileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
 //연속적인 바이트들의 흐름 : byte[] 
@@ -225,7 +249,7 @@ public class BoardController {
 		String path;
 
 		try {
-			path = WebUtils.getRealPath(request.getSession().getServletContext(), "C:\\img\\");
+			path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
 
 			File file = new File(path + "/" + name);
 
@@ -243,5 +267,4 @@ public class BoardController {
 
 		return down;
 	}
-	
 }

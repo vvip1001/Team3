@@ -14,8 +14,6 @@
 int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
 %>
 <body>
-	
-
 
    <form name="a" action="USER_mailSend.do" method="post" target="iframe2">
    <input type="hidden" id="number" name="number" value="<%=RandomNumber%>" >
@@ -39,7 +37,6 @@ int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
    <input type="button"  id="chk" value="인증성공" onclick="EmailChk();" style="display: none;" ><br>
    </div>
    </fieldset>
-   
    </form>
 </body>
 <iframe name="iframe2" style="display: none;"></iframe>

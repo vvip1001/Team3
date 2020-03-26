@@ -1,10 +1,14 @@
 package com.job.coverletter.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,18 +17,27 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
+import com.job.coverletter.all.Pagination;
+import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
+import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
+import com.job.coverletter.model.jobcalendar.biz.JobCalendarBiz;
+import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
 import com.job.coverletter.model.joinUser.biz.JoinUserBiz;
 import com.job.coverletter.model.joinUser.dto.JoinUserDto;
+import com.job.coverletter.model.skill.biz.SkillBiz;
+
+import net.sf.json.JSONArray;
 
 @Controller
 public class UserController {
@@ -209,7 +222,60 @@ public class UserController {
       model.addAttribute("EmailName",EmailName);
       return "MAIN/mailSend";
       }
-   
-   
-    
+	
+	// 이력서(자기소개서) 파일 다운로드
+		@RequestMapping(value = "/CVdownload.do", method = RequestMethod.POST)
+		@ResponseBody
+		public byte[] CVfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
+	//연속적인 바이트들의 흐름 : byte[] 
+			byte[] down = null;
+			String path;
+
+			try {
+				path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+
+				File file = new File(path + "/" + name);
+
+				down = FileCopyUtils.copyToByteArray(file);
+				String filename = new String(file.getName().getBytes(), "8859_1");
+
+				response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+				response.setContentLength(down.length);
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return down;
+		}
+		
+		// 포트폴리오 파일 다운로드
+		@RequestMapping(value = "/PFdownload.do", method = RequestMethod.POST)
+		@ResponseBody
+		public byte[] PFfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
+	//연속적인 바이트들의 흐름 : byte[] 
+			byte[] down = null;
+			String path;
+
+			try {
+				path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+
+				File file = new File(path + "/" + name);
+
+				down = FileCopyUtils.copyToByteArray(file);
+				String filename = new String(file.getName().getBytes(), "8859_1");
+
+				response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+				response.setContentLength(down.length);
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return down;
+		}
 }

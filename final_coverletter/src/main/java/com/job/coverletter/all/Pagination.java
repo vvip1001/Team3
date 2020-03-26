@@ -46,7 +46,7 @@ public class Pagination {
 	/*---------- 페이징 생성자 ----------*/
 	// boardController param : 총 게시물 수, 현재 페이지
 	// 페이징 처리 순서 1. 총 페이지 수 2. 총 블록 수 (range) 3. 블록 세팅 (range setting)
-	public Pagination(int listCnt, int curPage) {
+	public Pagination(int listCnt, int curPage) {	//총 게시글 수, 현재페이지
 
 		// 총 페이지 수
 		setPageCnt(listCnt);
@@ -67,7 +67,7 @@ public class Pagination {
 		setCurPage(curPage);
 
 		// db쿼리문 작성
-		setStartIndex(curPage);
+		setStartIndex(curPage); // 페이지당 가져올 게시글 시작 시퀀스
 	}
 
 	/*---------- 총 페이지 수  ----------*/

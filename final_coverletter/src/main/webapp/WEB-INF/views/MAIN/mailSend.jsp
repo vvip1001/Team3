@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <%@page import="java.util.Map"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="javax.mail.Transport"%>
 <%@page import="javax.mail.Message"%>
@@ -16,7 +17,6 @@
 <%@page import="javax.mail.internet.InternetAddress"%>
 <%@page import="javax.mail.internet.MimeMessage"%>
 <%@page import="javax.mail.Session"%>
-
 <%@page import="javax.mail.Authenticator"%>
 <%@page import="java.util.Properties"%>
 <%

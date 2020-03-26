@@ -1,0 +1,104 @@
+
+
+	/* background: #ebe6e6; */
+
+
+#main h4{text-align: center;}
+
+#main .col-md-2{padding: 0%;}
+
+#div_span01{padding: 0.5%;}
+
+#span01{color: orange; font-size: 8pt;}
+
+#div_text_search{padding: 0%;}
+
+#main #div_btn{padding-left: 0.5%;}
+
+#btn_search{
+	border-color: #00bf6f; 
+	background-color: #00bf6f; 
+	width: 50%;  
+	padding-left: 5%; 
+	padding-right: 5%;}
+
+#btn_reset{
+	border-color: crimson; 
+	background-color: crimson; 
+	width: 30%;}
+
+
+
+
+/* 검색결과 컨테이너 */
+#search_container .row{
+	padding-top: 2%;
+	padding-bottom: 2%;
+	position: relative;
+	border-bottom: 1px solid gray;
+	height: 140px;
+}
+
+
+/* 이미지 div */
+#search_container img{
+	width: auto; 
+	height: auto;
+    max-width: 100px;
+    max-height: 100px;	
+}
+
+#search_container .col-md-2{
+	display: table;
+	height: 100%;
+}
+
+.div_img_top{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.div_img_mid{
+	display: inline-block;
+	
+}
+
+
+
+.company_left{
+	width: 65%;
+	float: left;
+}
+.company_right{
+	width: 25%;
+	float: right;
+}
+
+
+#search_container a{
+	color: black;
+}
+
+
+#search_container span{
+	font-size: 10pt;
+	color: gray;
+}
+
+
+.btn_compnay{
+	width: 60px;
+	height: 20px;
+	background-color: white;
+	font-size: 12px;
+	color: gray;
+	border: black;
+	border-bottom: 1px solid #00bf6f;
+	
+}
+
+
+
+
+

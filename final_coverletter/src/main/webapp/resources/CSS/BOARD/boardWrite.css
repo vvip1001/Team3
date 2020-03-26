@@ -39,3 +39,17 @@ form {
 	background-color: #00BF6F;
 	color: #fff;
 }
+
+#paging-nav {
+   text-align: center;
+}
+
+#paging-nav a {
+   color: black;
+}
+
+/* 현재 페이지 색상 */
+.paging-focus{
+   background-color: #00bf6f !important;
+   color : #fff !important;
+}
