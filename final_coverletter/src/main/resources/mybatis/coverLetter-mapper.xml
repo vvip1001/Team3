@@ -65,7 +65,6 @@
 	<!--          포폴 게시판                     -->
 	
 	<select id="boardPFListCount" resultType="int" parameterType="coverLetterDto">
-
 		SELECT COUNT(*)
 		FROM COVERLETTER
 		WHERE CVCATEGORY = #{cvcategory}
@@ -130,5 +129,4 @@
 			#{groupseq}
 		</foreach>
 	</delete>
-	
 </mapper>
