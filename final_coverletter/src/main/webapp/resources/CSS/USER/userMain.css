@@ -1,87 +1,200 @@
-   .userContainer{
-      display:flex;
-      height:auto;
-      width: 100%;
-      background-color:white; 
-      text-align: center;
-   }
-   .side{
-      background-color:#ebe6e6;
-      flex: 0.1;
-   }
-   .center1{
-      flex: 0.3;
-      }
-   .center1height{
-      height: 1330px;
-      
-   }
-   .center1heightside{
-      height: 20px;
-      background-color:#ebe6e6;
-   }
-   .centerside{
-      background-color:#ebe6e6;
-      flex: 0.05;
-   }
-      
-   .center2{
-      flex: 1.7;
-      }
-   .center2height{
-      height: 230px;
-      
-   }
-   .center2heightside{
-      height: 20px;
-      background-color:#ebe6e6;
-   }
-   .center2calendar{
-      height: 500px;
-   }
-   .center2calendarside{
-      height: 20px;
-      background-color:#ebe6e6;
-   }
-   .topside{
-      height: 20px;
-      background-color:#ebe6e6;
-   }
-   .btn{
-      height: 35px;
-      width: 120px;
-      background-color: gray;
-      color: white;
-   }
-   .modal-content{
-   	width: 300px;
-   	height: 320px;
-   	margin-left:25%;
-   }
-   .modal-dialog{
-   	vertical-align: middle;
-   }
-   .modal fade in{
-   vertical-align: middle;
-   }
-   #modal{
-   top:40%;
-   margin-top:-40px;
-   }
-   
-   .modal-footer{
-   position: relative;
-   }
-   #soo{
-   float: left;
-   margin-left: 27.5%;
-   background-color: #00bf6f;
-   color: white;
-   }
-  #deleteDiv{
-  text-align: center;
-  font-weight: bold;
-  }
-  #delete{
-  text-decoration: underline;
-  }
+.userContainer {
+	display: flex;
+	height: auto;
+	width: 100%;
+	background-color: white;
+	text-align: center;
+}
+
+.side {
+	background-color: #ebe6e6;
+	flex: 0.1;
+}
+
+.center1 {
+	flex: 0.3;
+}
+
+.center1height {
+	height: 1330px;
+}
+
+.center1heightside {
+	height: 20px;
+	background-color: #ebe6e6;
+}
+
+.centerside {
+	background-color: #ebe6e6;
+	flex: 0.05;
+}
+
+.center2 {
+	flex: 1.7;
+}
+
+.center2height {
+	height: 230px;
+}
+
+.center2height_child_1 {
+	display: flex;
+}
+
+.center2height_child_2 {
+	text-align: center;
+	height: 140px;
+	margin-top: 20px;
+	box-sizing: border-box;
+	box-shadow: 10px 10px 15px #b3b3b3;
+	transform : rotate( -5deg);
+	border-radius: 70%;
+	background-color: #ebe6e6;
+	flex: 1;
+	flex-flow: wrap;
+	transform: rotate(-0deg);
+}
+
+.center2height_child_2_side {
+	flex: 1;
+}
+
+.center2height_child_2_between {
+	flex: 1;
+	height: 350px;
+}
+
+.center2heightside {
+	height: 20px;
+	background-color: #ebe6e6;
+}
+
+.boardLink {
+	font-family: "Nanum Gothic", sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 140px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	white-space: normal;
+}
+
+.board_NumberLink {
+	font-family: "Nanum Gothic", sans-serif;
+	font-size: 15px;
+	font-weight: 800;
+	line-height: 150px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+}
+/* 클릭하지 않은 링크 */
+.boardLink:link {
+	color: black;
+	text-decoration: none;
+}
+/* 한번 클릭했던 혹은 다녀갔떤 링크 */
+.boardLink:visited {
+	color: black;
+	text-decoration: none;
+}
+/* 링크부분에서 마우스를 누르고 있는 동안의 상태 */
+.boardLink:active {
+	color: black;
+	text-decoration: none;
+}
+
+.boardLink:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.board_NumberLink:link {
+	color: #00b300;
+	text-decoration: none;
+}
+/* 한번 클릭했던 혹은 다녀갔떤 링크 */
+.board_NumberLink:visited {
+	color: #00b300;
+	text-decoration: none;
+}
+/* 링크부분에서 마우스를 누르고 있는 동안의 상태 */
+.board_NumberLink:active {
+	color: #00b300;
+	text-decoration: none;
+}
+
+.board_NumberLink:hover {
+	color: #00b300;
+	text-decoration: none;
+}
+.center2calendar {
+	height: 500px;
+}
+
+.center2calendarside {
+	height: 20px;
+	background-color: #ebe6e6;
+}
+
+.topside {
+	height: 20px;
+	background-color: #ebe6e6;
+}
+
+.btn {
+	height: 35px;
+	width: 120px;
+	background-color: gray;
+	color: white;
+}
+
+.modal-content {
+	width: 300px;
+	height: 320px;
+	margin-left: 25%;
+}
+
+.modal-dialog {
+	vertical-align: middle;
+}
+
+.modal fade in {
+	vertical-align: middle;
+}
+
+#modal {
+	top: 40%;
+	margin-top: -40px;
+}
+
+.modal-footer {
+	position: relative;
+}
+
+#soo {
+	float: left;
+	margin-left: 27.5%;
+	background-color: #00bf6f;
+	color: white;
+}
+
+#deleteDiv {
+	text-align: center;
+	font-weight: bold;
+}
+
+#delete {
+	text-decoration: underline;
+}
+
+/*---------- chart ----------*/
+.chart {
+    display: inline-block;
+    position: inherit;
+}
+
+canvas {
+	width: 500px !important;
+}

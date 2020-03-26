@@ -1,5 +1,7 @@
 package com.job.coverletter.model.company.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CompanyDto {
     // 시퀀스 
     private int companyseq;
@@ -72,7 +74,7 @@ public class CompanyDto {
 
     // 산업분야 기업상세정보
     private String mainfield;
-
+    
     
     public CompanyDto() {
 		super();
@@ -109,6 +111,7 @@ public class CompanyDto {
 		this.location = location;
 		this.mainfield = mainfield;
 	}
+	
 
 	public int getCompanyseq() {
         return companyseq;
@@ -309,7 +312,6 @@ public class CompanyDto {
 	public void setEnddate(String enddate) {
 		this.enddate = enddate;
 	}
-
 
 	@Override
 	public String toString() {

@@ -36,7 +36,7 @@
 	<div class="container">
 		<h1>자유게시판</h1>
 
-		<form method="post" action="boardWrite.do" enctype="multipart/form-data">
+		<form method="post" action="BOARD_boardWrite.do" enctype="multipart/form-data">
 
 			<div class="board-title">
 				<h2>제목</h2>

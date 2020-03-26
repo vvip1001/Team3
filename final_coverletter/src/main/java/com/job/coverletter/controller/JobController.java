@@ -1,10 +1,9 @@
 package com.job.coverletter.controller;
 
+
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.all.pagination.MariaPagination;
 import com.job.coverletter.all.util.MyUtil;
 import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.company.biz.CompanyBiz;
 import com.job.coverletter.model.company.dto.CompanyDto;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.job.coverletter.all.Pagination;
+import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
 
 @Controller
@@ -80,4 +81,14 @@ public class JobController {
 		return "JOB/jobSearch";
 	}
 
+	
+	//로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
+	String login = "mint@email.com";
+	
+
+	@RequestMapping(value = "JOB_jobCenter.do")
+	public String jobCenter() {
+		return "JOB/jobCenter";
+	}
+	
 }

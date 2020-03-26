@@ -16,16 +16,16 @@
 		FROM BOARD
 		WHERE GROUPSEQ = 1
 		<trim prefix = "AND" prefixOverrides = "AND">
-		<if test="category == 'title' and keyword != null and keyword != ''">
-			AND TITLE LIKE ('%' || #{keyword} || '%')
-		</if>
-		<if test="category == 'content' and keyword != null and keyword != ''">
-			AND CONTENT LIKE ('%' || #{keyword} || '%')
-		</if>
-		<if test="category == 'joinemail' and keyword != null and keyword != ''">
-			AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
-		</if>
-	</trim>
+			<if test="category == 'title' and keyword != null and keyword != ''">
+				AND TITLE LIKE ('%' || #{keyword} || '%')
+			</if>
+			<if test="category == 'content' and keyword != null and keyword != ''">
+				AND CONTENT LIKE ('%' || #{keyword} || '%')
+			</if>
+			<if test="category == 'joinemail' and keyword != null and keyword != ''">
+				AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
+			</if>
+		</trim>
 	</select>
 	
 	<!-- 글목록(페이징) : StartIndex(시작인덱스), CntPerPage(마지막인덱스) 가져오기 -->

@@ -190,7 +190,7 @@ public class BoardDto {
 		this.curPage = curPage;
 	}
 
-	// 검색
+	/*---------- 검색 ----------*/
 	public String getCategory() {
 		return category;
 	}

@@ -1,13 +1,14 @@
 package com.job.coverletter.model.company.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-
 import com.job.coverletter.all.pagination.MariaPagination;
+import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.company.dto.CompanyDto;
 
 @Repository
