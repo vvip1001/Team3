@@ -30,6 +30,9 @@
 
 
 </head>
+<%
+int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
+%>
 <body>
 
 	<c:choose>
@@ -89,39 +92,38 @@
       				<h3 class="modal-title" align="center">아이디/비밀번호 찾기</h3>
      			 </div>
     			 <div class="modal-body" align="center">
-		     		<form action="USER_changepw.do" method="post">
+		     		<form action="USER_changepw.do" method="post" enctype="application/x-www-form-urlencoded" >
 		     			<table class="M_table">
 		     			 		<tr>
 		     			 			<th>이메일</th>
-		     			 			<td><input type="text" id="joinemail" name="joinemail"> </td>
-		     			 			<td><button class="btn btn-default" onclick="">입력</button></td>
+		     			 			<td><input type="text" id="joinemail2" name="joinemail" onclick="checkid();" > </td>
 		     			 		</tr>
 		     			 		<tr>
-		     			 			<td id="M_error" colspan="2" align="right">인증번호틀림</td>
-		     			 		</tr>
-		     			 		<tr>
-		     			 			<th>인증번호</th>
-		     			 			<td><input type="text" id="number" name="number"></td>
-		     			 		</tr>
+		     			 			<td id="M_error" colspan="2" align="right">*해당 메일로 가입된 아이디가 있습니다.</td>
+		     			 		</tr>		     	
 		     			 		<tr>
 		     			 			<th>새비밀번호</th>
-		     			 			<td><input type="password" id="newpw" name="newpw"></td>
+		     			 			<td><input type="password" id="newpw" name="joinpw"></td>
 		     			 		</tr>
 		     			 		<tr>
 		     			 			<th>비밀번호 확인</th>
-		     			 			<td><input type="password" id="pwcheck" name="pwcheck"></td>
+		     			 			<td><input type="password" id="pwcheck"></td>			 			
+		     			 		</tr>
+		     			 		<tr>	
+		     			 			<th></th>
+		     			 			<td><span id="errormessge"></span></td>
 		     			 		</tr>
 		     			 	</table>
+		     			 	<button type="button" onclick='form.submit()' id="changepw" class="btn btn-default" data-dismiss="modal">변   경</button>
 		     			 </form>
     			</div>
      			 <div class="modal-footer"  >
-      			 <button type="button" id="changepw" class="btn btn-default" data-dismiss="modal" onclick="#">변   경</button>
+      			 
     		  </div>
   		 	</div>
 		</div>
 	</div>
-	
-	
+		
 	
 	
 </body>

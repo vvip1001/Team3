@@ -3,6 +3,12 @@ $(function() {
 		
 	});
 
+
+//이메일 인증 팝업
+function checkid() {
+	window.open("USER_emailcheckpopup_login.do", "", "width=500px,height=500px");
+	chk01 = true
+}
 	
 	//일반 로그인 
 	function login() {
@@ -50,4 +56,38 @@ $(function() {
 		$('#modal').modal('show');
 		$("#M_error").hide();
 	}
+	
+	
+// [modal]================================================
+	
+//아이디,비밀번호 수정 
+	window.onload = function() {
+
+		// 비밀번호 일치 여부
+		$('#pwcheck').focusout(function() {
+			var pw = $('#newpw').val();
+			var pwChk = $('#pwcheck').val();
+			var res = $('#errormessge');
+			
+			if (pw != "" || pwChk != "") {
+				if (pw == pwChk) {
+					
+					res.html("비밀번호가 일치합니다.");
+				} else {
+					
+					res.html("비밀번호가 일치하지 않습니다");
+				}
+			}
+		});
+	}
+
+function idpwcheck() {
+	alert("확인")
+	if($("#newpw").val() != $("#pwcheck").val() ) {
+		alert("비밀번호를 확인해주세요.")
+		return true;
+	}else {
+		return true;
+	}
+}	
 	

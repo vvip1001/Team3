@@ -158,7 +158,26 @@ public class UserController {
       
    }
    
+   //아이디비밀번호찾기(비밀번호 수정)
+   @RequestMapping(value = "/USER_changepw.do", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded")
+   public String findidpw(Model model, JoinUserDto dto) {
+	   logger.info("아이디 비밀번호 찾기"+ dto);
+	   int res = joinUserBiz.updateJoinuser(dto);
+	   
+	   if(res >0) {
+		   logger.info("비밀번호 변경 성공");
+	         return "MAIN/login";
+	   }else {
+		   logger.info("비밀번호 변경 실패");
+		   model.addAttribute("joinuserDto", dto);
+		   return "MAIN/login";
+	   }
+	   
+	   
+   }
    
+   
+   //로그아웃
    @RequestMapping(value = "/USER_logout.do", method = RequestMethod.GET)
    public String logout(HttpSession session) {
       logger.info("logout");
@@ -171,8 +190,14 @@ public class UserController {
    
    @RequestMapping(value = "/USER_emailcheckpopup.do", method = RequestMethod.GET)
    public String emailpopup() {
-      logger.info("이메일 인증 팝업!");
+      logger.info("회원가입 이메일 인증 팝업!");
       return "MAIN/emailChk";
+   }
+   
+   @RequestMapping(value = "/USER_emailcheckpopup_login.do", method = RequestMethod.GET)
+   public String emailpopup_login() {
+      logger.info("아이디찾기 이메일 인증 팝업!");
+      return "MAIN/emailChk_login";
    }
    
    

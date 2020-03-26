@@ -9,7 +9,7 @@
 <title>회원가입</title>
 <!-- include JQeury/CSS/JS -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/join.js?ver=2"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/join.js?ver=1"></script>
 <link href="${pageContext.request.contextPath}/resources/CSS/MAIN/join.css?ver=1" rel="stylesheet">
 </head>
 
