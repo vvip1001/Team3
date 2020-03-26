@@ -7,6 +7,92 @@
 	text-align: center;
 }
 
+#profile{
+	width:100%;
+	height:220px;
+}
+#p_up{
+	width:100%;
+	height: 50px;
+}
+#check1{
+	margin-left: 4%;
+	float: left;
+	color: red;
+}
+#check2 {
+	margin-left: 12%;
+	float: left;
+	color: red;
+}
+#check3 {
+	margin-left: 14%;
+	float: left;
+	color: red;
+}
+#check4 {
+	margin-left: 10%;
+	float: left;
+	color: red;
+}
+#p_down{
+	margin-top:30px;
+	width:100%;
+	height: 50px;
+}
+#check5{
+	margin-left: 4%;
+	float: left;
+	color: red;
+}
+#check6 {
+	margin-left: 12%;
+	float: left;
+	color: red;
+}
+#check7 {
+	margin-left: 21%;
+	float: left;
+	color: red;
+}
+#check8 {
+	margin-left: 4%;
+	float: left;
+	color: red;
+}
+#check9 {
+	margin-left: 13%;
+	float: left;
+	color: red;
+}
+#check10 {
+	margin-left: 12%;
+	float: left;
+	color: red;
+}
+#check11 {
+	margin-left: 4%;
+	float: left;
+	color: red;
+}
+#check12 {
+	margin-left: 10%;
+	float: left;
+	color: red;
+}
+#check13 {
+	margin-left: 10%;
+	float: left;
+	color: red;
+}
+
+
+#blank{
+	width: 4%;
+	height: auto;
+	background: pink;
+	float:left; 
+}
 button {
 	width: 50px;
 	height: 50px;
@@ -38,7 +124,7 @@ button {
 }
 
 #photo {
-	height: 100px;
+	height: 162px;
 }
 
 .col-md-4 {
@@ -157,6 +243,13 @@ div#itdiv{
 .container1{
 	margin-left: 30%;
 	margin-top: -3%;
+}
+#h3{
+	display: inline;
+}
+#essential{
+	color: orange;
+	font-size: 15px;
 }
 
 /**/

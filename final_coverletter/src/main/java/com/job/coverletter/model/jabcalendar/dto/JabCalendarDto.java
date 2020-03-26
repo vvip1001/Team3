@@ -1,5 +1,7 @@
 package com.job.coverletter.model.jabcalendar.dto;
 
+import javax.validation.constraints.Pattern;
+
 public class JabCalendarDto {
 	// 시퀀스 
     private int jabcalendarseq;

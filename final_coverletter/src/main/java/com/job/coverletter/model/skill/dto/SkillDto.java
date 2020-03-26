@@ -1,41 +1,50 @@
 package com.job.coverletter.model.skill.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
 public class SkillDto {
 
     // 시퀀스 
     private int skillseq;
 
-    // 이메일(ID) 
+    // 이메일(ID)
+    @NotEmpty(message = "이메일을 입력해주세요")
+    @Email(message = "이메일 형식이 틀렸습니다.")
     private String joinemail;
 
     // 구분 IT,자격증,어학,공모전
     private String category;
 
     // it기술 IT
+    @NotEmpty(message = "기술을 입력해주세요")
     private String itskill;
 
     // 점수 IT, 1~10
+    @Pattern(regexp = "[1-9]$|(10)$", message = "1~10점 까지 표시해주세요")
     private int itscore;
 
     // 자격증명(n급) 자격증
     private String certificate;
 
-    // 공인어학시험명 어학
+    // 공인시험명 어학점수
     private String languagename;
 
-    // 어학시험점수 어학
+    // 공인시험점수 어학점수
     private int languagescore;
 
     // 공모전명 공모전
     private String contest;
 
-    // 수상 공모전
+    // 수상이력 공모전
     private String prize;
 
     // 발행기관 시행기관, 발행기관
     private String organization;
 
     // 모든 취득일자 it는 제외, yyyy/mm/dd
+    @Pattern(regexp = "^(([0-9][0-9])[년]([0-1][0-9])[월]([0-1][0-9])[일]$)", message = "yy년mm월dd일 형태로 작성해주세요.")
     private String regdate;
 
     
