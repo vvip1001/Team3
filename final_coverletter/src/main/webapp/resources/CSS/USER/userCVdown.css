@@ -32,16 +32,20 @@ tbody tr:hover {
 	cursor:pointer;
 }
 
-/* 글번호, 작성일, 이메일 정렬 */
-.board-seq, .board-date, .board-email {
+/* 체크박스, 글번호, 작성일, 이메일 정렬 */
+.board-cb, .board-seq, .board-date, .board-down {
 	text-align: center;
+}
+
+.board-cb {
+	width: 5%;	
 }
 
 .board-seq {
 	width: 10%;
 }
 
-.board-date, .board-email {
+.board-date, .board-down {
 	width: 15%;
 }
 
@@ -94,4 +98,9 @@ tbody tr:hover {
 /*삭제버튼*/
 #deleteSub{
 	float: right;
+}
+/*---------- 버튼 ----------*/
+.btn:hover {
+	background-color: #00bf6f !important;
+	color : #fff !important;
 }

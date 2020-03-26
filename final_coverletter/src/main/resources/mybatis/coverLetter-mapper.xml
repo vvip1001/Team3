@@ -10,6 +10,7 @@
 	<!-- <result property="" column=""/> -->
 	<!-- </resultMap> -->
 
+<<<<<<< HEAD
 	<!-- 글목록(게시글 수) -->
 	
 	<!-- 자소서 게시판 -->
@@ -65,11 +66,19 @@
 	<!--          포폴 게시판                     -->
 	
 	<select id="boardPFListCount" resultType="int" parameterType="coverLetterDto">
+=======
+	<!-- 이력서 글목록(게시글 수) -->
+	<select id="CVListCount" resultType="int">
+>>>>>>> 6d69ac3083f545a56bd4df0c3e9f47cb7a21bb05
 		SELECT COUNT(*)
 		FROM COVERLETTER
 		WHERE CVCATEGORY = #{cvcategory}
 		AND JOINEMAIL = #{joinemail}
+<<<<<<< HEAD
 		<trim prefix="AND" prefixOverrides="AND">
+=======
+		<trim prefix="AND" prefixOverrides="AND">		
+>>>>>>> 6d69ac3083f545a56bd4df0c3e9f47cb7a21bb05
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
 				AND TITLE LIKE ('%' || #{keyword} || '%')
@@ -78,6 +87,7 @@
 				test="category == 'content' and keyword != null and keyword != ''">
 				AND CONTENT LIKE ('%' || #{keyword} || '%')
 			</if>
+<<<<<<< HEAD
 			<if
 				test="category == 'joinemail' and keyword != null and keyword != ''">
 				AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
@@ -93,6 +103,18 @@
 		SELECT A.*, ROW_NUMBER() OVER(ORDER BY GROUPSEQ DESC) AS RNUM
 		FROM COVERLETTER A
 		WHERE CVCATEGORY = #{cvcategory} 
+=======
+		</trim>
+	</select>
+
+	<!-- 이력서 글목록(페이징) : StartIndex(시작인덱스), CntPerPage(마지막인덱스) 가져오기 -->
+	<select id="CVList" parameterType="coverLetterDto" resultType="coverLetterDto">
+		SELECT B.*
+		FROM (
+		SELECT A.*, ROW_NUMBER() OVER(ORDER BY COVERLETTERSEQ DESC) AS RNUM
+		FROM COVERLETTER A
+		WHERE CVCATEGORY = #{cvcategory}
+>>>>>>> 6d69ac3083f545a56bd4df0c3e9f47cb7a21bb05
 		AND JOINEMAIL = #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
@@ -103,6 +125,7 @@
 				test="category == 'content' and keyword != null and keyword != ''">
 				AND CONTENT LIKE ('%' || #{keyword} || '%')
 			</if>
+<<<<<<< HEAD
 			<if
 				test="category == 'joinemail' and keyword != null and keyword != ''">
 				AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
@@ -131,4 +154,13 @@
 	</delete>
 	
 
+=======
+		</trim>
+		) B
+		WHERE RNUM BETWEEN #{StartIndex} + 1 AND #{CntPerPage}
+		ORDER BY COVERLETTERSEQ DESC
+	</select>
+
+
+>>>>>>> 6d69ac3083f545a56bd4df0c3e9f47cb7a21bb05
 </mapper>

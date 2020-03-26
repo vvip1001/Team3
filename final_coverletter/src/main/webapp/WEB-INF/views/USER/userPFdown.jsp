@@ -35,12 +35,11 @@
 					<col width="100" />
 
 					<thead>
-						<!--   				테이블 : 검색 영역   -->
 						<tr>
 							<td>
 								<div class="search-label">검색</div>
 							</td>
-							<td colspan="3" class="search-form">
+							<td colspan="4" class="search-form">
 								<div class="search-select">
 									<select class="form-control form-control-sm"
 										name="search-category" id="search-category">
@@ -140,26 +139,24 @@
 
 			</ul>
 		</nav>
-		<!-- 		  페이징 영역 끝        -->
-	</div>
-	
-	<!-- 모달 영역 -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					
-					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-				</div>
-				<div class="modal-body">...</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
-					
+
+		<!-- 모달 영역 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+
+						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>

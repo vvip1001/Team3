@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 
 @Repository
 public class CoverLetterDaoImpl implements CoverLetterDao {
 
-	@Autowired  @Qualifier("sqlSessionTemPlate")
+	@Autowired
+	@Qualifier("sqlSessionTemPlate")
 	private SqlSessionTemplate sqlSession;
 
 	@Override
@@ -100,4 +100,5 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		
 		return res;
 	}
+
 }

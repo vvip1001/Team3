@@ -47,7 +47,8 @@ public class CoverLetterDto {
 	private String category;
 	private String keyword;
 
-	public CoverLetterDto() {
+    public CoverLetterDto() {
+		super();
 	}
 
 	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int groupseq, String question,
@@ -85,6 +86,27 @@ public class CoverLetterDto {
 		this.category = category;
 		this.keyword = keyword;
 	}
+	
+	// 페이징, 검색 포함 생성자
+	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, String question, String title,
+			String subtitle, String content, Date regdate, String filepath, int startIndex, int cntPerPage, int curPage,
+			String category, String keyword) {
+		super();
+		this.coverletterseq = coverletterseq;
+		this.joinemail = joinemail;
+		this.cvcategory = cvcategory;
+		this.question = question;
+		this.title = title;
+		this.subtitle = subtitle;
+		this.content = content;
+		this.regdate = regdate;
+		this.filepath = filepath;
+		StartIndex = startIndex;
+		CntPerPage = cntPerPage;
+		this.curPage = curPage;
+		this.category = category;
+		this.keyword = keyword;
+	}
 
 	public int getCoverletterseq() {
 		return coverletterseq;
@@ -110,11 +132,11 @@ public class CoverLetterDto {
 		this.cvcategory = cvcategory;
 	}
 
-	public int getgroupseq() {
+	public int getGroupseq() {
 		return groupseq;
 	}
 
-	public void setgroupseq(int groupseq) {
+	public void setGroupseq(int groupseq) {
 		this.groupseq = groupseq;
 	}
 
@@ -216,9 +238,12 @@ public class CoverLetterDto {
 
 	@Override
 	public String toString() {
-		return "Coverletter [coverletterseq=" + coverletterseq + ", joinemail=" + joinemail + ", cvcategory="
+		return "CoverLetterDto [coverletterseq=" + coverletterseq + ", joinemail=" + joinemail + ", cvcategory="
 				+ cvcategory + ", groupseq=" + groupseq + ", question=" + question + ", title=" + title + ", subtitle="
-				+ subtitle + ", content=" + content + ", regdate=" + regdate + ", filepath=" + filepath + "]";
+				+ subtitle + ", content=" + content + ", regdate=" + regdate + ", filepath=" + filepath
+				+ ", uploadFile=" + uploadFile + ", StartIndex=" + StartIndex + ", CntPerPage=" + CntPerPage
+				+ ", curPage=" + curPage + ", category=" + category + ", keyword=" + keyword + "]";
 	}
 
+	
 }

@@ -41,7 +41,7 @@
 							<td>
 								<div class="search-label">검색</div>
 							</td>
-							<td colspan="3" class="search-form">
+							<td colspan="4" class="search-form">
 								<div class="search-select">
 									<select class="form-control form-control-sm"
 										name="search-category" id="search-category">
@@ -88,8 +88,9 @@
 											onClick="boardDetail(${dto.groupseq});">${dto.title }</td>
 										<td class="board-date"><fmt:formatDate
 												value="${dto.regdate}" pattern="yy-MM-dd HH:mm" /></td>
-										<td class="board-down"><input type="button" class="btn"
-											value="다운로드" onclick="fileDownLoad();"></td>
+										<td class="board-down">
+											<input type="button" class="btn" value="다운로드" onclick="fileDownLoad();">
+										</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -144,22 +145,22 @@
 		<!-- 페이징 영역 끝 -->
 	</div>
 	
-	<!-- 모달 영역 -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					
-					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-				</div>
-				<div class="modal-body">...</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
-					
+		<!-- 모달 영역 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+
+						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

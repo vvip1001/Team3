@@ -34,7 +34,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>자유게시판</h1>
+		<h1>자유박하게시판</h1>
 
 		<form method="post" action="BOARD_boardWrite.do" enctype="multipart/form-data">
 
@@ -71,7 +71,7 @@
 				</div>
 				<div class="modal-body">...</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">박하사탕</button>
 					
 				</div>
 			</div>

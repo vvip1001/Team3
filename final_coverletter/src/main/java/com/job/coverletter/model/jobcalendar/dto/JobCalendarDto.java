@@ -1,72 +1,59 @@
 package com.job.coverletter.model.jobcalendar.dto;
 
 public class JobCalendarDto {
-
 	// 시퀀스 
-    private int jobcalendarseq;
+    private int jabcalendarseq;
 
     // 이메일(ID) 
     private String joinemail;
 
-    // 회사번호 
-    private int companyseq;
-
     // 회사명 
     private String companyname;
 
-    // 모집대상(채용제목) 
-    private String business;
-
-    // 마감일 날짜 OR 상시모집
+    // 마감일 마감일이 있는 것만 여기 등록
     private String enddate;
     
-    /*---------- 페이징 ----------*/
     private int StartIndex;
-    private int CntPerPage;
-    // 현재페이지
-    private int curPage;
-    
-    /*---------- 검색 ----------*/
-    private String category;
-    private String keyword;
-    
+	private int CntPerPage;
+	// 현재페이지
+	private int curPage;
+
+	/*---------- 검색 ----------*/
+	private String category;
+	private String keyword;
+
     public JobCalendarDto() {
-      super();
-   }
+		super();
+	}
 
-   public JobCalendarDto(int jobcalendarseq, String joinemail, int companyseq, String companyname, String business,
-         String enddate) {
-      super();
-      this.jobcalendarseq = jobcalendarseq;
-      this.joinemail = joinemail;
-      this.companyseq = companyseq;
-      this.companyname = companyname;
-      this.business = business;
-      this.enddate = enddate;
-   }
+	public JobCalendarDto(int jabcalendarseq, String joinemail, String companyname, String enddate) {
+		super();
+		this.jabcalendarseq = jabcalendarseq;
+		this.joinemail = joinemail;
+		this.companyname = companyname;
+		this.enddate = enddate;
+	}
+	
+	public JobCalendarDto(int jabcalendarseq, String joinemail, String companyname, String enddate, int startIndex,
+			int cntPerPage, int curPage, String category, String keyword) {
+		super();
+		this.jabcalendarseq = jabcalendarseq;
+		this.joinemail = joinemail;
+		this.companyname = companyname;
+		this.enddate = enddate;
+		StartIndex = startIndex;
+		CntPerPage = cntPerPage;
+		this.curPage = curPage;
+		this.category = category;
+		this.keyword = keyword;
+	}
 
-   public JobCalendarDto(int jobcalendarseq, String joinemail, int companyseq, String companyname, String business,
-		String enddate, int startIndex, int cntPerPage, int curPage, String category, String keyword) {
-	super();
-	this.jobcalendarseq = jobcalendarseq;
-	this.joinemail = joinemail;
-	this.companyseq = companyseq;
-	this.companyname = companyname;
-	this.business = business;
-	this.enddate = enddate;
-	StartIndex = startIndex;
-	CntPerPage = cntPerPage;
-	this.curPage = curPage;
-	this.category = category;
-	this.keyword = keyword;
-}
-
-public int getJobcalendarseq() {
-        return jobcalendarseq;
+	public int getJabcalendarseq() {
+        return jabcalendarseq;
     }
 
-    public void setJobcalendarseq(int jobcalendarseq) {
-        this.jobcalendarseq = jobcalendarseq;
+    public void setJabcalendarseq(int jabcalendarseq) {
+        this.jabcalendarseq = jabcalendarseq;
     }
 
     public String getJoinemail() {
@@ -77,28 +64,12 @@ public int getJobcalendarseq() {
         this.joinemail = joinemail;
     }
 
-    public int getCompanyseq() {
-        return companyseq;
-    }
-
-    public void setCompanyseq(int companyseq) {
-        this.companyseq = companyseq;
-    }
-
     public String getCompanyname() {
         return companyname;
     }
 
     public void setCompanyname(String companyname) {
         this.companyname = companyname;
-    }
-
-    public String getBusiness() {
-        return business;
-    }
-
-    public void setBusiness(String business) {
-        this.business = business;
     }
 
     public String getEnddate() {
@@ -108,8 +79,8 @@ public int getJobcalendarseq() {
     public void setEnddate(String enddate) {
         this.enddate = enddate;
     }
-
-   public int getStartIndex() {
+    
+	public int getStartIndex() {
 		return StartIndex;
 	}
 
@@ -148,17 +119,12 @@ public int getJobcalendarseq() {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	
-	
 
-@Override
-   public String toString() {
-      return "JobCalendarDto [jobcalendarseq=" + jobcalendarseq + ", joinemail=" + joinemail + ", companyseq="
-            + companyseq + ", companyname=" + companyname + ", business=" + business + ", enddate=" + enddate + "]";
-   }
+	@Override
+	public String toString() {
+		return "JabCalendar [jabcalendarseq=" + jabcalendarseq + ", joinemail=" + joinemail + ", companyname="
+				+ companyname + ", enddate=" + enddate + "]";
+	}
     
     
-
-
-	
 }

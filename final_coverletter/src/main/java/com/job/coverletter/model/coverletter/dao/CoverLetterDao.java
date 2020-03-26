@@ -6,7 +6,6 @@ import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 
 public interface CoverLetterDao {
 	String NAMESPACE = "com.job.coverletter.CoverLetter.";
-
 	// 총 게시글 수
 	public int boardCVListCount(CoverLetterDto dto);
 

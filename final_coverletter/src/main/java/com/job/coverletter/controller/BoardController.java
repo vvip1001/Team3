@@ -49,7 +49,8 @@ public class BoardController {
 
 	// 글목록(페이징기능)
 	@RequestMapping(value = "/BOARD_boardList.do", method = RequestMethod.GET)
-	public String boardListP(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue = "1") int curPage,
+
+	public String boardList(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue = "1") int curPage,
 			HttpServletRequest request, Model model) {
 
 		// 총 게시글 수
@@ -93,9 +94,6 @@ public class BoardController {
 			}
 			System.out.println("name = " + name);
 
-//			if(dto.getFilepath() == null) {
-//				name = "null";
-//			}
 
 //			이름과 설명을 넘김.
 
@@ -128,7 +126,6 @@ public class BoardController {
 
 			} catch (IOException e) {
 				e.printStackTrace();
-
 			} finally {
 				try {
 					inputStream.close();
@@ -270,6 +267,4 @@ public class BoardController {
 
 		return down;
 	}
-	//////////////////////////////////////////////////////////////////////////////
-
 }
