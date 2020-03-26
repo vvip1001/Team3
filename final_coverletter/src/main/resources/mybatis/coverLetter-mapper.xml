@@ -69,7 +69,7 @@
 		FROM COVERLETTER
 		WHERE CVCATEGORY = #{cvcategory}
 		AND JOINEMAIL = #{joinemail}
-		<trim prefix="AND" prefixOverrides="AND">
+		<trim prefix="AND" prefixOverrides="AND">		
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
 				AND TITLE LIKE ('%' || #{keyword} || '%')
@@ -129,6 +129,4 @@
 			#{groupseq}
 		</foreach>
 	</delete>
-	
-
 </mapper>
