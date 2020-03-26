@@ -1,6 +1,7 @@
 package com.job.coverletter.model.jobcalendar.dto;
 
 public class JobCalendarDto {
+
 	// 시퀀스
 	private int jobcalendarseq;
 
@@ -27,7 +28,6 @@ public class JobCalendarDto {
 
 	public JobCalendarDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public JobCalendarDto(int jobcalendarseq, String joinemail, String companyseq, String companyname, String business,
@@ -39,11 +39,6 @@ public class JobCalendarDto {
 		this.companyname = companyname;
 		this.business = business;
 		this.enddate = enddate;
-		StartIndex = startIndex;
-		CntPerPage = cntPerPage;
-		this.curPage = curPage;
-		this.category = category;
-		this.keyword = keyword;
 	}
 
 	public int getJobcalendarseq() {
@@ -134,4 +129,13 @@ public class JobCalendarDto {
 		this.keyword = keyword;
 	}
 
+	@Override
+	public String toString() {
+		return "JobCalendarDto [jobcalendarseq=" + jobcalendarseq + ", joinemail=" + joinemail + ", companyseq="
+				+ companyseq + ", companyname=" + companyname + ", business=" + business + ", enddate=" + enddate
+				+ ", StartIndex=" + StartIndex + ", CntPerPage=" + CntPerPage + ", curPage=" + curPage + ", category="
+				+ category + ", keyword=" + keyword + "]";
+	}
+
+	
 }

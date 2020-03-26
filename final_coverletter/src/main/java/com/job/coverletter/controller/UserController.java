@@ -144,11 +144,14 @@ public class UserController {
 		System.out.println("================JoinUserDto : " + dto);
 
 		int res = joinUserBiz.insertUser(dto);
-
-		if (res > 0) {
+		
+		if(res > 0) {
+			logger.info("회원가입 성공");
 			return "MAIN/login";
-
-		} else {
+			
+		}else {
+			logger.info("회원가입 실패");
+			model.addAttribute("joinuserDto", dto);
 			return "MAIN/join";
 		}
 
@@ -278,6 +281,21 @@ public class UserController {
 
 		return "USER/userJob";
 	}
+	
+	
+	@RequestMapping(value = "/USER_emailcheckpopup.do", method = RequestMethod.GET)
+	public String emailpopup() {
+		logger.info("이메일 인증 팝업!");
+		return "MAIN/emailChk";
+	}
+	
+	//이메일 전송 화면으로
+	@RequestMapping(value="/USER_mailSend.do", method=RequestMethod.POST)
+	public String mailSend(Model model, String EmailName) {
+		logger.info("mailSend");
+		model.addAttribute("EmailName",EmailName);
+		return "MAIN/mailSend";
+		}
 	
 	// 이력서(자기소개서) 파일 다운로드
 		@RequestMapping(value = "/CVdownload.do", method = RequestMethod.POST)

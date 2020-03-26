@@ -47,24 +47,12 @@ public class CoverLetterDto {
 	private String category;
 	private String keyword;
 
+
     public CoverLetterDto() {
 		super();
 	}
 
-	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int groupseq, String question,
-			String title, String subtitle, String content, Date regdate, String filepath) {
-		this.coverletterseq = coverletterseq;
-		this.joinemail = joinemail;
-		this.cvcategory = cvcategory;
-		this.groupseq = groupseq;
-		this.question = question;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.content = content;
-		this.regdate = regdate;
-		this.filepath = filepath;
-	}
-	
+
 	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int groupseq, String question,
 			String title, String subtitle, String content, Date regdate, String filepath, MultipartFile uploadFile,
 			int startIndex, int cntPerPage, int curPage, String category, String keyword) {
@@ -86,155 +74,167 @@ public class CoverLetterDto {
 		this.category = category;
 		this.keyword = keyword;
 	}
-	
-	// 페이징, 검색 포함 생성자
-	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, String question, String title,
-			String subtitle, String content, Date regdate, String filepath, int startIndex, int cntPerPage, int curPage,
-			String category, String keyword) {
-		super();
-		this.coverletterseq = coverletterseq;
-		this.joinemail = joinemail;
-		this.cvcategory = cvcategory;
-		this.question = question;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.content = content;
-		this.regdate = regdate;
-		this.filepath = filepath;
-		StartIndex = startIndex;
-		CntPerPage = cntPerPage;
-		this.curPage = curPage;
-		this.category = category;
-		this.keyword = keyword;
-	}
+
 
 	public int getCoverletterseq() {
 		return coverletterseq;
 	}
 
+
 	public void setCoverletterseq(int coverletterseq) {
 		this.coverletterseq = coverletterseq;
 	}
+
 
 	public String getJoinemail() {
 		return joinemail;
 	}
 
+
 	public void setJoinemail(String joinemail) {
 		this.joinemail = joinemail;
 	}
+
 
 	public String getCvcategory() {
 		return cvcategory;
 	}
 
+
 	public void setCvcategory(String cvcategory) {
 		this.cvcategory = cvcategory;
 	}
+
 
 	public int getGroupseq() {
 		return groupseq;
 	}
 
+
 	public void setGroupseq(int groupseq) {
 		this.groupseq = groupseq;
 	}
+
 
 	public String getQuestion() {
 		return question;
 	}
 
+
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+
 
 	public String getTitle() {
 		return title;
 	}
 
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 
 	public String getSubtitle() {
 		return subtitle;
 	}
 
+
 	public void setSubtitle(String subtitle) {
 		this.subtitle = subtitle;
 	}
+
 
 	public String getContent() {
 		return content;
 	}
 
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 
 	public Date getRegdate() {
 		return regdate;
 	}
 
+
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+
 
 	public String getFilepath() {
 		return filepath;
 	}
 
+
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
 	}
+
 
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
 
+
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+
 
 	public int getStartIndex() {
 		return StartIndex;
 	}
 
+
 	public void setStartIndex(int startIndex) {
 		StartIndex = startIndex;
 	}
+
 
 	public int getCntPerPage() {
 		return CntPerPage;
 	}
 
+
 	public void setCntPerPage(int cntPerPage) {
 		CntPerPage = cntPerPage;
 	}
+
 
 	public int getCurPage() {
 		return curPage;
 	}
 
+
 	public void setCurPage(int curPage) {
 		this.curPage = curPage;
 	}
+
 
 	public String getCategory() {
 		return category;
 	}
 
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
 
 	public String getKeyword() {
 		return keyword;
 	}
 
+
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+
 
 	@Override
 	public String toString() {
@@ -246,4 +246,6 @@ public class CoverLetterDto {
 	}
 
 	
+	
 }
+

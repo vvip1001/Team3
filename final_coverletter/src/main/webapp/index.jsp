@@ -13,6 +13,9 @@
 	<a href ="MAIN_SelectOne.do"> 회사</a> <br/>
 	<a href ="USER_userMain.do"> 마페</a> <br/>
 	<a href="USER_join.do">회원가입</a><br/>	
+	
+	<a href="JOB_jobSearch.do">회사검색</a><br/>	
+	
 	<!-- 박하 테스트 영역 -->
 	<p>----- 박하 테스트 영역👻  -----</p>
 	<a href ="BOARD_boardList.do">자유게시판</a><br/>
