@@ -1,0 +1,48 @@
+/*---------- 타이틀 영역 ----------*/
+h1 {
+	text-align: center !important;
+	margin: 4% 0% 4% 0% !important;
+	font-size: 36px !important;
+	font-weight: 700 !important;
+	cursor: default;
+}
+
+/*---------- 중간여백 영역 ----------*/
+#fake-div {
+	background-color: #ebe6e6;
+	height: 20px;
+}
+
+/*---------- 자소서 제목 영역 ----------*/
+#title-area {
+	height: 150px;
+}
+
+/*---------- 자소서 작성 영역 ----------*/
+#cv-area {
+	height: 600px;
+}
+
+#input-grp {
+	margin-top: 20px;
+}
+
+.col-md-2 {
+	text-align: center;
+	width: 50% !important;
+}
+
+.cv-box {
+	border: 2px solid black;
+}
+
+.legend{ 
+	display: block;
+    width: 20%;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: inherit;
+    color: #333;
+    border: 0;
+}

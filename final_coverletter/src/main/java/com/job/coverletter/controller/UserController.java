@@ -334,4 +334,10 @@ public class UserController {
 
 			return down;
 		}
+		
+		/*------------------------박하 : 취업센터--------------------------------------------*/
+		@RequestMapping(value = "USER_userCVwriteForm.do")
+		public String CVWriteForm() {
+			return "USER/userCVwrite";
+		}
 }
