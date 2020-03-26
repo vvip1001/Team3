@@ -88,3 +88,13 @@ td {
 .reply-btn {
 	width: 5%;
 }
+
+input[name=name]{
+	cursor: pointer;
+	border: none;
+	outline: none;
+}
+
+#submit{
+	float: right;
+}

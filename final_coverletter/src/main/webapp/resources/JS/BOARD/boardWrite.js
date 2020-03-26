@@ -22,9 +22,6 @@ function boardWrite() {
 	var title = $('#title').val();
 	var content = $('.summernote').val();
 	
-	var filepath = document.getElementById('fileupload').files[0].name;
-	console.log(filepath);
-	
 	// 글작성
 	if((title.trim() != '') && (content.trim() != '')){
 		form.commandName = 'BoardDto';

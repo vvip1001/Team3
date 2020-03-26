@@ -54,7 +54,12 @@
 				</tr>
 				<tr>
 					<th>파일</th>
-					<td colspan="3"><a href="download.do?name=${boardDetail.filepath}">${boardDetail.filepath}</a></td>
+					<td colspan="3">
+						<form action="download.do" method="post">
+							<input type="text" name="name" value="${boardDetail.filepath }" readonly="readonly"/>
+							<input type="submit" value="파일다운" class="btn" id="submit"/>
+						</form>
+					</td>
 				</tr>
 				
 				<!-- eq : 로그인 기능 완성되면 로그인 세션 이메일로 바꿔야 됨 -->
