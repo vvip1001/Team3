@@ -19,7 +19,6 @@
 </head>
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
-	<h1>포트폴리오 다운로드 게시판</h1>
 	<div class="container">
 		<!-- 		  글목록 영역   -->
 		<div class="board-list">
