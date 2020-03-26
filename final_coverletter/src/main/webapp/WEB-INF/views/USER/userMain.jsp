@@ -15,6 +15,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/CSS/USER/userMain.css"
 	rel="stylesheet">
+<!-- 구글 웹폰트 : sans-serif -->
+<link
+	href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean"
+	rel="stylesheet">
 <!-- include modal -->
 <script type="text/javascript"
 	src="https://getbootstrap.com/docs/3.4/javascript/#modals"></script>
@@ -57,9 +61,31 @@
 		<div class="centerside"></div>
 		<div class="center2">
 			<div class="topside"></div>
+
 			<div class="center2height">
-				<h2>나의 준비현황</h2>
+				<h2 id="myReady_h2_tag">나의 준비현황</h2>
+
+				<div class="center2height_child_1">
+					<div class="center2height_child_2_side"></div>
+					<div class="center2height_child_2">
+						<a class="boardLink" href="USER_userCVList.do">이력서 : </a> <a
+							class="board_NumberLink" href="USER_userCVList.do">2</a>
+					</div>
+					<div class="center2height_child_2_between"></div>
+					<div class="center2height_child_2">
+						<a class="boardLink" href="USER_userPFList.do">포트폴리오 : </a> <a
+							class="board_NumberLink" href="USER_userPFList.do">8</a>
+					</div>
+					<div class="center2height_child_2_between"></div>
+					<div class="center2height_child_2">
+						<a class="boardLink" href="USER_userJobList.do">채용 즐겨찾기 : </a> <a
+							class="board_NumberLink" href="USER_userJobList.do">9</a>
+					</div>
+					<div class="center2height_child_2_side"></div>
+				</div>
 			</div>
+
+
 			<div class="center2heightside"></div>
 			<div class="center2height">
 				<h2>나의 IT역량</h2>

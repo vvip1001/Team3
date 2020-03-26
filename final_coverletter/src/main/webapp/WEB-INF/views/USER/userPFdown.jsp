@@ -7,8 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>포트폴리오 다운로드 게시판</title>
-<!-- include JQeury/CSS/JS -->
+<title>포트폴리오 다운로드 게시판</title> <!--  include JQeury/CSS/JS-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/JS/jquery-3.4.1.js"></script>
 <script type="text/javascript"
@@ -20,13 +19,15 @@
 </head>
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
-
+	<h1>포트폴리오 다운로드 게시판</h1>
 	<div class="container">
-		<!-- 글목록 영역 -->
+		<!-- 		  글목록 영역   -->
 		<div class="board-list">
 			<h1>포트폴리오 다운로드 게시판</h1>
 
-			<form action="USER_CVMultiDelete.do" method="post" id="multiDelete">
+			<input type="button" value="글작성" class="btn"
+				onclick="location.href='BOARD_boardWriteForm.do'">
+			<form action="USER_userCVdelete.do" method="post" enctype="multipart/form-data">
 				<table class="table table-bordered">
 					<col width="100" />
 					<col width="300" />
@@ -34,7 +35,6 @@
 					<col width="100" />
 
 					<thead>
-						<!-- 테이블 : 검색 영역 -->
 						<tr>
 							<td>
 								<div class="search-label">검색</div>
@@ -58,10 +58,9 @@
 							</td>
 						</tr>
 
-						<!-- 테이블 : 게시글 목록 영역 -->
+						<!--   					테이블 : 게시글 목록 영역   -->
 						<tr class="header-bar">
-							<th><input type="checkbox" name="all"
-								onclick="allChk(this.checked)"></th>
+							<th><input type="checkbox" id="all" /></th>
 							<th>글번호</th>
 							<th>글제목</th>
 							<th>작성일</th>
@@ -71,39 +70,36 @@
 
 					<tbody>
 						<c:choose>
-							<c:when test="${empty PFList }">
+							<c:when test="${empty boardList }">
 								<tr>
 									<td colspan="5" id="boardlist-null">작성된 글이 없습니다.</td>
 								</tr>
 							</c:when>
 							<c:otherwise>
-								<c:forEach items="${PFList }" var="dto">
+								<c:forEach items="${boardList }" var="dto">
 									<tr>
-										<td class="board-cb"><input type="checkbox" name="chk"
-											value="${dto.coverletterseq }"></td>
+										<td class="board-cb"><input type="checkbox" name="chk" value="${dto.groupseq }"></td>
 										<td class="board-seq"><fmt:formatNumber
-												value="${dto.coverletterseq }" pattern="000" /></td>
+												value="${dto.groupseq }" pattern="000" /></td>
 										<td class="board-title"
-											onClick="PFDetail(${dto.coverletterseq });">${dto.title }</td>
+											onClick="boardDetail(${dto.groupseq });">${dto.title }</td>
 										<td class="board-date"><fmt:formatDate
 												value="${dto.regdate}" pattern="yy-MM-dd HH:mm" /></td>
-										<td class="board-down"><input type="button" value="다운로드"
-											class="btn"></td>
+										<td class="board-down">
+										<input type="submit" class="btn" value="다운로드">
+										</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 					</tbody>
 				</table>
-				<!-- 글목록 영역 > 버튼영역 -->
-				<div class="btn-grp">
-					<input type="submit" value="선택삭제" class="btn">
-				</div>
+				<input type="button" id="deleteSub" class="btn" value="삭제" onclick="deleteSubmit();">
 			</form>
 		</div>
-		<!-- 글목록 영역 끝 -->
+		<!--   		  글목록 영역 끝     -->
 
-		<!-- 페이징 영역 -->
+		<!--   		  페이징 영역     -->
 		<nav aria-label="Page navigation" id="paging-nav">
 			<ul class="pagination">
 				<c:if test="${pagination.curRange ne 1 }">
@@ -143,7 +139,6 @@
 
 			</ul>
 		</nav>
-		<!-- 페이징 영역 끝 -->
 
 		<!-- 모달 영역 -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"

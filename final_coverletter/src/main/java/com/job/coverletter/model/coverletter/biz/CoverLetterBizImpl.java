@@ -13,18 +13,33 @@ public class CoverLetterBizImpl implements CoverLetterBiz {
 	@Autowired
 	private CoverLetterDao coverletterdao;
 
-	// 이력서 다운로드 게시판 총 게시글 수
 	@Override
-	public int CVListCount(CoverLetterDto dto) {
-		// TODO Auto-generated method stub
-		return coverletterdao.CVListCount(dto);
+	public int boardCVListCount(CoverLetterDto dto) {
+		return coverletterdao.boardCVListCount(dto);
 	}
 
-	// 이력서 다운로드 게시판 글목록
 	@Override
-	public List<CoverLetterDto> CVList(CoverLetterDto dto) {
-		// TODO Auto-generated method stub
-		return coverletterdao.CVList(dto);
+	public List<CoverLetterDto> boardCVList(CoverLetterDto dto) {
+		return coverletterdao.boardCVList(dto);
 	}
 
+	@Override
+	public int boardPFListCount(CoverLetterDto dto) {
+		return coverletterdao.boardPFListCount(dto);
+	}
+
+	@Override
+	public List<CoverLetterDto> boardPFList(CoverLetterDto dto) {
+		return coverletterdao.boardPFList(dto);
+	}
+
+	@Override
+	public int CVdelete(String[] seq) {
+		return coverletterdao.CVdelete(seq);
+	}
+
+	@Override
+	public int PFdelete(String[] seq) {
+		return coverletterdao.PFdelete(seq);
+	}
 }

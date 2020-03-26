@@ -19,31 +19,86 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 	@Qualifier("sqlSessionTemPlate")
 	private SqlSessionTemplate sqlSession;
 
-	// 이력서 다운로드 게시판 총 게시글 수
 	@Override
-	public int CVListCount(CoverLetterDto dto) {
+	public int boardCVListCount(CoverLetterDto dto) {
 		int res = 0;
 		try {
-			res = sqlSession.selectOne(NAMESPACE + "CVListCount", dto); 
+			res = sqlSession.selectOne(NAMESPACE + "boardCVListCount", dto); 
 		} catch (Exception e) {
-			System.out.println("[error] : CVListCount");
+			System.out.println("[error] : boardListCount");
 			e.printStackTrace();
 		}
 		return res;
 	}
 
-	// 이력서 다운로드 게시판 글목록
 	@Override
-	public List<CoverLetterDto> CVList(CoverLetterDto dto) {
+	public List<CoverLetterDto> boardCVList(CoverLetterDto dto) {
 		List<CoverLetterDto> list = new ArrayList<CoverLetterDto>();
 		try {
-			list = sqlSession.selectList(NAMESPACE + "CVList", dto);
+			list = sqlSession.selectList(NAMESPACE + "boardCVList", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : CVList");
+			System.out.println("[error] : boardCVList");
 			e.printStackTrace();
 		}
 		return list;
 	}
 
+	@Override
+	public int boardPFListCount(CoverLetterDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "boardPFListCount", dto); 
+		} catch (Exception e) {
+			System.out.println("[error] : boardListCount");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<CoverLetterDto> boardPFList(CoverLetterDto dto) {
+		List<CoverLetterDto> list = new ArrayList<CoverLetterDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "boardPFList", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : boardPFList");
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int CVdelete(String[] seq) {
+		
+		int res = 0;
+		Map<String , String[]> map = new HashMap<String , String[]>();
+		map.put("seqs", seq);
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "CVmuldel",map);
+		} catch (Exception e) {
+			System.out.println("[error] : boardList");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int PFdelete(String[] seq) {
+		
+		int res = 0;
+		Map<String , String[]> map = new HashMap<String , String[]>();
+		map.put("seqs", seq);
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "PFmuldel",map);
+		} catch (Exception e) {
+			System.out.println("[error] : boardList");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 
 }

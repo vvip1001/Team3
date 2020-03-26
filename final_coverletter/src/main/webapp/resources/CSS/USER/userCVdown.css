@@ -95,7 +95,10 @@ tbody tr:hover {
 	background-color: #00bf6f !important;
 	color : #fff !important;
 }
-
+/*삭제버튼*/
+#deleteSub{
+	float: right;
+}
 /*---------- 버튼 ----------*/
 .btn:hover {
 	background-color: #00bf6f !important;

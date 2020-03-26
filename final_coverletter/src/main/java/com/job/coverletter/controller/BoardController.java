@@ -49,6 +49,7 @@ public class BoardController {
 
 	// 글목록(페이징기능)
 	@RequestMapping(value = "/BOARD_boardList.do", method = RequestMethod.GET)
+
 	public String boardList(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue = "1") int curPage,
 			HttpServletRequest request, Model model) {
 
@@ -80,14 +81,25 @@ public class BoardController {
 	public String boardWrite(@ModelAttribute("BoardDto") BoardDto dto, HttpServletRequest request) {
 
 		MultipartFile file = dto.getUploadFile();
-		String name = file.getOriginalFilename();
 
-//		이름과 설명을 넘김.
+		if (file.getSize() != 0) {
+			String name = file.getOriginalFilename();
+			System.out.println("----------------------------------------");
+			System.out.println("file = " + file.getSize());
+			try {
+				System.out.println("file = " + file.getInputStream());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println("name = " + name);
 
-		InputStream inputStream = null;
-		OutputStream outputStream = null;
 
-		if(name != null) {
+//			이름과 설명을 넘김.
+
+			InputStream inputStream = null;
+			OutputStream outputStream = null;
+
 			try {
 				inputStream = file.getInputStream();
 				// 경로
@@ -122,17 +134,30 @@ public class BoardController {
 					e.printStackTrace();
 				}
 			}
+			System.out.println("if문 들어왔다");
 			dto.setFilepath(name);
-		} 
-		
-		dto.setJoinemail(login);
+			dto.setJoinemail(login);
 
-		int res = boardBiz.boardInsert(dto);
-		if (res > 0) {
-			return "redirect:/BOARD_boardList.do";
+			int res = boardBiz.boardInsert(dto);
+			if (res > 0) {
+				return "redirect:/BOARD_boardList.do";
+			} else {
+				return "redirect:/BOARD_boardWriteForm.do";
+			}
 		} else {
-			return "redirect:/BOARD_boardWriteForm.do";
+			System.out.println("else문 들어왔다");
+			String name = "";
+			dto.setFilepath(name);
+			dto.setJoinemail(login);
+
+			int res = boardBiz.boardInsert(dto);
+			if (res > 0) {
+				return "redirect:/BOARD_boardList.do";
+			} else {
+				return "redirect:/BOARD_boardWriteForm.do";
+			}
 		}
+
 	}
 
 	// 글상세 + 댓글상세
@@ -216,7 +241,7 @@ public class BoardController {
 	}
 
 	// 파일 다운로드
-	@RequestMapping("/download.do")
+	@RequestMapping(value = "/download.do", method = RequestMethod.POST)
 	@ResponseBody
 	public byte[] fileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
 //연속적인 바이트들의 흐름 : byte[] 
@@ -224,7 +249,7 @@ public class BoardController {
 		String path;
 
 		try {
-			path = WebUtils.getRealPath(request.getSession().getServletContext(), "C:\\img\\");
+			path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
 
 			File file = new File(path + "/" + name);
 
@@ -242,5 +267,4 @@ public class BoardController {
 
 		return down;
 	}
-
 }

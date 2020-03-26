@@ -5,12 +5,21 @@ import java.util.List;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 
 public interface CoverLetterBiz {
+	
+	
+	// 총 게시글 수
+	public int boardCVListCount(CoverLetterDto dto);
 
-	// 이력서, 포트폴리오 다운로드 게시판 총 게시글 수
-	public int CVListCount(CoverLetterDto dto);
+		// 글목록 (페이징)
+	public List<CoverLetterDto> boardCVList(CoverLetterDto dto);
 	
-	// 이력서, 포트폴리오 다운로드 게시판 글 목록
-	public List<CoverLetterDto> CVList(CoverLetterDto dto);
+	public int boardPFListCount(CoverLetterDto dto);
 	
+	// 글목록 (페이징)
+	public List<CoverLetterDto> boardPFList(CoverLetterDto dto);
+
+	public int CVdelete(String[] seq);	
+
+	public int PFdelete(String[] seq);	
 	
 }

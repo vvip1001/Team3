@@ -10,13 +10,14 @@ curPage = $('.paging-focus').text();
 
 /*---------- 페이징 : paging func ----------*/
 function paging(curPage) {
-	location.href = "USER_PFList.do?curPage=" + curPage;
+	location.href = "USER_userPFList.do?curPage=" + curPage;
 }
 
-/*---------- 상세글보기 : PFDetail func ----------*/
-function boardDetail() {
-	var curPage = $('.paging-focus').text();
-}
+/*---------- 상세글보기 : boardDetail func ----------*/
+//function boardDetail(boardseq) {
+//	var curPage = $('.paging-focus').text();
+//	location.href='BOARD_boardDetail.do?boardseq=' + boardseq + '&curPage=' + curPage;
+//}
 
 /*---------- 검 색 : search func ----------*/
 function search() {
@@ -27,7 +28,7 @@ function search() {
 	var keyword = $('#keyword').val();
 	
 	// controller
-	location.href='USER_PFList.do?category=' + category + '&keyword=' + keyword;
+	location.href='USER_userPFList.do?category=' + category + '&keyword=' + keyword;
 }
 
 /*---------- 검색(엔터치면 입력) : onKeyDown func ----------*/
@@ -37,23 +38,38 @@ function onKeyDown() {
     }
 }
 
-/*---------- 삭제 : delete func ----------*/
-//전체 체크박스 - 누르면 전체선택, 전체해제
-function allChk(bool) {
-	var doc = $('input[name=chk]').each(function() {
-		$(this).prop('checked', bool);
-	});
-}
-
-//유효성 검사(체크 하나도 안하면 submit 이벤트를 취소)
-$(function() {
-	$('#multiDelete').submit(function() {
-		if($('#multiDelete input:checked').length == 0){
-			$('.modal-title').addClass('glyphicon glyphicon-alert');
-			$('.modal-title').text(' ERROR');
-			$('.modal-body').text('삭제할 글을 하나 이상 체크해주세요.');
-			$('#myModal').modal('show');
-			return false;
+$(function(){
+	$("#all").click(function(){
+		if( $("#all").prop("checked") ) {
+			$("input[name=chk]").prop("checked",true);
+		}else {
+			$("input[name=chk]").prop("checked",false);
 		}
 	});
-});
+	
+	$("input[name=chk]").click(function(){
+		if( $("input[name=chk]").length == $("input[name=chk]:checked").length ){
+			$("#all").prop("checked",true);
+		}else{
+			$("#all").prop("checked",false);
+		}
+	});
+})
+
+function deleteSubmit() {
+	
+	if ($("input[name=chk]:checked").length == 0) {
+		$('.modal-title').addClass('glyphicon glyphicon-alert');
+		$('.modal-title').text(' ERROR');
+		$('.modal-body').text('내용을 입력해주세요.');
+		$('#myModal').modal('show');
+
+		return false;
+		
+	} else {
+		var form = $('form');
+		form.submit();
+		
+	}
+
+}
