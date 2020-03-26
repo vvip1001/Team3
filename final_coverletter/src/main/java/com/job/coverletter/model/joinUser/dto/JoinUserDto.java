@@ -23,11 +23,11 @@ public class JoinUserDto {
 
     // 비밀번호 
     @NotEmpty()
-    @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$")
+    @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "비밀번호를 입력하세요.")
     private String joinpw;
 
     // 생년월일 
-    @NotEmpty()
+    @NotEmpty(message = "")
     @Pattern(regexp = "^[0-9]*$")
     @Length(min = 8, max = 8)
     private String joinbirth;

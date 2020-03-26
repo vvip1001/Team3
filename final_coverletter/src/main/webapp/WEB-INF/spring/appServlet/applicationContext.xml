@@ -149,18 +149,16 @@
 			<property name="defaultEncoding" value="UTF-8"/>
 		</bean>
 		
+		<!--
 		<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 			<property name="basenames">
 				<list>
-				<!-- message 패키지의 error.properties 파일 -->
 					<value>/message/message</value>
 				</list>
 			</property>
-			<property name="cacheSeconds">
-				<value>5</value>
-			</property>
-			<property name="defaultEncoding" value="UTF-8"/>
+			
 		</bean>
+		-->
 	<!-- 
 	<bean id="fileDownload" class="com.job.coverletter.controller.DownloadView"/>
 	 -->
