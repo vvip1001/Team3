@@ -49,7 +49,7 @@
 				<button class="btn" id="userUpdate">개인정보 수정</button>
 				<br> <br> <span style="font-weight: bold;">---나의
 					이력---</span> <br>
-				<button class="btn" onclick="location.href='userDetail.do'">인적사항</button>
+				<button class="btn" onclick="location.href='USER_userDetail.do'">인적사항</button>
 				<br>
 				<button class="btn" onclick="#">취업센터</button>
 			</div>
@@ -69,17 +69,17 @@
 					<div class="center2height_child_2_side"></div>
 					<div class="center2height_child_2">
 						<a class="boardLink" href="USER_userCVList.do">이력서 : </a> <a
-							class="board_NumberLink" href="USER_userCVList.do">2</a>
+							class="board_NumberLink" href="USER_userCVList.do">${cvlist}</a>
 					</div>
 					<div class="center2height_child_2_between"></div>
 					<div class="center2height_child_2">
 						<a class="boardLink" href="USER_userPFList.do">포트폴리오 : </a> <a
-							class="board_NumberLink" href="USER_userPFList.do">8</a>
+							class="board_NumberLink" href="USER_userPFList.do">${pflist}</a>
 					</div>
 					<div class="center2height_child_2_between"></div>
 					<div class="center2height_child_2">
 						<a class="boardLink" href="USER_userJobList.do">채용 즐겨찾기 : </a> <a
-							class="board_NumberLink" href="USER_userJobList.do">9</a>
+							class="board_NumberLink" href="USER_userJobList.do">${jblist}</a>
 					</div>
 					<div class="center2height_child_2_side"></div>
 				</div>
@@ -153,7 +153,7 @@ $(function() {
 	});
     createITChart();
     
-    //스펙차트
+    //스펙차트x	
     myChartLabel = [];
 	myChartData = [];
 	$.each(${mySkill}, function(idx, obj) {
