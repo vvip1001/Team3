@@ -18,15 +18,16 @@
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
 
+	<form action="USER_userCVinsert.do" method="post">
 	<!-- 자소서 제목 영역 -->
-	<div class="container">
-
+	<div class="container title-container">
 		<div id="title-area">
 			<h1>자기소개서 작성</h1>
 
 			<div class="input-group">
-				<span class="input-group-addon">제목</span> <input id="msg"
-					type="text" class="form-control" name="msg"
+				<span class="input-group-addon">제목</span> 
+				<input
+					type="text" class="form-control" name="title"
 					placeholder="제목을 입력하세요.">
 			</div>
 		</div>
@@ -36,22 +37,24 @@
 	<div id="fake-div"></div>
 
 	<!-- 자소서 작성 영역 -->
-	<div class="container">
+	<div class="container cv-container">
 		<div id="cv-area">
 			<div id="input-grp">
 				<div class="input-group">
-					<span class="input-group-addon">소제목</span> <input id="msg"
-						type="text" class="form-control" name="msg"
+					<span class="input-group-addon">소제목</span> 
+					<input 
+						type="text" class="form-control" name="subtitle"
 						placeholder="소제목을 입력하세요.">
 				</div>
 				<div class="input-group">
-					<span class="input-group-addon">항목</span> <select
+					<span class="input-group-addon">항목</span> 
+					<select
 						class="form-control">
-						<option>지원자의 성장과정에 대해</option>
-						<option>지원자의 성장과정에 대해</option>
-						<option>지원자의 성장과정에 대해</option>
-						<option>지원자의 성장과정에 대해</option>
-						<option>지원자의 성장과정에 대해</option>
+						<option>성장과정</option>
+						<option>학창시절</option>
+						<option>성격의 장단점</option>
+						<option>좌우명과 가치관</option>
+						<option>지원동기</option>
 					</select>
 				</div>
 
@@ -59,10 +62,10 @@
 					<div class="col-md-2">
 						<fieldset class="cv-box">
 							<legend class="legend">작성</legend>
-							<textarea class="textarea"></textarea>
+							<textarea class="textarea" name="content"></textarea>
 						</fieldset>
 						
-						<button class="btn">음성입력</button>
+						<button class="btn cv-btn" type="button">음성입력</button>
 					</div>
 					<div class="col-md-2">
 						<fieldset class="cv-box">
@@ -70,14 +73,31 @@
 							<textarea class="textarea"></textarea>
 						</fieldset>
 						
-						<button class="btn">맞춤법검사</button>
+						<button class="btn cv-btn" type="button">맞춤법검사</button>
 					</div>
 				</div>
 			</div>
-
+			<!-- CLONE button 영역 -->
+			<div class="clone-btn-grp" id="">
+				<button class="add-btn" onclick="add();" type="button">
+					<img alt=""
+						src="${pageContext.request.contextPath}/resources/IMG/button.png">
+				</button>
+				<button class="remove-btn" onclick="remove(this)" type="button">
+					<img alt=""
+						src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+				</button>
+			</div>
 		</div>
-
 	</div>
 	<!-- 자소서 작성 영역 끝-->
+	<!-- submit 영역 -->
+	<div class="container submit-container">
+		<div class="submit-area">
+			<input type="submit" class="btn" value="작성완료">
+			<button class="btn" onclick="location.href='JOB_jobCenter.do'">돌아가기</button>
+		</div>
+	</div>
+	</form>
 </body>
 </html>
