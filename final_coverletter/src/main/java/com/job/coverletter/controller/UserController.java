@@ -379,7 +379,7 @@ public class UserController {
 		return down;
 	}
 
-	/*------------------------ 박하 : 취업센터 --------------------------------------------*/
+	/*------------------------ 박하 : 취업센터 --------------------------*/
 	// 자기소개서 작성 페이지
 	@RequestMapping(value = "USER_userCVwriteForm.do")
 	public String CVWriteForm() {
@@ -389,7 +389,7 @@ public class UserController {
 	// 자기소개서 INSERT 
 	@RequestMapping(value = "USER_userCVinsert.do", method = RequestMethod.POST)
 	public String CVWriteInsert(HttpServletRequest request) {
-		Map<String, String> map = new HashMap<String, String>();
+		//Map<String, String> map = new HashMap<String, String>();
 		String title = request.getParameter("title");
 		String subtitle = request.getParameter("subtitle");
 		String content = request.getParameter("content");

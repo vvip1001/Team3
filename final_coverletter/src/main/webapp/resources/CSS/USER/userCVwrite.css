@@ -30,13 +30,27 @@ h1 {
 .col-md-2 {
 	width: 50% !important;
 }
+/* 맞춤법 검사 div */
+.count-area {
+	text-align: center;
+	margin: 1%;
+}
 
-/* 작성, 검사 DIV */
+.count-text {
+	font-size: 20px;
+}
+
+.count-span {
+	color: red;
+	font-weight: bold;
+}
+
+/* 작성, 검사 div */
 .cv-box {
 	border: 2px solid black;
 }
 
-/* '작성' & '검사' */
+/* '작성' & '검사' title */
 .legend {
 	text-align: center;
 	display: block;
@@ -49,12 +63,19 @@ h1 {
 	border: 0;
 }
 
-/* textarea */
+/* 작성폼 */
 .textarea {
 	width: 100%;
 	height: 300px;
 	border: 0px;
 	resize: none;
+}
+
+/* 맞춤법 검사결과 */
+.cv-spell {
+	width: 100%;
+	height: 305px;
+	border: 0px;
 }
 
 /* 음성입력, 맞춤법검사 버튼 */
@@ -71,6 +92,7 @@ h1 {
 	margin-top: 20px;
 }
 
+/* 추가, 삭제 버튼 */
 .add-btn, .remove-btn {
 	width: 50px;
 	height: 50px;
@@ -85,4 +107,9 @@ h1 {
 /*---------- submit 영역 ----------*/
 .submit-area {
 	text-align: center;
+}
+
+.submit-area .btn:hover {
+	background-color: #00BF6F;
+	color: #fff !important;
 }

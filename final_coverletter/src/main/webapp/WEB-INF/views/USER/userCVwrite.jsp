@@ -25,7 +25,7 @@
 			<h1>자기소개서 작성</h1>
 
 			<div class="input-group">
-				<span class="input-group-addon">제목</span> 
+				<span class="input-group-addon">제&nbsp;&nbsp;목</span> 
 				<input
 					type="text" class="form-control" name="title"
 					placeholder="제목을 입력하세요.">
@@ -47,7 +47,7 @@
 						placeholder="소제목을 입력하세요.">
 				</div>
 				<div class="input-group">
-					<span class="input-group-addon">항목</span> 
+					<span class="input-group-addon">항&nbsp;&nbsp;&nbsp;&nbsp;목</span> 
 					<select
 						class="form-control">
 						<option>성장과정</option>
@@ -57,12 +57,18 @@
 						<option>지원동기</option>
 					</select>
 				</div>
-
+				
+				<!-- 글자수 영역 -->
+				<div class="count-area">
+					<p class="count-text">공백 포함 <span class="count-span" id="cntArea-a"></span>자 * 공백 미포함 <span class="count-span" id="cntArea-b"> </span>자 </p>
+				</div>
+				<!-- 글자수 영역 끝 -->
+				
 				<div class="row" class="">
 					<div class="col-md-2">
 						<fieldset class="cv-box">
 							<legend class="legend">작성</legend>
-							<textarea class="textarea" name="content"></textarea>
+							<textarea class="textarea" name="content" onkeydown="contentCnt(this);"></textarea>
 						</fieldset>
 						
 						<button class="btn cv-btn" type="button">음성입력</button>
@@ -70,7 +76,7 @@
 					<div class="col-md-2">
 						<fieldset class="cv-box">
 							<legend class="legend">검사</legend>
-							<textarea class="textarea"></textarea>
+							<div class="cv-spell"></div>
 						</fieldset>
 						
 						<button class="btn cv-btn" type="button">맞춤법검사</button>
@@ -95,7 +101,7 @@
 	<div class="container submit-container">
 		<div class="submit-area">
 			<input type="submit" class="btn" value="작성완료">
-			<button class="btn" onclick="location.href='JOB_jobCenter.do'">돌아가기</button>
+			<button class="btn" onclick="location.href='JOB_jobCenter.do'" type="button">돌아가기</button>
 		</div>
 	</div>
 	</form>

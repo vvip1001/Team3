@@ -20,3 +20,23 @@ function remove(btn) {
 	var thisElements = $(btn).parents('.cv-container');
 	thisElements.remove();
 }
+
+/*---------- 글자수 세기 : contentCnt func ----------*/
+function contentCnt(textarea) {
+	var thisElement = textarea;
+	var cntRes = $(thisElement).val();
+	var parent = $(thisElement).parents('.cv-container');
+	
+	// 공백포함
+	var cntAreaA = $(parent).find('#cntArea-a');
+	$(cntAreaA).text(cntRes.length);
+	
+	// 공백제거
+	var cntAreaB = $(parent).find('#cntArea-b');
+	var cntResTrim = cntRes.replace(/ /g, '');
+	$(cntAreaB).text(cntResTrim.length);
+
+}
+
+
+/*---------- 맞춤법 검사 : spell func ----------*/
