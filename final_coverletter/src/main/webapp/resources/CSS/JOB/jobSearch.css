@@ -28,8 +28,6 @@
 	width: 30%;}
 
 
-
-
 /* 검색결과 컨테이너 */
 #search_container .row{
 	padding-top: 2%;
@@ -75,6 +73,9 @@
 	float: right;
 }
 
+#search_container h5 span{ 
+	font-size: 8px !important;
+}
 
 #search_container a{
 	color: black;
