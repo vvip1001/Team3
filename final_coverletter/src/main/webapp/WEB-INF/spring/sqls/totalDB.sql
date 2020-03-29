@@ -178,27 +178,24 @@ SELECT * FROM JOBCALENDAR;
 
 --=====================================================================================================================
 -- 후원 내역 테이블
-DROP SEQUENCE SUPPORTPAY_SEQ;
 DROP TABLE SUPPORTPAY;
-
-
-CREATE SEQUENCE SUPPORTPAY_SEQ;
-
 
 CREATE TABLE SUPPORTPAY
 (
-    SUPPORTPAYSEQ    NUMBER           NOT NULL, 
-    JOINEMAIL        VARCHAR2(200)    NOT NULL, 	-- 보낸사람 이메일
-    MONEY            VARCHAR2(100)    NOT NULL, 	-- 금액
-    DEPOSITOR        VARCHAR2(100)    NOT NULL, 	-- 예금주 
-    BANK             VARCHAR2(100)    NOT NULL,  	-- 은행
-    BANKNUMBER       VARCHAR2(100)    NOT NULL, 	-- 계좌번호
-    SUCCESSCORD      VARCHAR2(100)    NOT NULL, 	-- 거래성공 코드
-    TRADEDATE        VARCHAR2(20)     NOT NULL, 	-- 거래 일시
-    CONSTRAINT SUPPORTPAY_PK PRIMARY KEY (SUPPORTPAYSEQ)
+	TID 					 VARCHAR2(200)    NOT NULL,	-- 결제 고유 번호. 결제요청 API 응답에 오는 값과 동일해야 함
+	CID 					 VARCHAR2(200)    NOT NULL,	-- 가맹점 코드. 결제준비 API에서 요청한 값과 일치해야 함	
+    PARTNER_ORDER_ID    	 VARCHAR2(200)    NOT NULL, -- 가맹점 주문번호	
+    PARTNER_USER_ID        	 VARCHAR2(200)    NOT NULL, -- 가맹점 회원 id	
+    PAYMENT_METHOD_TYPE      VARCHAR2(100)    NOT NULL, -- 결제 수단. CARD, MONEY 중 하나	
+    AMOUNT_TOTAL             VARCHAR2(100)    NOT NULL, -- 총 결제 금액
+    AMOUNT_TAX_FREE     	 VARCHAR2(100)    NOT NULL, -- 결제 부과세 
+    ITEM_NAME    			 VARCHAR2(100)    NOT NULL, -- 상품 이름. 최대 100자	
+    QUANTITY     			 VARCHAR2(100)    NOT NULL, -- 후원금액
+    CREATED_AT				 DATE	  		  NOT NULL,	-- 결제 준비 요청 시각	
+    CONSTRAINT TID PRIMARY KEY (TID)
 );
 
-
+SELECT * FROM SUPPORTPAY;
 --========================================================================================================================
 -- a : 채용중인 정보 페이지에서 가져옴
 -- a-b : 채용분야에서 url타고 들어가서 '채용상세' 가져왔음
@@ -252,4 +249,3 @@ insert into COMPANY values(COMPANYSEQ.NEXTVAL , 0, '회사이름', '이미지 ur
 							);
 
 SELECT * FROM COMPANY;
-

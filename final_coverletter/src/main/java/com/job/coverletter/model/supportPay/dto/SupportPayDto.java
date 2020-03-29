@@ -1,118 +1,211 @@
 package com.job.coverletter.model.supportPay.dto;
 
+import java.util.Date;
+
 public class SupportPayDto {
-	 // 시퀀스 
-    private int supportpayseq;
 
-    // 이메일(ID) 
-    private String joinemail;
+	private String tid;
+	private String cid;
+	private String partner_order_id;
+	private String partner_user_id;
+	private String payment_method_type;
+	//private String amount;
+	private String amount_total;
+	private String amount_tax_free;
+	private String item_name;
+	private String quantity;
+	private Date created_at;
 
-    // 금액 
-    private String money;
+	private int StartIndex;
+	private int CntPerPage;
+	// 현재페이지
+	private int curPage;
 
-    // 예금주 
-    private String depositor;
-
-    // 은행 
-    private String bank;
-
-    // 계좌번호 
-    private String banknumber;
-
-    // 거래완료코드 
-    private String successcord;
-
-    // 거래날짜 
-    private String tradedate;
-    
-    
-    public SupportPayDto() {
+	/*---------- 검색 ----------*/
+	private String category;
+	private String keyword;
+	
+	
+	public SupportPayDto() {}
+	
+	public SupportPayDto(String tid, String cid, String partner_order_id, String partner_user_id,
+			String payment_method_type, String amount_total, String amount_tax_free, String item_name, String quantity,
+			Date created_at, int startIndex, int cntPerPage, int curPage, String category, String keyword) {
 		super();
+		this.tid = tid;
+		this.cid = cid;
+		this.partner_order_id = partner_order_id;
+		this.partner_user_id = partner_user_id;
+		this.payment_method_type = payment_method_type;
+		this.amount_total = amount_total;
+		this.amount_tax_free = amount_tax_free;
+		this.item_name = item_name;
+		this.quantity = quantity;
+		this.created_at = created_at;
+		StartIndex = startIndex;
+		CntPerPage = cntPerPage;
+		this.curPage = curPage;
+		this.category = category;
+		this.keyword = keyword;
 	}
 
-	public SupportPayDto(int supportpayseq, String joinemail, String money, String depositor, String bank,
-			String banknumber, String successcord, String tradedate) {
-		super();
-		this.supportpayseq = supportpayseq;
-		this.joinemail = joinemail;
-		this.money = money;
-		this.depositor = depositor;
-		this.bank = bank;
-		this.banknumber = banknumber;
-		this.successcord = successcord;
-		this.tradedate = tradedate;
+
+
+	public SupportPayDto(String tid, String cid, String partner_order_id, String partner_user_id,
+			String payment_method_type, String amount_total, String amount_tax_free, String item_name,
+			String quantity, Date created_at) {
+		this.tid = tid;
+		this.cid = cid;
+		this.partner_order_id = partner_order_id;
+		this.partner_user_id = partner_user_id;
+		this.payment_method_type = payment_method_type;
+		//this.amount = amount;
+		this.amount_total = amount_total;
+		this.amount_tax_free = amount_tax_free;
+		this.item_name = item_name;
+		this.quantity = quantity;
+		this.created_at = created_at;
 	}
 
-	public int getSupportpayseq() {
-        return supportpayseq;
-    }
+	public String getTid() {
+		return tid;
+	}
 
-    public void setSupportpayseq(int supportpayseq) {
-        this.supportpayseq = supportpayseq;
-    }
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
 
-    public String getJoinemail() {
-        return joinemail;
-    }
+	public String getCid() {
+		return cid;
+	}
 
-    public void setJoinemail(String joinemail) {
-        this.joinemail = joinemail;
-    }
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
 
-    public String getMoney() {
-        return money;
-    }
+	public String getPartner_order_id() {
+		return partner_order_id;
+	}
 
-    public void setMoney(String money) {
-        this.money = money;
-    }
+	public void setPartner_order_id(String partner_order_id) {
+		this.partner_order_id = partner_order_id;
+	}
 
-    public String getDepositor() {
-        return depositor;
-    }
+	public String getPartner_user_id() {
+		return partner_user_id;
+	}
 
-    public void setDepositor(String depositor) {
-        this.depositor = depositor;
-    }
+	public void setPartner_user_id(String partner_user_id) {
+		this.partner_user_id = partner_user_id;
+	}
 
-    public String getBank() {
-        return bank;
-    }
+	public String getPayment_method_type() {
+		return payment_method_type;
+	}
 
-    public void setBank(String bank) {
-        this.bank = bank;
-    }
+	public void setPayment_method_type(String payment_method_type) {
+		this.payment_method_type = payment_method_type;
+	}
 
-    public String getBanknumber() {
-        return banknumber;
-    }
+//	public String getAmount() {
+//		return amount;
+//	}
+//
+//	public void setAmount(String amount) {
+//		this.amount = amount;
+//	}
 
-    public void setBanknumber(String banknumber) {
-        this.banknumber = banknumber;
-    }
+	public String getAmount_total() {
+		return amount_total;
+	}
 
-    public String getSuccesscord() {
-        return successcord;
-    }
+	public void setAmount_total(String amount_total) {
+		this.amount_total = amount_total;
+	}
 
-    public void setSuccesscord(String successcord) {
-        this.successcord = successcord;
-    }
+	public String getAmount_tax_free() {
+		return amount_tax_free;
+	}
 
-    public String getTradedate() {
-        return tradedate;
-    }
+	public void setAmount_tax_free(String amount_tax_free) {
+		this.amount_tax_free = amount_tax_free;
+	}
 
-    public void setTradedate(String tradedate) {
-        this.tradedate = tradedate;
-    }
+	public String getItem_name() {
+		return item_name;
+	}
+
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+
+	public int getStartIndex() {
+		return StartIndex;
+	}
+
+	public void setStartIndex(int startIndex) {
+		StartIndex = startIndex;
+	}
+
+	public int getCntPerPage() {
+		return CntPerPage;
+	}
+
+	public void setCntPerPage(int cntPerPage) {
+		CntPerPage = cntPerPage;
+	}
+
+	public int getCurPage() {
+		return curPage;
+	}
+
+	public void setCurPage(int curPage) {
+		this.curPage = curPage;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 
 	@Override
 	public String toString() {
-		return "SupportPayDto [supportpayseq=" + supportpayseq + ", joinemail=" + joinemail + ", money=" + money
-				+ ", depositor=" + depositor + ", bank=" + bank + ", banknumber=" + banknumber + ", successcord="
-				+ successcord + ", tradedate=" + tradedate + "]";
+		return "SupportPayDto [tid=" + tid + ", cid=" + cid + ", partner_order_id=" + partner_order_id
+				+ ", partner_user_id=" + partner_user_id + ", payment_method_type=" + payment_method_type
+				+ ", amount_total=" + amount_total + ", amount_tax_free=" + amount_tax_free + ", item_name=" + item_name
+				+ ", quantity=" + quantity + ", created_at=" + created_at + "]";
 	}
-    
-    
+
+	
+	
+	
+	
+	
 }
