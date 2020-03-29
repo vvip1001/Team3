@@ -60,7 +60,7 @@
 				
 				<!-- 글자수 영역 -->
 				<div class="count-area">
-					<p class="count-text">공백 포함 <span class="count-span" id="cntArea-a"></span>자 * 공백 미포함 <span class="count-span" id="cntArea-b"> </span>자 </p>
+					<p class="count-text">공백 포함 <span class="count-span" id="cntArea-a"></span>자 / 공백 미포함 <span class="count-span" id="cntArea-b"> </span>자 </p>
 				</div>
 				<!-- 글자수 영역 끝 -->
 				
