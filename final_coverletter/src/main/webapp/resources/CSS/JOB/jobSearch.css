@@ -74,7 +74,7 @@
 }
 
 #search_container h5 span{ 
-	font-size: 8px !important;
+	font-size: 10px !important;
 }
 
 #search_container a{
@@ -96,7 +96,6 @@
 	color: gray;
 	border: black;
 	border-bottom: 1px solid #00bf6f;
-	
 }
 
 

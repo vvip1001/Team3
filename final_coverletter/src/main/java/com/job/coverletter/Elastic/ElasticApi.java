@@ -48,18 +48,19 @@ public class ElasticApi {
 			jsonData = gson.toJson(map);	// map.put("id", "asd12sdnwe=="); 키와 값을  >>> {"id":"asd12sdnwe=="}
 		}
 		
-		try (RestClient restClient = RestClient.builder(new HttpHost(host, port)).build()) { // 자동으로 닫아준다.
-			Map<String, String> params = Collections.singletonMap("pretty", "true");
+		try (RestClient restClient = RestClient.builder(new HttpHost(host, port, "http")).build()) { // 자동으로 닫아준다.
+			//Map<String, String> params = Collections.singletonMap("pretty", "true");
 
 			// 엘라스틱서치에서 제공하는 response 객체
 			Response response = null;					// 응답받을 객체
-			Request request = new Request(method, url); // (get, url:9200/index/_search) 
+			Request request = new Request(method, url); // (get, url:/index/_search) 
 			
 			if (method.equals("GET")) {
 				// 받아온 데이터를 json으로 보내고 application/json으로 읽게 요청설정
 				HttpEntity entity = new NStringEntity(jsonData, ContentType.APPLICATION_JSON); 
 				// 설정 적용
 				request.setEntity(entity);
+				//request.addParameter("pretty", "true"); 
 				response = restClient.performRequest(request);
 		
 				// 앨라스틱서치에서 리턴되는 응답코드를 받는다

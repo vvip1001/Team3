@@ -1,35 +1,52 @@
-var page = 1;
-var from = 0;		// 요청할 다음 번호 
-var startPage = 1;
-var endPage;
-var totalPage;
+var page;		
+var startFrom;  	
+var range;		 	
+var startPage;	 	
+var endPage;	 	
+var totalPage;		
+var from;		 	
+
+//글자수 자르기
+function StringCut(textLen, text){
+	if(text.length > 0){
+		if(text.length >= textLen){
+			text = text.substring(0, textLen) + '...'
+		}
+	}
+	return text 
+}
 
 //동기 이전 버튼 이벤트
 function prev_maria(page, range, rangeSize) {
-		var page = ((range - 2) * rangeSize) + 1;
-		var range = range - 1;
-		var url = "JOB_jobSearch.do";
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
-		location.href = url;
+	var page = parseInt((range - 2) * rangeSize) + 1;
+	var range = parseInt(range) - 1;
+	var url = "JOB_jobSearch.do";
+	url = url + "?page=" + page;
+	url = url + "&range=" + range;
+	location.href = url;
 }
 
 //동기 페이지 번호 클릭
 function pagination_maria(page, range) {
-		var url = "JOB_jobSearch.do";
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
-		location.href = url;	
+	var url = "JOB_jobSearch.do";
+	page = page
+	url = url + "?page=" + page;
+	url = url + "&range=" + range;
+	location.href = url;	
 }
 
 //동기 다음 버튼 이벤트
 function next_maria(page, range, rangeSize) {
-		var page = parseInt((range * rangeSize)) + 1;
-		var range = parseInt(range) + 1;
-		var url = "JOB_jobSearch.do";
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
-		location.href = url;
+//	page = parseInt(page) - 1
+//	if((page % 10) == 1){
+//		range = parseInt(range) - 1;
+//	}
+	var page = parseInt((range * rangeSize)) + 1;
+	var range = parseInt(range) + 1;
+	var url = "JOB_jobSearch.do";
+	url = url + "?page=" + page;
+	url = url + "&range=" + range;
+	location.href = url;
 }
 
 /* 중복가능 selectbox */
@@ -48,10 +65,10 @@ function selected_only(select){
     for(var i = 0; i<select.options.length; i++){
     	select.options[i].disabled = true
     }
-	
 }
 
 
+//검색 조건 리셋
 function companyReset() {
 	var text = document.getElementById("search_company").value = ""
 	
@@ -69,6 +86,7 @@ function companyReset() {
     }
 }
 
+//검색폼 변환
 function searchType(selectType){
 	if(selectType="검색"){
 		
@@ -79,9 +97,15 @@ function searchType(selectType){
 
 
 /* 검색 */
-function companySearch(page, startPage, from){
-	page = page;
-	startPage = startPage;
+function companySearch(page, startPage, from, startFrom, range){
+	console.log("page: " + page, "startPage: " + startPage, "from: " + from, "startFrom: " + startFrom, "range: " + range)
+	
+	page = page;			//현재 페이지번호
+	startPage = startPage;	// 시작 페이지 번호
+	range = range;			// 시작 1쪽
+	from = from;			// 결과값 시작 index
+	startFrom = startFrom;	// 현재 쪽의 결과값 시작 index
+	endPage = startPage + 9 
 	
 	var business =  document.getElementById("business").value
 	var languages =  document.getElementById("languages").value
@@ -91,6 +115,14 @@ function companySearch(page, startPage, from){
 	var enddate =  document.getElementById("enddate").value
 	var totalmember =  document.getElementById("totalmember").value
 	var salary =  document.getElementById("salary").value
+
+	var jsonKey = {
+					  from : from,		// 다음 요청 시작번호
+					  target : target,
+					  enddate : enddate,
+					  totalmember : totalmember,
+					  salary : salary
+				   }
 	
 	
 	var keyWord = document.getElementById("search_company").value
@@ -101,47 +133,34 @@ function companySearch(page, startPage, from){
 		$.ajax({
 			url:"JOB_jobSearchRes.do",
 			type:"post",
-			data:{
-				form : from,
-				//일단 중복없는 키워드만 
-				target : target,
-				enddate : enddate,
-				totalmember : totalmember,
-				salary : salary
-				
-				
-			},
+			///contentType: 'application/json',
+			data:jsonKey,
 	        dataType :"text",
 	        success : function(res){
+	        	
+	        	console.log(res)
 	        	var jsonRes = JSON.parse(res)
-	        	// 결과 총 개수 0부터 시작 한페이지에 10개 * 페이지 번호 10개 
+	        	
+	        	// 데이터 개수는 0번 ~ 9번 한페이지에 10개 출력   페이지 번호 한 번에 10개씩
 				const total = jsonRes.hits.total.value
+				// 올림
 				totalPage = Math.ceil(total/10)
 				
-	        	// 결과 배열로 들어있음
+	        	// 데이터 결과 배열로 들어있음
 	        	var comapanyArr = jsonRes.hits.hits
+	        	console.log(comapanyArr)
 				
-				
-				// 페이지 10개 이하
-				if(total < 10) {
-					// 결과 그리기
-					for(var i = 0; i<comapanyArr.length; i++){
-						var compnay = comapanyArr[i]
-						creatDiv(compnay.companyseq, compnay.imgurl, compnay.business, compnay.enddate, compnay.oneintro, compnay.mainfield, compnay.languages, compnay.companyname, compnay.location, compnay.salary, compnay.target)
-					}
-					
-					// 페이징 그리기
-					creatPageBtn(page, startPage, total)
-					
-				// 페이지 11개 이상	
-				} else {
-					if(total%10 === 0){
-						//creatPageBtn(page, startPage, )
-					}else {
-						//creatPageBtn(page, startPage, )
-					}
-					//결과 0~10까지 10개 그리기
+	        	// 검색결과 div 초기화
+	        	var container = document.getElementById("search_container")
+	        	container.innerHTML = "";
+	        	
+	        	// 가져온 데이터 그리기(최대 10개로 가져옴)
+	        	for(var i = 0; i<comapanyArr.length; i++){
+					var compnay = comapanyArr[i]
+					creatDiv(compnay._source.companyseq, compnay._source.imgurl, compnay._source.business, compnay._source.enddate, compnay._source.oneintro, compnay._source.mainfield, compnay._source.languages, compnay._source.companyname, compnay._source.location, compnay._source.salary, compnay._source.target)
 				}
+				// 페이징 그리기
+	        	creatPageBtn_etc(page, startPage, endPage)
 			},
 		    error: function(){
 		       alert("통신 실패");
@@ -150,29 +169,65 @@ function companySearch(page, startPage, from){
 	}
 }
 
-
-
-//비동기 페이징 버튼 생성
-function creatPageBtn(page, startPage, endPage) {
+//비동기 페이징 버튼 생성	
+function creatPageBtn_etc(clickPage, startPage, endPage) {
 	var pageArea = document.getElementsByClassName("pagination")[0]
-	page = page; // 전역변수에 할당
-	
-	for(var i = startPage; i<endPage+1; i++){
-		//li태그 생성
-		var li = document.createElement("li")
-		li.className = "page-item"
-		if(i == page){
-			li.setAttribute("class", "page-item active")
+	pageArea.innerHTML = ""
+	page = clickPage; // 전역변수에 할당
+
+	if(endPage >= totalPage){ 
+		endPage = totalPage		
+	}
+	//이전버튼
+	if(startPage > 10){
+		prev_etc()
+	}
+	//페이지 버튼 그리기
+	for(var i = startPage; i < endPage+1; i++){
+		console.log(startPage)
+		pagination_etc(i)
+		if(i > 1){
+			from += 10
 		}
-		pageArea.appendChild(li)
-		
-		// a태그 생성
-		var a = document.createElement("a")
-		a.className = "page-link"						// 클래스 부여
-		a.onclick = "companySearch(i, startPage, from + 10)"		// onclick 이벤트 부여	 : 클릭 >> ajax >> controller >> etc요청 >> json응답 >> 뷰로
-		a.textContent = i								// text 부여
-		li.appendChild(a)
-	} 
+	}
+	//다음버튼
+	if((endPage != totalPage) && (endPage < totalPage)){
+		next_etc()
+	}
+}
+
+
+//비동기 페이지 버튼생성
+function pagination_etc(butNum){
+	var pageArea = document.getElementsByClassName("pagination")[0]
+	var li = document.createElement("li")
+	if(butNum == page){	
+		li.setAttribute("class", "page-item active")
+	}
+	pageArea.appendChild(li)
+	li.innerHTML = "<a class='page-link' href='#' onclick='companySearch(" + butNum + ", " + startPage + ", " + ((butNum*10)-10) + ", " + startFrom + ", " + range + ")'>" + butNum + "</a>"
+	
+}
+
+
+// 비동기 다음버튼 생성
+function next_etc() {
+	var pageArae = document.getElementsByClassName("pagination")[0]
+	var li = document.createElement("li")
+	li.setAttribute("class", "page-item")
+	pageArae.appendChild(li)
+	li.innerHTML = "<a class='page-link' href='#' onclick='companySearch(" + (startPage + 10) + ", " + (startPage + 10) + ", " + (startFrom + 100) + ", "+ (startFrom + 100) + ", " + (range + 1) + ")'>" + "Next" + "</a>"
+	
+}
+
+// 비동기 이전 버튼 생성
+function prev_etc() {
+	var pageArae = document.getElementsByClassName("pagination")[0]
+	var li = document.createElement("li")
+	li.setAttribute("class", "page-item")
+	pageArae.appendChild(li)
+	li.innerHTML = "<a class='page-link' href='#' onclick='companySearch(" + (startPage - 10) + ", " + (startPage + 10) + ", " + (startFrom - 100) + ", "+ (startFrom - 100) +", "+ (range - 1) + ")'>" + "Previous" + "</a>"
+	
 }
 
 
@@ -208,11 +263,11 @@ function creatDiv(companyseq, imgurl, business, enddate, oneintro, mainfield, la
 	a.setAttribute("href", "JOB_companyDetail.do?companyseq="+companyseq)	// pk 추가 
 	h5.appendChild(a)
 	var b_left = document.createElement("b")
-	b_left.textContent = business
+	b_left.textContent = StringCut(45, business)
 	h5.appendChild(b_left)
 	var span = document.createElement("span")
 	span.style.fontSize = "10px"
-	span.textContent = enddate 		// 마감날짜 추가
+	span.textContent = "  "+enddate 		// 마감날짜 추가
 	h5.appendChild(span)
 	var br = document.createElement("br")
 	h5.appendChild(br)
@@ -223,19 +278,19 @@ function creatDiv(companyseq, imgurl, business, enddate, oneintro, mainfield, la
 
 	//한줄 소개
 	var span01 = document.createElement("span")
-	span01.textContent = oneintro
+	span01.textContent = StringCut(50, oneintro)
 	company_left.appendChild(span01)
 	var br01 = document.createElement("br")
 	company_left.appendChild(br01)
 	//주요업무
 	var span02 = document.createElement("span")
-	span02.textContent = mainfield
+	span02.textContent = StringCut(50, mainfield)
 	company_left.appendChild(span02)
 	var br02 = document.createElement("br")
 	company_left.appendChild(br02)
 	// 사용언어
 	var span03 = document.createElement("span")
-	span03.textContent = languages
+	span03.textContent = StringCut(50, languages)
 	company_left.appendChild(span03)
 	var br03 = document.createElement("br")
 	company_left.appendChild(br03)
@@ -256,7 +311,7 @@ function creatDiv(companyseq, imgurl, business, enddate, oneintro, mainfield, la
 	company_right.appendChild(br04)
 	// 위치
 	var span04 = document.createElement("span")
-	span04.textContent = location
+	span04.textContent = StringCut(17, location)
 	company_right.appendChild(span04)
 	var br05 = document.createElement("br")
 	company_right.appendChild(br05)
@@ -273,10 +328,12 @@ function creatDiv(companyseq, imgurl, business, enddate, oneintro, mainfield, la
 	company_right.appendChild(br06)
 	company_right.appendChild(br07)
 	
-	var button = document.createElement("button")
+	var button = document.createElement("input")
+	button.setAttribute("type", "button")
 	button.setAttribute("class", "btn_compnay")
 	button.setAttribute("value", "기업정보")
 	button.setAttribute("disabled", "disabled")
+	company_right.appendChild(button)
 	
 	//company_right 영역 추가
 	companyDiv_10.appendChild(company_right)
@@ -289,15 +346,4 @@ function creatDiv(companyseq, imgurl, business, enddate, oneintro, mainfield, la
 }
 
 
-//elastic용 비동기 이전 버튼 이벤트
-function prev_etc(page, startPage, endPage) {
-}
-
-//elastic용 비동기 페이지 번호 클릭
-function pagination_etc(page, startPage, endPage) {	// 해당 페이지 끝 번호 시작번호? 
-}
-
-//elastic용 비동기 다음 버튼 이벤트
-function next_etc(page, startPage, endPage) {
-}
 

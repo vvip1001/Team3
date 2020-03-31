@@ -145,7 +145,6 @@
 			</div>
 
 
-
 			<div class="row">
 				<div class="col-md-2"></div>
 				<div class="col-md-2">
@@ -163,13 +162,12 @@
 				</div>
 
 				<div class="col-md-2" id="div_btn">
-					<button type="button" class="btn btn-success" id="btn_search" onclick="companySearch(1, 1);">Search</button>
+					<button type="button" class="btn btn-success" id="btn_search" onclick="companySearch(1, 1, 0, 0, 1);">Search</button>
 					<button type="button" class="btn btn-success" id="btn_reset"  onclick="companyReset()">reset</button>
 				</div>
 			</div>
 	</div>
 	<br />
-
 
 	<!-- 검색결과 -->
 	<div class="container" id="search_container">
@@ -219,8 +217,9 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+	</div>
 		
-		
+	<div class="container">	
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" style="text-align: center;">
