@@ -149,16 +149,11 @@
 			<property name="defaultEncoding" value="UTF-8"/>
 		</bean>
 		
-		
-		<!--
 		<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-			<property name="basenames">
-				<list>
-					<value>classpath:message/message.properties</value>
-				</list>
-			</property>	
+			<property name="basename">
+				<value>classpath:message/test</value>
+			</property>
 		</bean>
-		-->
 	<!-- 
 	<bean id="fileDownload" class="com.job.coverletter.controller.DownloadView"/>
 	 -->

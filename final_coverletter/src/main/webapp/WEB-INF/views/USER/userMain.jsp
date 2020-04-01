@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
@@ -15,6 +15,33 @@
 <link
 	href="${pageContext.request.contextPath}/resources/CSS/USER/userMain.css"
 	rel="stylesheet">
+
+<!-- include FullCalendar CSS/JS -->
+<link
+	href="${pageContext.request.contextPath}/resources/CSS/USER/FullCalendar/core/main.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/CSS/USER/FullCalendar/daygrid/main.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/CSS/USER/FullCalendar/timegrid/main.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/CSS/USER/FullCalendar/list/main.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/JS/USER/FullCalendar/core/main.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/JS/USER/FullCalendar/daygrid/main.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/JS/USER/FullCalendar/timegrid/main.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/JS/USER/FullCalendar/intersaction/main.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/JS/USER/FullCalendar/list/main.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/JS/USER/FullCalendar/core/ko.js"></script>
+
 <!-- 구글 웹폰트 : sans-serif -->
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean"
@@ -28,11 +55,84 @@
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 
+
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+
 <!-- include chart.js -->
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+	
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
 
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid' ,'timeGrid'],
+     
+      header: {
+    	  left: 'prevYear,prev,next,nextYear today',
+    	  center: 'title',
+    	  right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      buttonText: {
+    	   today : "오늘",
+    	   month : "월",
+    	   week : "주",
+    	   day : "일",
+    	   },
+      locale: 'ko',
+      navLinks: true,
+      //selectable: true,
+      selectMirror: true,
+      select: function(arg) {
+        var title = prompt('추가할 내용:');
+        if (title) {
+          calendar.addEvent({
+            title: title,
+            start: arg.start,
+            end: arg.end,
+            allDay: arg.allDay
+          })
+        }
+        calendar.unselect()
+      },
+      editable: true,
+      eventLimit: true,
+      events: [
+          {
+            title: 'All Day Event',
+            start: '2020-02-01'
+          },
+          {
+              title: 'Event',
+              start: '2020-03-23 12:00',
+              end: '2020-03-23 12:30'
+            }
+         ],
+         eventClick: function(arg) {
+             if (confirm('삭제하시겠습니까?')) {
+               arg.event.remove()
+             }
+           }
+    });
+    calendar.render();
+  });
+</script>
+<style type="text/css">
+#full {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 14px;
+}
 
+#calendar {
+	max-width: 700px;
+	margin: 0 auto;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
@@ -130,7 +230,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" id="soo" class="btn btn-default"
-						data-dismiss="modal" onclick="#">확 인</button>
+						data-dismiss="modal" onclick="">확 인</button>
 					<br> <br>
 					<div id="deleteDiv">
 						탈퇴하러가기 <a href="#" id="delete">회원탈퇴</a>

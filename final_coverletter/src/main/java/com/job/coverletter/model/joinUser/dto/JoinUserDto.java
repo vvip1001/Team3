@@ -1,10 +1,10 @@
 package com.job.coverletter.model.joinUser.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 public class JoinUserDto {
@@ -13,27 +13,27 @@ public class JoinUserDto {
     private int joinseq;
 
     // 이메일(ID) 
-    @NotEmpty(message = "값을 입력해주세요")
-    @Email(message = "이메일 형식이 틀렸습니다.")	// @Email 자동 유효성 검사
+    @NotEmpty(message = "이메일을 입력해주세요")
+    @Email(message = "이메일 형식이 틀렸습니다.")
     private String joinemail;
 
     // 이름 
-    @NotEmpty()
+    @NotEmpty(message = "이름을 입력해주세요")
+    @Pattern(regexp = "[가-힣]*$", message = "이름은 한글만 사용해주세요")
     private String joinname;
 
     // 비밀번호 
-    @NotEmpty()
-    @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "비밀번호를 입력하세요.")
+    @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "숫자 영어 혼합으로 6~20자리로")
     private String joinpw;
 
     // 생년월일 
-    @NotEmpty(message = "")
-    @Pattern(regexp = "^[0-9]*$")
-    @Length(min = 8, max = 8)
+    @Pattern(regexp = "^[0-9]*$", message = "형식을 맞춰주세요")
+    @Length(min = 8, max = 8, message = "형식을 맞춰주세요")
+
     private String joinbirth;
 
     // 성별 
-    @NotEmpty(message = "값을 입력해주세요")
+    @NotEmpty(message = "성별을 선택해주세요")
     private String joinsex;
 
     // 사진 
@@ -56,27 +56,27 @@ public class JoinUserDto {
     
     
     public JoinUserDto() {
-		super();
-	}
+      super();
+   }
 
-	public JoinUserDto(int joinseq, String joinemail, String joinname, String joinpw, String joinbirth, String joinsex,
-			String photo, String mililtary, String phone, String address, String kakao, String singup) {
-		super();
-		this.joinseq = joinseq;
-		this.joinemail = joinemail;
-		this.joinname = joinname;
-		this.joinpw = joinpw;
-		this.joinbirth = joinbirth;
-		this.joinsex = joinsex;
-		this.photo = photo;
-		this.mililtary = mililtary;
-		this.phone = phone;
-		this.address = address;
-		this.kakao = kakao;
-		this.singup = singup;
-	}
+   public JoinUserDto(int joinseq, String joinemail, String joinname, String joinpw, String joinbirth, String joinsex,
+         String photo, String mililtary, String phone, String address, String kakao, String singup) {
+      super();
+      this.joinseq = joinseq;
+      this.joinemail = joinemail;
+      this.joinname = joinname;
+      this.joinpw = joinpw;
+      this.joinbirth = joinbirth;
+      this.joinsex = joinsex;
+      this.photo = photo;
+      this.mililtary = mililtary;
+      this.phone = phone;
+      this.address = address;
+      this.kakao = kakao;
+      this.singup = singup;
+   }
 
-	public int getJoinseq() {
+   public int getJoinseq() {
         return joinseq;
     }
 
@@ -172,13 +172,13 @@ public class JoinUserDto {
         this.singup = singup;
     }
 
-	@Override
-	public String toString() {
-		return "JoinUserDto [joinseq=" + joinseq + ", joinemail=" + joinemail + ", joinname=" + joinname + ", joinpw="
-				+ joinpw + ", joinbirth=" + joinbirth + ", joinsex=" + joinsex + ", photo=" + photo + ", mililtary="
-				+ mililtary + ", phone=" + phone + ", address=" + address + ", kakao=" + kakao + ", singup=" + singup
-				+ "]";
-	}
+   @Override
+   public String toString() {
+      return "JoinUserDto [joinseq=" + joinseq + ", joinemail=" + joinemail + ", joinname=" + joinname + ", joinpw="
+            + joinpw + ", joinbirth=" + joinbirth + ", joinsex=" + joinsex + ", photo=" + photo + ", mililtary="
+            + mililtary + ", phone=" + phone + ", address=" + address + ", kakao=" + kakao + ", singup=" + singup
+            + "]";
+   }
 
     
     
