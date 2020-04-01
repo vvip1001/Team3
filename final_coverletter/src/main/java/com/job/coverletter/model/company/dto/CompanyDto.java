@@ -19,7 +19,7 @@ public class CompanyDto {
 	private String oneintro;
 
 	// 채용분야 웹, 프론트, 백, ...
-	private String business = "";
+	private String business;
 
 	// 주요업무
 	private String mainbusiness;
@@ -28,16 +28,16 @@ public class CompanyDto {
 	private String jobdetail;
 
 	// 연봉
-	private String salary = "";
+	private String salary;
 
 	// 경력OR신입 마감일 or 상시모집
-	private String target = "신입 경력";
+	private String target;
 
 	// 언어특기
-	private String languages = "";
+	private String languages;
 
 	// 마감일
-	private String enddate = "";
+	private String enddate;
 
 	// 기업 소개글
 	private String intro;
@@ -64,13 +64,13 @@ public class CompanyDto {
 	private String incorporation;
 
 	// 구성원 기업상세정보
-	private String totalmember = "";
+	private String totalmember;
 
 	// 홈페이지 기업상세정보
 	private String homepage;
 
 	// 사무실위치 기업상세정보
-	private String location = "";
+	private String location;
 
 	// 산업분야 기업상세정보
 	private String mainfield;

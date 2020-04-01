@@ -16,7 +16,7 @@ import org.elasticsearch.client.RestClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class ElasticApi {
+public class ElasicrowAPI {
 
 	private String host = "localhost";
 	private int port = 9200;

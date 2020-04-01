@@ -17,7 +17,7 @@ import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 public class ElasticSpringExampleApplication {
 
 	@Autowired
-	ElasticApi elasticApi = new ElasticApi();
+	ElasicrowAPI elasticApi = new ElasicrowAPI();
 
 	private final String ELASTIC_INDEX = "nlpdb-2020.80.20.temp";
 	private final String ELASTIC_TYPE = "_doc";
