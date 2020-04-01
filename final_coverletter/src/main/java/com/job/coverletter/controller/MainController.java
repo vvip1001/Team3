@@ -187,9 +187,10 @@ public class MainController {
 			String item_name = (String)tmp.get("item_name");
 			String quantity = (String)String.valueOf(tmp.get("quantity"));
 			
-			
+			//2020-03-21 21:32:23
 			DateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String stringCreatedAt = ((String)tmp.get("created_at")).replace("T", " ");
+			
 			Date created_at = sdFormat.parse(stringCreatedAt);
 			
 			dto.setTid(tmp_tid);
@@ -211,7 +212,7 @@ public class MainController {
 		}
 		supportpaybiz.payInsert(dto); // db에 값 저장
 		model.addAttribute("dto",supportpaybiz.payList(dto));
-		return "PAY/payList";
+		return "redirect/PAY_payList.do";
 	}
 	
 	@RequestMapping(value = "/PAY_payList.do")

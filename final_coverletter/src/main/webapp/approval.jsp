@@ -7,17 +7,10 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/JS/jquery-3.4.1.js"></script>
-<style type="text/css">
-
-	input{
-		width: 400px;
-		height: 400px;
-	}
-
-</style>
 </head>
 <%
 	String tid = (String)session.getAttribute("tid");
+	String joinemail = (String)session.getAttribute("joinemail");
 %>
 <body>
 	<h1>결제성공</h1>
@@ -28,6 +21,7 @@
 	
 	<form name="payForm" method="post" action="MAIN_payDetail.do">
 		<input type="hidden" name="tid" value="<%=tid%>"/>
+		<input type="hidden" name="joinemail" value="<%=joinemail%>"/>
 		<input type="submit" value="확인"/>
 	</form>
 	

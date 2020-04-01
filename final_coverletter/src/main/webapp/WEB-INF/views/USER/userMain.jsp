@@ -51,7 +51,7 @@
 					이력---</span> <br>
 				<button class="btn" onclick="location.href='USER_userDetail.do'">인적사항</button>
 				<br>
-				<button class="btn" onclick="#">취업센터</button>
+				<button class="btn" onclick="">취업센터</button>
 			</div>
 			<div class="center1heightside"></div>
 

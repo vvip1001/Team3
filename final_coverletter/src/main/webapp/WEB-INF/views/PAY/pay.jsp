@@ -14,7 +14,7 @@
 	rel="stylesheet">
 </head>
 <body>
-<!-- 	<input type="text" id="quantity" onkeydown="onlyNumber(this);"/> -->
+<!-- 	<input type="text" id="quan		tity" onkeydown="onlyNumber(this);"/> -->
 	
 	<h3>${joinemail}님의 후원</h3>
 	<input type="hidden" id="joinemail" value="${joinemail}"/>

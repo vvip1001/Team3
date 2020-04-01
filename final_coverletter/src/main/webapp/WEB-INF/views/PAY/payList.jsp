@@ -24,14 +24,7 @@
 			<h1> 후원내역 </h1>
 
 				<table class="table table-bordered">
-					<col width="100" />
-					<col width="10" />
-					<col width="50" />
-					<col width="50" />
-					<col width="50" />
-					<col width="150" />
-					<col width="50" />
-					<col width="100" />
+					
 
 					<thead>
 						<!-- 테이블 : 검색 영역 -->
@@ -84,10 +77,10 @@
 										<td>${dto.partner_order_id}</td>
 										<td>${dto.partner_user_id }</td>
 										<td>${dto.payment_method_type}</td>
-										<td>${dto.amount_total}</td>
-										<td>${dto.amount_tax_free}</td>
+										<td>${dto.amount_total}원</td>
+										<td>${dto.amount_tax_free}원</td>
 										<td>${dto.item_name}</td>
-										<td>${dto.quantity}</td>
+										<td>${dto.quantity}원</td>
 										<td><fmt:formatDate
 												value="${dto.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 									</tr>
