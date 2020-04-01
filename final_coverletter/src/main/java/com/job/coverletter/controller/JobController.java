@@ -7,21 +7,25 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.job.coverletter.Elastic.ElasicrowAPI;
+import com.job.coverletter.Elastic.ElasicHighLeverTemplat;
+import com.job.coverletter.Elastic.ElasticSpringExampleApplication;
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.all.pagination.MariaPagination;
 import com.job.coverletter.all.util.MyUtil;
 import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.company.biz.CompanyBiz;
 import com.job.coverletter.model.company.dto.CompanyDto;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.job.coverletter.all.Pagination;
-import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
 
 @Controller
@@ -34,10 +38,11 @@ public class JobController {
 
 	@Autowired
 	private CompanyBiz companyBiz;
+	
 
 	
 	// 글목록(페이징기능)
-	@RequestMapping(value = "JOB_jobSearch.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/JOB_jobSearch.do", method = RequestMethod.GET)
 	public String jobSearchP(Model model, 
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
@@ -81,6 +86,19 @@ public class JobController {
 		return "JOB/jobSearch";
 	}
 
+	@RequestMapping(value="/JOB_jobSearchRes.do", method= RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
+	        produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody String jobSearchRes(@ModelAttribute CompanyDto jsonKey) {
+		logger.info("검색 테스트 : " + jsonKey);
+		
+		ElasicHighLeverTemplat elastic = new ElasicHighLeverTemplat();
+		
+		String res = elastic.callSearchQuery(jsonKey);
+		
+		return res;
+	}
+	
 	
 	//로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
 	String login = "mint@email.com";
