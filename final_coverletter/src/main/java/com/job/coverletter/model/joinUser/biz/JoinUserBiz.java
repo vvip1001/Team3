@@ -18,4 +18,5 @@ public interface JoinUserBiz {
 	
 	String checkemail (String joinemail);
 
+	JoinUserDto kakaoLogin(JoinUserDto dto);
 }

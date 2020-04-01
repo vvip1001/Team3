@@ -34,15 +34,23 @@ function validate() {
 			url:"USER_emailcheck.do",
 			type:"post",
 			data:{
-				email:email.value
+				joinemail:email.value
 			},
 			dataType:"text",
 			success: function(res){
 				if(res === "중복"){
-					alert("이메일이 중복되었습니다.");
+					$("#errormessage").text("이미 가입된 이메일 입니다.");
+					$("#errormessage").css("color", "#DF7401");
+					$("#errormessage").css("font-size", "8pt");
+					
+					
 					return false;
 				} else if(res == "사용가능"){
-					alert("사용가능한 이메일 입니다.");
+					$("#errormessage").text("가입 가능한 이메일 입니다.");
+					$("#errormessage").css("color", "#DF7401");
+					$("#errormessage").css("font-size", "8pt");
+					
+					$("#feilde").hide();
 					$("#feildeID").show();
 					document.getElementById("EmailID").value = document
 							.getElementById("emailCheck").value;

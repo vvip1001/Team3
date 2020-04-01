@@ -1,5 +1,6 @@
 package com.job.coverletter.controller;
 
+import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
@@ -28,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
+import com.google.gson.JsonObject;
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
@@ -38,6 +42,7 @@ import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 import com.job.coverletter.model.skill.biz.SkillBiz;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class UserController {
@@ -56,6 +61,17 @@ public class UserController {
       return "USER/userMain";
    }
    
+   //PFwrite page go 
+   @RequestMapping(value = "/USER_userPFwrite.do", method = RequestMethod.GET)
+   public String PFwrite() {
+	   logger.info("PRwrite go");
+	   
+	   return "USER/userPFwrite";
+   }
+   
+   
+   
+   
 
    @RequestMapping(value="/USER_userDetail.do", method=RequestMethod.GET)
    public String userDetail() {
@@ -64,6 +80,7 @@ public class UserController {
       
       return "USER/userDetail";
    }
+   
    
    
    @RequestMapping(value = "/MAIN_main.do")
@@ -91,18 +108,21 @@ public class UserController {
       return "MAIN/join";
    }
    
+   
    //email중복체크
+   	  @Transactional
       @RequestMapping(value="/USER_emailcheck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
       @ResponseBody
       public String checkemail(@ModelAttribute("joinemail") String joinemail) {  
-         logger.info("이메일중복체크");   
+         logger.info("이메일중복체크" + joinemail);   
          String res = joinUserBiz.checkemail(joinemail);
          
          if(res != "중복") {
             return res; 
-            
+           
          } else {
             return res;
+            
          }
       }
    
@@ -170,6 +190,40 @@ public class UserController {
       return map;
       
    }
+   
+  //sns로그인
+  
+   @RequestMapping (value = "/USER_snslogin.do", method = RequestMethod.POST)
+   public String snslogin(HttpSession session, JoinUserDto dto) {
+	   logger.info("sns로그인");
+	   logger.info("=========dto: "+ dto.getJoinemail());
+
+	   JoinUserDto onelogin = joinUserBiz.selectOne(dto.getJoinemail());
+	   logger.info("******onelogin: "+onelogin);
+	   
+	   JoinUserDto snslogin = joinUserBiz.login(dto);
+	   logger.info("login:"+snslogin);
+	   
+	   if(onelogin != null ) {
+		   session.setAttribute("snslogin", snslogin);
+		   return "MAIN/main";
+		   
+	   }else  {
+		   int snsjoin = joinUserBiz.insertUser(dto);
+		   if(snsjoin > 0) {
+			   session.setAttribute("snslogin", snslogin);
+			   return "MAIN/main";
+		   }else {
+			   return "MAIN/login";
+		   }
+	   }
+	
+	
+	   
+	 
+   }
+   
+   
    
    //아이디비밀번호찾기(비밀번호 수정)
    @RequestMapping(value = "/USER_changepw.do", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded")

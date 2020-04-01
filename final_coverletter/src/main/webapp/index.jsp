@@ -15,6 +15,8 @@
 	<a href="USER_join.do">회원가입</a><br/>	
 	
 	<a href="JOB_jobSearch.do">회사검색</a><br/>	
+	<a href="USER_userPFwrite.do">포폴쓰기</a>
+	
 	
 	<!-- 박하 테스트 영역 -->
 	<p>----- 박하 테스트 영역👻  -----</p>

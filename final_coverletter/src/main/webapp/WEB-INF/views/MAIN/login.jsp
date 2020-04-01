@@ -28,75 +28,8 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript">
-		
-function postSend(path, params, method) {
-	method = method || "post";
-	var form = document.createElement("form");
-	form.setAttribute("method", method);
-	form.setAttribute("action", path);
-
-	// 히든으로 값을 넣는다.
-	for ( var key in params) { // {'name1':'var1','name2':'var2','name3':'var3'}
-		var input_tag = document.createElement("input");
-		input_tag.setAttribute("type", "hidden");
-		input_tag.setAttribute("name", key) // name1, name2, name3
-		input_tag.setAttribute("value", params[key]) // var1, var2, var3
-
-		console.log("name : " + key);
-		console.log("value : " + params[key]);
-
-		form.appendChild(input_tag);
-	}
-	document.body.appendChild(form);
-	form.submit();
-}
-	
-		
-		function kakao() {
-			
-		Kakao.init('5c66b81ac4ea858ce15c7241ac3dc1da');
-		Kakao.Auth.loginForm({			
-			success : function (authObj) {
-				 Kakao.API.request({
-					
-	               url: '/v2/user/me',
-		           success: function(res) {
-		        	   console.log(res);
-		        	   
-		        	   var joinemail = res.kakao_account.email;
-		        	   
-		        	   var path = "USER_loginAjax.do";
-		        	   var params = {
-		        			   "joinemail" : joinemail,
-		        			   "joinpw" : "kakao"
-		        	   };
-		        	   
-		        	   postSend(path, params);
-		        	   
-		        	   
-		            	   	console.log(res);
-		 
-		                     console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-		 
-		                     console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-		 
-		                     console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-		                             
-		                 // res.properties.nickname으로도 접근 가능 )
-		                     console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-			}
-		})
-			},
-	               fail: function(error) {
-	                 alert(JSON.stringify(error));
-	               }
-	             });
-	
-		}
-	
-		
-	</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="879634557485-v55qv49tpffgt0ujgmeq6glvtpa8lfmc.apps.googleusercontent.com">
 
 
 </head>
@@ -105,16 +38,7 @@ function postSend(path, params, method) {
 %>
 <body>
 
-	<c:choose>
-		<c:when test="${empty loginDto.joinemail}">
-			<%@ include file="../ALL/header_logout.jsp"%>
-		</c:when>
-		<c:otherwise>
-			<%@ include file="../ALL/header_login.jsp"%>
-		</c:otherwise>
-	</c:choose>
-
-
+<%@ include file="../ALL/header_logout.jsp"%>
 
 	<div class="container">
 		<div id="wap">
@@ -146,11 +70,11 @@ function postSend(path, params, method) {
 					</tbody>
 				</table>
 				<div id="snslogin" class="">
-				<button id="kakao-login-btn" onclick="kakao();">aa</button>
+					<button id="kakao-login-btn" onclick="kakao();">카카오로그인</button>
 					<a href="http://developers.kakao.com/logout"></a>
-					<!--  <button onclick="kakaoLogin();" id="kakao">카카오로그인</button>-->
 					</br>
-					<button onclick="">구글로그인</button>
+					
+					<button class="g-signin2" data-onsuccess="onSignIn" onclick="">구글로그인</button>
 					<p>
 						아직 회원이 아니세요?<a href="USER_join.do">회원가입</a>
 					</p>
@@ -177,10 +101,6 @@ function postSend(path, params, method) {
 									onclick="checkid();"></td>
 							</tr>
 							<tr>
-								<td id="M_error" colspan="2" align="right">*해당 메일로 가입된 아이디가
-									있습니다.</td>
-							</tr>
-							<tr>
 								<th>새비밀번호</th>
 								<td><input type="password" id="newpw" name="joinpw"></td>
 							</tr>
@@ -202,7 +122,7 @@ function postSend(path, params, method) {
 		</div>
 	</div>
 
-	
 
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>
 </html>

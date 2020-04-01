@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>이메일 체크</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/MAIN/emailChk.css?ver=2">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/MAIN/emailChk.css?ver=1">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk_login.js?ver=2"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk_login.js?ver=3"></script>
 </head>
 <%
 int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
@@ -21,10 +21,10 @@ int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
    <input type="hidden" id="number" name="number" value="<%=RandomNumber%>" >
    
    <fieldset>
-   <legend>이메일 작성</legend>
+   <legend>이메일입력</legend>
    <div>
    <input type="text" id="emailCheck" placeholder="email@google.com" >
-   <input type="button" id="validateID" value="중복확인" onclick="validate();" >
+   <input type="button" id="validateID" value="아이디/비밀번호찾기" onclick="validate();" >
    <span id="errormessage"></span>
    </div>
    </fieldset>
