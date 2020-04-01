@@ -21,7 +21,7 @@
 	<a href ="BOARD_boardList.do">자유게시판</a><br/>
 	<a href ="USER_userPFList.do">포폴게시판</a><br/>
 	<a href ="USER_userCVList.do">이력서게시판</a><br/>
-	<a href	="USER_userJobList.do">채용 즐겨찾기 게시판</a>
+	<a href	="USER_userJobList.do">채용 즐겨찾기 게시판</a><br/>
 	<a href ="JOB_jobCenter.do">취업센터</a><br/>
 
 </body>
