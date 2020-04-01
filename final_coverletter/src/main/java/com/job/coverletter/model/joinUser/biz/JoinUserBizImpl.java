@@ -48,4 +48,21 @@ public class JoinUserBizImpl implements JoinUserBiz {
 		return joinuserdao.checkemail(joinemail);
 	}
 
+	@Override
+	public JoinUserDto kakaoLogin(JoinUserDto dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	@Override
+//	public JoinUserDto kakaoLogin(JoinUserDto dto) {
+//		
+////		if(joinemail != joinemail) {
+////			return joinuserdao.kakaoLogin(dto);
+////		}else if
+////		
+//		
+//		return joinuserdao.kakaoLogin(dto);
+//	}
+
 }

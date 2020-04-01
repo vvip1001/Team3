@@ -109,4 +109,9 @@ public class JobController {
 		return "JOB/jobCenter";
 	}
 	
+	@RequestMapping(value = "USER_speechForm.do")
+	public String jobSpeech() {
+		return "USER/userSpeech";
+	}
+	
 }

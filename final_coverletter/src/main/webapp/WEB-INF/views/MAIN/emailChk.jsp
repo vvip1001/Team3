@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>이메일 체크</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/MAIN/emailChk.css?ver=2">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/MAIN/emailChk.css?ver=3">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk.js?ver=2"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk.js?ver=3"></script>
 </head>
 <%
 int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
@@ -18,8 +18,8 @@ int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
    <form name="a" action="USER_mailSend.do" method="post" target="iframe2">
    <input type="hidden" id="number" name="number" value="<%=RandomNumber%>" >
    
-   <fieldset>
-   <legend>이메일 작성</legend>
+   <fieldset id="feilde">
+   <legend>이메일 입력</legend>
    <div>
    <input type="text" id="emailCheck" placeholder="email@google.com" >
    <input type="button" id="validateID" value="중복확인" onclick="validate();" >
@@ -28,7 +28,7 @@ int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
    </fieldset>
    
    <fieldset id="feildeID" style="display: none;">
-   <legend>이메일입력</legend>
+   <legend>이메일 입력</legend>
    <div>
    <input type="email" id="EmailID" name="EmailName" >
    <input type="submit" value="인증코드전송"  id="submit"><br>

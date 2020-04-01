@@ -16,11 +16,11 @@
 <body>
 
 <c:choose>
-	<c:when test="${not empty loginDto.joinemail}">
-	<%@ include file="../ALL/header_login.jsp"%>
+	<c:when test="${not empty loginDto}">
+	<%@ include file="../ALL/header_logout.jsp"%>
 	</c:when>
 	<c:otherwise>	
-	<%@ include file="../ALL/header_logout.jsp"%>
+	<%@ include file="../ALL/header_login.jsp"%>
 	</c:otherwise>
 </c:choose>
 

@@ -25,11 +25,15 @@ function validate() {
    var email = document.getElementById("emailCheck");
    if (email.value == "") {
       $("#errormessage").text("이메일을 입력해주세요");
+      $("#errormessage").css("color", "#DF7401");
+		$("#errormessage").css("font-size", "8pt");
       email.focus();
       return false;
    }
    if (!re2.test(email.value)) {
 	   $("#errormessage").text("이메일형식이 아닙니다.");
+	   $("#errormessage").css("color", "#DF7401");
+		$("#errormessage").css("font-size", "8pt");
       return false;
    } else {
       $.ajax({
@@ -41,13 +45,17 @@ function validate() {
          dataType:"text",
          success: function(res){
             if(res === "중복"){
-             $("#errormessage").text("가입 된 이메일입니다. \n 인증번호를 입력해주세요.");
+             $("#errormessage").html("가입 된 이메일입니다.</br>인증번호를 입력해주세요.");
+             $("#errormessage").css("color", "#DF7401");
+     		$("#errormessage").css("font-size", "8pt");
              $("#feildeID").show();
              document.getElementById("EmailID").value = document
                    .getElementById("emailCheck").value;
                
             } else if(res == "사용가능"){
-               $("#errormessage").text("가입하지 않은 이메일입니다. \n 회원가입 먼저 해주세요");
+               $("#errormessage").html("가입하지 않은 이메일입니다.</br>회원가입 먼저 해주세요");
+               $("#errormessage").css("color", "#DF7401");
+       		   $("#errormessage").css("font-size", "8pt");
                return false;
             }
          },

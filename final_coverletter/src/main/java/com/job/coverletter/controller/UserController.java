@@ -1,8 +1,10 @@
 package com.job.coverletter.controller;
 
+import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,10 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
@@ -28,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
+import com.google.gson.JsonObject;
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
@@ -38,20 +43,21 @@ import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 import com.job.coverletter.model.skill.biz.SkillBiz;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class UserController {
-	// 로그인, 회원가입, 마이페이지, 이력작성, 캘린더, 관심공고, 비번
-	private Logger logger = LoggerFactory.getLogger(UserController.class);
-
-	@Autowired
-	private JoinUserBiz joinUserBiz;
-
-	@Autowired
+   // 로그인, 회원가입, 마이페이지, 이력작성, 캘린더, 관심공고, 비번 
+   private Logger logger = LoggerFactory.getLogger(UserController.class);
+   
+   @Autowired
+   private JoinUserBiz joinUserBiz;
+   
+   @Autowired
 	private JobCalendarBiz jobCalendarBiz;
 
 	String cvcategory = "";
-	String joinemail = "UESR@GMAIL.COMM";
+	String joinemail = "USER@GMAIL.COM";
 
 	@Autowired
 	private CoverLetterBiz coverletterBiz;
@@ -62,10 +68,66 @@ public class UserController {
 	// 로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
 	String login = "cv@email.net";
 
+   
+   
+   //PFwrite page go 
+   @RequestMapping(value = "/USER_userPFwrite.do", method = RequestMethod.GET)
+   public String PFwrite() {
+	   logger.info("PRwrite go");
+	   
+	   return "USER/userPFwrite";
+   }
+   
+   //vaild 설정
+   @GetMapping
+   public String joinuser(Model model) {
+      
+      model.addAttribute("joinuserDto",new JoinUserDto());
+      
+      return "MAIN/join";
+   }
+   
+   
+   //email중복체크
+   	  @Transactional
+      @RequestMapping(value="/USER_emailcheck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+      @ResponseBody
+      public String checkemail(@ModelAttribute("joinemail") String joinemail) {  
+         logger.info("이메일중복체크" + joinemail);   
+         String res = joinUserBiz.checkemail(joinemail);
+         
+         if(res != "중복") {
+            return res; 
+           
+         } else {
+            return res;
+            
+         }
+      }
+   
 	// 마이페이지
 	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
 	public String userMain(Model model) {
 		logger.info("userMain go");
+		
+		CoverLetterDto cvdto = new CoverLetterDto();
+		cvdto.setCvcategory("자소서");
+		cvdto.setJoinemail(joinemail);
+		int cvlist = coverletterBiz.boardCVListCount(cvdto);
+		System.out.println("cvlist : "+cvlist);
+		CoverLetterDto pfdto = new CoverLetterDto();
+		pfdto.setCvcategory("포폴");
+		pfdto.setJoinemail(joinemail);
+		int pflist = coverletterBiz.boardPFListCount(pfdto);
+		System.out.println("pflist : "+pflist);
+		JobCalendarDto jbdto = new JobCalendarDto();
+		jbdto.setJoinemail(joinemail);
+		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
+		System.out.println("jblist : "+jblist);
+		
+		model.addAttribute("cvlist",cvlist);
+		model.addAttribute("pflist",pflist);
+		model.addAttribute("jblist",jblist);
 
 		// IT역량 차트
 		JSONArray itSkill = skillBiz.selectItSkill();
@@ -100,30 +162,6 @@ public class UserController {
 		return "MAIN/join";
 	}
 
-	// vaild 설정
-	@GetMapping
-	public String joinuser(Model model) {
-
-		model.addAttribute("joinuserDto", new JoinUserDto());
-
-		return "MAIN/join";
-	}
-
-	// email중복체크
-	@RequestMapping(value = "/USER_emailcheck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
-	@ResponseBody
-	public String checkemail(@ModelAttribute("joinemail") String joinemail) {
-		logger.info("이메일중복체크");
-		String res = joinUserBiz.checkemail(joinemail);
-
-		if (res != "중복") {
-			return res;
-
-		} else {
-			return res;
-		}
-	}
-
 	@RequestMapping(value = "/USER_joinRes.do", method = RequestMethod.POST)
 	public String joinRes(Model model, @ModelAttribute("joinuserDto") @Valid JoinUserDto dto, BindingResult result) {
 		logger.info("회원가입");
@@ -135,103 +173,145 @@ public class UserController {
 //         for(ObjectError error : list) {
 //            System.out.println(error);
 //         }
-			return "MAIN/join";
-		}
+         return "MAIN/join";
+      }
+      
+      System.out.println("================JoinUserDto : " + dto);
+     
+      int res = joinUserBiz.insertUser(dto);
+      
+      if(res > 0) {
+         logger.info("회원가입 성공");
+         return "MAIN/login";
+         
+      }else {
+         logger.info("회원가입 실패");
+         model.addAttribute("joinuserDto", dto);
+         return "MAIN/join";
+      }
+      
+   }
+   
+   
+   
+   
+   
+   
+   // login
+   @RequestMapping(value = "/USER_login.do")
+   public String login() {
+      logger.info("login page");
+      
+      return "MAIN/login";
+   }
+   
+   @RequestMapping(value = "/USER_loginAjax.do", method = RequestMethod.POST)
+   @ResponseBody
+   public Map<String, Boolean> loginAjax(HttpSession session, @RequestBody JoinUserDto dto){
+      
+      logger.info("login ajax로 넘겨주는 controller : " + dto);
+      
+      JoinUserDto loginDto = joinUserBiz.login(dto);
+      
+      boolean check = false;
+      
+      if(loginDto != null) {
+         session.setAttribute("login", loginDto);
+         check = true;
+      }
+      
+      Map<String, Boolean> map = new HashMap<String, Boolean>();
+      map.put("check", check);
+      
+      return map;
+      
+   }
+   
+  //sns로그인
+  
+   @RequestMapping (value = "/USER_snslogin.do", method = RequestMethod.POST)
+   public String snslogin(HttpSession session, JoinUserDto dto) {
+	   logger.info("sns로그인");
+	   logger.info("=========dto: "+ dto.getJoinemail());
 
-		System.out.println("================JoinUserDto : " + dto);
-
-		int res = joinUserBiz.insertUser(dto);
-
-		if (res > 0) {
-			logger.info("회원가입 성공");
-			return "MAIN/login";
-
-		} else {
-			logger.info("회원가입 실패");
-			model.addAttribute("joinuserDto", dto);
-			return "MAIN/join";
-		}
-
-	}
-
-	// login
-	@RequestMapping(value = "/USER_login.do")
-	public String login() {
-		logger.info("login page");
-
-		return "MAIN/login";
-	}
-
-	@RequestMapping(value = "/USER_loginAjax.do", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Boolean> loginAjax(HttpSession session, @RequestBody JoinUserDto dto) {
-
-		logger.info("login ajax로 넘겨주는 controller : " + dto);
-
-		JoinUserDto loginDto = joinUserBiz.login(dto);
-
-		boolean check = false;
-
-		if (loginDto != null) {
-			session.setAttribute("login", loginDto);
-			check = true;
-		}
-
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		map.put("check", check);
-
-		return map;
-
-	}
-
-	// 아이디비밀번호찾기(비밀번호 수정)
-	@RequestMapping(value = "/USER_changepw.do", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded")
-	public String findidpw(Model model, JoinUserDto dto) {
-		logger.info("아이디 비밀번호 찾기" + dto);
-		int res = joinUserBiz.updateJoinuser(dto);
-
-		if (res > 0) {
-			logger.info("비밀번호 변경 성공");
-			return "MAIN/login";
-		} else {
-			logger.info("비밀번호 변경 실패");
-			model.addAttribute("joinuserDto", dto);
-			return "MAIN/login";
-		}
-
-	}
-
-	// 로그아웃
-	@RequestMapping(value = "/USER_logout.do", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
-		logger.info("logout");
-
-		session.invalidate();
-
-		return "MAIN/main";
-	}
-
-	@RequestMapping(value = "/USER_emailcheckpopup.do", method = RequestMethod.GET)
-	public String emailpopup() {
-		logger.info("회원가입 이메일 인증 팝업!");
-		return "MAIN/emailChk";
-	}
-
-	@RequestMapping(value = "/USER_emailcheckpopup_login.do", method = RequestMethod.GET)
-	public String emailpopup_login() {
-		logger.info("아이디찾기 이메일 인증 팝업!");
-		return "MAIN/emailChk_login";
-	}
-
-	// 이메일 전송 화면으로
-	@RequestMapping(value = "/USER_mailSend.do", method = RequestMethod.POST)
-	public String mailSend(Model model, String EmailName) {
-		logger.info("mailSend");
-
-		model.addAttribute("EmailName", EmailName);
-		return "MAIN/mailSend";
-	}
+	   JoinUserDto onelogin = joinUserBiz.selectOne(dto.getJoinemail());
+	   logger.info("******onelogin: "+onelogin);
+	   
+	   JoinUserDto snslogin = joinUserBiz.login(dto);
+	   logger.info("login:"+snslogin);
+	   
+	   if(onelogin != null ) {
+		   session.setAttribute("snslogin", snslogin);
+		   return "MAIN/main";
+		   
+	   }else  {
+		   int snsjoin = joinUserBiz.insertUser(dto);
+		   if(snsjoin > 0) {
+			   session.setAttribute("snslogin", snslogin);
+			   return "MAIN/main";
+		   }else {
+			   return "MAIN/login";
+		   }
+	   }
 	
+	
+	   
+	 
+   }
+   
+   
+   
+   //아이디비밀번호찾기(비밀번호 수정)
+   @RequestMapping(value = "/USER_changepw.do", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded")
+   public String findidpw(Model model, JoinUserDto dto) {
+	   logger.info("아이디 비밀번호 찾기"+ dto);
+	   int res = joinUserBiz.updateJoinuser(dto);
+	   
+	   if(res >0) {
+		   logger.info("비밀번호 변경 성공");
+	         return "MAIN/login";
+	   }else {
+		   logger.info("비밀번호 변경 실패");
+		   model.addAttribute("joinuserDto", dto);
+		   return "MAIN/login";
+	   }
+	   
+	   
+   }
+   
+   
+   //로그아웃
+   @RequestMapping(value = "/USER_logout.do", method = RequestMethod.GET)
+   public String logout(HttpSession session) {
+      logger.info("logout");
+      
+      session.invalidate();
+      
+      return "MAIN/main";
+   }
+   
+   
+   @RequestMapping(value = "/USER_emailcheckpopup.do", method = RequestMethod.GET)
+   public String emailpopup() {
+      logger.info("회원가입 이메일 인증 팝업!");
+      return "MAIN/emailChk";
+   }
+   
+   @RequestMapping(value = "/USER_emailcheckpopup_login.do", method = RequestMethod.GET)
+   public String emailpopup_login() {
+      logger.info("아이디찾기 이메일 인증 팝업!");
+      return "MAIN/emailChk_login";
+   }
+   
+   
+   //이메일 전송 화면으로
+   @RequestMapping(value="/USER_mailSend.do", method=RequestMethod.POST)
+   public String mailSend(Model model, String EmailName) {
+      logger.info("mailSend");
+    
+      model.addAttribute("EmailName",EmailName);
+      return "MAIN/mailSend";
+      }
 	/*--------------------------------- 형권, 박하 : 게시판 ----------------------------------------------------------------------------------------------------*/
 
 	// 글목록(페이징기능) , 이력서(자기소개서) 게시판
@@ -374,6 +454,32 @@ public class UserController {
 			e.printStackTrace();
 		}
 
+	
 		return down;
+	}
+
+	/*------------------------ 박하 : 취업센터 --------------------------*/
+	// 자기소개서 작성 페이지
+	@RequestMapping(value = "USER_userCVwriteForm.do")
+	public String CVWriteForm() {
+		return "USER/userCVwrite";
+	}
+	
+	// 자기소개서 INSERT 
+	@RequestMapping(value = "USER_userCVinsert.do", method = RequestMethod.POST)
+	public String CVWriteInsert(HttpServletRequest request) {
+		//Map<String, String> map = new HashMap<String, String>();
+		String title = request.getParameter("title");
+		String subtitle = request.getParameter("subtitle");
+		String content = request.getParameter("content");
+		
+		List<String> list = new ArrayList<String>();
+		list.add(title);
+		list.add(subtitle);
+		list.add(content);
+		System.out.println(list);
+		
+	
+		return "USER/userCVwrite";
 	}
 }

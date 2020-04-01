@@ -18,5 +18,7 @@ public interface JoinUserDao {
 	JoinUserDto login(JoinUserDto dto);
 	
 	String checkemail (String joinemail);
+	
+	String kakaoLogin(String joinemail);
 
 }

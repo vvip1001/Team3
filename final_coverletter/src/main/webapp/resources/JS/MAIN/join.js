@@ -1,4 +1,6 @@
 
+
+
 window.onload = function() {
 
 	// 비밀번호 일치 여부
