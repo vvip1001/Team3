@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.job.coverletter.model.joinUser.biz.JoinUserBiz;
 import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 import com.job.coverletter.model.school.dto.SchoolDto;
+import com.job.coverletter.model.total.biz.TotalBiz;
 import com.job.coverletter.model.total.dto.TotalDto;
 
 @Controller
@@ -36,6 +37,9 @@ public class UserController {
    
    @Autowired
    private JoinUserBiz joinUserBiz;
+   
+   @Autowired
+   private TotalBiz totalBiz;
    
    //마이페이지
    @RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
@@ -192,25 +196,32 @@ public class UserController {
       }
    @RequestMapping(value = "/USER_detailRes.do", method = RequestMethod.POST)
    public String personal_insert(Model model, @ModelAttribute("totalDto") @Valid TotalDto dto, BindingResult result) {
-//	   System.out.println("입학년월:"+admission);
-//	   System.out.println("이름:"+joinname);
-//	   System.out.println("생년월일:"+joinbirth);
-//	   System.out.println("성별:"+joinsex);
-//	   System.out.println("이메일:"+joinemail);
-//	   System.out.println("병역:"+mililtary);
-//	   System.out.println("학교이름:"+schoolname);
-//	   System.out.println("전공:"+major);
-//	   System.out.println("학력구분:"+career);
-	   //, String admission, String joinname, String joinbirth, String joinsex, String joinemail, String mililtary, String schoolname, String major, String career,  
 	   if(result.hasErrors()) {
-	         
-         //유효성오류 찍어보기 
+		   logger.info("유효성검사 실패");
+		   logger.info(dto.getJoinname());
+		   logger.info(dto.getCertificate());
+		   logger.info(dto.getRegdate());
+		   List<ObjectError> list = result.getAllErrors();
+			for( ObjectError error : list ) {
+				System.out.println(error);
+			}
      
          return "USER/userDetail";
+      }else {
+    	  logger.info("유효성 검사 통과");
+    	  logger.info(dto.getCertificate());
+    	  logger.info(dto.getRegdate());
+    	  int res = totalBiz.insert(dto);
+    	  System.out.println(res);
+    	  if(res>0) {
+    		 
+    		  return "redirect:index.jsp";
+    	  }else {
+    		  return "USER/userDetail";
+    	  }
       }
-	   
-	return "redirect: index.jsp";
    }
+     
    
    @RequestMapping(value = "Address.do")
    public String address() {

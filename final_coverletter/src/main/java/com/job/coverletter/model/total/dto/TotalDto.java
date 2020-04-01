@@ -1,10 +1,11 @@
 package com.job.coverletter.model.total.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class TotalDto {
 	// ----------------------JoinUserDto--------------------------
@@ -14,7 +15,7 @@ public class TotalDto {
 
 	 // 이메일(ID) 
     @NotEmpty(message = "이메일을 입력해주세요")
-    @Email(message = "이메일 형식이 틀렸습니다.")
+    @Email(message = "이메일 형식이 아닙니다.")
     private String joinemail;
 
     // 이름 
@@ -27,19 +28,18 @@ public class TotalDto {
     private String joinpw;
 
     // 생년월일 
-    @Pattern(regexp = "^[0-9]*$", message = "형식을 맞춰주세요")
-    @Length(min = 6, max = 6, message = "형식을 맞춰주세요")
+    @Pattern(regexp = "^[0-9]{6}$", message = "생년월일을 입력해주세요.")
     private String joinbirth;
 
     // 성별 
-    @NotEmpty(message = "성별을 선택해주세요")
+    @Pattern(regexp = "^(남성)|(여성)|(중성)$", message = "성별을 선택해주세요.")
     private String joinsex;
 
     // 사진 
     private String photo;
 
     // 병역 
-    @Pattern(regexp = "^(미필)|(군필)|(면제)$", message = " 병역을 선택해주세요.")
+    @Pattern(regexp = "^(미필)|(군필)|(면제)$", message = "병역을 선택해주세요.")
     private String mililtary;
 
     // 전화번호 
@@ -65,12 +65,31 @@ public class TotalDto {
     private String category;
 
     // it기술 IT
-    @NotEmpty(message = "기술을 입력해주세요")
-    private String itskill;
+    @NotEmpty(message = "1번째 기술을 입력해주세요.")
+    private String itskill1;
+    @NotEmpty(message = "2번째 기술을 입력해주세요.")
+    private String itskill2;
+    @NotEmpty(message = "3번째 기술을 입력해주세요.")
+    private String itskill3;
+    @NotEmpty(message = "4번째 기술을 입력해주세요.")
+    private String itskill4;
+    @NotEmpty(message = "5번째 기술을 입력해주세요.")
+    private String itskill5;
+    
+    
 
     // 점수 IT, 1~10
-    @Pattern(regexp = "[1-9]$|(10)$", message = "1~10점 까지 표시해주세요")
-    private String itscore;
+    @Pattern(regexp = "[0-9]$|(10)$", message = "1번째 기술의 점수를 표시해주세요")
+    private String itscore1;
+    @Pattern(regexp = "[0-9]$|(10)$", message = "2번째 기술의 점수를 표시해주세요")
+    private String itscore2;
+    @Pattern(regexp = "[0-9]$|(10)$", message = "3번째 기술의 점수를 표시해주세요")
+    private String itscore3;
+    @Pattern(regexp = "[0-9]$|(10)$", message = "4번째 기술의 점수를 표시해주세요")
+    private String itscore4;
+    @Pattern(regexp = "[0-9]$|(10)$", message = "5번째 기술의 점수를 표시해주세요")
+    private String itscore5;
+    
 
     // 자격증명(n급) 자격증
     private String certificate;
@@ -79,19 +98,24 @@ public class TotalDto {
     private String languagename;
 
     // 공인시험점수 어학점수
-    private int languagescore;
-
+    private String languagescore;
+    
+    // 취득일자 어학점수
+    private String languageregdate;
+    
     // 공모전명 공모전
     private String contest;
 
     // 수상이력 공모전
     private String prize;
 
-    // 발행기관 시행기관, 발행기관
+    //발행기관 자격증
     private String organization;
+    
+    //시행기관 공모전참여이력
+    private String Startorganization;
 
-    // 모든 취득일자 it는 제외, yyyy/mm/dd
-    @Pattern(regexp = "^(([0-9][0-9])[년]([0-1][0-9])[월]([0-1][0-9])[일]$)", message = "yy년mm월dd일 형태로 작성해주세요.")
+    // 모든 취득일자 it는 제외, 자격증
     private String regdate;
 
 	// ----------------------SchoolDto--------------------------
@@ -99,28 +123,22 @@ public class TotalDto {
     // SCHOOLSEQ 
     private int schoolseq;
 
-    // 학력구분(학위)
-    @Pattern(regexp = "^(대졸)|(전문대졸)|(고졸)$", message = "학력구분을 선택해주세요")
+    @Pattern(regexp ="^(대졸)|(전문대졸)|(고졸)$", message = "학력구분을 선택해주세요.")
     private String career;
 
-    // 학교명 
-    @NotEmpty(message = "학교명을 입력해주세요")
+    @NotEmpty(message = "학교이름을 입력해주세요.")
     private String schoolname;
-
-    // 입학년월
-    @Pattern(regexp = "^(([0-9][0-9])[년]([0-1][0-9])[월]([0-3][0-9])[일]$)", message = "yy년mm월dd일 형태로 작성해주세요.")
+    
+    @Pattern(regexp = "^([0-9][0-9])[.]([0][1-9])|([0-9][0-9])[.]([1][0-2])$", message = "YY.MM 형식으로 작성해주세요")
     private String admission;
     
-    // 졸업년월 재학중, 중퇴...
-    @Pattern(regexp = "^(([0-9][0-9])[년]([0-1][0-9])[월]([0-3][0-9])[일]$)", message = "yy년mm월dd일 형태로 작성해주세요.")
+    @Pattern(regexp = "^([0-9][0-9])[.]([0][1-9])|([0-9][0-9])[.]([1][0-2])$", message = "YY.MM 형식으로 작성해주세요")
     private String graduate;
 
-    // 전공명 
-    @NotEmpty(message = "값을 입력해주세요")
+    @NotEmpty(message = "전공을 입력해주세요.")
     private String major;
-
-    // 학점 4.0 / 3,5...
-    @Pattern(regexp = "^[1-3][.]\\d{1}|[4][.][0-5]{1}$", message = "4.5 형태로 작성해주세요")
+    
+    @Pattern(regexp = "^[1-3][.]\\d{1}?$|[4][.][0-5]{1}?$",message = "학점은 4.5 형태로 입력해주세요")
     private String grade;
 
  // ----------------------JoinUserDto--------------------------
@@ -261,20 +279,85 @@ public class TotalDto {
 		this.category = category;
 	}
 
-	public String getItskill() {
-		return itskill;
+	public String getItskill1() {
+		return itskill1;
 	}
 
-	public void setItskill(String itskill) {
-		this.itskill = itskill;
+	public void setItskill1(String itskill1) {
+		this.itskill1 = itskill1;
+	}
+	
+
+	public String getItskill2() {
+		return itskill2;
 	}
 
-	public String getItscore() {
-		return itscore;
+	public void setItskill2(String itskill2) {
+		this.itskill2 = itskill2;
 	}
 
-	public void setItscore(String itscore) {
-		this.itscore = itscore;
+	public String getItskill3() {
+		return itskill3;
+	}
+
+	public void setItskill3(String itskill3) {
+		this.itskill3 = itskill3;
+	}
+
+	public String getItskill4() {
+		return itskill4;
+	}
+
+	public void setItskill4(String itskill4) {
+		this.itskill4 = itskill4;
+	}
+
+	public String getItskill5() {
+		return itskill5;
+	}
+
+	public void setItskill5(String itskill5) {
+		this.itskill5 = itskill5;
+	}
+
+	public String getItscore1() {
+		return itscore1;
+	}
+
+	public void setItscore1(String itscore1) {
+		this.itscore1 = itscore1;
+	}
+	
+	public String getItscore2() {
+		return itscore2;
+	}
+
+	public void setItscore2(String itscore2) {
+		this.itscore2 = itscore2;
+	}
+
+	public String getItscore3() {
+		return itscore3;
+	}
+
+	public void setItscore3(String itscore3) {
+		this.itscore3 = itscore3;
+	}
+
+	public String getItscore4() {
+		return itscore4;
+	}
+
+	public void setItscore4(String itscore4) {
+		this.itscore4 = itscore4;
+	}
+
+	public String getItscore5() {
+		return itscore5;
+	}
+
+	public void setItscore5(String itscore5) {
+		this.itscore5 = itscore5;
 	}
 
 	public String getCertificate() {
@@ -293,12 +376,21 @@ public class TotalDto {
 		this.languagename = languagename;
 	}
 
-	public int getLanguagescore() {
+	public String getLanguagescore() {
 		return languagescore;
 	}
 
-	public void setLanguagescore(int languagescore) {
+	public void setLanguagescore(String languagescore) {
 		this.languagescore = languagescore;
+	}
+	
+
+	public String getLanguageregdate() {
+		return languageregdate;
+	}
+
+	public void setLanguageregdate(String languageregdate) {
+		this.languageregdate = languageregdate;
 	}
 
 	public String getContest() {
@@ -315,6 +407,15 @@ public class TotalDto {
 
 	public void setPrize(String prize) {
 		this.prize = prize;
+	}
+	
+
+	public String getStartorganization() {
+		return Startorganization;
+	}
+
+	public void setStartorganization(String startorganization) {
+		Startorganization = startorganization;
 	}
 
 	public String getOrganization() {
@@ -333,19 +434,31 @@ public class TotalDto {
 		this.regdate = regdate;
 	}
 
-	public TotalDto(String joinemail, int skillseq, String category, String itskill, String itscore, String certificate, String languagename, int languagescore, String contest,
-			String prize, String organization,String regdate) {
+	public TotalDto(String joinemail, int skillseq, String category, String itskill1, String itskill2, String itskill3, String itskill4, String itskill5, String itscore1,String itscore2,String itscore3,String itscore4,String itscore5, String certificate, String languagename, String languagescore,String languageregdate, String contest,
+			String prize, String organization,String startorganization,String regdate) {
 		this.joinemail = joinemail;
 		this.skillseq = skillseq;
 		this.category = category;
-		this.itskill = itskill;
-		this.itscore = itscore;
+		this.itskill1 = itskill1;
+		this.itskill2 = itskill2;
+		this.itskill3 = itskill3;
+		this.itskill4 = itskill4;
+		this.itskill5 = itskill5;
+		
+		this.itscore1 = itscore1;
+		this.itscore2 = itscore2;
+		this.itscore3 = itscore3;
+		this.itscore4 = itscore4;
+		this.itscore5 = itscore5;
+		
 		this.certificate = certificate;
 		this.languagename = languagename;
 		this.languagescore = languagescore;
+		this.languageregdate = languageregdate;
 		this.contest = contest;
 		this.prize = prize;
 		this.organization = organization;
+		this.Startorganization = startorganization;
 		this.regdate = regdate;
 	}
 
@@ -418,25 +531,5 @@ public class TotalDto {
 		this.grade = grade;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-    
-    
-	
-    
-    
-    
-
 
 }

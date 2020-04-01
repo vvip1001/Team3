@@ -10,7 +10,6 @@
 		<typeAlias type="com.job.coverletter.model.school.dto.SchoolDto" alias="schoolDto"/>
 		<typeAlias type="com.job.coverletter.model.skill.dto.SkillDto" alias="skillDto"/>
 		<typeAlias type="com.job.coverletter.model.supportPay.dto.SupportPayDto" alias="supportPayDto"/>
-		<!-- join된 Dto 추가 -->
 		<typeAlias type="com.job.coverletter.model.total.dto.TotalDto" alias="totalDto"/>
 	</typeAliases>
 

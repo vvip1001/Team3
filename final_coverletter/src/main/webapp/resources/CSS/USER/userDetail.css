@@ -26,7 +26,7 @@
 	color: red;
 }
 #check3 {
-	margin-left: 14%;
+	margin-left: 9%;
 	float: left;
 	color: red;
 }
@@ -56,12 +56,12 @@
 	color: red;
 }
 #check8 {
-	margin-left: 4%;
+	margin-left: 2%;
 	float: left;
 	color: red;
 }
 #check9 {
-	margin-left: 13%;
+	margin-left: 12%;
 	float: left;
 	color: red;
 }
@@ -71,22 +71,71 @@
 	color: red;
 }
 #check11 {
-	margin-left: 4%;
+	margin-left: 8%;
 	float: left;
 	color: red;
 }
 #check12 {
-	margin-left: 10%;
+	margin-left: 20%;
 	float: left;
 	color: red;
 }
 #check13 {
-	margin-left: 10%;
+	margin-top: -1%;
+	margin-right: 13%;
+	margin-left: 66%;
 	float: left;
 	color: red;
 }
-
-
+#check14 {
+	margin-bottom: 1%;
+	margin-top: -1%;
+	margin-left: 1%;
+	float: left;
+	color: red;
+}
+#check15 {
+	margin-bottom: 1%;
+	margin-top: -1%;
+	margin-left: 1%;
+	float: left;
+	color: red;
+}
+#check16 {
+	margin-bottom: 1%;
+	margin-top: -1%;
+	margin-left: 1%;
+	float: left;
+	color: red;
+}
+#check17 {
+	margin-bottom: 1%;
+	margin-top: -1%;
+	margin-left: 1%;
+	float: left;
+	color: red;
+}
+#check18 {
+	margin-top: -1%;
+	margin-left: 1%;
+	float: left;
+	color: red;
+}
+#check19 {
+	color: red;
+}
+#check20 {
+	color: red;
+}
+#check21 {
+	color: red;
+}
+#check22 {
+	color: red;
+}
+#check23 {
+	color: red;
+}
 #blank{
 	width: 4%;
 	height: auto;
@@ -237,7 +286,7 @@ span ins{
 	display: grid !important;
 }
 div#itdiv{
-	width: 90%;
+	width: 100%;
 	margin-left: 0.3%
 }
 .container1{

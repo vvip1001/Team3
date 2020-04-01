@@ -16,6 +16,7 @@
 	}
 
 </script>
+
 <% 
 	request.setCharacterEncoding("UTF-8");  //한글깨지면 주석제거
 	String inputYn = request.getParameter("inputYn"); 
@@ -52,6 +53,13 @@
 //opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("주소입력화면 소스"도 동일하게 적용시켜야 합니다.)
 //document.domain = "abc.go.kr";
 
+function AddressAdd(roadFullAddr) {
+		opener.window.document.getElementById('bigbig').value =roadFullAddr;
+		window.close();
+		
+		
+	}
+	
 function init(){
 	var url = location.href;
 	var confmKey = "devU01TX0FVVEgyMDIwMDMyNDEyMDMzODEwOTU3Njg=";
@@ -67,9 +75,9 @@ function init(){
 		document.form.submit();
 	}else{
 		/** API 서비스 제공항목 확대 (2017.02) **/
-		opener.jusoCallBack("<%=roadFullAddr%>");
-		
-		window.close();
+		AddressAdd('<%=roadFullAddr%>');
+<%-- 		opener.jusoCallBack("<%=roadFullAddr%>"); --%>
+// 		window.close();
 	}
 	
 }
@@ -79,7 +87,6 @@ function init(){
 		<input type="hidden" id="confmKey" name="confmKey" value=""/>
 		<input type="hidden" id="returnUrl" name="returnUrl" value=""/>
 		<input type="hidden" id="resultType" name="resultType" value=""/>
-		<input type="button" onclick ="AddressAdd('<%=roadFullAddr%>');" value="제출하기">
 	</form>
 </body>
 </html>
