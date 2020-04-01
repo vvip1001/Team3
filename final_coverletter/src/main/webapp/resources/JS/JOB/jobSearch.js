@@ -116,16 +116,14 @@ function companySearch(page, startPage, from, startFrom, range){
 	var totalmember =  document.getElementById("totalmember").value
 	var salary =  document.getElementById("salary").value
 
+	var keyWord = document.getElementById("search_company").value
+	
 	var jsonKey = {
 					  from : from,		// 다음 요청 시작번호
-					  target : target,
-					  enddate : enddate,
-					  totalmember : totalmember,
-					  salary : salary
+					  business : keyWord
 				   }
+	console.log(jsonKey)
 	
-	
-	var keyWord = document.getElementById("search_company").value
 	if(keyWord == ""){
 		alert("키워드를 입력하세요")
 	}else{

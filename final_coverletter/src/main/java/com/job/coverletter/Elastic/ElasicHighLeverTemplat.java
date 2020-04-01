@@ -54,6 +54,7 @@ public class ElasicHighLeverTemplat {
 		// DSL 쿼리문 적용(키에 대한 값 비어있음) 
 		request.setScript(getGETQueryJson(dto)); 
 		
+		System.out.println("쿼리 : " +getGETQueryJson(dto));
 		
 		// DSL 쿼리문 값 적용
 		Map<String, Object> scriptParams = new HashMap<>();
@@ -68,12 +69,13 @@ public class ElasicHighLeverTemplat {
 		}
 		request.setScriptParams(scriptParams); 
         
+		
 		try(RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost(host, port1, "http")))){
 			//request
 			//동기 실행
 			response = client.searchTemplate(request, RequestOptions.DEFAULT);
 			searchResponse = response.getResponse();
-			System.out.println(searchResponse);
+			System.out.println("결과: " + searchResponse);
 			//System.out.println(response.toString());
 			
 		} catch (IOException e) {
@@ -121,17 +123,17 @@ public class ElasicHighLeverTemplat {
 	}
 	
 	public static void main(String[] args) {
-	
-		ElasicHighLeverTemplat test = new ElasicHighLeverTemplat();
-		CompanyDto dto = new CompanyDto();
-		dto.setBusiness("개발자");
-		dto.setLanguages("java");
-		dto.setFrom("0");
-		
-		String a = test.getGETQueryJson(dto);
-		System.out.println(a);
-		
-		test.callSearchQuery(dto);
+//	
+//		ElasicHighLeverTemplat test = new ElasicHighLeverTemplat();
+//		CompanyDto dto = new CompanyDto();
+//		dto.setBusiness("개발자");
+//		dto.setLanguages("java");
+//		dto.setFrom("0");
+//		
+//		String a = test.getGETQueryJson(dto);
+//		System.out.println(a);
+//		
+//		test.callSearchQuery(dto);
 		
 		
 		//List<String> sortList = new ArrayList<String>();
