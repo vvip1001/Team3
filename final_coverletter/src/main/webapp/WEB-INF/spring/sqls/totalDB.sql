@@ -72,7 +72,11 @@ CREATE TABLE SKILL
     CONSTRAINT SKILL_PK PRIMARY KEY (SKILLSEQ)
 );
 
+INSERT INTO SKILL VALUES(SKILL_SEQ.NEXTVAL , 'USER@GMAIL.COM','언어','Jsp/Servlet',3,'뿅뿡','javascript',4,'서울개근콘서트공모전','으아아아악','은평부평천하태평','4020-03-02');
 
+SELECT * FROM SKILL;
+
+DELETE FROM SKILL WHERE ITSCORE = 1;
 --======================================================================================================
 --파일 업로드 다운로드 댓글 게시판
 
@@ -108,16 +112,11 @@ SELECT B.*
 			ORDER BY BOARDSEQ DESC
 
 --======================================================================================================
-<<<<<<< HEAD
 -- 자기소개서 
 DROP SEQUENCE TOTAL_SEQ;
 DROP SEQUENCE COVERLETTER_SEQ;
 DROP SEQUENCE PORTFOLIO_SEQ;
 
-=======
-DROP SEQUENCE COVERLETTER_SEQ;
-DROP SEQUENCE PORTFOLIO_SEQ;
->>>>>>> 953ffdcff20acadd499d57a5ed6ffff178c2868e
 DROP TABLE COVERLETTER;
 
 
@@ -129,8 +128,6 @@ CREATE SEQUENCE COVERLETTER_SEQ;
 
 -- 포폴 시퀀스
 CREATE SEQUENCE PORTFOLIO_SEQ;
-
-
 
 CREATE TABLE COVERLETTER
 (
@@ -149,9 +146,9 @@ CREATE TABLE COVERLETTER
 );
 
 
-INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'UESR@GMAIL.COMM', '자소서', COVERLETTER_SEQ.NEXTVAL, '자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '자소서', COVERLETTER_SEQ.NEXTVAL, '자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
 
-INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'UESR@GMAIL.COMM', '포폴', PORTFOLIO_SEQ.NEXTVAL, NULL, '제목:', NULL, NULL, SYSDATE, '파일')
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '포폴', PORTFOLIO_SEQ.NEXTVAL, NULL, '제목:', NULL, NULL, SYSDATE, '파일')
 
 
 
@@ -162,57 +159,43 @@ SELECT * FROM COVERLETTER;
 DROP SEQUENCE JOBCALENDAR_SEQ;
 DROP TABLE JOBCALENDAR;
 
-asssssss
 CREATE SEQUENCE JOBCALENDAR_SEQ;
 
 CREATE TABLE JOBCALENDAR
 (
-<<<<<<< HEAD
-    JOBCALENDARSEQ    NUMBER           NOT NULL, 	
-    JOINEMAIL         VARCHAR2(200)	   NOT NULL, 
-    COMPANYNAMESEQ	  NUMBER		   NOT NULL,	-- 회사테이블 프라이머리키
-    COMPANYNAME       VARCHAR2(20)     NOT NULL, 	-- 회사명
-    BUSINESS		  VARCHAR2(1000)   NOT NULL,	-- 채용제목
-    ENDDATE           VARCHAR2(20)     NOT NULL, 	-- 마감일
-    CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JABCALENDARSEQ)
-);
-
-
-
-
-=======
     JOBCALENDARSEQ     NUMBER          	   NOT NULL,    
     JOINEMAIL          VARCHAR2(200)       NOT NULL, 
-    COMPANYNAMESEQ     NUMBER         	   NOT NULL,   -- 회사테이블 프라이머리키
+    COMPANYNAMESEQ     NUMBER         	   NOT NULL,   	-- 회사테이블 프라이머리키
     COMPANYNAME        VARCHAR2(20)    	   NOT NULL,    -- 회사명
     BUSINESS       	   VARCHAR2(1000)	   NOT NULL,       -- 채용제목
     ENDDATE            VARCHAR2(20)  	   NOT NULL,    -- 마감일
     CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ)
 ); 
->>>>>>> 953ffdcff20acadd499d57a5ed6ffff178c2868e
+
 --=====================================================================================================================
 -- 후원 내역 테이블
 DROP SEQUENCE SUPPORTPAY_SEQ;
-DROP TABLE SUPPORTPAY_SEQ;
+DROP TABLE SUPPORTPAY;
 
 
 CREATE SEQUENCE SUPPORTPAY_SEQ;
 
-
 CREATE TABLE SUPPORTPAY
 (
-    SUPPORTPAYSEQ    NUMBER           NOT NULL, 
-    JOINEMAIL        VARCHAR2(200)    NOT NULL, 	-- 보낸사람 이메일
-    MONEY            VARCHAR2(100)    NOT NULL, 	-- 금액
-    DEPOSITOR        VARCHAR2(100)    NOT NULL, 	-- 예금주 
-    BANK             VARCHAR2(100)    NOT NULL,  	-- 은행
-    BANKNUMBER       VARCHAR2(100)    NOT NULL, 	-- 계좌번호
-    SUCCESSCORD      VARCHAR2(100)    NOT NULL, 	-- 거래성공 코드
-    TRADEDATE        VARCHAR2(20)     NOT NULL, 	-- 거래 일시
-    CONSTRAINT SUPPORTPAY_PK PRIMARY KEY (SUPPORTPAYSEQ)
+	TID 					 VARCHAR2(200)    NOT NULL,	-- 결제 고유 번호. 결제요청 API 응답에 오는 값과 동일해야 함
+	CID 					 VARCHAR2(200)    NOT NULL,	-- 가맹점 코드. 결제준비 API에서 요청한 값과 일치해야 함	
+    PARTNER_ORDER_ID    	 VARCHAR2(200)    NOT NULL, -- 가맹점 주문번호	
+    PARTNER_USER_ID        	 VARCHAR2(200)    NOT NULL, -- 가맹점 회원 id	
+    PAYMENT_METHOD_TYPE      VARCHAR2(100)    NOT NULL, -- 결제 수단. CARD, MONEY 중 하나	
+    AMOUNT_TOTAL             VARCHAR2(100)    NOT NULL, -- 총 결제 금액
+    AMOUNT_TAX_FREE     	 VARCHAR2(100)    NOT NULL, -- 결제 부과세 
+    ITEM_NAME    			 VARCHAR2(100)    NOT NULL, -- 상품 이름. 최대 100자	
+    QUANTITY     			 VARCHAR2(100)    NOT NULL, -- 후원금액
+    CREATED_AT				 DATE	  		  NOT NULL,	-- 결제 준비 요청 시각	
+    CONSTRAINT TID PRIMARY KEY (TID)
 );
 
-
+SELECT * FROM SUPPORTPAY;
 --========================================================================================================================
 -- a : 채용중인 정보 페이지에서 가져옴
 -- a-b : 채용분야에서 url타고 들어가서 '채용상세' 가져왔음
@@ -266,4 +249,3 @@ insert into COMPANY values(COMPANYSEQ.NEXTVAL , 0, '회사이름', '이미지 ur
 							);
 
 SELECT * FROM COMPANY;
-

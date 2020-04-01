@@ -28,7 +28,7 @@
 				<i class="fas fa-file-alt fa-5x"></i>
 				<p>합격율을 높여주는</p>
 				<p>자소서 작성이 필요하다면?</p>
-				<button class="btn">자기소개서</button>
+				<button class="btn" onclick="location.href='USER_userCVwriteForm.do'">자기소개서</button>
 			</div>
 
 			<div class="col-sm-4">
@@ -41,7 +41,7 @@
 				<i class="fas fa-microphone fa-5x"></i>
 				<p>면접대비</p>
 				<p>말하기 연습이 필요하다면?</p>
-				<button class="btn">스피치연습</button>
+				<button class="btn" onclick="location.href='USER_speechForm.do'">스피치연습</button>
 			</div>
 		</div>
 	</div>
