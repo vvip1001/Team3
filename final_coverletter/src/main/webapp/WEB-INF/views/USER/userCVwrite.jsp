@@ -60,7 +60,7 @@
 				
 				<!-- 글자수 영역 -->
 				<div class="count-area">
-					<p class="count-text">공백 포함 <span class="count-span" id="cntArea-a"></span>자 / 공백 미포함 <span class="count-span" id="cntArea-b"> </span>자 </p>
+					<p class="count-text">공백 포함 <span class="count-span" id="cntArea-a">0</span>자 / 공백 미포함 <span class="count-span" id="cntArea-b">0</span>자 </p>
 				</div>
 				<!-- 글자수 영역 끝 -->
 				
@@ -79,7 +79,7 @@
 							<div class="cv-spell"></div>
 						</fieldset>
 						
-						<button class="btn cv-btn" type="button">맞춤법검사</button>
+						<button class="btn cv-btn" type="button" onclick="spellCheck(this);">맞춤법검사</button>
 					</div>
 				</div>
 			</div>

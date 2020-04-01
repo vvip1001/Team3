@@ -7,11 +7,11 @@ function add() {
 	// 마지막 cv-container에 추가
 	lastCVcontainer.after(cloneElements);
 
-	// 소제목 영역, 작성영역 clear
+	// CLONE : 소제목 영역, 작성영역 clear
 	cloneElements.find('input[type=text]').val('');
 	cloneElements.find('textarea').val('');
-	cloneElements.find('#cntArea-a').text('');
-	cloneElements.find('#cntArea-b').text('');
+	cloneElements.find('#cntArea-a').text('0');
+	cloneElements.find('#cntArea-b').text('0');
 }
 
 /*---------- cv-container 삭제 : remove func ----------*/
@@ -39,4 +39,31 @@ function contentCnt(textarea) {
 
 }
 
-/*---------- 맞춤법 검사 : spell func ----------*/
+/*---------- 맞춤법 검사 : spellCheck func ----------*/
+function spellCheck(btn) {
+	// 보낼 데이터 (맞춤법 검사할 데이터)
+	var thisElement = btn;
+	var parent = $(thisElement).parents('.cv-container');
+	var ta = $(parent).find('textarea');
+	
+	// node server로 보내기
+	$.ajax({
+		 type: 'post',
+	     url: 'http://127.0.0.1:3000/',
+	     data: ta.val(),
+	     dataType: 'json',
+	     async: false,
+	     success:function(data){
+	     	 
+	    	 
+	     },
+	     error:function(msg){
+	         alert('통신실패');
+	         console.log(msg);
+	      }
+		
+	});
+};
+
+
+
