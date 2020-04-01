@@ -25,9 +25,9 @@ public class JoinUserBizImpl implements JoinUserBiz {
 	}
 
 	@Override
-	public int updateJoinuser(JoinUserDto joinuser) {
+	public int updateJoinuser(JoinUserDto dto) {
 
-		return joinuserdao.updateJoinuser(joinuser);
+		return joinuserdao.updateJoinuser(dto);
 	}
 
 	@Override
@@ -47,5 +47,22 @@ public class JoinUserBizImpl implements JoinUserBiz {
 	public String checkemail(String joinemail) {
 		return joinuserdao.checkemail(joinemail);
 	}
+
+	@Override
+	public JoinUserDto kakaoLogin(JoinUserDto dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	@Override
+//	public JoinUserDto kakaoLogin(JoinUserDto dto) {
+//		
+////		if(joinemail != joinemail) {
+////			return joinuserdao.kakaoLogin(dto);
+////		}else if
+////		
+//		
+//		return joinuserdao.kakaoLogin(dto);
+//	}
 
 }

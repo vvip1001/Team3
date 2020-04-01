@@ -237,34 +237,45 @@
 			<version>2.8.5</version>
 		</dependency>
 
-
-
-
-		<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
-		<!-- 자바 객체 >> json 매핑 -->
+			<!-- 4버전부터 사용불가 -->	
+ 			<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl --> 
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.codehaus.jackson</groupId> -->
+<!-- 		    <artifactId>jackson-core-asl</artifactId> -->
+<!-- 		    <version>1.9.13</version> -->
+<!-- 		</dependency> -->
+		
+		
+			<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl --> 
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.codehaus.jackson</groupId> -->
+<!-- 		    <artifactId>jackson-mapper-asl</artifactId> -->
+<!-- 		    <version>1.9.13</version> -->
+<!-- 		</dependency> -->
+	
+	<!-- 5.x.x 버전부터 해당 jackson 사용 -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.13</version>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.10.3</version>
 		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.10.3</version>
 		</dependency>
+		
+		
+	   <!-- 유효성검사 어노테이션 : "https://otrodevym.tistory.com/entry/Spring-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC" 참고  -->		
 
-
-		<!-- 유효성검사 어노테이션 : "https://otrodevym.tistory.com/entry/Spring-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC" 
-			참고 -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.2.4.Final</version>
 		</dependency>
-
 
 
 
@@ -353,13 +364,12 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.3</version>
 		</dependency>
-
-
-		<!-- Elasticsearch 템플릿 -->
+	
+		<!-- Elasticsearch 템플릿  고수준방식-->
 		<dependency>
-			<groupId>org.elasticsearch.client</groupId>
-			<artifactId>elasticsearch-rest-client</artifactId>
-			<version>7.6.1</version>
+	    <groupId>org.elasticsearch.client</groupId>
+		    <artifactId>elasticsearch-rest-high-level-client</artifactId>
+		    <version>7.6.1</version>
 		</dependency>
 
 
@@ -409,41 +419,7 @@
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
-
-			<!-- Elastic서치 충돌 방지 maven-shade-plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<relocations>
-								<relocation>
-									<pattern>org.apache.http</pattern>
-									<shadedPattern>hidden.org.apache.http</shadedPattern>
-								</relocation>
-								<relocation>
-									<pattern>org.apache.logging</pattern>
-									<shadedPattern>hidden.org.apache.logging</shadedPattern>
-								</relocation>
-								<relocation>
-									<pattern>org.apache.commons.codec</pattern>
-									<shadedPattern>hidden.org.apache.commons.codec</shadedPattern>
-								</relocation>
-								<relocation>
-									<pattern>org.apache.commons.logging</pattern>
-									<shadedPattern>hidden.org.apache.commons.logging</shadedPattern>
-								</relocation>
-							</relocations>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+		 </plugins>
+    </build>
+   
 </project>

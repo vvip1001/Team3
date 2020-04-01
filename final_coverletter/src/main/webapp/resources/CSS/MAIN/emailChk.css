@@ -1,0 +1,43 @@
+fieldset {
+
+   border: 2px solid #BDBDBD;
+   margin-bottom: 20px;
+}
+fieldset div { 
+   width:40%;
+   margin: 10% 30%;
+}
+legend {
+   text-align: center;
+   font-weight: bold;
+}
+input[type="text"], input[type="email"] {
+   width:100%;
+   height: 30px;
+   border:none;
+   border-bottom:2px solid #EAEAEA;
+   text-align: center;
+}
+input[type="button"], input[type="submit"]{
+   width: 100%; height:30px;
+   color:white;
+   border-radius: 5px;
+   background-color: #00bf6f;
+   margin-top: 20px;
+}
+#EmailCode{
+   margin-top: 20px;
+}
+#chk{
+   background-color: #fff;
+   border:2px solid #00bf6f;
+   color: #000;
+}
+
+#errormessage{
+	font-size: 10pt;
+	margin-bottom: 20px;
+}
+
+
+

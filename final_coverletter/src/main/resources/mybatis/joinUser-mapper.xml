@@ -27,24 +27,25 @@
  	</resultMap>
  	
  	<!--개인정보 -->
- 	<select id="loginuser" parameterType="string">
- 		SELECT * FROM JOINUSER WHERE USEREMAIL = #{useremail}
+ 	<select id="loginuser" parameterType="string" resultType="joinuserDto">
+ 		SELECT * FROM JOINUSER WHERE JOINEMAIL = #{joinemail}
  	</select>
  	
  	<!-- 회원가입 -->
- 	<insert id="joinuser" parameterType="joinuserDto">
+ 	<insert id="joinuser" parameterType="joinuserDto" >
  		INSERT INTO JOINUSER (JOINSEQ, JOINEMAIL, JOINNAME, JOINPW, JOINBIRTH, JOINSEX, SINGUP)
  		VALUES (JOIN_SEQ.NEXTVAL, #{joinemail},#{joinname},#{joinpw},#{joinbirth},#{joinsex},'Y') 
  	</insert>
 	
 	<!-- 정보수정 -->
 	<update id="updateuser" parameterType="joinuserDto">
-		UPDATE JOINUSER USERPW = #{userpw}
+		UPDATE JOINUSER SET JOINPW = #{joinpw}
+		WHERE JOINEMAIL = #{joinemail}
 	</update>
 	
 	<!-- 회원탈퇴 -->
 	<delete id="userdelete" >
-		DELETE JOINUSER WHERE USEREMAIL = #{useremail}
+		DELETE JOINUSER WHERE JOINEMAIL = #{joinemail}
 	</delete>
  
  	<!-- login -->

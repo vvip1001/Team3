@@ -1,0 +1,115 @@
+#item {
+	text-align: center;
+	margin-top: 5%;
+	margin-bottom: 4%;
+}
+
+th {
+	font-size: 20px;
+	width: 165px;
+}
+
+.PFtable {
+	margin-left: 20%;
+	margin-bottom: 5%;
+	width: 60%;
+	border-collapse: inherit;
+	border-spacing: 20px;
+	text-align: center;
+}
+
+.PFtable input {
+	display: table-cell;
+	vertical-align: middle;
+	height: 40px;
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+.PFtable textarea {
+	display: table-cell;
+	vertical-align: middle;
+	height: 40px;
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+
+.PFinfo {
+	display: table-cell;
+	width: fit-content;
+	height: fit-content;
+}
+
+hr{
+	border: 5px solid #BDBDBD;
+
+}
+
+#PFdetail {
+
+	margin: 10px;
+}
+
+#photo {
+	margin: 70px 10px 20px 40px;
+	width: 45%;
+	height: 300px;
+	float: left;
+	background-color: gray;
+}
+
+#function {
+	margin: 70px 10px 10px 10px;
+	width: 45%;
+	height: 300px;
+	float: left;
+	border: 1px solid #BDBDBD;
+	border-radius: 5px;
+	
+}
+
+#viewinfo {
+	margin: 10px 10px 20px 25px;
+	margin-top: 10px;
+	width: 95%;
+	height: 250px;
+	float: left;
+	border: 1px solid #BDBDBD; 
+	border-radius: 5px;
+}
+
+.le {
+	text-align: center;
+	font-weight: bold;
+	width: 20%;
+	border-bottom: none;
+}
+
+fieldset textarea{
+	width: 95%;
+	
+	border: 0;
+	margin: 10px;
+}
+
+#plus{
+	margin-top: 5%;
+	margin-left: 50%; 	
+	border: 0;
+	border-radius: 20%;
+}
+
+#create_pdf{
+	margin-left: 42%;
+	margin-top: 5%;
+	width: 20%;
+	height: 50px;
+	color: white;
+	font-size: 15pt;
+	background-color: #00bf6f; 
+	border-radius: 5px;
+	
+}

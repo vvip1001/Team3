@@ -1,0 +1,116 @@
+/*---------- 타이틀 영역 ----------*/
+h1 {
+	text-align: center !important;
+	margin: 4% 0% 4% 0% !important;
+	font-size: 36px !important;
+	font-weight: 700 !important;
+	cursor: default;
+}
+
+/*---------- 중간여백 영역 ----------*/
+#fake-div {
+	background-color: #ebe6e6;
+	height: 20px;
+}
+
+/*---------- 자소서 제목 영역 ----------*/
+#title-area {
+	height: 150px;
+}
+
+/*---------- 자소서 작성 영역 ----------*/
+#cv-area {
+	height: 600px;
+}
+
+#input-grp {
+	margin-top: 20px;
+}
+
+.col-md-2 {
+	width: 50% !important;
+}
+/* 맞춤법 검사 div */
+.count-area {
+	text-align: center;
+	margin: 1%;
+}
+
+.count-text {
+	font-size: 20px;
+}
+
+
+.count-span {
+	color: red;
+	font-weight: bold;
+}
+
+/* 작성, 검사 div */
+.cv-box {
+	border: 2px solid black;
+}
+
+/* '작성' & '검사' title */
+.legend {
+	text-align: center;
+	display: block;
+	width: 20%;
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 21px;
+	line-height: inherit;
+	color: #333;
+	border: 0;
+}
+
+/* 작성폼 */
+.textarea {
+	width: 100%;
+	height: 300px;
+	border: 0px;
+	resize: none;
+}
+
+/* 맞춤법 검사결과 */
+.cv-spell {
+	width: 100%;
+	height: 305px;
+	border: 0px;
+}
+
+/* 음성입력, 맞춤법검사 버튼 */
+.cv-btn {
+	text-align: center;
+	width: 100% !important;
+	height: 50px;
+}
+
+/*---------- cv-container 영역 추가/삭제 ----------*/
+/* 버튼영역 */
+.clone-btn-grp {
+	text-align: center;
+	margin-top: 20px;
+}
+
+/* 추가, 삭제 버튼 */
+.add-btn, .remove-btn {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: black;
+	z-index: 1;
+	color: white;
+	border: 1px;
+	margin-left: 10px;
+}
+
+/*---------- submit 영역 ----------*/
+.submit-area {
+	text-align: center;
+}
+
+.submit-area .btn:hover {
+	background-color: #00BF6F;
+	color: #fff !important;
+}

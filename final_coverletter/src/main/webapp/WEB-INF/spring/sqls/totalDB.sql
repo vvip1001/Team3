@@ -44,7 +44,7 @@ CREATE TABLE SCHOOL
     ADMISSION     VARCHAR2(20)     NOT NULL,  -- 입학년월
     GRADUATE      VARCHAR2(20)     NOT NULL,  -- 졸업년월 (재학중, 중퇴)
     MAJOR         VARCHAR2(100), 			  -- 전공명
-    GRADE         CHAR(4), 					  -- 학점
+    GRADE         CHAR(20), 					  -- 학점
     CONSTRAINT SCHOOL_PK PRIMARY KEY (SCHOOLSEQ)
 );
 
@@ -72,6 +72,11 @@ CREATE TABLE SKILL
     CONSTRAINT SKILL_PK PRIMARY KEY (SKILLSEQ)
 );
 
+INSERT INTO SKILL VALUES(SKILL_SEQ.NEXTVAL , 'USER@GMAIL.COM','언어','Jsp/Servlet',3,'뿅뿡','javascript',4,'서울개근콘서트공모전','으아아아악','은평부평천하태평','4020-03-02');
+
+SELECT * FROM SKILL;
+
+DELETE FROM SKILL WHERE ITSCORE = 1;
 --======================================================================================================
 --파일 업로드 다운로드 댓글 게시판
 
@@ -97,72 +102,100 @@ SELECT * FROM BOARD;
 
 DELETE FROM BOARD WHERE JOINEMAIL = 'mintparc@gmail.com';
 
+SELECT B.*
+		FROM (
+			SELECT A.*, ROW_NUMBER() OVER(ORDER BY BOARDSEQ DESC) AS RNUM
+			FROM BOARD A
+			WHERE GROUPSEQ = 1
+			) B	
+			WHERE RNUM BETWEEN  0 + 1 AND 3
+			ORDER BY BOARDSEQ DESC
+
 --======================================================================================================
 -- 자기소개서 
+DROP SEQUENCE TOTAL_SEQ;
 DROP SEQUENCE COVERLETTER_SEQ;
+DROP SEQUENCE PORTFOLIO_SEQ;
+
 DROP TABLE COVERLETTER;
 
 
+--전체 시퀀스
+CREATE SEQUENCE TOTAL_SEQ;
+
+-- 자소서 == 이력서 시퀀스
 CREATE SEQUENCE COVERLETTER_SEQ;
+
+-- 포폴 시퀀스
+CREATE SEQUENCE PORTFOLIO_SEQ;
 
 CREATE TABLE COVERLETTER
 (
-    COVERLETTERSEQ    NUMBER            NOT NULL, 	
+    TOTALSEQ	      NUMBER            NOT NULL,   -- 전체 시퀀스 	
     JOINEMAIL         VARCHAR2(200)     NOT NULL, 	-- 이메일
     CVCATEGORY		  VARCHAR2(30)		NOT NULL,	-- 카테고리
-    QUESTION          VARCHAR2(1000)	NOT NULL, 	-- 항목(질문)
+ 	GROPUSEQ		  NUMBER			NOT NULL, 	-- 자소서, 포폴용 각각의 시퀀스
+    QUESTION          VARCHAR2(1000), 				-- 항목(질문)
     TITLE             VARCHAR2(500)		NOT NULL, 	-- 제목
-    SUBTITLE          VARCHAR2(500)		NOT NULL,   -- 소제목(내용의 핵심 키워드)
-    CONTENT           VARCHAR2(3000)	NOT NULL,   -- 내용
+    SUBTITLE          VARCHAR2(500), 				-- 소제목(내용의 핵심 키워드)
+    CONTENT           VARCHAR2(3000),			    -- 내용
     REGDATE           DATE				NOT NULL,   -- 작성일
-    FILEPATH		  VARCHAR2(1000)	NOT NULL,
-    CONSTRAINT COVERLETTER_PK PRIMARY KEY (COVERLETTERSEQ)
+    FILEPATH		  VARCHAR2(1000),
+    CONSTRAINT COVERLETTER_PK PRIMARY KEY (TOTALSEQ),
+    CONSTRAINT COVERLETTER_CK01 CHECK (CVCATEGORY IN('자소서','포폴'))
 );
 
+
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '자소서', COVERLETTER_SEQ.NEXTVAL, '자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
+
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '포폴', PORTFOLIO_SEQ.NEXTVAL, NULL, '제목:', NULL, NULL, SYSDATE, '파일')
+
+
+
+SELECT * FROM COVERLETTER;
 
 --=====================================================================================================================
 -- 채용일정 캘린더
-DROP SEQUENCE JABCALENDAR_SEQ;
-DROP TABLE JABCALENDAR;
+DROP SEQUENCE JOBCALENDAR_SEQ;
+DROP TABLE JOBCALENDAR;
 
+CREATE SEQUENCE JOBCALENDAR_SEQ;
 
-CREATE SEQUENCE JABCALENDAR_SEQ;
-
-CREATE TABLE JABCALENDAR
+CREATE TABLE JOBCALENDAR
 (
-    JABCALENDARSEQ    NUMBER           NOT NULL, 	
-    JOINEMAIL         VARCHAR2(200)	   NOT NULL, 
-    COMPANYNAME       VARCHAR2(20)     NOT NULL, 	-- 회사명
-    ENDDATE           VARCHAR2(20)     NOT NULL, 	-- 마감일
-    CONSTRAINT JABCALENDAR_PK PRIMARY KEY (JABCALENDARSEQ)
-);
-
-
-
+    JOBCALENDARSEQ     NUMBER          	   NOT NULL,    
+    JOINEMAIL          VARCHAR2(200)       NOT NULL, 
+    COMPANYNAMESEQ     NUMBER         	   NOT NULL,   	-- 회사테이블 프라이머리키
+    COMPANYNAME        VARCHAR2(20)    	   NOT NULL,    -- 회사명
+    BUSINESS       	   VARCHAR2(1000)	   NOT NULL,       -- 채용제목
+    ENDDATE            VARCHAR2(20)  	   NOT NULL,    -- 마감일
+    CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ)
+); 
 
 --=====================================================================================================================
 -- 후원 내역 테이블
 DROP SEQUENCE SUPPORTPAY_SEQ;
-DROP TABLE SUPPORTPAY_SEQ;
+DROP TABLE SUPPORTPAY;
 
 
 CREATE SEQUENCE SUPPORTPAY_SEQ;
 
-
 CREATE TABLE SUPPORTPAY
 (
-    SUPPORTPAYSEQ    NUMBER           NOT NULL, 
-    JOINEMAIL        VARCHAR2(200)    NOT NULL, 	-- 보낸사람 이메일
-    MONEY            VARCHAR2(100)    NOT NULL, 	-- 금액
-    DEPOSITOR        VARCHAR2(100)    NOT NULL, 	-- 예금주 
-    BANK             VARCHAR2(100)    NOT NULL,  	-- 은행
-    BANKNUMBER       VARCHAR2(100)    NOT NULL, 	-- 계좌번호
-    SUCCESSCORD      VARCHAR2(100)    NOT NULL, 	-- 거래성공 코드
-    TRADEDATE        VARCHAR2(20)     NOT NULL, 	-- 거래 일시
-    CONSTRAINT SUPPORTPAY_PK PRIMARY KEY (SUPPORTPAYSEQ)
+	TID 					 VARCHAR2(200)    NOT NULL,	-- 결제 고유 번호. 결제요청 API 응답에 오는 값과 동일해야 함
+	CID 					 VARCHAR2(200)    NOT NULL,	-- 가맹점 코드. 결제준비 API에서 요청한 값과 일치해야 함	
+    PARTNER_ORDER_ID    	 VARCHAR2(200)    NOT NULL, -- 가맹점 주문번호	
+    PARTNER_USER_ID        	 VARCHAR2(200)    NOT NULL, -- 가맹점 회원 id	
+    PAYMENT_METHOD_TYPE      VARCHAR2(100)    NOT NULL, -- 결제 수단. CARD, MONEY 중 하나	
+    AMOUNT_TOTAL             VARCHAR2(100)    NOT NULL, -- 총 결제 금액
+    AMOUNT_TAX_FREE     	 VARCHAR2(100)    NOT NULL, -- 결제 부과세 
+    ITEM_NAME    			 VARCHAR2(100)    NOT NULL, -- 상품 이름. 최대 100자	
+    QUANTITY     			 VARCHAR2(100)    NOT NULL, -- 후원금액
+    CREATED_AT				 DATE	  		  NOT NULL,	-- 결제 준비 요청 시각	
+    CONSTRAINT TID PRIMARY KEY (TID)
 );
 
-
+SELECT * FROM SUPPORTPAY;
 --========================================================================================================================
 -- a : 채용중인 정보 페이지에서 가져옴
 -- a-b : 채용분야에서 url타고 들어가서 '채용상세' 가져왔음
@@ -171,10 +204,10 @@ CREATE TABLE SUPPORTPAY
 -- 기업정보 : 설립일, 구성원, 홈페이지, 사무실위치, 산업분야
 
 
-DROP SEQUENCE COMPANY_SEQ
-DROP TABLE COMPANY
+DROP SEQUENCE COMPANYSEQ;
+DROP TABLE COMPANY;
 
-CREATE SEQUENCE COMPANY_SEQ;
+CREATE SEQUENCE COMPANYSEQ;
 
 CREATE TABLE COMPANY
 (
@@ -188,9 +221,9 @@ CREATE TABLE COMPANY
     MAINBUSINESS	 VARCHAR2(3000)	   NOT NULL, 
     JOBDETAIL        CLOB			   NOT NULL, 
     SALARY           VARCHAR2(200)     NOT NULL, 
-    TARGET           VARCHAR2(20)      NOT NULL, 
+    TARGET           VARCHAR2(20)      NOT NULL,
     LANGUAGES        VARCHAR2(1000)    NOT NULL, 
-    ENDEATE          VARCHAR2(100)     NOT NULL, 
+    ENDDATE          VARCHAR2(100)     NOT NULL, 
     INTRO            VARCHAR2(3000)    NOT NULL, 
     -- 복지해택 : 개인장비, 자기개발, 식사시간, 연차휴가, 근무형태, 보험의료  
     GIVETOOL         VARCHAR2(1000)    NOT NULL, 
@@ -208,3 +241,11 @@ CREATE TABLE COMPANY
     CONSTRAINT COMPANY_PK PRIMARY KEY (COMPANYSEQ)
 )
 
+insert into COMPANY values(COMPANYSEQ.NEXTVAL , 0, '회사이름', '이미지 url', '한 줄 회사소개', 
+							'모집대상', '주요업무', '채용상세', '연봉', '경력', '언어특기', '마감일(yy/mm/dd)', 
+							'기업소개', 
+							'개인지급장비', '자기개발 지원', '식시시간', '연차/휴가', '근무형태', '보험의료',
+						    '설립일', '구성원(총원)', '홈페이지', '위치', '산업분야'
+							);
+
+SELECT * FROM COMPANY;

@@ -5,7 +5,7 @@
 		<typeAlias type="com.job.coverletter.model.board.dto.BoardDto" alias="boardDto"/>
 		<!-- companyDto 마리아DB로 이동 -->
 		<typeAlias type="com.job.coverletter.model.coverletter.dto.CoverLetterDto" alias="coverLetterDto"/>
-		<typeAlias type="com.job.coverletter.model.jabcalendar.dto.JabCalendarDto" alias="jabCalendarDto"/>
+		<typeAlias type="com.job.coverletter.model.jobcalendar.dto.JobCalendarDto" alias="jobCalendarDto"/>
 		<typeAlias type="com.job.coverletter.model.joinUser.dto.JoinUserDto" alias="joinuserDto"/>
 		<typeAlias type="com.job.coverletter.model.school.dto.SchoolDto" alias="schoolDto"/>
 		<typeAlias type="com.job.coverletter.model.skill.dto.SkillDto" alias="skillDto"/>
@@ -19,7 +19,7 @@
     <mapper resource="mybatis/board-mapper.xml"/>
     <!-- company-mapper.xml 마리아 DB로 이동 -->
     <mapper resource="mybatis/coverLetter-mapper.xml"/>
-    <mapper resource="mybatis/jabCalendar-mapper.xml"/>
+    <mapper resource="mybatis/jobCalendar-mapper.xml"/>
     <mapper resource="mybatis/joinUser-mapper.xml"/>
     <mapper resource="mybatis/School-mapper.xml"/>
     <mapper resource="mybatis/Skill-mapper.xml"/>

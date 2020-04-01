@@ -1,18 +1,17 @@
 
 function add_div(id){
-	/*var id = document.getElementById("default");
-	console.log(id.id);
-    var div = document.createElement('div');
-    var filed = id.nextSibling.nextSibling;
-    console.log(field.id);
-    div.innerHTML = document.getElementById(id.id).innerHTML;
-
-    document.getElementById(field.id).appendChild(div);
-    */
 	var field = document.getElementById(id);
+	console.log(field);
+	console.log("1");
 	var parent = field.parentNode;
+	console.log(parent);
+	console.log("2");
 	var bro = parent.previousSibling.previousSibling;
+	console.log(bro);
+	console.log("3");
 	var bro2 = parent.previousSibling.previousSibling.previousSibling.previousSibling;
+	console.log(bro2);
+	console.log("4");
 
 	var div = document.createElement('div');
 	
@@ -30,10 +29,12 @@ function remove_div(obj){
      tag.removeChild( tag.lastChild );
 }
 
+
 function Address() {
 	window.open("Address.do","","width=500px,height=500px");
 	
 }
+
 window.onload = function () {                
 
     var slider1 = new rSlider({

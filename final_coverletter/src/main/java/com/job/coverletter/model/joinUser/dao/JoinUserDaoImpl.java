@@ -23,7 +23,12 @@ public class JoinUserDaoImpl implements JoinUserDao {
 
 	@Override
 	public JoinUserDto selectOne(String joinemail) {
-		return sqlSession.selectOne("com.job.coverletter.JoinUser.loginuser",joinemail);
+		
+		JoinUserDto dto = new JoinUserDto();
+		
+		dto = sqlSession.selectOne("com.job.coverletter.JoinUser.loginuser",joinemail);
+		
+		return dto;
 	}
 
 	@Override
@@ -42,22 +47,36 @@ public class JoinUserDaoImpl implements JoinUserDao {
 	@Override
 	public JoinUserDto login(JoinUserDto dto) {
 		
-		return sqlSession.selectOne("com.job.coverletter.JoinUser.login", dto);
+		
+		dto = sqlSession.selectOne("com.job.coverletter.JoinUser.login", dto);
+		
+		return dto;
 	}
 
 	@Override
 	public String checkemail(String joinemail) {
 		JoinUserDto dto = sqlSession.selectOne("com.job.coverletter.JoinUser.checkEmail", joinemail);
-		System.out.println("============="+dto.getJoinemail());
-		String result =	null;
-		result = dto.getJoinemail();
 		
-		if(result == null) {
+		if(dto == null) {
 			return "사용가능";
 		} else {
 			return "중복";
 		}
 	}
+
+	@Override
+	public String kakaoLogin(String joinemail) {
+
+		JoinUserDto dto = sqlSession.selectOne("com.job.coverletter.JoinUser.checkEmail", joinemail);
+		
+		if(dto == null) {
+			return "회원가입";
+		}else {
+			return "가입";
+		}
+	}
+	
+	
 	
 	
 }

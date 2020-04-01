@@ -29,6 +29,7 @@ public class JoinUserDto {
     // 생년월일 
     @Pattern(regexp = "^[0-9]*$", message = "형식을 맞춰주세요")
     @Length(min = 8, max = 8, message = "형식을 맞춰주세요")
+
     private String joinbirth;
 
     // 성별 

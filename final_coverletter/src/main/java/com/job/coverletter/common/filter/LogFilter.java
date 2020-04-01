@@ -35,7 +35,8 @@ public class LogFilter implements Filter {
 
 		StringBuffer sb = new StringBuffer();
 		sb.append("url " + url + "\n")
-		  .append("queryString " + queryString + "\n");
+		  .append("queryString " + queryString + "\n")
+		  .append("content-type:" + req.getContentType() + "\n");
 		 
 		logger.info("LOG FILTER\n" + sb);
 		chain.doFilter(req, response);

@@ -22,13 +22,10 @@ function boardWrite() {
 	var title = $('#title').val();
 	var content = $('.summernote').val();
 	
-	var filepath = document.getElementById('fileupload').files[0].name;
-	console.log(filepath);
-	
 	// 글작성
 	if((title.trim() != '') && (content.trim() != '')){
-		form.commandName = 'BoardDto';
-		form.action = 'BOARD_boardWrite.do';
+		//form.commandName = 'BoardDto';
+		//form.action = 'BOARD_boardWrite.do';
 		form.submit();
 	} else if ((title.trim() == '') || (content.trim() == '')) {
 	// 유효성검사
