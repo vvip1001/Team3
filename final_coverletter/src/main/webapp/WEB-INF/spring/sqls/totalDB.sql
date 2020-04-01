@@ -150,6 +150,8 @@ INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '자소서',
 
 INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '포폴', PORTFOLIO_SEQ.NEXTVAL, NULL, '제목:', NULL, NULL, SYSDATE, '파일')
 
+
+
 SELECT * FROM COVERLETTER;
 
 --=====================================================================================================================
@@ -161,23 +163,6 @@ CREATE SEQUENCE JOBCALENDAR_SEQ;
 
 CREATE TABLE JOBCALENDAR
 (
-<<<<<<< HEAD
-    JOBCALENDARSEQ    NUMBER           NOT NULL, 	
-    JOINEMAIL         VARCHAR2(200)	   NOT NULL, 
-    COMPANYNAMESEQ	  NUMBER		   NOT NULL,	-- 회사테이블 프라이머리키
-    COMPANYNAME       VARCHAR2(20)     NOT NULL, 	-- 회사명
-    BUSINESS		  VARCHAR2(1000)   NOT NULL,	-- 채용제목
-    ENDDATE           VARCHAR2(20)     NOT NULL, 	-- 마감일
-    CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JABCALENDARSEQ)
-);
-
-SELECT * FROM JOBCALENDAR;
-
-
---=====================================================================================================================
--- 후원 내역 테이블
-DROP TABLE SUPPORTPAY;
-=======
     JOBCALENDARSEQ     NUMBER          	   NOT NULL,    
     JOINEMAIL          VARCHAR2(200)       NOT NULL, 
     COMPANYNAMESEQ     NUMBER         	   NOT NULL,   	-- 회사테이블 프라이머리키
@@ -194,8 +179,6 @@ DROP TABLE SUPPORTPAY;
 
 
 CREATE SEQUENCE SUPPORTPAY_SEQ;
-
->>>>>>> 5e5c25aa0b4f469495ca95f7cdaa3675002c8d61
 
 CREATE TABLE SUPPORTPAY
 (
