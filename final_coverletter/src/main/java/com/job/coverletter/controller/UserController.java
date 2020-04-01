@@ -52,7 +52,7 @@ public class UserController {
 	private JobCalendarBiz jobCalendarBiz;
 
 	String cvcategory = "";
-	String joinemail = "UESR@GMAIL.COMM";
+	String joinemail = "USER@GMAIL.COM";
 
 	@Autowired
 	private CoverLetterBiz coverletterBiz;
@@ -67,6 +67,25 @@ public class UserController {
 	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
 	public String userMain(Model model) {
 		logger.info("userMain go");
+		
+		CoverLetterDto cvdto = new CoverLetterDto();
+		cvdto.setCvcategory("자소서");
+		cvdto.setJoinemail(joinemail);
+		int cvlist = coverletterBiz.boardCVListCount(cvdto);
+		System.out.println("cvlist : "+cvlist);
+		CoverLetterDto pfdto = new CoverLetterDto();
+		pfdto.setCvcategory("포폴");
+		pfdto.setJoinemail(joinemail);
+		int pflist = coverletterBiz.boardPFListCount(pfdto);
+		System.out.println("pflist : "+pflist);
+		JobCalendarDto jbdto = new JobCalendarDto();
+		jbdto.setJoinemail(joinemail);
+		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
+		System.out.println("jblist : "+jblist);
+		
+		model.addAttribute("cvlist",cvlist);
+		model.addAttribute("pflist",pflist);
+		model.addAttribute("jblist",jblist);
 
 		// IT역량 차트
 		JSONArray itSkill = skillBiz.selectItSkill();

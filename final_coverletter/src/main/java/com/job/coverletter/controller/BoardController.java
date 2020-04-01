@@ -49,7 +49,6 @@ public class BoardController {
 
 	// 글목록(페이징기능)
 	@RequestMapping(value = "/BOARD_boardList.do", method = RequestMethod.GET)
-
 	public String boardList(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue = "1") int curPage,
 			HttpServletRequest request, Model model) {
 
@@ -81,7 +80,6 @@ public class BoardController {
 	public String boardWrite(@ModelAttribute("BoardDto") BoardDto dto, HttpServletRequest request) {
 
 		MultipartFile file = dto.getUploadFile();
-
 		if (file.getSize() != 0) {
 			String name = file.getOriginalFilename();
 			System.out.println("----------------------------------------");
