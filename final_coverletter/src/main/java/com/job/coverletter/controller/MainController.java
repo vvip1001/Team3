@@ -102,9 +102,9 @@ public class MainController {
 		payment.put("quantity", quantity);
 		payment.put("total_amount", total_amount);
 		payment.put("tax_free_amount", tax_free_amount);
-		payment.put("approval_url", "http://localhost:8383/coverletter/approval.jsp");
-		payment.put("cancel_url", "http://localhost:8383/coverletter/cancel.jsp");
-		payment.put("fail_url", "http://localhost:8383/coverletter/fail.jsp");
+		payment.put("approval_url", "http://localhost:8787/coverletter/approval.jsp");
+		payment.put("cancel_url", "http://localhost:8787/coverletter/cancel.jsp");
+		payment.put("fail_url", "http://localhost:8787/coverletter/fail.jsp");
 		
 		
 		String string = new String();
@@ -212,7 +212,7 @@ public class MainController {
 		}
 		supportpaybiz.payInsert(dto); // db에 값 저장
 		model.addAttribute("dto",supportpaybiz.payList(dto));
-		return "redirect/PAY_payList.do";
+		return "redirect:/PAY_payList.do";
 	}
 	
 	@RequestMapping(value = "/PAY_payList.do")
