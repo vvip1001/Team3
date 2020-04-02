@@ -42,14 +42,14 @@
 
 	function handleImgFileSelect(e) {
 		var target = e.target;
-		var field = $(target).parent();
+		var field = $(target).parent().next().children().next();
+		
 		console.log(field);
 		var files = target.files;
 		var filesArr = Array.prototype.slice.call(files);
 
-		filesArr
-				.forEach(function(f) {
-					if (!f.type.match("image.*")) {
+		filesArr.forEach(function(f) {
+				if (!f.type.match("image.*")) {
 						alert("이미지파일을 올려주세요");
 						return;
 					}
@@ -60,11 +60,9 @@
 					reader.onload = function(e) {
 						alert("g2");
 						// 			$(".img_wrap img").attr("src",e.target.result);
-						var img_html = "<img src=\"" + e.target.result
-								+ "\" style=\"width: 100%; height: 100%;\" />";
-						console.log();
-						field.children("#photo").children('.img_wrap').append(
-								img_html);
+// 						var img_html = "<img src=\"" + e.target.result
+// 								+ "\" style=\"width: 100%; height: 100%;\" />";
+						field.children("#photo").children('.img_wrap img').attr('src',e.target.result);
 					}
 					reader.readAsDataURL(f);
 
@@ -115,10 +113,14 @@
 
 	function pdfprint() {
 		alert("dd");
-		html2canvas(document.querySelector("#pdfwrap")).then(function(canvas) {
-
+		html2canvas(document.querySelector("#pdfwrap"), {
+			scrollX: 0,
+	        scrollY: -1000
+		}).then(function(canvas) {
+			
+			
 			document.body.appendChild(canvas);
-		})
+		});
 	}
 </script>
 
@@ -176,7 +178,7 @@
 							<!-- <img alt="minus" src="resources/IMG/minus.png" style="width: 20px; height: 20px;"> -->
 							삭제
 						</button>
-						<input type="file" class="input_img" multiple="multiple">
+						<input type="file" class="input_img" >
 					</div>
 
 					<div id="PFcenter" style="display: flex;">
