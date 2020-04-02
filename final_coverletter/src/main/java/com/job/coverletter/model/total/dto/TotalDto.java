@@ -114,7 +114,7 @@ public class TotalDto {
     private String organization;
     
     //시행기관 공모전참여이력
-    private String Startorganization;
+    private String startorganization;
 
     // 모든 취득일자 it는 제외, 자격증
     private String regdate;
@@ -424,14 +424,13 @@ public class TotalDto {
 	public void setPrize(String prize) {
 		this.prize = prize;
 	}
-	
 
 	public String getStartorganization() {
-		return Startorganization;
+		return startorganization;
 	}
 
 	public void setStartorganization(String startorganization) {
-		Startorganization = startorganization;
+		this.startorganization = startorganization;
 	}
 
 	public String getOrganization() {
@@ -451,7 +450,7 @@ public class TotalDto {
 	}
 
 	public TotalDto(String joinemail, int skillseq, String category, String itskill1, String itskill2, String itskill3, String itskill4, String itskill5, String itscore1,String itscore2,String itscore3,String itscore4,String itscore5, String certificate, String languagename, String languagescore,String languageregdate, String contest,
-			String prize, String organization,String startorganization,String regdate) {
+			String prize, String organization, String startorganization, String regdate) {
 		this.joinemail = joinemail;
 		this.skillseq = skillseq;
 		this.category = category;
@@ -474,7 +473,7 @@ public class TotalDto {
 		this.contest = contest;
 		this.prize = prize;
 		this.organization = organization;
-		this.Startorganization = startorganization;
+		this.startorganization = startorganization;
 		this.regdate = regdate;
 	}
 
@@ -558,7 +557,7 @@ public class TotalDto {
 				+ ", itscore4=" + itscore4 + ", itscore5=" + itscore5 + ", certificate=" + certificate
 				+ ", languagename=" + languagename + ", languagescore=" + languagescore + ", languageregdate="
 				+ languageregdate + ", contest=" + contest + ", prize=" + prize + ", organization=" + organization
-				+ ", Startorganization=" + Startorganization + ", regdate=" + regdate + ", schoolseq=" + schoolseq
+				+ ", startorganization=" + startorganization+ ", regdate=" + regdate + ", schoolseq=" + schoolseq
 				+ ", career=" + career + ", schoolname=" + schoolname + ", admission=" + admission + ", graduate="
 				+ graduate + ", major=" + major + ", grade=" + grade + "]";
 	}

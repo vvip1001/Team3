@@ -247,7 +247,7 @@
 				<div id="default6">
 					<input class="col-md-4" id="msmall" type="text" placeholder="공모전명" name="contest">
 					<input class="col-md-4" id="mbig" type="text" placeholder="시행기관" name="Startorganization">
-					<input class="col-md-4" id="msmall" type="text" placeholder="수상이력" name="certificate">
+					<input class="col-md-4" id="msmall" type="text" placeholder="수상이력" name="prize">
 				</div>
 				<div id="field6"></div>
 				<div class="btn333" id="custom_button6">

@@ -243,7 +243,6 @@
 </body>
 <!-- chart.js 영역 -->
 <script type="text/javascript">
-	/*
 	 $(function() {
 	 //IT역량차트
 	 itChartLabel = [];
@@ -265,6 +264,5 @@
 	 });
 	 createMYChart();
 	 });
-	 */
 </script>
 </html>
