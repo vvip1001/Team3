@@ -169,6 +169,8 @@ CREATE TABLE JOBCALENDAR
     CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ)
 ); 
 
+INSERT INTO JOBCALENDAR VALUES(JOBCALENDAR_SEQ.NEXTVAL, 'USER@GMAIL.COM', 123, '운토티', '백엔드 개발자 채용', '200405');
+
 --=====================================================================================================================
 -- 후원 내역 테이블
 DROP SEQUENCE SUPPORTPAY_SEQ;
