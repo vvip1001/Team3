@@ -8,8 +8,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TotalDto {
+	//total_seq
+	private int totalseq;
 	// ----------------------JoinUserDto--------------------------
-	
 	// 회원번호(SEQ) 
     private int joinseq;
 
@@ -143,8 +144,18 @@ public class TotalDto {
 
  // ----------------------JoinUserDto--------------------------
     
+    
+    
     public int getJoinseq() {
 		return joinseq;
+	}
+
+	public int getTotalseq() {
+		return totalseq;
+	}
+
+	public void setTotalseq(int totalseq) {
+		this.totalseq = totalseq;
 	}
 
 	public void setJoinseq(int joinseq) {
@@ -243,6 +254,11 @@ public class TotalDto {
 	
 	public TotalDto() {
 		
+	}
+	
+
+	public TotalDto(int totalseq) {
+		this.totalseq = totalseq;
 	}
 
 	public TotalDto(int joinseq, String joinemail, String joinname, String joinpw, String joinbirth, String joinsex, String photo, String mililtary, String phone,
@@ -529,6 +545,22 @@ public class TotalDto {
 		this.graduate = graduate;
 		this.major = major;
 		this.grade = grade;
+	}
+
+	@Override
+	public String toString() {
+		return "TotalDto [totalseq=" + totalseq + ", joinseq=" + joinseq + ", joinemail=" + joinemail + ", joinname="
+				+ joinname + ", joinpw=" + joinpw + ", joinbirth=" + joinbirth + ", joinsex=" + joinsex + ", photo="
+				+ photo + ", mililtary=" + mililtary + ", phone=" + phone + ", address=" + address + ", kakao=" + kakao
+				+ ", singup=" + singup + ", skillseq=" + skillseq + ", category=" + category + ", itskill1=" + itskill1
+				+ ", itskill2=" + itskill2 + ", itskill3=" + itskill3 + ", itskill4=" + itskill4 + ", itskill5="
+				+ itskill5 + ", itscore1=" + itscore1 + ", itscore2=" + itscore2 + ", itscore3=" + itscore3
+				+ ", itscore4=" + itscore4 + ", itscore5=" + itscore5 + ", certificate=" + certificate
+				+ ", languagename=" + languagename + ", languagescore=" + languagescore + ", languageregdate="
+				+ languageregdate + ", contest=" + contest + ", prize=" + prize + ", organization=" + organization
+				+ ", Startorganization=" + Startorganization + ", regdate=" + regdate + ", schoolseq=" + schoolseq
+				+ ", career=" + career + ", schoolname=" + schoolname + ", admission=" + admission + ", graduate="
+				+ graduate + ", major=" + major + ", grade=" + grade + "]";
 	}
 	
 

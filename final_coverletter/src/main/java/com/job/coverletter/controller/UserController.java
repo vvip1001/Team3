@@ -60,14 +60,14 @@ public class UserController {
    @Autowired
    private TotalBiz totalBiz;
    
-//   //마이페이지
-//   @RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
-//   public String userMain() {
-//      logger.info("userMain go");
-//      
-//      
-//      return "USER/userMain";
-//   }
+   //마이페이지
+   @RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
+   public String userMain() {
+      logger.info("userMain go");
+      
+      
+      return "USER/userMain";
+   }
    
 
    @RequestMapping(value="/USER_userDetail.do", method=RequestMethod.GET)
@@ -143,39 +143,39 @@ public class UserController {
    }
    
 	// 마이페이지
-	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
-	public String userMain(Model model) {
-		logger.info("userMain go");
-		
-		CoverLetterDto cvdto = new CoverLetterDto();
-		cvdto.setCvcategory("자소서");
-		cvdto.setJoinemail(joinemail);
-		int cvlist = coverletterBiz.boardCVListCount(cvdto);
-		System.out.println("cvlist : "+cvlist);
-		CoverLetterDto pfdto = new CoverLetterDto();
-		pfdto.setCvcategory("포폴");
-		pfdto.setJoinemail(joinemail);
-		int pflist = coverletterBiz.boardPFListCount(pfdto);
-		System.out.println("pflist : "+pflist);
-		JobCalendarDto jbdto = new JobCalendarDto();
-		jbdto.setJoinemail(joinemail);
-		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
-		System.out.println("jblist : "+jblist);
-		
-		model.addAttribute("cvlist",cvlist);
-		model.addAttribute("pflist",pflist);
-		model.addAttribute("jblist",jblist);
-
-		// IT역량 차트
-		JSONArray itSkill = skillBiz.selectItSkill();
-		model.addAttribute("itSkill", itSkill);
-
-		// 스펙 차트
-		JSONArray mySkill = skillBiz.selectMySkill();
-		model.addAttribute("mySkill", mySkill);
-
-		return "USER/userMain";
-	}
+//	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
+//	public String userMain(Model model) {
+//		logger.info("userMain go");
+//		
+//		CoverLetterDto cvdto = new CoverLetterDto();
+//		cvdto.setCvcategory("자소서");
+//		cvdto.setJoinemail(joinemail);
+//		int cvlist = coverletterBiz.boardCVListCount(cvdto);
+//		System.out.println("cvlist : "+cvlist);
+//		CoverLetterDto pfdto = new CoverLetterDto();
+//		pfdto.setCvcategory("포폴");
+//		pfdto.setJoinemail(joinemail);
+//		int pflist = coverletterBiz.boardPFListCount(pfdto);
+//		System.out.println("pflist : "+pflist);
+//		JobCalendarDto jbdto = new JobCalendarDto();
+//		jbdto.setJoinemail(joinemail);
+//		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
+//		System.out.println("jblist : "+jblist);
+//		
+//		model.addAttribute("cvlist",cvlist);
+//		model.addAttribute("pflist",pflist);
+//		model.addAttribute("jblist",jblist);
+//
+//		// IT역량 차트
+//		JSONArray itSkill = skillBiz.selectItSkill();
+//		model.addAttribute("itSkill", itSkill);
+//
+//		// 스펙 차트
+//		JSONArray mySkill = skillBiz.selectMySkill();
+//		model.addAttribute("mySkill", mySkill);
+//
+//		return "USER/userMain";
+//	}
 
 //	@RequestMapping(value = "/USER_userDetail.do", method = RequestMethod.GET)
 //	public String userDetail() {
