@@ -2,46 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.job.coverletter.Total">
 	<resultMap type="totalDto" id="totalMap">
-		<result property="joinseq" column="JOINSEQ" />
-		<result property="joinemail" column="JOINEMAIL" />
-		<result property="joinname" column="JOINNAME" />
-		<result property="joinpw" column="JOINPW" />
-		<result property="joinbirth" column="JOINBIRTH" />
-		<result property="joinsex" column="JOINSEX" />
-		<result property="photo" column="PHOTO" />
-		<result property="mililtary" column="MILILTARY" />
-		<result property="phone" column="PHONE" />
-		<result property="address" column="ADDRESS" />
-		<result property="kakao" column="KAKAO" />
-		<result property="singup" column="SIGNUP" />
-		<result property="skillseq" column="SKILLSEQ" />
-		<result property="category" column="CATEGORY" />
-		<result property="itskill1" column="ITSKILL1" />
-		<result property="itskill2" column="ITSKILL2" />
-		<result property="itskill3" column="ITSKILL3" />
-		<result property="itskill4" column="ITSKILL4" />
-		<result property="itskill5" column="ITSKILL5" />
-		<result property="itscore" column="ITSCORE" />
-		<result property="certificate" column="CERTIFICATE" />
-		<result property="languagename" column="LANGUAGENAME" />
-		<result property="languagescore" column="LANGUAGESCORE" />
-		<result property="languageregdate" column="LANGUAGEREGDATE" />
-		<result property="contest" column="CONTEST" />
-		<result property="prize" column="PRIZE" />
-		<result property="organization" column="ORGANIZATION" />
-		<result property="regdate" column="REGDATE" />
-		<result property="schoolseq" column="SCHOOLSEQ" />
-		<result property="career" column="CAREER" />
-		<result property="schoolname" column="SCHOOLNAME" />
-		<result property="admission" column="ADMISSION" />
-		<result property="graduate" column="GRADUATE" />
-		<result property="major" column="MAJOR" />
-		<result property="grade" column="GRADE" />
-	</resultMap>
-
+		<result property="totalseq" column="TOTALSEQ"/>
+		<result property="joinseq" column="JOINSEQ"/>
+		<result property="joinemail" column="JOINEMAIL"/>
+		<result property="joinname" column="JOINNAME"/>
+		<result property="joinpw" column="JOINPW"/>
+		<result property="joinbirth" column="JOINBIRTH"/>
+		<result property="joinsex" column="JOINSEX"/>
+		<result property="photo" column="PHOTO"/>
+		<result property="mililtary" column="MILILTARY"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="kakao" column="KAKAO"/>
+		<result property="singup" column="SIGNUP"/>
+		<result property="skillseq" column="SKILLSEQ"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="itskill1" column="ITSKILL1"/>
+		<result property="itskill2" column="ITSKILL2"/>
+		<result property="itskill3" column="ITSKILL3"/>
+		<result property="itskill4" column="ITSKILL4"/>
+		<result property="itskill5" column="ITSKILL5"/>
+		<result property="itscore1" column="ITSCORE1"/>
+		<result property="itscore2" column="ITSCORE2"/>
+		<result property="itscore3" column="ITSCORE3"/>
+		<result property="itscore4" column="ITSCORE4"/>
+		<result property="itscore5" column="ITSCORE5"/>
+		<result property="certificate" column="CERTIFICATE"/>
+		<result property="languagename" column="LANGUAGENAME"/>
+		<result property="languagescore" column="LANGUAGESCORE"/>
+		<result property="languageregdate" column="LANGUAGEREGDATE"/>
+		<result property="contest" column="CONTEST"/>
+		<result property="prize" column="PRIZE"/>
+		<result property="organization" column="ORGANIZATION"/>
+		<result property="startorganization" column="STARTORGANIZATION"/>
+		<result property="regdate" column="REGDATE"/>
+		<result property="schoolseq" column="SCHOOLSEQ"/>
+		<result property="career" column="CAREER"/>
+		<result property="schoolname" column="SCHOOLNAME"/>
+		<result property="admission" column="ADMISSION"/>
+		<result property="graduate" column="GRADUATE"/>
+		<result property="major" column="MAJOR"/>
+		<result property="grade" column="GRADE"/>
+	</resultMap>	
+	
 	<insert id="insert" parameterType="totalDto">
-		INSERT INTO
-		TOTAL(JOINEMAIL,JOINNAME) VALUES(#{joinemail},#{joinname})
+		INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},'암호',#{joinbirth},#{joinsex},'사진',#{mililtary},#{phone},#{address},'카카오id','Y','카테고리',#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
 	</insert>
 
 	<!-- it역량차트 -->
