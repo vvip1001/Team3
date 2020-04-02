@@ -24,7 +24,6 @@
 
 <body>
 
-
 <c:if test="${empty list_cnt20}">
 	<c:set var="list_cnt20" value="<%=new ArrayList<CompanyDto>() %>"/>
 </c:if>
