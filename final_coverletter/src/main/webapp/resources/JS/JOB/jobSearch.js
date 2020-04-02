@@ -158,7 +158,7 @@ function companySearch(page, startPage, from, startFrom, range){
 					creatDiv(compnay._source.companyseq, compnay._source.imgurl, compnay._source.business, compnay._source.enddate, compnay._source.oneintro, compnay._source.mainfield, compnay._source.languages, compnay._source.companyname, compnay._source.location, compnay._source.salary, compnay._source.target)
 				}
 				// 페이징 그리기
-	        	creatPageBtn_etc(page, startPage, endPage)
+	        	creatPageBtn_etc(page, startPage, endPage, startFrom, range)
 			},
 		    error: function(){
 		       alert("통신 실패");
@@ -168,7 +168,7 @@ function companySearch(page, startPage, from, startFrom, range){
 }
 
 //비동기 페이징 버튼 생성	
-function creatPageBtn_etc(clickPage, startPage, endPage) {
+function creatPageBtn_etc(clickPage, startPage, endPage, startFrom, range) {
 	var pageArea = document.getElementsByClassName("pagination")[0]
 	pageArea.innerHTML = ""
 	page = clickPage; // 전역변수에 할당
@@ -182,8 +182,7 @@ function creatPageBtn_etc(clickPage, startPage, endPage) {
 	}
 	//페이지 버튼 그리기
 	for(var i = startPage; i < endPage+1; i++){
-		console.log(startPage)
-		pagination_etc(i)
+		pagination_etc(i, startPage, startFrom, range)
 		if(i > 1){
 			from += 10
 		}
@@ -196,7 +195,7 @@ function creatPageBtn_etc(clickPage, startPage, endPage) {
 
 
 //비동기 페이지 버튼생성
-function pagination_etc(butNum){
+function pagination_etc(butNum, startPage, startFrom, range){
 	var pageArea = document.getElementsByClassName("pagination")[0]
 	var li = document.createElement("li")
 	if(butNum == page){	
