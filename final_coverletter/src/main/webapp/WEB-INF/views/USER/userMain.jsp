@@ -63,62 +63,59 @@
 <!-- include chart.js -->
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-	
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid' ,'timeGrid'],
-     
-      header: {
-    	  left: 'prevYear,prev,next,nextYear today',
-    	  center: 'title',
-    	  right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      buttonText: {
-    	   today : "오늘",
-    	   month : "월",
-    	   week : "주",
-    	   day : "일",
-    	   },
-      locale: 'ko',
-      navLinks: true,
-      //selectable: true,
-      selectMirror: true,
-      select: function(arg) {
-        var title = prompt('추가할 내용:');
-        if (title) {
-          calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-          })
-        }
-        calendar.unselect()
-      },
-      editable: true,
-      eventLimit: true,
-      events: [
-          {
-            title: 'All Day Event',
-            start: '2020-02-01'
-          },
-          {
-              title: 'Event',
-              start: '2020-03-23 12:00',
-              end: '2020-03-23 12:30'
-            }
-         ],
-         eventClick: function(arg) {
-             if (confirm('삭제하시겠습니까?')) {
-               arg.event.remove()
-             }
-           }
-    });
-    calendar.render();
-  });
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() {
+		var calendarEl = document.getElementById('calendar');
+
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+			plugins : [ 'interaction', 'dayGrid', 'timeGrid' ],
+
+			header : {
+				left : 'prevYear,prev,next,nextYear today',
+				center : 'title',
+				right : 'dayGridMonth,timeGridWeek,timeGridDay'
+			},
+			buttonText : {
+				today : "오늘",
+				month : "월",
+				week : "주",
+				day : "일",
+			},
+			locale : 'ko',
+			navLinks : true,
+			//selectable: true,
+			selectMirror : true,
+			select : function(arg) {
+				var title = prompt('추가할 내용:');
+				if (title) {
+					calendar.addEvent({
+						title : title,
+						start : arg.start,
+						end : arg.end,
+						allDay : arg.allDay
+					})
+				}
+				calendar.unselect()
+			},
+			editable : true,
+			eventLimit : true,
+			events : [ {
+				title : 'All Day Event',
+				start : '2020-02-01'
+			}, {
+				title : 'Event',
+				start : '2020-03-23 12:00',
+				end : '2020-03-23 12:30'
+			} ],
+			eventClick : function(arg) {
+				if (confirm('삭제하시겠습니까?')) {
+					arg.event.remove()
+				}
+			}
+		});
+		calendar.render();
+	});
 </script>
 <style type="text/css">
 #full {
@@ -203,6 +200,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="center2heightside"></div>
 			<div class="center2calendar">
 				<h2>채용일정 켈린더</h2>
+				<div id="full">
+					<div id="calendar"></div>
+				</div>
 			</div>
 			<div class="center2calendarside"></div>
 
@@ -243,28 +243,28 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 <!-- chart.js 영역 -->
 <script type="text/javascript">
-/*
-$(function() {
-	//IT역량차트
-	itChartLabel = [];
-	itChartData = [];
-	$.each(${itSkill}, function(idx, obj) {
-		itChartLabel.push(obj.skill);
-		itChartData.push(obj.score);   
-	});
-    createITChart();
-    
-    //스펙차트x	
-    myChartLabel = [];
-	myChartData = [];
-	$.each(${mySkill}, function(idx, obj) {
-		$.each(obj, function(idx2, obj2) {
-			myChartLabel.push(idx2);
-			myChartData.push(obj2);
-		});	
-	});
-    createMYChart();
-});
-*/
+	/*
+	 $(function() {
+	 //IT역량차트
+	 itChartLabel = [];
+	 itChartData = [];
+	 $.each(${itSkill}, function(idx, obj) {
+	 itChartLabel.push(obj.skill);
+	 itChartData.push(obj.score);   
+	 });
+	 createITChart();
+	
+	 //스펙차트x	
+	 myChartLabel = [];
+	 myChartData = [];
+	 $.each(${mySkill}, function(idx, obj) {
+	 $.each(obj, function(idx2, obj2) {
+	 myChartLabel.push(idx2);
+	 myChartData.push(obj2);
+	 });	
+	 });
+	 createMYChart();
+	 });
+	 */
 </script>
 </html>
