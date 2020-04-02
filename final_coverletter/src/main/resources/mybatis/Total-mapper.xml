@@ -46,7 +46,7 @@
 	</resultMap>	
 	
 	<insert id="insert" parameterType="totalDto">
-		INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},'암호',#{joinbirth},#{joinsex},'사진',#{mililtary},#{phone},#{address},'카카오id','Y','카테고리',#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
+		INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},null,#{joinbirth},#{joinsex},null,#{mililtary},#{phone},#{address},null,null,null,#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
 	</insert>
 
 	<!-- it역량차트 -->
