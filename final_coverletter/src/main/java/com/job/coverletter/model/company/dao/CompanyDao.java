@@ -17,5 +17,12 @@ public interface CompanyDao {
 	// 총 게시글 수
 	public int	companyListCount();
 	
+	//메인화면 리스트 20개 출력
+	public List<CompanyDto> selectList_cnt20();
+
+	//회사가 가지고 있는 그룹번호
+	public List<CompanyDto> selectAll_group(int groupno);
+
+	
 
 }

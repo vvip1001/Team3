@@ -13,35 +13,40 @@ import com.job.coverletter.model.company.dto.CompanyDto;
 
 @Repository
 public class CompanyDaoImpl implements CompanyDao {
-	
+
 	@Resource
 	private SqlSessionTemplate sqlSessionTemPlateMariaDB;
 
-	
 	// 전체선택 + 페이징
 	@Override
 	public List<CompanyDto> selectList(MariaPagination pagination) {
 		return sqlSessionTemPlateMariaDB.selectList(NAMESPACE + "selectList", pagination);
 	}
-	
+
 	// 하나 선택
 	@Override
 	public CompanyDto selectOne(int companyseq) {
 		return sqlSessionTemPlateMariaDB.selectOne(NAMESPACE + "selectOne", companyseq);
 	}
-	
+
 	// 전체 게시판 개수 가져오기
 	@Override
 	public int companyListCount() {
 		return sqlSessionTemPlateMariaDB.selectOne(NAMESPACE + "companyListCount");
 	}
-	
-	
-	
 
+	@Override
+	public List<CompanyDto> selectList_cnt20() {
 
+		return sqlSessionTemPlateMariaDB.selectList(NAMESPACE + "selectList_cnt20");
+	}
 
+	@Override
+	public List<CompanyDto> selectAll_group(int groupno) {
 
-	
+		List<CompanyDto> dto = sqlSessionTemPlateMariaDB.selectList(NAMESPACE + "selectAll_group", groupno);
+
+		return dto;
+	}
 
 }

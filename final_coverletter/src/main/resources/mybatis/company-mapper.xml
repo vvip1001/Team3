@@ -12,13 +12,13 @@
 
  
  	<select id="selectOne" resultType="companyDto">
- 		SELECT * FROM company where companyseq = #{companyseq}
+ 		SELECT * FROM COMPANY02 WHERE COMPANYSEQ=#{COMPANYSEQ}
  	</select>
- 
+  
  
  	<!-- 페이징 카운트 -->
  	<select id="companyListCount" resultType="int">
- 		SELECT COUNT(*) FROM company
+ 		SELECT COUNT(*) FROM company02
  	</select>
  	
  	
@@ -26,10 +26,20 @@
 	<select id="selectList" parameterType="companyDto" resultType="companyDto">
 		select R1.* FROM(
 			SELECT companyseq,  imgurl, business, enddate, oneintro, mainfield, languages, companyname, location, salary, target
-		    FROM company order by companyseq desc
+		    FROM company02 order by companyseq desc
 		) R1
 		LIMIT #{listSize} OFFSET #{startList}
 	</select>
+	
+	<select id="selectList_cnt20" resultType="companyDto">
+ 		SELECT COMPANYSEQ,COMPANYNAME,IMGURL,ONEINTRO,BUSINESS
+ 		FROM COMPANY02 ORDER BY RAND() LIMIT 20
+ 	</select>
+ 	
+ 	<select id="selectAll_group" resultType="companyDto">
+ 		SELECT COMPANYNAME,BUSINESS,TARGET,LANGUAGES 
+ 		FROM COMPANY02 WHERE GROUPNO=#{GROUPNO}
+ 	</select>
  	
  	
  
