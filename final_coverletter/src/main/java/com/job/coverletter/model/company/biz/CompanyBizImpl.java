@@ -32,5 +32,17 @@ public class CompanyBizImpl implements CompanyBiz {
 		return companydao.companyListCount();
 	}
 
+	@Override
+	public List<CompanyDto> selectList_cnt20() {
+		
+		return companydao.selectList_cnt20();
+	}
+
+	@Override
+	public List<CompanyDto> selectAll_group(int groupno) {
+		
+		return companydao.selectAll_group(groupno);
+	}
+
 	
 }

@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.company.biz.CompanyBiz;
+import com.job.coverletter.model.company.dto.CompanyDto;
 import com.job.coverletter.model.supportPay.biz.SupportPayBiz;
 import com.job.coverletter.model.supportPay.dto.SupportPayDto;
 
@@ -47,11 +48,30 @@ public class MainController {
 	@Autowired
 	private SupportPayBiz supportpaybiz;
 
-	@RequestMapping(value = "MAIN_main.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/MAIN_main.do", method = RequestMethod.GET)
 	public String selectOne(Model model) {
+		
+		List<CompanyDto> list_cnt20 = companyBiz.selectList_cnt20();
+		//model.addAttribute("list_cnt20", list_cnt20);
+		
+		
 		logger.info("Main go");
 		return "MAIN/main";
 	}
+	
+	@RequestMapping(value = "/MAIN_mainDetail.do", method = RequestMethod.GET)
+	public String selectOne(Model model, int companyseq ) {
+
+		CompanyDto selectOne = companyBiz.selectOne(companyseq);
+		List<CompanyDto> selectAll_group =companyBiz.selectAll_group(selectOne.getGroupno());
+
+		model.addAttribute("mainDetail", selectOne);
+		model.addAttribute("selectAll_group",selectAll_group);
+		
+		return "MAIN/mainDetail";
+
+	}
+	
 
 	/*-------------------------후원하기-------------------------*/
 	@RequestMapping(value = "/MAIN_pay.do")
