@@ -53,16 +53,14 @@
 	<select id="selectItSkill" parameterType="totalDto"
 		resultType="map">
 		SELECT ITSKILL1, ITSKILL2, ITSKILL3, ITSKILL4, ITSKILL5,
-		ITSCORE1, ITSCORE2,
-		ITSCORE3, ITSCORE4, ITSCORE5,
+		ITSCORE1, ITSCORE2, ITSCORE3, ITSCORE4, ITSCORE5
 		FROM TOTAL
-		WHERE
-		JOINEMAIL = #{joinemail}
+		WHERE JOINEMAIL = #{joinemail}
 	</select>
 
 	<!-- 스펙차트 -->
 	<select id="selectMySkill" parameterType="totalDto"
-		resultType="map">
+		resultType="totalDto">
 		SELECT LANGUAGESCORE, CONTEST, CERTIFICATE, GRADE, CAREER
 		FROM TOTAL
 		WHERE JOINEMAIL = #{joinemail}

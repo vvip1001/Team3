@@ -51,16 +51,16 @@ public class TotalDaoImpl implements TotalDao {
 			list = sqlSession.selectList(NAMESPACE + "selectItSkill", dto);
 
 			for (Map<String, String> map : list) {
-				obj.put("skill", map.get("ITSKILL1"));
-				obj.put("skill", map.get("ITSKILL2"));
-				obj.put("skill", map.get("ITSKILL3"));
-				obj.put("skill", map.get("ITSKILL4"));
-				obj.put("skill", map.get("ITSKILL5"));
-				obj.put("score", map.get("ITSCORE1"));
-				obj.put("score", map.get("ITSCORE2"));
-				obj.put("score", map.get("ITSCORE3"));
-				obj.put("score", map.get("ITSCORE4"));
-				obj.put("score", map.get("ITSCORE5"));
+				obj.put("skill1", map.get("ITSKILL1"));
+				obj.put("skill2", map.get("ITSKILL2"));
+				obj.put("skill3", map.get("ITSKILL3"));
+				obj.put("skill4", map.get("ITSKILL4"));
+				obj.put("skill5", map.get("ITSKILL5"));
+				obj.put("score1", map.get("ITSCORE1"));
+				obj.put("score2", map.get("ITSCORE2"));
+				obj.put("score3", map.get("ITSCORE3"));
+				obj.put("score4", map.get("ITSCORE4"));
+				obj.put("score5", map.get("ITSCORE5"));
 				if (obj != null) {
 					arr.add(obj);
 				}
@@ -85,13 +85,25 @@ public class TotalDaoImpl implements TotalDao {
 
 		try {
 			list = sqlSession.selectList(NAMESPACE + "selectMySkill", dto);
-			for(TotalDto data : list) {
+			for (TotalDto data : list) {
 				String[] language = data.getLanguagescore().split(",", -1);
-				String[] contest = data.getContest().split(",", -1);
-				String[] certificate = data.getCertificate().split(",", -1);
+				System.out.println(language[0]);
+				
+				String[] contest = {"0"};
+				if (data.getContest() != null) {
+					contest = data.getContest().split(",", -1);
+				}
+				System.out.println(contest[0]);
+				
+				String[] certificate = {"0"};
+				if(data.getCertificate() != null) {
+					certificate = data.getCertificate().split(",", -1);
+				}
+				System.out.println(certificate[0]);
 				String grade = Integer.toString((int) Math.round((100 * Double.parseDouble(data.getGrade())) / 4.5));
+				System.out.println("학점 : "+grade);
 				String[] career = data.getCareer().split(",", -1);
-				int careerRes = 0; 
+				int careerRes = 0;
 				switch (career[0]) {
 				case "대졸":
 					careerRes = 100;
@@ -106,8 +118,8 @@ public class TotalDaoImpl implements TotalDao {
 					careerRes = 40;
 					break;
 				}
-				
-				obj.put("어학", language[0]);
+
+				obj.put("어학", Integer.parseInt(language[0])/10);
 				obj.put("공모전", contest.length);
 				obj.put("자격증", certificate.length);
 				obj.put("학점", grade);
@@ -118,7 +130,7 @@ public class TotalDaoImpl implements TotalDao {
 					System.out.println(arr);
 				}
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("[error] : selectMySkill");
 			e.printStackTrace();
