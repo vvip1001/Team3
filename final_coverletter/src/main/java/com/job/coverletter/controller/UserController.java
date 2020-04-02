@@ -60,14 +60,14 @@ public class UserController {
    @Autowired
    private TotalBiz totalBiz;
    
-   //마이페이지
-   @RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
-   public String userMain() {
-      logger.info("userMain go");
-      
-      
-      return "USER/userMain";
-   }
+//   //마이페이지
+//   @RequestMapping(value="/USER_userMain.do", method=RequestMethod.GET)
+//   public String userMain() {
+//      logger.info("userMain go");
+//      
+//      
+//      return "USER/userMain";
+//   }
    
 
    @RequestMapping(value="/USER_userDetail.do", method=RequestMethod.GET)
@@ -105,7 +105,6 @@ public class UserController {
    }
    
    //email중복체크
-   
       @RequestMapping(value="/USER_emailcheck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
       @ResponseBody
       public String checkemail(@ModelAttribute("joinemail") String joinemail) {  
@@ -135,8 +134,6 @@ public class UserController {
 	// 로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
 	String login = "cv@email.net";
 
-   
-   
    //PFwrite page go 
    @RequestMapping(value = "/USER_userPFwrite.do", method = RequestMethod.GET)
    public String PFwrite() {
@@ -144,7 +141,6 @@ public class UserController {
 	   
 	   return "USER/userPFwrite";
    }
-   
    
 	// 마이페이지
 	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
@@ -181,15 +177,12 @@ public class UserController {
 		return "USER/userMain";
 	}
 
-	@RequestMapping(value = "/USER_userDetail.do", method = RequestMethod.GET)
-	public String userDetail() {
-		logger.info("userDetail go");
-
-		return "USER/userDetail";
-	}
-   
-   
-   
+//	@RequestMapping(value = "/USER_userDetail.do", method = RequestMethod.GET)
+//	public String userDetail() {
+//		logger.info("userDetail go");
+//
+//		return "USER/userDetail";
+//	}
    
    // login
    @RequestMapping(value = "/USER_login.do")
@@ -218,10 +211,9 @@ public class UserController {
       map.put("check", check);
       
       return map;
-      
    }
-  //sns로그인
   
+ //sns로그인
    @RequestMapping (value = "/USER_snslogin.do", method = RequestMethod.POST)
    public String snslogin(HttpSession session, JoinUserDto dto) {
 	   logger.info("sns로그인");
@@ -246,10 +238,6 @@ public class UserController {
 			   return "MAIN/login";
 		   }
 	   }
-	
-	
-	   
-	 
    }
    
    
@@ -289,11 +277,11 @@ public class UserController {
       return "MAIN/emailChk";
    }
    
-   @RequestMapping(value = "/USER_emailcheckpopup_login.do", method = RequestMethod.GET)
-   public String emailpopup_login() {
-      logger.info("아이디찾기 이메일 인증 팝업!");
-      return "MAIN/emailChk_login";
-   }
+//   @RequestMapping(value = "/USER_emailcheckpopup_login.do", method = RequestMethod.GET)
+//   public String emailpopup_login() {
+//      logger.info("아이디찾기 이메일 인증 팝업!");
+//      return "MAIN/emailChk_login";
+//   }
    
    
    //이메일 전송 화면으로
@@ -331,8 +319,8 @@ public class UserController {
       }
    }
      
-   
-   @RequestMapping(value = "Address.do")
+   // 메핑에 USER 넣어주세요
+   @RequestMapping(value = "/Address.do")
    public String address() {
 	   
 	   return "USER/userDetail_Address";
