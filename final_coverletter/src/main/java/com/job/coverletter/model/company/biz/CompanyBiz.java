@@ -17,4 +17,14 @@ public interface CompanyBiz {
 	// 총 게시글 수
 	public int	companyListCount();
 	
+
+	//회사목록
+
+	public List<CompanyDto> selectList_cnt20();
+	
+	//회사 채용진행 정보를 위한 그룹번호
+	
+	public List<CompanyDto> selectAll_group(int groupno);
+
+	
 }

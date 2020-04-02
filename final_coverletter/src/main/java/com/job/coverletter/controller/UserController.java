@@ -134,7 +134,6 @@ public class UserController {
             return res;
          }
       }
-         
 
    //PFwrite page go 
    @RequestMapping(value = "/USER_userPFwrite.do", method = RequestMethod.GET)
@@ -149,6 +148,7 @@ public class UserController {
 	public String userMain(Model model) {
 		logger.info("userMain go");
 		
+		System.out.println("에러1");
 		CoverLetterDto cvdto = new CoverLetterDto();
 		cvdto.setCvcategory("자소서");
 		cvdto.setJoinemail(joinemail);
@@ -159,21 +159,25 @@ public class UserController {
 		pfdto.setJoinemail(joinemail);
 		int pflist = coverletterBiz.boardPFListCount(pfdto);
 		System.out.println("pflist : "+pflist);
+		
+		
+		//여긴가
 		JobCalendarDto jbdto = new JobCalendarDto();
 		jbdto.setJoinemail(joinemail);
 		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
 		System.out.println("jblist : "+jblist);
 		
+		System.out.println("에러2");
 		model.addAttribute("cvlist",cvlist);
 		model.addAttribute("pflist",pflist);
 		model.addAttribute("jblist",jblist);
 
 		// IT역량 차트
-		JSONArray itSkill = skillBiz.selectItSkill();
+		JSONArray itSkill = totalBiz.selectItSkill();
 		model.addAttribute("itSkill", itSkill);
 
 		// 스펙 차트
-		JSONArray mySkill = skillBiz.selectMySkill();
+		JSONArray mySkill = totalBiz.selectMySkill();
 		model.addAttribute("mySkill", mySkill);
 
 		return "USER/userMain";

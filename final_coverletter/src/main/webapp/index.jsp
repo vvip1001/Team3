@@ -18,6 +18,7 @@
 <%@ include file="WEB-INF/views/ALL/header_login.jsp"%>
 	<a href ="home.do"> 이동 </a> <br/>
 	<a href ="error.do"> 에러 </a> <br/>
+	<a href ="MAIN_main.do"> 메인페이지</a> <br/>
 	<a href ="MAIN_SelectOne.do"> 회사</a> <br/>
 	<a href ="USER_userMain.do"> 마페</a> <br/>
 	<a href="USER_join.do">회원가입</a><br/>	

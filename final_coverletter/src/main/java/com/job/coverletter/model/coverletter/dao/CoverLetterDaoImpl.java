@@ -49,7 +49,7 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		try {
 			res = sqlSession.selectOne(NAMESPACE + "boardPFListCount", dto); 
 		} catch (Exception e) {
-			System.out.println("[error] : boardListCount");
+			System.out.println("[error] : boardPFListCount");
 			e.printStackTrace();
 		}
 		return res;

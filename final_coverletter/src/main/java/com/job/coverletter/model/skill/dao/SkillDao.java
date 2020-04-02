@@ -9,11 +9,5 @@ import net.sf.json.JSONArray;
 
 public interface SkillDao {
 	String NAMESPACE = "com.job.coverletter.Skill.";
-	
-	// IT역량차트
-	public JSONArray selectItSkill();
-	
-	// 스킬차트
-	public JSONArray selectMySkill();
-	
+
 }

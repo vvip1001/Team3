@@ -53,9 +53,6 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-
-
-
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
@@ -244,25 +241,34 @@
 <!-- chart.js 영역 -->
 <script type="text/javascript">
 	 $(function() {
-	 //IT역량차트
-	 itChartLabel = [];
-	 itChartData = [];
-	 $.each(${itSkill}, function(idx, obj) {
-	 itChartLabel.push(obj.skill);
-	 itChartData.push(obj.score);   
-	 });
-	 createITChart();
-	
-	 //스펙차트x	
-	 myChartLabel = [];
-	 myChartData = [];
-	 $.each(${mySkill}, function(idx, obj) {
-	 $.each(obj, function(idx2, obj2) {
-	 myChartLabel.push(idx2);
-	 myChartData.push(obj2);
-	 });	
-	 });
-	 createMYChart();
+	 	//IT역량차트
+		itChartLabel = [];
+	 	itChartData = [];
+		$.each(${itSkill}, function(idx, obj) {
+			 
+			 itChartLabel.push(obj.skill1);
+			 itChartLabel.push(obj.skill2);
+			 itChartLabel.push(obj.skill3);
+			 itChartLabel.push(obj.skill4);
+			 itChartLabel.push(obj.skill5);
+			 itChartData.push(obj.score1);   
+			 itChartData.push(obj.score2); 
+			 itChartData.push(obj.score3); 
+			 itChartData.push(obj.score4); 
+			 itChartData.push(obj.score5); 
+		 });
+	 	createITChart();
+
+	 	//스펙차트	
+	 	myChartLabel = [];
+	 	myChartData = [];
+	 	$.each(${mySkill}, function(idx, obj) {
+	 		$.each(obj, function(idx2, obj2) {
+	 			myChartLabel.push(idx2);
+	 			myChartData.push(obj2);
+	 		});	
+	 	});
+	 	createMYChart();
 	 });
 </script>
 </html>

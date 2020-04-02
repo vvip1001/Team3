@@ -12,17 +12,6 @@ public class SkillBizImpl implements SkillBiz {
 	@Autowired
 	private SkillDao skilldao;
 
-	
-	@Override
-	public JSONArray selectItSkill() {
-		// TODO Auto-generated method stub
-		return skilldao.selectItSkill();
-	}
 
-	@Override
-	public JSONArray selectMySkill() {
-		// TODO Auto-generated method stub
-		return skilldao.selectMySkill();
-	}
 
 }

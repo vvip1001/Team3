@@ -46,7 +46,28 @@
 	</resultMap>	
 	
 	<insert id="insert" parameterType="totalDto">
-		INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},'암호',#{joinbirth},#{joinsex},'사진',#{mililtary},#{phone},#{address},'카카오id','Y','카테고리',#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
+		INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},null,#{joinbirth},#{joinsex},null,#{mililtary},#{phone},#{address},null,null,null,#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
 	</insert>
-	
+
+	<!-- it역량차트 -->
+	<select id="selectItSkill" parameterType="totalDto"
+		resultType="map">
+		SELECT ITSKILL1, ITSKILL2, ITSKILL3, ITSKILL4, ITSKILL5,
+		ITSCORE1, ITSCORE2, ITSCORE3, ITSCORE4, ITSCORE5
+		FROM TOTAL
+		WHERE JOINEMAIL = #{joinemail}
+	</select>
+
+	<!-- 스펙차트 -->
+	<select id="selectMySkill" parameterType="totalDto"
+		resultType="totalDto">
+		SELECT LANGUAGESCORE, CONTEST, CERTIFICATE, GRADE, CAREER
+		FROM TOTAL
+		WHERE JOINEMAIL = #{joinemail}
+	</select>
+
+
+
+
+
 </mapper>
