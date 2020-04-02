@@ -52,7 +52,7 @@ public class MainController {
 	public String selectOne(Model model) {
 		
 		List<CompanyDto> list_cnt20 = companyBiz.selectList_cnt20();
-		//model.addAttribute("list_cnt20", list_cnt20);
+		model.addAttribute("list_cnt20", list_cnt20);
 		
 		
 		logger.info("Main go");
