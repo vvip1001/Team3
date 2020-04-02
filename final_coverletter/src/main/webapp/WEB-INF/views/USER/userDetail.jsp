@@ -128,7 +128,11 @@
 						</div>
 							</div>
 							<div id="field2"></div>
-							<div id="custom_button2">
+							<div></div>
+						</div>
+					</div>
+				</div>
+				<div id="custom_button2">
 								<button type="button" id="button2" onclick="add_div(this.id);">
 									<img alt="" src="${pageContext.request.contextPath}/resources/IMG/button.png">
 								</button>
@@ -136,9 +140,6 @@
 									<img alt=""	src="${pageContext.request.contextPath}/resources/IMG/minus.png">
 								</button>
 							</div>
-						</div>
-					</div>
-				</div>
 
 				<div>
 					<h3 id="h3">3.IT역량(가장 자신있는 기술을 5개 입력)</h3>
