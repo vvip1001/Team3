@@ -8,8 +8,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TotalDto {
+	//total_seq
+	private int totalseq;
 	// ----------------------JoinUserDto--------------------------
-	
 	// 회원번호(SEQ) 
     private int joinseq;
 
@@ -113,7 +114,7 @@ public class TotalDto {
     private String organization;
     
     //시행기관 공모전참여이력
-    private String Startorganization;
+    private String startorganization;
 
     // 모든 취득일자 it는 제외, 자격증
     private String regdate;
@@ -143,8 +144,18 @@ public class TotalDto {
 
  // ----------------------JoinUserDto--------------------------
     
+    
+    
     public int getJoinseq() {
 		return joinseq;
+	}
+
+	public int getTotalseq() {
+		return totalseq;
+	}
+
+	public void setTotalseq(int totalseq) {
+		this.totalseq = totalseq;
 	}
 
 	public void setJoinseq(int joinseq) {
@@ -243,6 +254,11 @@ public class TotalDto {
 	
 	public TotalDto() {
 		
+	}
+	
+
+	public TotalDto(int totalseq) {
+		this.totalseq = totalseq;
 	}
 
 	public TotalDto(int joinseq, String joinemail, String joinname, String joinpw, String joinbirth, String joinsex, String photo, String mililtary, String phone,
@@ -408,14 +424,13 @@ public class TotalDto {
 	public void setPrize(String prize) {
 		this.prize = prize;
 	}
-	
 
 	public String getStartorganization() {
-		return Startorganization;
+		return startorganization;
 	}
 
 	public void setStartorganization(String startorganization) {
-		Startorganization = startorganization;
+		this.startorganization = startorganization;
 	}
 
 	public String getOrganization() {
@@ -435,7 +450,7 @@ public class TotalDto {
 	}
 
 	public TotalDto(String joinemail, int skillseq, String category, String itskill1, String itskill2, String itskill3, String itskill4, String itskill5, String itscore1,String itscore2,String itscore3,String itscore4,String itscore5, String certificate, String languagename, String languagescore,String languageregdate, String contest,
-			String prize, String organization,String startorganization,String regdate) {
+			String prize, String organization, String startorganization, String regdate) {
 		this.joinemail = joinemail;
 		this.skillseq = skillseq;
 		this.category = category;
@@ -458,7 +473,7 @@ public class TotalDto {
 		this.contest = contest;
 		this.prize = prize;
 		this.organization = organization;
-		this.Startorganization = startorganization;
+		this.startorganization = startorganization;
 		this.regdate = regdate;
 	}
 
@@ -529,6 +544,22 @@ public class TotalDto {
 		this.graduate = graduate;
 		this.major = major;
 		this.grade = grade;
+	}
+
+	@Override
+	public String toString() {
+		return "TotalDto [totalseq=" + totalseq + ", joinseq=" + joinseq + ", joinemail=" + joinemail + ", joinname="
+				+ joinname + ", joinpw=" + joinpw + ", joinbirth=" + joinbirth + ", joinsex=" + joinsex + ", photo="
+				+ photo + ", mililtary=" + mililtary + ", phone=" + phone + ", address=" + address + ", kakao=" + kakao
+				+ ", singup=" + singup + ", skillseq=" + skillseq + ", category=" + category + ", itskill1=" + itskill1
+				+ ", itskill2=" + itskill2 + ", itskill3=" + itskill3 + ", itskill4=" + itskill4 + ", itskill5="
+				+ itskill5 + ", itscore1=" + itscore1 + ", itscore2=" + itscore2 + ", itscore3=" + itscore3
+				+ ", itscore4=" + itscore4 + ", itscore5=" + itscore5 + ", certificate=" + certificate
+				+ ", languagename=" + languagename + ", languagescore=" + languagescore + ", languageregdate="
+				+ languageregdate + ", contest=" + contest + ", prize=" + prize + ", organization=" + organization
+				+ ", startorganization=" + startorganization+ ", regdate=" + regdate + ", schoolseq=" + schoolseq
+				+ ", career=" + career + ", schoolname=" + schoolname + ", admission=" + admission + ", graduate="
+				+ graduate + ", major=" + major + ", grade=" + grade + "]";
 	}
 	
 
