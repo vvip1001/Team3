@@ -200,3 +200,16 @@ CREATE TABLE SUPPORTPAY
 
 SELECT * FROM SUPPORTPAY;
 --========================================================================================================================
+
+DROP TABLE QNABOARD;
+DROP SEQUENCE QNABOARD_SEQ;
+
+CREATE TABLE QNABOARD
+(
+    OANBOARDSEQ    NUMBER            NOT NULL, 
+    QUESTION       VARCHAR2(1000)    NULL, 
+    ANSWER         VARCHAR2(1000)    NULL, 
+    CONSTRAINT QNABOARD_PK PRIMARY KEY (OANBOARDSEQ)
+);
+
+CREATE SEQUENCE QNABOARD_SEQ;
