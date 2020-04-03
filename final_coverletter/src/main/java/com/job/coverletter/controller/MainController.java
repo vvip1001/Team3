@@ -26,9 +26,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.board.dto.BoardDto;
@@ -48,17 +50,21 @@ public class MainController {
 	@Autowired
 	private SupportPayBiz supportpaybiz;
 
+	
+	/*메인에 뿌려 줄 리스트 20개 */
 	@RequestMapping(value = "/MAIN_main.do", method = RequestMethod.GET)
 	public String selectOne(Model model) {
 		
+	
 		List<CompanyDto> list_cnt20 = companyBiz.selectList_cnt20();
-		//model.addAttribute("list_cnt20", list_cnt20);
+		model.addAttribute("list_cnt20", list_cnt20);
 		
 		
 		logger.info("Main go");
 		return "MAIN/main";
 	}
 	
+	/*회사가 가지고있는 채용정보를 그룹넘버 불러 옴 */
 	@RequestMapping(value = "/MAIN_mainDetail.do", method = RequestMethod.GET)
 	public String selectOne(Model model, int companyseq ) {
 
@@ -71,6 +77,19 @@ public class MainController {
 		return "MAIN/mainDetail";
 
 	}
+	
+//	/*채용게시판 즐겨찾기 */
+//	@RequestMapping(value = "/MAIN_bookmarkAjax.do", method =RequestMethod.GET)
+//	@ResponseBody
+//	public Map<String,String> bookmarkAjax(Model model, HttpSession session ,@RequestBody CompanyDto dto){
+//		
+//	
+//		
+//		
+//		return null;
+//	}
+//	
+	
 	
 
 	/*-------------------------후원하기-------------------------*/
