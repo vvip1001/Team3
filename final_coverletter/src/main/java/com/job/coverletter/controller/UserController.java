@@ -502,4 +502,40 @@ public class UserController {
 	
 		return "USER/userCVwrite";
 	}
+	
+	/*-----------------------비밀번호 변경----------------------*/
+	@RequestMapping(value = "USER_PwChange.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String Pwchange(HttpServletRequest request) {
+		String pw = request.getParameter("pw");
+		String pwConfirm = request.getParameter("pwConfirm");
+		String email = request.getParameter("email");
+		JoinUserDto dto = new JoinUserDto(email, pw);
+		
+		int res = 0;
+		if(pw.equals(pwConfirm)) {
+			
+			res = joinUserBiz.updateJoinuser(dto);
+			if(res>0) {
+			return "true";
+			}else {
+				return "false";
+			}
+		}else {
+			return "cancle";
+		}
+	}
+	/*----------------------회원탈퇴--------------------*/
+	@RequestMapping(value = "USER_withdraw.do")
+	public String withdraw(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		logger.info(email);
+		int res = joinUserBiz.deletejoinuser(email);
+		if(res>0) {
+			return "redirect:index.jsp";
+		}else {
+		return "USER_userMain.do";
+		}
+	}
+	
 }
