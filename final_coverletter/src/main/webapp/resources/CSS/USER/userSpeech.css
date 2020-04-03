@@ -1,5 +1,7 @@
-.container{
+.container {
+	
 }
+
 h1 {
 	text-align: center !important;
 	margin: 4% 0% 4% 0% !important;
@@ -7,70 +9,93 @@ h1 {
 	font-weight: 700 !important;
 	cursor: default;
 }
-.main{
+
+.main {
 	display: flex;
 }
-.side{
-	flex:0.5;
+
+.side {
+	flex: 0.5;
 }
-.center{
-	flex:2;
+
+.center {
+	flex: 2;
 	display: flex;
 }
-.internal{
+
+.internal {
 	text-align: center;
-	flex:1;
+	flex: 1;
 }
-.internal_bewteen{
-	flex:0.1;
+
+.internal_bewteen {
+	flex: 0.1;
 }
-.fieldset{
+
+.fieldset {
 	border: 2px solid #bcbcbc;
 	border-radius: 15px;
 }
 
 .legend {
-   text-align: center;
-   width: 20%;
-   padding: 0;
-   margin-bottom: 20px;
-   font-size: 21px;
-   line-height: inherit;
-   color: #333;
-   border: 0;
+	text-align: center;
+	width: 20%;
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 21px;
+	line-height: inherit;
+	color: #333;
+	border: 0;
 }
 
-#blank{
+#blank {
 	height: 25px;
 }
 
-textarea{
+textarea {
 	border: none;
 	outline: none;
 	resize: none;
 }
 
-.speech{
+.speech {
 	width: 150px;
 	height: 40px;
 	border-radius: px;
 	background-color: #949494;
-	color:white;
+	color: white;
 }
 
-#custom_button2{
-	text-align: center;	
+#custom_button2 {
+	text-align: center;
 }
 
-.button2{
+.button2 {
 	background-color: black;
-	color:white;
+	color: white;
 	border-radius: 50%;
 }
 
-#stop{
-	border:0px;
-	border-radius:7px;
+#stop {
+	border: 0px;
+	border-radius: 7px;
 	background-color: #949494;
-	color:white;
+	color: white;
+}
+
+#quiz {
+	cursor: pointer;
+}
+
+#timer {
+	position: fixed;
+	cursor: pointer;
+	text-align: center !important;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #949494;
+	border-radius: 5px;
+	right: 8%;	
+	font-size: 14pt;
 }

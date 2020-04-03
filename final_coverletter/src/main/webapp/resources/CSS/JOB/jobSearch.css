@@ -54,13 +54,23 @@
 
 /* 검색버튼 */
 #btn_search{
-	border: 1.5px solid #00bf6f; 
+	border: 1.5px solid darkgrey; 
 	background-color: darkgrey; 
 	width: 50%;  
 	height: 40px;
 	padding-left: 5%; 
 	padding-right: 5%;
-	}
+}
+
+#btn_search:hover{
+	border: 1.5px solid #00bf6f; 
+	background-color: #00bf6f; 
+	width: 50%;  
+	height: 40px;
+	padding-left: 5%; 
+	padding-right: 5%;
+}
+
 	
 /* 리셋버튼 */
 #btn_reset{

@@ -16,11 +16,10 @@
 </head>
 <body>
    <div id="headerwap">
-      
-         <div id="logo"><img alt="logo" src="${pageContext.request.contextPath}/resources/IMG/logo.png" onclick="location.href='index.jsp'"></div>
+         <div id="logo"><img alt="logo" src="${pageContext.request.contextPath}/resources/IMG/logo.png" onclick="location.href='MAIN_main.do'"></div>
             <div id="menu1">
-               <span><a href="#">공채캘린더</a></span> 
-               <span><a href="#">채용검색</a> </span>
+               <span><a href="">공채캘린더</a></span> 
+               <span><a href="JOB_jobSearch.do">채용검색</a> </span>
             </div>
             <div id="menu2">
                

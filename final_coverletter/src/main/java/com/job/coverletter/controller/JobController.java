@@ -86,17 +86,18 @@ public class JobController {
 		return "JOB/jobSearch";
 	}
 
+	
+	
+	// ajax 검색기능
 	@RequestMapping(value="/JOB_jobSearchRes.do", method= RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 		    produces = "application/text;charset=utf8")
-
 	public @ResponseBody String jobSearchRes(@ModelAttribute CompanyDto jsonKey) {
 		logger.info("검색 테스트 : " + jsonKey);
 		
 		ElasicHighLeverTemplat elastic = new ElasicHighLeverTemplat();
 		
 		String res = elastic.callSearchQuery(jsonKey);
-		
 		
 		return res;
 	}

@@ -195,7 +195,7 @@
 						<div class="col-md-10">
 							<div class="company_left">
 								<h5>
-									<a href="JOB_companyDetail.do?companyseq=${dto.companyseq}"><b>${dto.business}</b></a>
+									<a href="MAIN_mainDetail.do?companyseq=${dto.companyseq}"><b>${dto.business}</b></a>
 									<span style="font-size: 10px;">&nbsp;&nbsp;상시모집</span><br />
 								</h5>
 								<span>${dto.oneintro}</span><br /> 
