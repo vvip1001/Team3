@@ -88,13 +88,15 @@ public class JobController {
 
 	@RequestMapping(value="/JOB_jobSearchRes.do", method= RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
-	        produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+		    produces = "application/text;charset=utf8")
+
 	public @ResponseBody String jobSearchRes(@ModelAttribute CompanyDto jsonKey) {
 		logger.info("검색 테스트 : " + jsonKey);
 		
 		ElasicHighLeverTemplat elastic = new ElasicHighLeverTemplat();
 		
 		String res = elastic.callSearchQuery(jsonKey);
+		
 		
 		return res;
 	}
