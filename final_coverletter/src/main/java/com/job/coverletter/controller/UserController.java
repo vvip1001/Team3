@@ -134,7 +134,6 @@ public class UserController {
             return res;
          }
       }
-         
 
    //PFwrite page go 
    @RequestMapping(value = "/USER_userPFwrite.do", method = RequestMethod.GET)
@@ -149,6 +148,7 @@ public class UserController {
 	public String userMain(Model model) {
 		logger.info("userMain go");
 		
+		System.out.println("에러1");
 		CoverLetterDto cvdto = new CoverLetterDto();
 		cvdto.setCvcategory("자소서");
 		cvdto.setJoinemail(joinemail);
@@ -159,21 +159,25 @@ public class UserController {
 		pfdto.setJoinemail(joinemail);
 		int pflist = coverletterBiz.boardPFListCount(pfdto);
 		System.out.println("pflist : "+pflist);
+		
+		
+		//여긴가
 		JobCalendarDto jbdto = new JobCalendarDto();
 		jbdto.setJoinemail(joinemail);
 		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
 		System.out.println("jblist : "+jblist);
 		
+		System.out.println("에러2");
 		model.addAttribute("cvlist",cvlist);
 		model.addAttribute("pflist",pflist);
 		model.addAttribute("jblist",jblist);
 
 		// IT역량 차트
-		JSONArray itSkill = skillBiz.selectItSkill();
+		JSONArray itSkill = totalBiz.selectItSkill();
 		model.addAttribute("itSkill", itSkill);
 
 		// 스펙 차트
-		JSONArray mySkill = skillBiz.selectMySkill();
+		JSONArray mySkill = totalBiz.selectMySkill();
 		model.addAttribute("mySkill", mySkill);
 
 		return "USER/userMain";
@@ -498,4 +502,40 @@ public class UserController {
 	
 		return "USER/userCVwrite";
 	}
+	
+	/*-----------------------비밀번호 변경----------------------*/
+	@RequestMapping(value = "USER_PwChange.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String Pwchange(HttpServletRequest request) {
+		String pw = request.getParameter("pw");
+		String pwConfirm = request.getParameter("pwConfirm");
+		String email = request.getParameter("email");
+		JoinUserDto dto = new JoinUserDto(email, pw);
+		
+		int res = 0;
+		if(pw.equals(pwConfirm)) {
+			
+			res = joinUserBiz.updateJoinuser(dto);
+			if(res>0) {
+			return "true";
+			}else {
+				return "false";
+			}
+		}else {
+			return "cancle";
+		}
+	}
+	/*----------------------회원탈퇴--------------------*/
+	@RequestMapping(value = "USER_withdraw.do")
+	public String withdraw(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		logger.info(email);
+		int res = joinUserBiz.deletejoinuser(email);
+		if(res>0) {
+			return "redirect:index.jsp";
+		}else {
+		return "USER_userMain.do";
+		}
+	}
+	
 }

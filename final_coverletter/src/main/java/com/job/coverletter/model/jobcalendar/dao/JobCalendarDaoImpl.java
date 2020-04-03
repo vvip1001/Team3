@@ -14,7 +14,8 @@ import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
 @Repository
 public class JobCalendarDaoImpl implements JobCalendarDao {
    
-   @Autowired  @Qualifier("sqlSessionTemPlate")
+   @Autowired  
+   @Qualifier("sqlSessionTemPlate")
    private SqlSessionTemplate sqlSession;
 
    @Override

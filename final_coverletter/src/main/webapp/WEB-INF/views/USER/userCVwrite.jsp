@@ -13,6 +13,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/CSS/USER/userCVwrite.css"
 	rel="stylesheet">
+	
+<!-- include -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/JS/jquery.ajax-cross-origin.min.js"></script>	
 
 </head>
 <body>

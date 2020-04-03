@@ -37,10 +37,6 @@ function pagination_maria(page, range) {
 
 //동기 다음 버튼 이벤트
 function next_maria(page, range, rangeSize) {
-//	page = parseInt(page) - 1
-//	if((page % 10) == 1){
-//		range = parseInt(range) - 1;
-//	}
 	var page = parseInt((range * rangeSize)) + 1;
 	var range = parseInt(range) + 1;
 	var url = "JOB_jobSearch.do";
@@ -51,46 +47,190 @@ function next_maria(page, range, rangeSize) {
 
 /* 중복가능 selectbox */
 function selected_overlap(select){
+	let res = select.options[select.selectedIndex];
+    let search_company = document.getElementById("search_company")
+    res.disabled = true
     
-	var res = select.options[select.selectedIndex].value;
-    var text = document.getElementById("search_company").value += "#"+res+" "
-    //text.style.color = "rgba(255,238,51,0.99)"
-    select.options[select.selectedIndex].disabled = true 
+    let h5 = document.createElement("h5")
+    h5.setAttribute("class", "keyword_h5")
+    search_company.append(h5)
+    
+    let span = document.createElement("span")
+    span.setAttribute("class", "label label-default")
+    h5.appendChild(span)
+    span.textContent = res.value + " "
+    
+    let btn = document.createElement("input")
+    btn.setAttribute("type", "button")
+    btn.setAttribute("value","X")
+    btn.setAttribute("class", "keyword_button")
+    btn.setAttribute("onclick", "keywordBut_overlap(this," + "'"+ res.value + "'" + ");")
+    span.appendChild(btn)
 }
+
+/* 중복 키워드 버튼 삭제 */
+function keywordBut_overlap(btn, text) {
+	let search_company = document.getElementById("search_company")
+	let btns = document.getElementsByClassName("keyword_button")
+	let h5s = document.getElementsByClassName("keyword_h5")
+	let selectList = document.querySelectorAll(".form-control")
+	
+	for(var i = 0; i < btns.length; i++){
+		if(btns[i] == btn){
+			search_company.removeChild(h5s[i])
+		}
+	}
+	for(var i = 0; i<selectList.length -5 ; i++){
+		let select_options = document.querySelectorAll(".form-control")[i].options
+		
+		for(var j = 0; j < select_options.length; j++){
+			console.log(select_options[j].value)
+			if(select_options[j].value === text){
+				select_options[j].disabled = false
+			}
+		}
+	}
+}
+
+
 
 /* 중복불가 selectbox */
 function selected_only(select){
-	var res = select.options[select.selectedIndex].value;
-    var text = document.getElementById("search_company").value += "#"+res+" "
-    for(var i = 0; i<select.options.length; i++){
-    	select.options[i].disabled = true
-    }
+	var res = select.options[select.selectedIndex];
+	// 클릭한 selectBox 잠금
+    select.disabled = true
+    
+    let h5 = document.createElement("h5")
+    h5.setAttribute("class", "keyword_h5")
+    search_company.append(h5)
+    
+    let span = document.createElement("span")
+    span.setAttribute("class", "label label-default")
+    h5.appendChild(span)
+    span.textContent = res.value + " "
+    
+    let btn = document.createElement("input")
+    btn.setAttribute("type", "button")
+    btn.setAttribute("value","X")
+    btn.setAttribute("class", "keyword_button")
+    btn.setAttribute("onclick", "keywordBut_only(this," + "'"+ res.value + "'" + ");")
+    span.appendChild(btn)
+    
+}
+
+/* 중복불가 키워드 버튼 삭제  */
+function keywordBut_only(btn, text) {
+	let search_company = document.getElementById("search_company")
+	let btns = document.getElementsByClassName("keyword_button")
+	let h5s = document.getElementsByClassName("keyword_h5")
+	let selectList = document.querySelectorAll(".form-control")
+	
+	for(var i = 0; i < btns.length; i++){
+		if(btns[i] == btn){
+			search_company.removeChild(h5s[i])
+		}
+	}
+	
+	for(var i = 4; i<selectList.length -1 ; i++){
+		let select_options = document.querySelectorAll(".form-control")[i].options
+		for(var j = 0; j < select_options.length; j++){
+			if(select_options[j].value === text){
+				select_options[j].disabled = false
+				selectList[i].disabled = false
+			}
+		}
+	}
 }
 
 
 //검색 조건 리셋
 function companyReset() {
 	var text = document.getElementById("search_company").value = ""
+	let searchTextDiv = document.getElementById("div_text_search")
+	let select_search = document.getElementById("select_search")
 	
-    // 전체 select 만큼
+    // 전체 select 초기화
 	var selectList = document.querySelectorAll(".form-control")
     for(var i = 0; i<selectList.length; i++){
     	var select_options = document.querySelectorAll(".form-control")[i].options
-    	// 옵션 만큼
-    	for(var j = 0; j<select_options.length-1; j++){
+    	// 옵션 초기화
+    	for(var j = 0; j<select_options.length -1; j++){
     		select_options[0].selected = true
     		if(select_options[j].disabled){
-    			select_options[j].disabled = false;
+    			if(j == 0){
+    				select_options[j].disabled = true;
+    			} else {
+    				select_options[j].disabled = false;
+    			}
     		}
     	}
+    	selectList[i].disabled = true
+    	select_search.disabled = false
     }
+	
+	//검색 입력창 초기화
+	searchTextDiv.innerHTML = "";
+	let div = document.createElement("div")
+	div.setAttribute("class", "from-group")
+	div.setAttribute("id", "select_search")
+	
+	let inputText = document.createElement("input")
+	inputText.setAttribute("type", "text")
+	inputText.setAttribute("id", "search_company")
+	inputText.setAttribute("class", "form-control")
+	inputText.setAttribute("placeholder", "검색어 키워드 입력")
+	
+	div.appendChild(inputText)
+	searchTextDiv.appendChild(div)
 }
 
 //검색폼 변환
 function searchType(selectType){
-	if(selectType="검색"){
+	let searchTextDiv = document.getElementById("div_text_search")
+	let select_search = document.getElementById("select_search")
+
+	if(selectType.options[selectType.selectedIndex].value =="검색"){
+		// 영역 지우기
+		searchTextDiv.innerHTML = "";
 		
-	}else if(selectType="키워드"){
+		// select Box 잠금
+		var selectList = document.querySelectorAll(".form-control")
+	    for(var i = 0; i<selectList.length; i++){
+	    	selectList[i].disabled = true
+	    	select_search.disabled = false
+	    }
+		
+		let div = document.createElement("div")
+		div.setAttribute("class", "from-group")
+		div.setAttribute("id", "select_search")
+		
+		let inputText = document.createElement("input")
+		inputText.setAttribute("type", "text")
+		inputText.setAttribute("id", "search_company")
+		inputText.setAttribute("class", "form-control")
+		inputText.setAttribute("placeholder", "검색어 키워드 입력")
+		
+		div.appendChild(inputText)
+		searchTextDiv.appendChild(div)
+
+	} else if(selectType.options[selectType.selectedIndex].value =="키워드") {
+		searchTextDiv.innerHTML = "";
+		
+		let div = document.createElement("div")
+		div.setAttribute("class", "from-group")
+		div.setAttribute("id", "select_search")
+		
+		let butDiv = document.createElement("div")
+		butDiv.setAttribute("class", "well")
+		butDiv.setAttribute("id", "search_company")
+		
+		div.appendChild(butDiv)
+		searchTextDiv.appendChild(div)
+		
+		var selectList = document.querySelectorAll(".form-control")
+	    for(var i = 0; i<selectList.length; i++){
+	    	selectList[i].disabled = false
+	    }
 		
 	}
 }
@@ -158,7 +298,7 @@ function companySearch(page, startPage, from, startFrom, range){
 					creatDiv(compnay._source.companyseq, compnay._source.imgurl, compnay._source.business, compnay._source.enddate, compnay._source.oneintro, compnay._source.mainfield, compnay._source.languages, compnay._source.companyname, compnay._source.location, compnay._source.salary, compnay._source.target)
 				}
 				// 페이징 그리기
-	        	creatPageBtn_etc(page, startPage, endPage)
+	        	creatPageBtn_etc(page, startPage, endPage, startFrom, range)
 			},
 		    error: function(){
 		       alert("통신 실패");
@@ -168,7 +308,7 @@ function companySearch(page, startPage, from, startFrom, range){
 }
 
 //비동기 페이징 버튼 생성	
-function creatPageBtn_etc(clickPage, startPage, endPage) {
+function creatPageBtn_etc(clickPage, startPage, endPage, startFrom, range) {
 	var pageArea = document.getElementsByClassName("pagination")[0]
 	pageArea.innerHTML = ""
 	page = clickPage; // 전역변수에 할당
@@ -182,8 +322,7 @@ function creatPageBtn_etc(clickPage, startPage, endPage) {
 	}
 	//페이지 버튼 그리기
 	for(var i = startPage; i < endPage+1; i++){
-		console.log(startPage)
-		pagination_etc(i)
+		pagination_etc(i, startPage, startFrom, range)
 		if(i > 1){
 			from += 10
 		}
@@ -196,7 +335,7 @@ function creatPageBtn_etc(clickPage, startPage, endPage) {
 
 
 //비동기 페이지 버튼생성
-function pagination_etc(butNum){
+function pagination_etc(butNum, startPage, startFrom, range){
 	var pageArea = document.getElementsByClassName("pagination")[0]
 	var li = document.createElement("li")
 	if(butNum == page){	
