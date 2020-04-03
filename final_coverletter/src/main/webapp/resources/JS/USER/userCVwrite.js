@@ -45,25 +45,24 @@ function spellCheck(btn) {
 	var thisElement = btn;
 	var parent = $(thisElement).parents('.cv-container');
 	var ta = $(parent).find('textarea');
-	
+
 	// node server로 보내기
 	$.ajax({
-		 type: 'post',
-	     url: 'http://127.0.0.1:3000/',
-	     data: ta.val(),
-	     dataType: 'json',
-	     async: false,
-	     success:function(data){
-	     	 
-	    	 
-	     },
-	     error:function(msg){
-	         alert('통신실패');
-	         console.log(msg);
-	      }
-		
+		type : 'post',
+		url : 'http://127.0.0.1:3003/spellCheck/',
+		data : ta.val(),
+		crossOrigin : true,
+	    crossDomain : true,
+		async : false,
+		success : function(data) {
+			console.log('통신성공');
+			console.log('넘어오는 데이터 : ' + data);
+		},
+		error : function(request, status, error) {
+			console.log('통신실패');
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+
 	});
 };
-
-
 
