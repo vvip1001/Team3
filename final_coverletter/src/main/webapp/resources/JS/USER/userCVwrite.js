@@ -10,6 +10,7 @@ function add() {
 	// CLONE : 소제목 영역, 작성영역 clear
 	cloneElements.find('input[type=text]').val('');
 	cloneElements.find('textarea').val('');
+	cloneElements.find('.cv-spell').text('');
 	cloneElements.find('#cntArea-a').text('0');
 	cloneElements.find('#cntArea-b').text('0');
 }
@@ -45,6 +46,7 @@ function spellCheck(btn) {
 	var thisElement = btn;
 	var parent = $(thisElement).parents('.cv-container');
 	var ta = $(parent).find('textarea');
+	var sd = $(parent).find('.cv-spell');
 
 	// node server로 보내기
 	$.ajax({
@@ -57,6 +59,7 @@ function spellCheck(btn) {
 		success : function(data) {
 			console.log('통신성공');
 			console.log('넘어오는 데이터 : ' + data);
+			sd.text(data);
 		},
 		error : function(request, status, error) {
 			console.log('통신실패');
