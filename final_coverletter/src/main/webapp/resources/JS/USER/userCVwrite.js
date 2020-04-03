@@ -56,10 +56,38 @@ function spellCheck(btn) {
 		crossOrigin : true,
 	    crossDomain : true,
 		async : false,
+		dataType: 'json',
 		success : function(data) {
 			console.log('통신성공');
 			console.log('넘어오는 데이터 : ' + data);
-			sd.text(data);
+			
+			// data = json 
+			$.each(data, function(idx, obj) {
+				$.each(obj, function(key, value) {
+					console.log('key = ' + key);
+					console.log('val = ' + value);
+					/*
+					 * -- KEY --
+					 * token : 오류
+					 * suggestions : 교정어
+					 * info : 맞춤법 검사 결과 설명
+					 * 
+					 * */
+					if(key == 'token'){
+						
+					}
+					
+					if(key == 'suggestions'){
+						// button 생성
+						sd.append
+							("<button class='btn spell-btn' type='button'>"
+							+ value
+							+ "</button>");
+					}
+					
+				});
+			 });
+			
 		},
 		error : function(request, status, error) {
 			console.log('통신실패');
