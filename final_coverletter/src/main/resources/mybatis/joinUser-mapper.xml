@@ -44,9 +44,11 @@
 	</update>
 	
 	<!-- 회원탈퇴 -->
-	<delete id="userdelete" >
-		DELETE JOINUSER WHERE JOINEMAIL = #{joinemail}
-	</delete>
+	<update id="userdelete" parameterType="string">
+		UPDATE JOINUSER SET SINGUP = 'N'
+		WHERE JOINEMAIL = #{joinemail}
+	</update>
+	
  
  	<!-- login -->
  	<select id="login" parameterType="joinuserDto" resultType="joinUserDto">

@@ -211,32 +211,38 @@
 
 
 	<!-- Modal -->
+	
 	<div class="modal fade" role="dialog" id="modal">
 		<div class="modal-dialog">
-
 			<!-- Modal content-->
+			<form action="USER_PwChange.do" method="post" id="pwform">			
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title" align="center">개인정보수정</h3>
 				</div>
 				<div class="modal-body" align="center">
 					<p>
-						새 비밀번호<br> <input type="text" id="pw"><br> 비밀번호
-						확인<br> <input type="password" id="pwConfirm">
+						새 비밀번호
+						<br> 
+						<input type="text" id="pw" name="pw">
+						<br>	
+						비밀번호 확인
+						<br> 
+						<input type="password" id="pwConfirm" name="pwConfirm">
 					</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="soo" class="btn btn-default"
-						data-dismiss="modal" onclick="">확 인</button>
+				<input type="button" id="soo" class="btn btn-default" data-dismiss="modal" value="변경하기" >
 					<br> <br>
 					<div id="deleteDiv">
-						탈퇴하러가기 <a href="#" id="delete">회원탈퇴</a>
+						탈퇴하러가기 <a href="USER_withdraw.do?email=abc@naver.com" id="delete">회원탈퇴</a>
 					</div>
 				</div>
 			</div>
-
+			</form>
 		</div>
 	</div>
+	
 </body>
 <!-- chart.js 영역 -->
 <script type="text/javascript">

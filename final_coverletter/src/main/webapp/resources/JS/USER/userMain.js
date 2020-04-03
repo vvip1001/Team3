@@ -1,4 +1,5 @@
 window.onload = function() {
+	var pwform = $('#pwform').serialize();
 	document.getElementById('userUpdate').onclick = function() {
 		$('#modal').modal('show');
 		
@@ -58,6 +59,26 @@ window.onload = function() {
 	        });
 	        calendar.render();
 	      });
+	 
+	 document.getElementById('soo').onclick = function() {
+			        $.ajax({
+			            url: 'USER_PwChange.do', 
+			            type: 'POST', 
+			            data: {"email" : "abc@naver.com",
+			            	   "pw" : $("#pw").val(),
+			            	   "pwConfirm" : $("#pwConfirm").val()			            		
+			            },
+			            success: function(data){
+			            	if(data=="true"){
+			                 alert('비밀번호 변경 성공')
+			            	}else if(data=="false"){
+			            		alert('비밀번호 변경 실패')
+			            	}else if(data =="cancle"){
+			            		alert("비밀번호를 확인해주세요.")
+			            	}
+			            }
+			        });
+			}
 }
 
 /*-----------------------chart.js : IT 역량------------------------*/
