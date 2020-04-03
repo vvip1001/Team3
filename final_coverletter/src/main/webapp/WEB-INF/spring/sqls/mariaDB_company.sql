@@ -5,12 +5,12 @@
 -- 기업정보 : 설립일, 구성원, 홈페이지, 사무실위치, 산업분야
 
 
-drop sequence companyseq02;
-drop table company02;
+drop sequence companyseq;
+drop table company;
 
-create sequence companyseq02;
+create sequence companyseq;
 
-create table company02(
+create table company(
 	-- 기본정보 : 시퀀스, 그룹번호, 회사명, 이미지url, 한줄 소개, 모집대상(a), 주요업무(a-b), 채용상세(a-b), 연봉(a), 경력(a), 언어특기(a), 마감일(a), 기업소개글
 	companyseq int primary key,
 	groupno int not null,
@@ -40,16 +40,16 @@ create table company02(
 	mainfield varchar(1000) not null
 );
 
-insert into company02 values(NEXT VALUE for companyseq02, 0, '회사이름', '이미지 url', '한 줄 회사소개', 
+insert into company values(NEXT VALUE for companyseq02, 0, '회사이름', '이미지 url', '한 줄 회사소개', 
 							'모집대상', '주요업무', '채용상세', '연봉', '경력', '언어특기', '마감일(yy/mm/dd)', 
 							'기업소개', 
 							'개인지급장비', '자기개발 지원', '식시시간', '연차/휴가', '근무형태', '보험의료',
 						    '설립일', '구성원(총원)', '홈페이지', '위치', '산업분야'
 							);
 
-select * from company02 order by companyseq desc;
+select * from company order by companyseq desc;
 
-select * from company02; 
+select * from company; 
 
 
 select
