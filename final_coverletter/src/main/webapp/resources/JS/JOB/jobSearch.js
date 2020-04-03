@@ -480,7 +480,8 @@ function creatDiv(companyseq, imgurl, business, enddate, oneintro, mainfield, la
 	container.appendChild(row)
 	row.appendChild(imgDiv_2)
 	row.appendChild(companyDiv_10)
-}
+} 
+
 
 
 

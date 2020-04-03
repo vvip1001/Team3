@@ -286,7 +286,7 @@
 
 		<div class="companySide"></div>
 		<article>
-			<div class="totalCompany">
+			<div class="totalCompany" id="totalCompany">
 
 				<h5 class="h6">전체</h5>
 
