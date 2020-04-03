@@ -30,21 +30,21 @@
 
 .keyword_h5{
 	display: inline-block;
-	padding-right: 1%; 
+	padding-right: 5px; 
 }
 
 #search_company span {
 	font-size: 12px;
 	color: white;
 	background-color: #00bf6f;
-	padding-right: 5%;
+	padding-right: 4px;
 }
 
 .keyword_button{
 	padding: 0;
 	border: none;
 	background-color: #00bf6f;
-	font-size: 13px
+	font-size: 10px;
 }
 
 .keyword_button:hover{
@@ -80,6 +80,9 @@
 	height: 140px;
 }
 
+#search_container .row:hover{
+	border: 1.5px solid #00bf6f; 
+}
 
 /* 이미지 div */
 #search_container img{
@@ -102,7 +105,6 @@
 
 .div_img_mid{
 	display: inline-block;
-	
 }
 
 .company_left{
@@ -113,6 +115,7 @@
 	width: 25%;
 	float: right;
 }
+
 
 #search_container h5 span{ 
 	font-size: 10px !important;
