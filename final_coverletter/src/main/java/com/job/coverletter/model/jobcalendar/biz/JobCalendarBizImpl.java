@@ -10,21 +10,33 @@ import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
 
 @Service
 public class JobCalendarBizImpl implements JobCalendarBiz {
-   
-   @Autowired
-   private JobCalendarDao jobcalendardo;
 
-   @Override
-   public int boardJobListCount(JobCalendarDto dto) {
-      return jobcalendardo.boardJobListCount(dto);
-   }
+	@Autowired
+	private JobCalendarDao jobcalendardao;
 
-   @Override
-   public List<JobCalendarDto> boardJobList(JobCalendarDto dto) {
-      return jobcalendardo.boardJobList(dto);
-   }
+	@Override
+	public int boardJobListCount(JobCalendarDto dto) {
+		return jobcalendardao.boardJobListCount(dto);
+	}
 
+	@Override
+	public List<JobCalendarDto> boardJobList(JobCalendarDto dto) {
+		return jobcalendardao.boardJobList(dto);
+	}
 
-   
+	@Override
+	public int boardJobInsert(JobCalendarDto dto) {
+		return jobcalendardao.boardJobInsert(dto);
+	}
+
+	@Override
+	public boolean isJobBookmark(int companyseq, String joinemail) {
+		return jobcalendardao.isJobBookmark(companyseq, joinemail);
+	}
+
+	@Override
+	public int bookmarkDelete(int companyseq) {
+		return jobcalendardao.bookmarkDelete(companyseq);
+	}
 
 }

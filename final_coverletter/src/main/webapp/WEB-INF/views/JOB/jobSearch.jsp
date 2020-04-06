@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +20,14 @@
 	
 </head>
 <body>
-	<%@ include file="../ALL/header_login.jsp"%>
+	<c:choose>
+		<c:when test="${empty login }">
+			<%@ include file="../ALL/header_logout.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="../ALL/header_login.jsp"%>
+		</c:otherwise>
+	</c:choose>
 	<div class="container" id="main">
 			<div class="row">
 				<div class="col-md-2"></div>
@@ -30,7 +36,6 @@
 				</div>
 				<div class="col-md-2"></div>
 			</div>
-
 			<div class="row">
 				<div class="col-md-2"></div>
 
@@ -38,9 +43,17 @@
 					<div class="form-group">
 						<select class="form-control" id="business" disabled="disabled" onchange="selected_overlap(this);">
 							<option selected="selected" disabled="disabled">채용분야</option>
-							<option value="웹프로그래밍">웹프로그래밍</option>
 							<option value="프론트엔드">프론트엔드</option>
 							<option value="백엔드">백엔드</option>
+							<option value="Android">Android</option>
+							<option value="iOS">iOS</option>
+							<option value="앱">앱</option>
+							<option value="웹">웹</option>
+							<option value="디자이너">디자이너</option>
+							<option value="기획자">기획자</option>
+							<option value="CTO">CTO</option>
+							<option value="UI/UX">UI/UX</option>
+							<option value="SW개발자">SW개발자</option>
 						</select>
 					</div>
 				</div>
@@ -56,31 +69,45 @@
 							<option value="C#">C#</option>
 							<option value="Python">Python</option>
 							<option value="node.js">node.js</option>
-						</select>
-					</div>
-				</div>
-
-
-				<div class="col-md-2">
-					<div class="form-group">
-						<select class="form-control" id="location_front" disabled="disabled" onchange="selected_overlap(this);">
-							<option value="" selected="selected" disabled="disabled">지역(시)</option>
-							<option value="서울시">서울시</option>
-							<option>파주시</option>
-							<option>안양시</option>
-							<option>인천광역시</option>
-							<option>남양주시</option>
+							<option value="Android">Android</option>
+							<option value="Android">iOS</option>
+							<option value="PHP">PHP</option>
+							<option value="JSP">JSP</option>
+							<option value="AngularJS">AngularJS</option>
+							<option value="jQuery">jQuery</option>
 						</select>
 					</div>
 				</div>
 
 				<div class="col-md-2">
 					<div class="form-group">
-						<select class="form-control" disabled="disabled" id="location_back">
-							<option value="" selected="selected" disabled="disabled">지역(구)</option>
-							<option value="강남구">강남구</option>
-							<option>3</option>
-							<option>4</option>
+						<select class="form-control" id="location_front" disabled="disabled" onchange="location_change(this.value, this);">
+							<option value="" selected="selected" disabled="disabled">지역(도,시)</option>
+							<option value='1'>서울시</option>
+							<option value='2'>부산시</option>
+							<option value='3'>대구시</option>
+							<option value='4'>인천시</option>
+							<option value='5'>광주시</option>
+							<option value='6'>대전시</option>
+							<option value='7'>울산시</option>
+							<option value='8'>강원도</option>
+							<option value='9'>경기도</option>
+							<option value='10'>경남</option>
+							<option value='11'>경북</option>
+							<option value='12'>전남</option>
+							<option value='13'>전북</option>
+							<option value='14'>제주시</option>
+							<option value='15'>충남</option>
+							<option value='16'>충북</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="form-group">
+						<select class="form-control" disabled="disabled" id="location_back" onchange="selected_overlap(this);">
+							<option value="" selected="selected" disabled="disabled">지역(시,구)</option>
+							  
 						</select>
 					</div>
 				</div>
@@ -195,8 +222,8 @@
 						<div class="col-md-10">
 							<div class="company_left">
 								<h5>
-									<a href="MAIN_mainDetail.do?companyseq=${dto.companyseq}"><b>${dto.business}</b></a>
-									<span style="font-size: 10px;">&nbsp;&nbsp;상시모집</span><br />
+									<a href="JOB_jobDetail.do?companyseq=${dto.companyseq}"><b>${dto.business}</b></a>
+									<span style="font-size: 10px;">&nbsp;&nbsp;${dto.enddate }</span><br />
 								</h5>
 								<span>${dto.oneintro}</span><br /> 
 								<span>${dto.mainfield}</span><br /> 

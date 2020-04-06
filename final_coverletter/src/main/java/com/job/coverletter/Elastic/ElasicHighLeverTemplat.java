@@ -34,7 +34,7 @@ import com.job.coverletter.model.company.dto.CompanyDto;
 
 public class ElasicHighLeverTemplat {
 	
-	private String host = "192.168.110.232";
+	private String host = "localhost";
 	private int port1 = 9200;
 	private int port2 = 9201;
 	private Logger logger = LoggerFactory.getLogger(ElasicHighLeverTemplat.class);

@@ -3,6 +3,7 @@ package com.job.coverletter.model.jobcalendar.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -41,4 +42,29 @@ public class JobCalendarDaoImpl implements JobCalendarDao {
       }
       return list;
    }
+
+	@Override
+	public int boardJobInsert(JobCalendarDto dto) {
+		int res = sqlSession.insert(NAMESPACE + "boardJobInsert", dto);
+		return res;
+	}
+
+	@Override
+	public boolean isJobBookmark(int companyseq, String joinemail) {
+		JobCalendarDto dto = new JobCalendarDto();
+		dto = sqlSession.selectOne(NAMESPACE + "isJobBookmark", companyseq);
+
+		if(dto.getJoinemail().equals("")) { // 값이 없으면 사용가능
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public int bookmarkDelete(int companyseq) {
+		int res = sqlSession.delete(NAMESPACE + "bookmarkDelete", companyseq);
+		return res;
+	}
 }

@@ -132,16 +132,16 @@ CREATE SEQUENCE PORTFOLIO_SEQ;
 
 CREATE TABLE COVERLETTER
 (
-    TOTALSEQ         NUMBER            NOT NULL,   -- 전체 시퀀스    
+    TOTALSEQ          NUMBER            NOT NULL,   -- 전체 시퀀스    
     JOINEMAIL         VARCHAR2(200)     NOT NULL,    -- 이메일
     CVCATEGORY        VARCHAR2(30)      NOT NULL,   -- 카테고리
-    GROUPSEQ        NUMBER         NOT NULL,    -- 자소서, 포폴용 각각의 시퀀스
+    GROUPSEQ          NUMBER         NOT NULL,    -- 자소서, 포폴용 각각의 시퀀스
     QUESTION          VARCHAR2(1000),             -- 항목(질문)
     TITLE             VARCHAR2(500)      NOT NULL,    -- 제목
     SUBTITLE          VARCHAR2(500),             -- 소제목(내용의 핵심 키워드)
     CONTENT           VARCHAR2(3000),             -- 내용
     REGDATE           DATE            NOT NULL,   -- 작성일
-    FILEPATH        VARCHAR2(1000),
+    FILEPATH          VARCHAR2(1000),
     CONSTRAINT COVERLETTER_PK PRIMARY KEY (TOTALSEQ),
     CONSTRAINT COVERLETTER_CK01 CHECK (CVCATEGORY IN('자소서','포폴'))
 );
@@ -168,12 +168,14 @@ CREATE TABLE JOBCALENDAR
     JOINEMAIL          VARCHAR2(200)       NOT NULL, 
     COMPANYNAMESEQ     NUMBER               NOT NULL,      -- 회사테이블 프라이머리키
     COMPANYNAME        VARCHAR2(20)          NOT NULL,    -- 회사명
-    BUSINESS             VARCHAR2(1000)      NOT NULL,       -- 채용제목
+    BUSINESS           VARCHAR2(1000)      NOT NULL,       -- 채용제목
     ENDDATE            VARCHAR2(20)        NOT NULL,    -- 마감일
     CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ)
 ); 
 
 INSERT INTO JOBCALENDAR VALUES(JOBCALENDAR_SEQ.NEXTVAL, 'USER@GMAIL.COM', 123, '운토티', '백엔드 개발자 채용', '200405');
+
+SELECT * FROM JOBCALENDAR;
 
 --=====================================================================================================================
 -- 후원 내역 테이블

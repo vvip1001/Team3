@@ -30,7 +30,7 @@ local.properties
 .autotools
 
 # Java annotation processor (AP...
-[박 하] [오전 10:23] # Scala IDE specific (Scala & Java development for Eclipse)
+# Scala IDE specific (Scala & Java development for Eclipse)
 .cache-main
 .scala_dependencies
 .worksheet

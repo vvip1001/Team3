@@ -16,7 +16,14 @@
 	rel="stylesheet">
 </head>
 <body>
-	<%@ include file="../ALL/header_login.jsp"%>
+	<c:choose>
+		<c:when test="${empty login }">
+			<%@ include file="../ALL/header_logout.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="../ALL/header_login.jsp"%>
+		</c:otherwise>
+	</c:choose>
 
 	<div id="All">
 		<input type="hidden" id="companyseq" value="${maindetail.companyseq }"/>
