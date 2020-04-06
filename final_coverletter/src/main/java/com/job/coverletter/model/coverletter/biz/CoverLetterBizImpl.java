@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.job.coverletter.all.util.MultiRowTarget;
 import com.job.coverletter.model.coverletter.dao.CoverLetterDao;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 
@@ -41,5 +43,11 @@ public class CoverLetterBizImpl implements CoverLetterBiz {
 	@Override
 	public int PFdelete(String[] seq) {
 		return coverletterdao.PFdelete(seq);
+	}
+
+	@Override
+	public int CVinsert(CoverLetterDto dto) {
+		// TODO Auto-generated method stub
+		return coverletterdao.CVinsert(dto);
 	}
 }

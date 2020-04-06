@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,17 +24,19 @@
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
 
-	<form action="USER_userCVinsert.do" method="post">
+<f:form action="USER_userCVinsert.do" method="post"
+			modelAttribute="MultiRowTarget">
+			<f:input type="hidden" path="targets[0].joinemail" value="a"/>
 	<!-- 자소서 제목 영역 -->
 	<div class="container title-container">
 		<div id="title-area">
 			<h1>자기소개서 작성</h1>
-
+			
 			<div class="input-group">
 				<span class="input-group-addon">제&nbsp;&nbsp;목</span> 
-				<input
-					type="text" class="form-control" name="title"
-					placeholder="제목을 입력하세요.">
+				<f:input
+					type="text" cssClass="form-control" id="title" path="targets[0].title"
+					placeholder="제목을 입력하세요."/>
 			</div>
 		</div>
 	</div>
@@ -46,20 +50,22 @@
 			<div id="input-grp">
 				<div class="input-group">
 					<span class="input-group-addon">소제목</span> 
-					<input 
-						type="text" class="form-control" name="subtitle"
-						placeholder="소제목을 입력하세요.">
+					<f:input 
+						type="text" class="form-control" id="subtitle" path="targets[0].subtitle"
+						placeholder="소제목을 입력하세요."/>
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon">항&nbsp;&nbsp;&nbsp;&nbsp;목</span> 
-					<select
-						class="form-control">
-						<option>성장과정</option>
-						<option>학창시절</option>
-						<option>성격의 장단점</option>
-						<option>좌우명과 가치관</option>
-						<option>지원동기</option>
-					</select>
+					<f:select
+						class="form-control" id="question" path="targets[0].question">
+						<f:option value="지원동기"></f:option>
+						<f:option value="성격의 장단점"></f:option>
+						<f:option value="성장과정"></f:option>
+						<f:option value="입사 후 포부"></f:option>
+						<f:option value="지원동기"></f:option>
+						<f:option value="지원동기"></f:option>
+						<f:option value="지원동기"></f:option>
+					</f:select>
 				</div>
 				
 				<!-- 글자수 영역 -->
@@ -72,7 +78,7 @@
 					<div class="col-md-2">
 						<fieldset class="cv-box">
 							<legend class="legend">작성</legend>
-							<textarea class="textarea" name="content" onkeydown="contentCnt(this);"></textarea>
+							<f:textarea class="textarea" onkeydown="contentCnt(this);" id="content" path="targets[0].content"></f:textarea>
 						</fieldset>
 						
 						<button class="btn cv-btn" type="button">음성입력</button>
@@ -104,10 +110,10 @@
 	<!-- submit 영역 -->
 	<div class="container submit-container">
 		<div class="submit-area">
-			<input type="submit" class="btn" value="작성완료">
+			<input type="submit" class="btn" value="작성완료" >
 			<button class="btn" onclick="location.href='JOB_jobCenter.do'" type="button">돌아가기</button>
 		</div>
 	</div>
-	</form>
+	</f:form>
 </body>
 </html>

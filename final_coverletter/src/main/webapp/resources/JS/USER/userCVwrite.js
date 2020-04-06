@@ -1,3 +1,5 @@
+var idx = 1;
+
 /*---------- cv-container 복제 : add func ----------*/
 function add() {
 	// 마지막 cv-container를 복제
@@ -13,6 +15,15 @@ function add() {
 	cloneElements.find('.cv-spell').text('');
 	cloneElements.find('#cntArea-a').text('0');
 	cloneElements.find('#cntArea-b').text('0');
+	
+	// path 
+	cloneElements.find('input[id=title]').attr('name', 'targets[' + idx + '].title');
+	console.log('되고잇나..' + idx);
+	cloneElements.find('input[id=subtitle]').attr('name', 'targets[' + idx + '].subtitle');
+	cloneElements.find('select[id=question]').attr('name', 'targets[' + idx + '].question');
+	cloneElements.find('textarea[id=content]').attr('name', 'targets[' + idx + '].content');
+	
+	idx++;
 }
 
 /*---------- cv-container 삭제 : remove func ----------*/
@@ -96,4 +107,14 @@ function spellCheck(btn) {
 
 	});
 };
+
+
+
+
+
+
+
+
+
+
 

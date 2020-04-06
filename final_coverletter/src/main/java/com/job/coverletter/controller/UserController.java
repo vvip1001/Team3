@@ -1,9 +1,10 @@
 package com.job.coverletter.controller;
 
-import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.annotation.Target;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
@@ -33,21 +32,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import com.google.gson.JsonObject;
 import com.job.coverletter.all.Pagination;
+import com.job.coverletter.all.util.MultiRowTarget;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 import com.job.coverletter.model.jobcalendar.biz.JobCalendarBiz;
 import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
 import com.job.coverletter.model.joinUser.biz.JoinUserBiz;
 import com.job.coverletter.model.joinUser.dto.JoinUserDto;
-import com.job.coverletter.model.school.dto.SchoolDto;
+import com.job.coverletter.model.skill.biz.SkillBiz;
 import com.job.coverletter.model.total.biz.TotalBiz;
 import com.job.coverletter.model.total.dto.TotalDto;
-import com.job.coverletter.model.skill.biz.SkillBiz;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 @Controller
 public class UserController {
@@ -480,31 +477,40 @@ public class UserController {
 
 	/*------------------------ 박하 : 취업센터 --------------------------*/
 	// 자기소개서 작성 페이지
-	@RequestMapping(value = "USER_userCVwriteForm.do")
-	public String CVWriteForm() {
+	@RequestMapping(value = "/USER_userCVwriteForm.do")
+	public String CVWriteForm(Model model) {
+		//CoverLetterDto dto = new CoverLetterDto();
+		//model.addAttribute("CoverLetterDto", dto);
+		MultiRowTarget targets = new MultiRowTarget();
+		model.addAttribute("MultiRowTarget", targets);
 		return "USER/userCVwrite";
 	}
 	
-	// 자기소개서 INSERT 
-	@RequestMapping(value = "USER_userCVinsert.do", method = RequestMethod.POST)
-	public String CVWriteInsert(HttpServletRequest request) {
-		//Map<String, String> map = new HashMap<String, String>();
-		String title = request.getParameter("title");
-		String subtitle = request.getParameter("subtitle");
-		String content = request.getParameter("content");
+	// 자기소개서 INSERT
+	@RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
+	//public String CVWriteInsert(Model model, @ModelAttribute("CoverLetterDto") CoverLetterDto dto) {
+	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets) {
+		System.out.println("==============================");
+		//System.out.println(targets.getTargets().get(0));
+		//System.out.println(targets.getTargets().get(1));
+
+		for(int i = 0; i < targets.getTargets().size(); i++) {
+			String title = targets.getTargets().get(0).getTitle();
+			targets.getTargets().get(i).setTitle(title);
+			targets.getTargets().get(i).setJoinemail(joinemail);
+			int res = coverletterBiz.CVinsert(targets.getTargets().get(i));
+		}
 		
-		List<String> list = new ArrayList<String>();
-		list.add(title);
-		list.add(subtitle);
-		list.add(content);
-		System.out.println(list);
+		System.out.println(targets.getTargets().get(0));
+		System.out.println(targets.getTargets().get(1));
+		System.out.println("==============================");
 		
-	
-		return "USER/userCVwrite";
+		return "JOB_jobCenter.do";
 	}
+	
 	
 	/*-----------------------비밀번호 변경----------------------*/
-	@RequestMapping(value = "USER_PwChange.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/USER_PwChange.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String Pwchange(HttpServletRequest request) {
 		String pw = request.getParameter("pw");
@@ -526,7 +532,7 @@ public class UserController {
 		}
 	}
 	/*----------------------회원탈퇴--------------------*/
-	@RequestMapping(value = "USER_withdraw.do")
+	@RequestMapping(value = "/USER_withdraw.do")
 	public String withdraw(HttpServletRequest request) {
 		String email = request.getParameter("email");
 		logger.info(email);
