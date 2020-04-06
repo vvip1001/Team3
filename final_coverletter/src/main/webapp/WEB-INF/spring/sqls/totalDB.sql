@@ -75,7 +75,6 @@ CREATE TABLE TOTAL(
    MAJOR VARCHAR2(1000),
    GRADE VARCHAR2(1000)
 );
-
 INSERT INTO TOTAL(TOTALSEQ,JOINEMAIL,JOINNAME,JOINBIRTH,JOINSEX,MILILTARY,PHONE,ADDRESS,ITSKILL1,ITSKILL2,ITSKILL3,ITSKILL4,ITSKILL5,MAJOR) VALUES(TOTAL_SEQ.NEXTVAL,'igs99275@naver.com','조수민','940802','남성','군필','010-8842-1869','인천광역시 부평구','자바','파이썬','씨언어','씨큐리티','오라클','항소');
 SELECT * FROM TOTAL;
 DROP TABLE TOTAL;
@@ -201,55 +200,16 @@ CREATE TABLE SUPPORTPAY
 
 SELECT * FROM SUPPORTPAY;
 --========================================================================================================================
--- a : 채용중인 정보 페이지에서 가져옴
--- a-b : 채용분야에서 url타고 들어가서 '채용상세' 가져왔음
--- 기본정보 : 시퀀스, 그룹번호, 회사명, 이미지url, 한줄 소개, 모집대상(a), 주요업무(a-b), 채용상세(a-b), 연봉(a), 경력(a), 언어특기(a), 마감일(a), 기업소개글
--- 복지해택 : 개인장비, 자기개발, 식사시간, 연차휴가, 근무형태, 보험의료  
--- 기업정보 : 설립일, 구성원, 홈페이지, 사무실위치, 산업분야
 
+DROP TABLE QNABOARD;
+DROP SEQUENCE QNABOARD_SEQ;
 
-DROP SEQUENCE COMPANYSEQ;
-DROP TABLE COMPANY;
-
-CREATE SEQUENCE COMPANYSEQ;
-
-CREATE TABLE COMPANY
+CREATE TABLE QNABOARD
 (
-   -- 기본정보 : 시퀀스, 그룹번호, 회사명, 이미지url, 한줄 소개, 모집대상(a), 주요업무(a-b), 채용상세(a-b), 연봉(a), 경력(a), 언어특기(a), 마감일(a), 기업소개글
-    COMPANYSEQ       NUMBER            NOT NULL, 
-    GROUPNO          NUMBER            NOT NULL, 
-    COMPANYNAME      VARCHAR2(200)     NOT NULL, 
-    IMGURL           VARCHAR2(1000)    NOT NULL, 
-    ONEINTRO         VARCHAR2(1000)    NOT NULL, 
-    BUSINESS         VARCHAR2(1000)    NOT NULL, 
-    MAINBUSINESS    VARCHAR2(3000)      NOT NULL, 
-    JOBDETAIL        CLOB            NOT NULL, 
-    SALARY           VARCHAR2(200)     NOT NULL, 
-    TARGET           VARCHAR2(20)      NOT NULL,
-    LANGUAGES        VARCHAR2(1000)    NOT NULL, 
-    ENDDATE          VARCHAR2(100)     NOT NULL, 
-    INTRO            VARCHAR2(3000)    NOT NULL, 
-    -- 복지해택 : 개인장비, 자기개발, 식사시간, 연차휴가, 근무형태, 보험의료  
-    GIVETOOL         VARCHAR2(1000)    NOT NULL, 
-    SELFGROWTH       VARCHAR2(1000)    NOT NULL, 
-    MEALTIME         VARCHAR2(1000)    NOT NULL, 
-    HOLIDAY          VARCHAR2(1000)    NOT NULL, 
-    WORKINGHOUR      VARCHAR2(1000)    NOT NULL, 
-    INSURANCE        VARCHAR2(1000)    NOT NULL, 
-    -- 기업상세정보 : 설립일, 구성원, 홈페이지, 사무실위치, 산업분야
-    INCORPORATION    VARCHAR2(200)     NOT NULL, 
-    TOTALMEMBER      VARCHAR2(200)     NOT NULL, 
-    HOMEPAGE         VARCHAR2(1000)    NOT NULL, 
-    LOCATION         VARCHAR2(1000)    NOT NULL, 
-    MAINFIELD        VARCHAR2(1000)    NOT NULL, 
-    CONSTRAINT COMPANY_PK PRIMARY KEY (COMPANYSEQ)
-)
+    OANBOARDSEQ    NUMBER            NOT NULL, 
+    QUESTION       VARCHAR2(1000)    NULL, 
+    ANSWER         VARCHAR2(1000)    NULL, 
+    CONSTRAINT QNABOARD_PK PRIMARY KEY (OANBOARDSEQ)
+);
 
-insert into COMPANY values(COMPANYSEQ.NEXTVAL , 0, '회사이름', '이미지 url', '한 줄 회사소개', 
-                     '모집대상', '주요업무', '채용상세', '연봉', '경력', '언어특기', '마감일(yy/mm/dd)', 
-                     '기업소개', 
-                     '개인지급장비', '자기개발 지원', '식시시간', '연차/휴가', '근무형태', '보험의료',
-                      '설립일', '구성원(총원)', '홈페이지', '위치', '산업분야'
-                     );
-
-SELECT * FROM COMPANY;
+CREATE SEQUENCE QNABOARD_SEQ;

@@ -58,8 +58,17 @@ public class JoinUserDto {
     public JoinUserDto() {
       super();
    }
+    
+    
 
-   public JoinUserDto(int joinseq, String joinemail, String joinname, String joinpw, String joinbirth, String joinsex,
+   public JoinUserDto(String joinemail,	String joinpw) {
+		this.joinemail = joinemail;
+		this.joinpw = joinpw;
+	}
+
+
+
+public JoinUserDto(int joinseq, String joinemail, String joinname, String joinpw, String joinbirth, String joinsex,
          String photo, String mililtary, String phone, String address, String kakao, String singup) {
       super();
       this.joinseq = joinseq;

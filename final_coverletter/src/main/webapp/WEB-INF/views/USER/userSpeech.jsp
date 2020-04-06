@@ -22,6 +22,9 @@
 
 	<div class="container">
 		<h1>스피치 연습</h1>
+		<div id="blank">
+				<div id="timer">타이머</div>
+		</div>
 		<div id="original">
 			<div class="main">
 				<div class="side"></div>
@@ -54,11 +57,15 @@
 				<div class="center">
 
 					<div class="internal">
-						<input type="button" value="대본녹음" class="speech" id="speech" onclick="speech_to_text()" />
+						<input type="button" value="대본녹음" class="speech" id="speech"
+							onclick="speech_to_text()" />
 					</div>
-					<div class="internal_bewteen"><button id="stop" onclick="stop()">Stop</button></div>
+					<div class="internal_bewteen">
+						<button id="stop" onclick="stop()">Stop</button>
+					</div>
 					<div class="internal">
-						<input type="button" value="연습녹음" class="speech" onclick="pract_speech_to_text()"  />
+						<input type="button" value="연습녹음" class="speech"
+							onclick="pract_speech_to_text()" />
 					</div>
 
 				</div>
@@ -78,10 +85,15 @@
 					src="${pageContext.request.contextPath}/resources/IMG/minus.png">
 			</button>
 		</div>
+		
+		<div id="blank"></div>
+		
+		<div>
+			<p id="quiz">∨문답 펼치기∨</p>
+		</div>
 	</div>
-	
-	
-	
+
+
 
 </body>
 </html>

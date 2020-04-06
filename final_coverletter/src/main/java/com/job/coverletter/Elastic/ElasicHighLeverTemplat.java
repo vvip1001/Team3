@@ -34,7 +34,7 @@ import com.job.coverletter.model.company.dto.CompanyDto;
 
 public class ElasicHighLeverTemplat {
 	
-	private String host = "localhost";
+	private String host = "192.168.110.232";
 	private int port1 = 9200;
 	private int port2 = 9201;
 	private Logger logger = LoggerFactory.getLogger(ElasicHighLeverTemplat.class);
@@ -58,7 +58,7 @@ public class ElasicHighLeverTemplat {
 		
 		// DSL 쿼리문 값 적용
 		Map<String, Object> scriptParams = new HashMap<>();
-		scriptParams.put("size", 3);
+		scriptParams.put("size", 10);
 		scriptParams.put("from", dto.getFrom());
 		//scriptParams.put("_source", "[companyseq, imgurl, business, enddate, oneintro, mainfield, languages, companyname, location, salary, target]");
 		

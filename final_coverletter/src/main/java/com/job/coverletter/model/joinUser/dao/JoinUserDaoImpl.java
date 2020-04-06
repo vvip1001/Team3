@@ -42,7 +42,7 @@ public class JoinUserDaoImpl implements JoinUserDao {
 	@Override
 	public int deletejoinuser(String joinemail) {
 
-		return sqlSession.delete("com.job.coverletter.JoinUser.deleteuser", joinemail);
+		return sqlSession.delete("com.job.coverletter.JoinUser.userdelete", joinemail);
 	}
 	
 	

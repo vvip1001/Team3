@@ -44,10 +44,12 @@
 	</update>
 	
 	<!-- 회원탈퇴 -->
-	<delete id="userdelete" >
+
+	<update id="userdelete" parameterType="string">
 		UPDATE JOINUSER SET SINGUP = 'N'
 		WHERE JOINEMAIL = #{joinemail}
-	</delete>
+	</update>
+	
  
  	<!-- login -->
  	<select id="login" parameterType="joinuserDto" resultType="joinUserDto">

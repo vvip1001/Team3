@@ -1,14 +1,12 @@
 /* background: #ebe6e6; */
 
 /* 고정 */
- 
-
 .container {
 	height: auto;
 	position: relative;
 }
 
-.totalcompany{
+.totalcompany {
 	margin-bottom: 0;
 }
 
@@ -16,8 +14,6 @@
 	height: 10px;
 	background-color: #ebe6e6;
 }
-
- 
 
 /*시 작*/
 #companyname .col-md-12 {
@@ -32,6 +28,18 @@
 	font-size: 20px;
 }
 
+#button {
+	text-align: center;
+	margin-top: 12px;
+	
+}
+
+#button .button {
+	background-color: #00bf6f;
+	border-radius:10px;
+	padding:0.7%;
+}
+
 #img .img {
 	width: 150px;
 	height: 100px;
@@ -40,7 +48,7 @@
 .logo_img {
 	text-align: center;
 	margin-bottom: 10px;
-	margin-top:20px;
+	margin-top: 20px;
 }
 
 #oneintro .col-md-12 {
@@ -55,10 +63,6 @@
 	border: 1px solid #00bf6f;
 	padding: 24px;
 	font-size: 20px;
-}
-
-#oneintro .col-md-12 {
-	margin-bottom: 3%;
 }
 
 .information, .intro {
@@ -87,16 +91,13 @@
 #incorporation .title, .content {
 	float: left;
 	margin-right: 24px;
- 	
-}
-#incorporation .content {
-	height:auto;
 }
 
+#incorporation .content {
+	height: auto;
+}
 
 #welfare .title, .content {
 	float: left;
 	margin-right: 24px;
 }
-
- 

@@ -24,13 +24,19 @@
 
 <body>
 
-
 <c:if test="${empty list_cnt20}">
 	<c:set var="list_cnt20" value="<%=new ArrayList<CompanyDto>() %>"/>
 </c:if>
-
-
-	<%@ include file="../ALL/header_login.jsp"%>
+	
+	<c:choose>
+		<c:when test="${empty login }">
+			<%@ include file="../ALL/header_logout.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="../ALL/header_login.jsp"%>
+		</c:otherwise>
+	</c:choose>
+	
 	<div class="container" style="background-color: #ebe6e6;">
 		<div id="MaintopDiv">
 			<h1>[자소서 성공 페이지]</h1>
@@ -280,7 +286,7 @@
 
 		<div class="companySide"></div>
 		<article>
-			<div class="totalCompany">
+			<div class="totalCompany" id="totalCompany">
 
 				<h5 class="h6">전체</h5>
 
