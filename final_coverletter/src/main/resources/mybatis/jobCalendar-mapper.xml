@@ -17,16 +17,16 @@
       WHERE JOINEMAIL = #{joinemail}
       <trim prefix="AND" prefixOverrides="AND">
          <if
-            test="category == 'title' and keyword != null and keyword != ''">
-            AND TITLE LIKE ('%' || #{keyword} || '%')
+            test="category == 'companyname' and keyword != null and keyword != ''">
+            AND COMPANYNAME LIKE ('%' || #{keyword} || '%')
          </if>
          <if
-            test="category == 'content' and keyword != null and keyword != ''">
-            AND CONTENT LIKE ('%' || #{keyword} || '%')
+            test="category == 'business' and keyword != null and keyword != ''">
+            AND BUSINESS LIKE ('%' || #{keyword} || '%')
          </if>
          <if
-            test="category == 'joinemail' and keyword != null and keyword != ''">
-            AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
+            test="category == 'enddate' and keyword != null and keyword != ''">
+            AND ENDDATE LIKE ('%' || #{keyword} || '%')
          </if>
       </trim>
    </select>
@@ -42,22 +42,29 @@
       WHERE JOINEMAIL = #{joinemail}
       <trim prefix="AND" prefixOverrides="AND">
          <if
-            test="category == 'title' and keyword != null and keyword != ''">
-            AND TITLE LIKE ('%' || #{keyword} || '%')
+            test="category == 'companyname' and keyword != null and keyword != ''">
+            AND COMPANYNAME LIKE ('%' || #{keyword} || '%')
          </if>
          <if
-            test="category == 'content' and keyword != null and keyword != ''">
-            AND CONTENT LIKE ('%' || #{keyword} || '%')
+            test="category == 'business' and keyword != null and keyword != ''">
+            AND BUSINESS LIKE ('%' || #{keyword} || '%')
          </if>
          <if
-            test="category == 'joinemail' and keyword != null and keyword != ''">
-            AND JOINEMAIL LIKE ('%' || #{keyword} || '%')
+            test="category == 'enddate' and keyword != null and keyword != ''">
+            AND ENDDATE LIKE ('%' || #{keyword} || '%')
          </if>
       </trim>
       ) B
       WHERE RNUM BETWEEN #{StartIndex} + 1 AND #{CntPerPage}
       ORDER BY
       JOBCALENDARSEQ DESC
+   </select>
+   
+   
+   <!-- 마감일이 수시채용이 아닌 jobCalendarDto 가져오기-->
+   <select id="getFullCalendarData" resultType="jobCalendarDto">
+   		SELECT * FROM JOBCALENDAR
+   		WHERE JOINEMAIL = #{joinemail} AND NOT ENDDATE = '수시채용' 
    </select>
    
    
@@ -70,15 +77,16 @@
    <!-- 즐겨찾기 유무  -->
    <select id="isJobBookmark" resultType="jobCalendarDto">
    		SELECT * FROM JOBCALENDAR 
-   		WHERE JOINEMAIL = #{joinemail}
-   		AND COMPANYSEQ = #{companyseq}
+   		WHERE JOINEMAIL = #{joinemail} AND COMPANYSEQ = #{companyseq}
    </select>
    
    <!-- 즐겨찾기 삭제 -->
-   <delete id="jobBookmark">
+   <delete id="bookmarkDelete" parameterType="jobCalendarDto">
 		DELETE FROM JOBCALENDAR
-		WHERE COMPANYSEQ = #{companyseq}	
+		WHERE JOINEMAIL = #{joinemail} AND COMPANYSEQ = #{companyseq}	
    </delete>
+   
+   
    
 
 </mapper>

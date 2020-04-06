@@ -47,15 +47,7 @@
 				<div class="row" id="oneintro">
 					<div class="col-md-12">${mainDetail.oneintro }</div>
 				</div>
-
-				<div class="row">
-					<div class="col-md-12">
-						<div class="bookmark" id="button">
-						<button type="button" class="button" onclick="bookmark();">회사 즐겨찾기</button>
-						</div>
-					</div>
-				</div>
-
+				<br/>
 
 				<div class="row" id="info">
 					<div class="col-md-12">

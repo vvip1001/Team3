@@ -11,13 +11,16 @@ public interface JobCalendarDao {
 
 	public List<JobCalendarDto> boardJobList(JobCalendarDto dto);
 	
+	// 풀캘 데이터 조회
+	public List<JobCalendarDto> getFullCalendarData(String joinemail);
+	
 	// 즐겨찾기 추가
 	public int boardJobInsert(JobCalendarDto dto);
 	
 	// 즐겨찾기 등록 여부
-	public boolean isJobBookmark(int companyseq, String joinemail);
+	public boolean isJobBookmark(JobCalendarDto dto);
 	
 	// 즐겨찾기 삭제
-	public int bookmarkDelete(int companyseq);
+	public int bookmarkDelete(JobCalendarDto dto);
 	
 }

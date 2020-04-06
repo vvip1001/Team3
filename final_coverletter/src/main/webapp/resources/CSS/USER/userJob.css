@@ -15,9 +15,13 @@ h1 {
 
 /*---------- 테이블 ----------*/
 
+#jobTable{
+	text-align: center;
+}
+
 .header-bar th{
 	text-align: center;
-	    background-color: #f0f0f0;
+	background-color: #f0f0f0;
 }
 
 tbody tr:hover {

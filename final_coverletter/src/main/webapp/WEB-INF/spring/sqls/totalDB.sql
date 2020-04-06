@@ -164,18 +164,21 @@ CREATE SEQUENCE JOBCALENDAR_SEQ;
 
 CREATE TABLE JOBCALENDAR
 (
-    JOBCALENDARSEQ     NUMBER                NOT NULL,    
+    JOBCALENDARSEQ     NUMBER              NOT NULL,    
     JOINEMAIL          VARCHAR2(200)       NOT NULL, 
-    COMPANYNAMESEQ     NUMBER               NOT NULL,      -- 회사테이블 프라이머리키
-    COMPANYNAME        VARCHAR2(20)          NOT NULL,    -- 회사명
+    COMPANYSEQ    	   NUMBER              NOT NULL,      -- 회사테이블 프라이머리키
+    COMPANYNAME        VARCHAR2(20)        NOT NULL,    -- 회사명
     BUSINESS           VARCHAR2(1000)      NOT NULL,       -- 채용제목
     ENDDATE            VARCHAR2(20)        NOT NULL,    -- 마감일
     CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ)
 ); 
 
-INSERT INTO JOBCALENDAR VALUES(JOBCALENDAR_SEQ.NEXTVAL, 'USER@GMAIL.COM', 123, '운토티', '백엔드 개발자 채용', '200405');
+INSERT INTO JOBCALENDAR VALUES(JOBCALENDAR_SEQ.NEXTVAL, 'abc@naver.com', 123, '운토티', '백엔드 개발자 채용', '수시채용');
 
 SELECT * FROM JOBCALENDAR;
+
+SELECT * FROM JOBCALENDAR
+WHERE JOINEMAIL = 'abc@naver.com' AND NOT ENDDATE = '수시채용';
 
 --=====================================================================================================================
 -- 후원 내역 테이블

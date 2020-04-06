@@ -401,18 +401,25 @@ public class UserController {
 		return "redirect:/USER_userPFList.do";
 	}
 
+	
+	// ==============================재현 수정함===============================
+	//채용즐겨찾기 게시판
 	@RequestMapping(value = "/USER_userJobList.do")
-	public String BoardJobList(@ModelAttribute("JobCalendarDto") JobCalendarDto dto,
-			@RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model) {
-		joinemail = "USER@GMAIL.COM";
-		dto.setJoinemail(joinemail);
-		int listCnt = jobCalendarBiz.boardJobListCount(dto);
+	public String BoardJobList(@ModelAttribute("JobCalendarDto") JobCalendarDto jobcalendarDto,
+			@RequestParam(defaultValue = "1") int curPage, HttpSession session, Model model) {
+		logger.info("JobBoardList");
+		
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		
+		jobcalendarDto.setJoinemail(userDto.getJoinemail());
+		
+		int listCnt = jobCalendarBiz.boardJobListCount(jobcalendarDto);
 
 		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);
-		dto.setStartIndex(pagination.getStartIndex());
-		dto.setCntPerPage(pagination.getPageSize() * curPage);
-		List<JobCalendarDto> list = jobCalendarBiz.boardJobList(dto);
+		jobcalendarDto.setStartIndex(pagination.getStartIndex());
+		jobcalendarDto.setCntPerPage(pagination.getPageSize() * curPage);
+		List<JobCalendarDto> list = jobCalendarBiz.boardJobList(jobcalendarDto);
 
 		model.addAttribute("boardList", list);
 		model.addAttribute("listCnt", listCnt);
@@ -420,6 +427,47 @@ public class UserController {
 
 		return "USER/userJob";
 	}
+	
+	//USER_getFullCalendarData.do
+	// fullCalendar 데이터 불러오기
+	@RequestMapping(value="/USER_getFullCalendarData.do", method= {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public Map<String, List<Map<String, String>>> getFullCalendarData(HttpSession session){
+		logger.info("getFullCalendarData");
+		
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		
+		// 마감일이 수시채용이 아닌 dto 리스트 
+		List<JobCalendarDto> list = jobCalendarBiz.getFullCalendarData(userDto.getJoinemail()); 
+		
+		//[{title : 'All Day Event', start : '2020-02-01'}]
+		
+		List<Map<String, String>> dataList = new ArrayList<Map<String,String>>();
+		
+		for(JobCalendarDto dto : list) {
+			Map<String, String> tem = new HashMap<String, String>();
+			String enddate = dto.getEnddate();
+			String[] mmdd = enddate.split("/");
+			String day = mmdd[1].substring(0,2);
+			enddate = "2020-" + mmdd[0] + "-" + day;
+			
+			tem.put("title", dto.getBusiness());
+			tem.put("start", enddate);
+			tem.put("end", enddate);
+			
+			dataList.add(tem);
+		}
+
+		
+		Map<String, List<Map<String, String>>> res = new HashMap<String, List<Map<String, String>>>();
+		res.put("data", dataList);
+		
+		return res;
+	}
+	
+	
+	// ==============================채용즐겨찾기 게시판 재현 수정함===============================
+	
 	
 	// 이력서(자기소개서) 파일 다운로드
 	@RequestMapping(value = "/CVdownload.do", method = RequestMethod.POST)

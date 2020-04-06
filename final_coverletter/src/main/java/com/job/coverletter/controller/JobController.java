@@ -118,50 +118,76 @@ public class JobController {
 		return "JOB/jobDetail";
 	}
 	
-	
 	// 즐겨찾기 등록 여부
 	@RequestMapping(value="/JOB_isJobBookmark.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String isBookmark(@ModelAttribute("companyseq") int companyseq, HttpSession session) {
 		logger.info("isJobBookmark");
-		JoinUserDto userDto = (JoinUserDto) session.getAttribute(login);
 		
-		if(jobcalendarBiz.isJobBookmark(companyseq, userDto.getJoinemail())) {
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		
+		JobCalendarDto dto = new JobCalendarDto();
+		dto.setCompanyseq(companyseq);
+		dto.setJoinemail(userDto.getJoinemail());
+		
+		boolean isbookmark = jobcalendarBiz.isJobBookmark(dto);
+		
+		if(isbookmark) {
 			return "true";
 		} else {
 			return "false";
 		}
 	}
 	
-	
+	// 즐게찾기 추가 삭제
 	@RequestMapping(value="/JOB_jobBookmark.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String jobBookmark(@ModelAttribute("companyseq") int companyseq, HttpSession session) {
 		logger.info("jobBookmark");
 		System.out.println("확인 : " + companyseq);
-		//즐겨찾기 등록여부
 		
 		CompanyDto companyDto = companyBiz.selectOne(companyseq);
-		System.out.println("a : " + companyDto);
-		JoinUserDto userDto = (JoinUserDto) session.getAttribute(login);
-		System.out.println("b : " + userDto);
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+
+		//즐겨찾기 등록여부
+		JobCalendarDto inputDto = new JobCalendarDto();
+		inputDto.setCompanyseq(companyseq);
+		inputDto.setJoinemail(userDto.getJoinemail());
 		
-		JobCalendarDto dto = new JobCalendarDto();
-		dto.setJoinemail(userDto.getJoinemail());
-		dto.setCompanyseq(companyseq);
-		dto.setCompanyname(companyDto.getCompanyname());
-		dto.setBusiness(companyDto.getBusiness());
-		dto.setEnddate(companyDto.getEnddate());
+		boolean isbookmark = jobcalendarBiz.isJobBookmark(inputDto);
 		
-		System.out.println(dto);
-		
-		int res = jobcalendarBiz.boardJobInsert(dto);
-				
-		if(res > 0) {
-			return "success"; 
+		if(isbookmark) {
+			JobCalendarDto dto = new JobCalendarDto();
+			dto.setJoinemail(userDto.getJoinemail());
+			dto.setCompanyseq(companyseq);
+			dto.setCompanyname(companyDto.getCompanyname());
+			dto.setBusiness(companyDto.getBusiness());
+			dto.setEnddate(companyDto.getEnddate());
+			
+			int res = jobcalendarBiz.boardJobInsert(dto);
+			if(res > 0) {
+				return "insertSuccess"; 
+			} else {
+				return "insertFail";
+			}
 		} else {
-			return "fail";
+			JobCalendarDto deleteDto = new JobCalendarDto();
+			deleteDto.setCompanyseq(companyseq);
+			deleteDto.setJoinemail(userDto.getJoinemail());
+			
+			int res = jobcalendarBiz.bookmarkDelete(deleteDto);
+			if(res > 0) {
+				return "deleteSuccess"; 
+			} else {
+				return "deleteFail";
+			}	
+			
 		}
+		
+		
+		
+				
+		
 	}
 	
 	//로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨

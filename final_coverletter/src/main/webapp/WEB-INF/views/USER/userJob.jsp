@@ -25,48 +25,44 @@
 		<div class="board-list">
 			<h1>채용 즐겨찾기 게시판</h1>
 
-			<input type="button" value="글작성" class="btn"
-				onclick="location.href='BOARD_boardWriteForm.do'">
-			<form action="USER_userCPdelete.do" method="post"
-				enctype="multipart/form-data">
-				<table class="table table-bordered">
-					<col width="100" />
-					<col width="300" />
-					<col width="100" />
-					<col width="100" />
-
+			<form action="USER_userCPdelete.do" method="post" enctype="multipart/form-data">
+				<table class="table table-bordered" id="jobTable">
+					<col width="5%" />
+					<col width="10%" />
+					<col width="30%" />
+					<col width="45%" />
+					<col width="10%" />
 					<thead>
 						<!-- 테이블 : 검색 영역 -->
 						<tr>
 							<td>
 								<div class="search-label">검색</div>
 							</td>
-							<td colspan="3" class="search-form">
+							<td colspan="4" class="search-form">
 								<div class="search-select">
 									<select class="form-control form-control-sm"
 										name="search-category" id="search-category">
-										<option value="title">제목</option>
-										<option value="content">본문</option>
+										<option value="companyname">회사명</option>
+										<option value="business">취업내용</option>
+										<option value="enddate">마감일</option>
 									</select>
 								</div>
 								<div class="search-input">
-									<input type="text" class="form-control form-control-sm"
-										name="keyword" id="keyword" onkeydown="onKeyDown();">
+									<input type="text" class="form-control form-control-sm" name="keyword" id="keyword" onkeydown="onKeyDown();">
 								</div>
 								<div class="search-btn-group">
-									<button class="btn btn-sm btn-primary" id="search-btn"
-										onclick="search();">검색</button>
+									<button class="btn btn-sm btn-primary" id="search-btn" onclick="search();">검색</button>
 								</div>
 							</td>
 						</tr>
 
 						<!-- 테이블 : 게시글 목록 영역 -->
 						<tr class="header-bar">
-							<th><input type="checkbox" id="all" /></th>
+							<th><input type="checkbox" id="all"/></th>
 							<th>글번호</th>
-							<th>글제목</th>
-							<th>작성일</th>
-							<th>다운로드</th>
+							<th>회사명</th>
+							<th>채용분류</th>
+							<th>마감일</th>
 						</tr>
 					</thead>
 
@@ -80,14 +76,19 @@
 							<c:otherwise>
 								<c:forEach items="${boardList }" var="dto">
 									<tr>
-										<td class="board-cb"><input type="checkbox" name="chk"
-											value="${dto.jobcalendarseq }"></td>
-										<td class="board-seq">${dto.companyname }</td>
-										<td class="board-title"
-											onClick="boardDetail(${dto.companyseq});">${dto.business }</td>
-										<td class="board-date">${dto.enddate}</td>
-										<td class="board-down"><input type="button" class="btn"
-											value="다운로드" onclick="fileDownLoad();"></td>
+										<td class=""><input type="checkbox" name="chk" value="${dto.jobcalendarseq }"></td>
+										<td class="">
+											1
+										</td>
+										<td>
+											<a href="MAIN_mainDetail.do?companyseq=${dto.companyseq}">${dto.companyname }</a>
+										</td>
+										<td>
+											<a href="JOB_jobDetail.do?companyseq=${dto.companyseq}">${dto.business }</a>
+										</td>
+										<td>
+											${dto.enddate}
+										</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
