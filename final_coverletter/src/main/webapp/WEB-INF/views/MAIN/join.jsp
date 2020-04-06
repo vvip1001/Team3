@@ -9,7 +9,7 @@
 <title>회원가입</title>
 <!-- include JQeury/CSS/JS -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/join.js?ver=1"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/join.js?ver=2"></script>
 <link href="${pageContext.request.contextPath}/resources/CSS/MAIN/join.css?ver=1" rel="stylesheet">
 </head>
 
@@ -20,8 +20,8 @@
    
    <c:choose>
       <c:when test="${empty joinuserDto}">
-         <f:form modelAttribute="joinuserDto" action="USER_joinRes.do" method="post" onsubmit="return confirmSubmit()">
-           
+         <f:form action="USER_joinRes.do" method="post" modelAttribute="joinuserDto" onsubmit="return confirmSubmit()">
+			
             <h1 id="hello">환영합니다</h1>
             <table id="jointable">
                
@@ -30,8 +30,9 @@
                      <td id="info" colspan="2" align="right">* 값은 필수입니다.</td>
                   <tr>
                      <th>이 메 일*</th>
-                     <td class="joininfo"><input type="text" id="joinemail" name="joinemail" class="register" readonly="readonly" placeholder="이메일을 입력을 위해 클릭하세요." onclick="checkid();"></td>
-                     <td class="checkcell"></td> 
+                     <td class="joininfo">
+                     <input type="text" name="joinemail" id="joinemail" readonly="readonly" placeholder="이메일을 입력을 위해 클릭하세요." onclick="checkid();">
+                     </td>
                   </tr>
                   <tr>
                    <th></th>
@@ -42,9 +43,9 @@
                   <tr>
                      <th>이    름*</th>
                      <td class="joininfo">
-                     <input type="text" id="joinname" name="joinname" class="register" placeholder="이름을 입력하세요" >
+                     <input type="text" id="joinname" name="joinname"  placeholder="이름을 입력하세요" >
                      </td>
-                     </br>
+                     
                   </tr>
                    <tr>
                    <th></th>
@@ -54,7 +55,7 @@
                   </tr>
                   <tr>
                      <th>비밀번호*</th>
-                     <td class="joininfo"><input type="text" id="joinpw" name="joinpw" class="register" placeholder="비밀번호를 입력하세요"></td>
+                     <td class="joininfo"><input type="text" id="joinpw" name="joinpw"  placeholder="비밀번호를 입력하세요"></td>
                   </tr>
                    <tr>
                    <th></th>
@@ -64,7 +65,7 @@
                   </tr>
                   <tr>             
                      <th>비밀번호 확인*</th>
-                     <td class="joininfo"><input type="text" id="joinpw2" class="register" placeholder="비밀번호를 확인하세요"></td>
+                     <td class="joininfo"><input type="text" id="joinpw2" placeholder="비밀번호를 확인하세요"></td>
                   </tr>
                   <tr>
                   <th></th>
@@ -75,7 +76,7 @@
                   <tr>
                      <th>생년월일*</th>
                      <td class="joininfo">
-                        <input type="text" name="joinbirth" id="joinbirth" class="register" placeholder="yyyynnmm 숫자만입력해주세요" maxlength="8">
+                        <input type="text" name="joinbirth" id="joinbirth"  placeholder="yyyynnmm 숫자만입력해주세요" maxlength="8">
                      </td>
                   </tr>
                    <tr>
@@ -118,19 +119,18 @@
                      <td id="info" colspan="2" align="right">* 값은 필수입니다.</td>
                   <tr>
                      <th>이 메 일*</th>
-                     <td class="joininfo"><input type="text" id="joinemail" name="joinemail" class="register" value="${joinuserDto.joinemail}"></td>
+                     <td class="joininfo"><input type="text" id="joinemail" name="joinemail" onclick="checkid();" value="${joinuserDto.joinemail}"></td>
                      <td class="checkcell"></td> 
                   </tr>
                   <tr>
                    <th></th>
                      <td colspan="2" align="left" id="idcheck" >
-                        <f:errors path="joinemail" />
+                        <f:errors path="joinemail"/>
                      </td>
                   </tr>
                   <tr>
                      <th>이    름*</th>
-                     <td class="joininfo"><input type="text" id="joinname" name="joinname" class="register" value="${joinuserDto.joinname}"></td></br>
-                  </tr>
+                     <td class="joininfo"><input type="text" id="joinname" name="joinname"  value="${joinuserDto.joinname}"></td>                  </tr>
                    <tr>
                    <th></th>
                      <td colspan="2" align="left" id="namecheck" >
@@ -139,7 +139,7 @@
                   </tr>
                   <tr>
                      <th>비밀번호*</th>
-                     <td class="joininfo"><input type="text" id="joinpw" name="joinpw" class="register" value="${joinuserDto.joinpw}"></td>
+                     <td class="joininfo"><input type="text" id="joinpw" name="joinpw"  value="${joinuserDto.joinpw}"></td>
                   </tr>
                    <tr>
                    <th></th>
@@ -149,7 +149,7 @@
                   </tr>
                   <tr>             
                      <th>비밀번호 확인*</th>
-                     <td class="joininfo"><input type="text" id="joinpw2" class="register" placeholder="비밀번호를 확인하세요" onck></td>
+                     <td class="joininfo"><input type="text" id="joinpw2"  placeholder="비밀번호를 확인하세요" ></td>
                   </tr>
                   <tr>
                   <th></th>
@@ -160,7 +160,7 @@
                   <tr>
                      <th>생년월일*</th>
                      <td class="joininfo">
-                        <input type="text" name="joinbirth" id="joinbirth" class="register" value="${joinuserDto.joinbirth}" maxlength="8">
+                        <input type="text" name="joinbirth" id="joinbirth" value="${joinuserDto.joinbirth}" maxlength="8">
                      </td>
                   </tr>
                    <tr>

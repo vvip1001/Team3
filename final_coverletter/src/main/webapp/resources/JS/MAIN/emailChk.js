@@ -2,8 +2,7 @@
 function EmailChk() {
 
    console.log(opener.window.document.getElementsByName("joinemail")[0]);
-   opener.window.document.getElementsByName("joinemail")[0].value = document
-         .getElementById("EmailID").value;
+   opener.window.document.getElementsByName("joinemail")[0].value = document.getElementById("EmailID").value;
    window.close();
 }
 function EmailChk2(RandomNumber) {
