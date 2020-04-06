@@ -107,12 +107,12 @@ public class JobController {
 	String login = "mint@email.com";
 	
 
-	@RequestMapping(value = "JOB_jobCenter.do")
+	@RequestMapping(value = "/JOB_jobCenter.do")
 	public String jobCenter() {
 		return "JOB/jobCenter";
 	}
 	
-	@RequestMapping(value = "USER_speechForm.do")
+	@RequestMapping(value = "/USER_speechForm.do")
 	public String jobSpeech() {
 		return "USER/userSpeech";
 	}

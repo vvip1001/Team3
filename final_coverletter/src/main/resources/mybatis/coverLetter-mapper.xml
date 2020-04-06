@@ -18,7 +18,8 @@
 		SELECT COUNT(*)
 		FROM COVERLETTER
 		WHERE CVCATEGORY = #{cvcategory}
-		AND JOINEMAIL = #{joinemail}
+		AND
+		JOINEMAIL = #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
@@ -44,7 +45,8 @@
 		AS RNUM
 		FROM COVERLETTER A
 		WHERE CVCATEGORY = #{cvcategory}
-		AND JOINEMAIL = #{joinemail}
+		AND JOINEMAIL
+		= #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
@@ -99,7 +101,8 @@
 		AS RNUM
 		FROM COVERLETTER A
 		WHERE CVCATEGORY = #{cvcategory}
-		AND JOINEMAIL = #{joinemail}
+		AND JOINEMAIL
+		= #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
@@ -139,15 +142,35 @@
 		</foreach>
 	</delete>
 
-	<!-- 자기소개서 입력 -->
-	<insert id="CVinsert"
-		parameterType="coverLetterDto">
+	<!-- 자기소개서 입력 (첫 문항) -->
+	<insert id="CVinsert" parameterType="coverLetterDto">
 		INSERT INTO COVERLETTER
-		(TOTALSEQ, JOINEMAIL, CVCATEGORY, GROUPSEQ, QUESTION, TITLE, SUBTITLE, CONTENT,
+		(TOTALSEQ, JOINEMAIL, CVCATEGORY, GROUPSEQ, QUESTION, TITLE, SUBTITLE,
+		CONTENT,
 		REGDATE)
 		VALUES
-		(TOTAL_SEQ.NEXTVAL, #{joinemail}, '자소서', COVERLETTER_SEQ.NEXTVAL, #{question},
-		#{title}, #{subtitle}, #{content}, SYSDATE)
+		(TOTAL_SEQ.NEXTVAL, #{joinemail}, '자소서',
+		COVERLETTER_SEQ.NEXTVAL, #{question},
+		#{title}, #{subtitle},
+		#{content}, SYSDATE)
 	</insert>
+
+	<!-- 자기소개서 입력 (나머지 문항) -->
+	<insert id="CVinserts" parameterType="coverLetterDto">
+		INSERT INTO COVERLETTER
+		(TOTALSEQ, JOINEMAIL, CVCATEGORY, GROUPSEQ, QUESTION, TITLE, SUBTITLE,
+		CONTENT,
+		REGDATE)
+		VALUES
+		(TOTAL_SEQ.NEXTVAL, 
+		#{joinemail}, 
+		'자소서',
+		(SELECT COVERLETTER_SEQ FROM COVERLETTER WHERE ), 
+		#{question},
+		#{title}, #{subtitle},
+		#{content}, SYSDATE)
+	</insert>
+
+
 
 </mapper>

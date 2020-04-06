@@ -488,24 +488,18 @@ public class UserController {
 	
 	// 자기소개서 INSERT
 	@RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
-	//public String CVWriteInsert(Model model, @ModelAttribute("CoverLetterDto") CoverLetterDto dto) {
 	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets) {
-		System.out.println("==============================");
-		//System.out.println(targets.getTargets().get(0));
-		//System.out.println(targets.getTargets().get(1));
 
-		for(int i = 0; i < targets.getTargets().size(); i++) {
-			String title = targets.getTargets().get(0).getTitle();
-			targets.getTargets().get(i).setTitle(title);
-			targets.getTargets().get(i).setJoinemail(joinemail);
-			int res = coverletterBiz.CVinsert(targets.getTargets().get(i));
+		if(targets.getTargets().size() != 1) {
+			for(int i = 0; i < targets.getTargets().size(); i++) {
+				String title = targets.getTargets().get(0).getTitle();
+				targets.getTargets().get(i).setTitle(title);
+				targets.getTargets().get(i).setJoinemail(joinemail);
+				int res = coverletterBiz.CVinsert(targets.getTargets().get(i));
+			}
 		}
 		
-		System.out.println(targets.getTargets().get(0));
-		System.out.println(targets.getTargets().get(1));
-		System.out.println("==============================");
-		
-		return "JOB_jobCenter.do";
+		return "redirect:/JOB_jobCenter.do";
 	}
 	
 	
