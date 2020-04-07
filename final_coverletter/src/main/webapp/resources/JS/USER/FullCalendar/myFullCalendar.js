@@ -51,8 +51,14 @@ function createFullCalendar(data) {
 			eventLimit : true,
 			events : data,
 			eventClick : function(arg) {
-				if (confirm('삭제하시겠습니까?')) {
-					arg.event.remove()
+				if (confirm('이동하시겠습니까?')) {
+					//alert(arg.event.title)
+					for(var i = 0; i<data.length; i++){
+						if(data[i].title == arg.event.title){
+							location.href="JOB_jobDetail.do?companyseq="+data[i].companyseq
+						}
+					}
+					//arg.event.remove() //arg는 해당 이벤트 발생 일정 삭제 
 				}
 			}
 		});

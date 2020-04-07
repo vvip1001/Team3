@@ -454,6 +454,7 @@ public class UserController {
 			tem.put("title", dto.getBusiness());
 			tem.put("start", enddate);
 			tem.put("end", enddate);
+			tem.put("companyseq", dto.getCompanyseq()+"");
 			
 			dataList.add(tem);
 		}
