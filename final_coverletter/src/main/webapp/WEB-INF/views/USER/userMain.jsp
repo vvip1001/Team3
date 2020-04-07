@@ -64,10 +64,7 @@
 <!-- include chart.js -->
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-
-
 	
-</script>
 <style type="text/css">
 #full {
 	margin: 40px 10px;
@@ -99,7 +96,7 @@
 					이력---</span> <br>
 				<button class="btn" onclick="location.href='USER_userDetail.do'">인적사항</button>
 				<br>
-				<button class="btn" onclick="">취업센터</button>
+				<button class="btn" onclick="location.href='JOB_jobCenter.do'">취업센터</button>
 			</div>
 			<div class="center1heightside"></div>
 

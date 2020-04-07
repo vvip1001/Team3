@@ -78,7 +78,9 @@ CREATE TABLE TOTAL(
 );
 
 INSERT INTO TOTAL(TOTALSEQ,JOINEMAIL,JOINNAME,JOINBIRTH,JOINSEX,MILILTARY,PHONE,ADDRESS,ITSKILL1,ITSKILL2,ITSKILL3,ITSKILL4,ITSKILL5,MAJOR) VALUES(TOTAL_SEQ.NEXTVAL,'abc@naver.com','조수민','940802','남성','군필','010-8842-1869','인천광역시 부평구','자바','파이썬','씨언어','씨큐리티','오라클','항소');
-W
+
+INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},#{joinpw},#{joinbirth},#{joinsex},#{photo},#{mililtary},#{phone},#{address},null,'Y','category',#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
+
 UPDATE TOTAL SET 
 JOINBIRTH = '', JOINSEX = '', MILILTARY = '', PHONE = '', ADDRESS = '', 
 ITSKILL1 = '', ITSKILL2 = '', ITSKILL3 = '', ITSKILL4 = '', ITSKILL5 = '', MAJOR = ''
@@ -199,6 +201,10 @@ SELECT * FROM JOBCALENDAR;
 
 SELECT * FROM JOBCALENDAR
 WHERE JOINEMAIL = 'abc@naver.com' AND NOT ENDDATE = '수시채용';
+
+SELECT COUNT(*)
+FROM JOBCALENDAR
+WHERE JOINEMAIL = 'abc@naver.com';
 
 --=====================================================================================================================
 -- 후원 내역 테이블

@@ -283,7 +283,6 @@ public class UserController {
 			model.addAttribute("joinuserDto", dto);
 			return "MAIN/login";
 		}
-
 	}
 
 	// 로그아웃
@@ -336,28 +335,27 @@ public class UserController {
 
 	// 마이페이지
 	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
-	public String userMain(Model model) {
+	public String userMain(Model model, HttpSession session) {
 		logger.info("userMain go");
 
-		System.out.println("에러1");
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		
 		CoverLetterDto cvdto = new CoverLetterDto();
 		cvdto.setCvcategory("자소서");
-		cvdto.setJoinemail(joinemail);
+		cvdto.setJoinemail(userDto.getJoinemail());
 		int cvlist = coverletterBiz.boardCVListCount(cvdto);
 		System.out.println("cvlist : " + cvlist);
 		CoverLetterDto pfdto = new CoverLetterDto();
 		pfdto.setCvcategory("포폴");
-		pfdto.setJoinemail(joinemail);
+		pfdto.setJoinemail(userDto.getJoinemail());
 		int pflist = coverletterBiz.boardPFListCount(pfdto);
 		System.out.println("pflist : " + pflist);
 
-		// 여긴가
 		JobCalendarDto jbdto = new JobCalendarDto();
-		jbdto.setJoinemail(joinemail);
+		jbdto.setJoinemail(userDto.getJoinemail());
 		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
 		System.out.println("jblist : " + jblist);
 
-		System.out.println("에러2");
 		model.addAttribute("cvlist", cvlist);
 		model.addAttribute("pflist", pflist);
 		model.addAttribute("jblist", jblist);
