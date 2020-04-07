@@ -15,9 +15,20 @@ public class TotalBizImpl implements TotalBiz {
 	private TotalDao totaldao;
 
 	@Override
-	public int insert(TotalDto dto) {
-		return totaldao.insert(dto);
+	public int ToTalInsert(TotalDto dto) {
+		return totaldao.ToTalInsert(dto);
 	}
+	
+	@Override
+	public TotalDto selectOne(String joinemail) {
+		return totaldao.selectOne(joinemail);
+	}
+
+	@Override
+	public int updateOne(TotalDto dto) {
+		return totaldao.updateOne(dto);
+	}
+	
 
 	@Override
 	public JSONArray selectItSkill() {
@@ -30,5 +41,7 @@ public class TotalBizImpl implements TotalBiz {
 		// TODO Auto-generated method stub
 		return totaldao.selectMySkill();
 	}
+
+	
 
 }

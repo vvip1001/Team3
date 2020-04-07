@@ -4,7 +4,6 @@
 -- 복지해택 : 개인장비, 자기개발, 식사시간, 연차휴가, 근무형태, 보험의료  
 -- 기업정보 : 설립일, 구성원, 홈페이지, 사무실위치, 산업분야
 
-
 drop sequence companyseq;
 drop table company;
 
@@ -16,7 +15,7 @@ create table company(
 	groupno int not null,
 	companyname varchar(200) not null,
 	imgurl varchar(1000) not null,
-	oneintro varchar(1000) not null,
+	oneintro varchar(2000) not null,
 	business varchar(1000) not null,
 	mainbusiness varchar(3000) not null,
 	jobdetail LONGTEXT not null,

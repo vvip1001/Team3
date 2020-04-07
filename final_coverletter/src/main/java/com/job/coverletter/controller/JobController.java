@@ -1,9 +1,10 @@
 package com.job.coverletter.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.company.biz.CompanyBiz;
 import com.job.coverletter.model.company.dto.CompanyDto;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
+import com.job.coverletter.model.jobcalendar.biz.JobCalendarBiz;
+import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
+import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 import com.job.coverletter.model.qnaboard.biz.QnaBoardBiz;
 import com.job.coverletter.model.qnaboard.dto.QnaBoardDto;
 
@@ -40,33 +44,32 @@ public class JobController {
 
 	@Autowired
 	private CompanyBiz companyBiz;
-	
-	 @Autowired
-	 private QnaBoardBiz qnaboardbiz;
-	
 
-	
+	@Autowired
+	private JobCalendarBiz jobcalendarBiz;
+
+	@Autowired
+	private QnaBoardBiz qnaboardbiz;
+
 	// 글목록(페이징기능)
 	@RequestMapping(value = "/JOB_jobSearch.do", method = RequestMethod.GET)
-	public String jobSearchP(Model model, 
-			@RequestParam(required = false, defaultValue = "1") int page,
+	public String jobSearchP(Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
-		
+
 		logger.info("go jobSearch");
-		
+
 		// 총 게시글 수
 		int listCnt = companyBiz.companyListCount();
-		
-		//pagination 객체생성
+
+		// pagination 객체생성
 		MariaPagination pagination = new MariaPagination();
-							 //현재페이지, 각페이지 범위 시작번호, 전체 게시물 수
-		pagination.pageInfo(page, range, listCnt); 
-	
+		// 현재페이지, 각페이지 범위 시작번호, 전체 게시물 수
+		pagination.pageInfo(page, range, listCnt);
 
 		List<CompanyDto> companyList = companyBiz.selectList(pagination);
-		
+
 		List<CompanyDto> newCompanyList = new ArrayList<CompanyDto>();
-		
+
 		for (CompanyDto dto : companyList) {
 			System.out.println(dto);
 			String business = MyUtil.StringCut(45, dto.getBusiness());
@@ -82,7 +85,6 @@ public class JobController {
 
 			newCompanyList.add(dto);
 		}
-		
 
 		model.addAttribute("newCompanyList", newCompanyList);
 		model.addAttribute("listCnt", listCnt);
@@ -91,41 +93,105 @@ public class JobController {
 		return "JOB/jobSearch";
 	}
 
-	
-	
 	// ajax 검색기능
-	@RequestMapping(value="/JOB_jobSearchRes.do", method= RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
-		    produces = "application/text;charset=utf8")
+	@RequestMapping(value = "/JOB_jobSearchRes.do", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = "application/text;charset=utf8")
 	public @ResponseBody String jobSearchRes(@ModelAttribute CompanyDto jsonKey) {
-		logger.info("검색 테스트 : " + jsonKey);
-		
+		logger.info("jobSearch");
+
 		ElasicHighLeverTemplat elastic = new ElasicHighLeverTemplat();
-		
+
 		String res = elastic.callSearchQuery(jsonKey);
-		
+
 		return res;
 	}
-	
-	
-	//로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
-	String login = "mint@email.com";
-	
+
+	@RequestMapping(value = "/JOB_jobDetail.do", method = RequestMethod.GET)
+	public String jobDetail(Model model, int companyseq) {
+		logger.info("jobDetail");
+		model.addAttribute("companydto", companyBiz.selectOne(companyseq));
+
+		return "JOB/jobDetail";
+	}
+
+	// 즐겨찾기 등록 여부
+	@RequestMapping(value = "/JOB_isJobBookmark.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String isBookmark(@ModelAttribute("companyseq") int companyseq, HttpSession session) {
+		logger.info("isJobBookmark");
+
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+
+		JobCalendarDto dto = new JobCalendarDto();
+		dto.setCompanyseq(companyseq);
+		dto.setJoinemail(userDto.getJoinemail());
+
+		boolean isbookmark = jobcalendarBiz.isJobBookmark(dto);
+
+		if (isbookmark) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+
+	// 즐게찾기 추가 삭제
+	@RequestMapping(value = "/JOB_jobBookmark.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String jobBookmark(@ModelAttribute("companyseq") int companyseq, HttpSession session) {
+		logger.info("jobBookmark");
+		System.out.println("확인 : " + companyseq);
+
+		CompanyDto companyDto = companyBiz.selectOne(companyseq);
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+
+		// 즐겨찾기 등록여부
+		JobCalendarDto inputDto = new JobCalendarDto();
+		inputDto.setCompanyseq(companyseq);
+		inputDto.setJoinemail(userDto.getJoinemail());
+
+		boolean isbookmark = jobcalendarBiz.isJobBookmark(inputDto);
+
+		if (isbookmark) {
+			JobCalendarDto dto = new JobCalendarDto();
+			dto.setJoinemail(userDto.getJoinemail());
+			dto.setCompanyseq(companyseq);
+			dto.setCompanyname(companyDto.getCompanyname());
+			dto.setBusiness(companyDto.getBusiness());
+			dto.setEnddate(companyDto.getEnddate());
+
+			int res = jobcalendarBiz.boardJobInsert(dto);
+			if (res > 0) {
+				return "insertSuccess";
+			} else {
+				return "insertFail";
+			}
+		} else {
+			JobCalendarDto deleteDto = new JobCalendarDto();
+			deleteDto.setCompanyseq(companyseq);
+			deleteDto.setJoinemail(userDto.getJoinemail());
+
+			int res = jobcalendarBiz.bookmarkDelete(deleteDto);
+			if (res > 0) {
+				return "deleteSuccess";
+			} else {
+				return "deleteFail";
+			}
+		}
+	}
 
 	@RequestMapping(value = "/JOB_jobCenter.do")
 	public String jobCenter() {
 		return "JOB/jobCenter";
 	}
-	
+
 	@RequestMapping(value = "USER_speechForm.do")
 	public String jobSpeech(Model model) {
 		
 		int count = qnaboardbiz.boardQnaListCount();
 		System.out.println(count);
 		
-		
 		model.addAttribute("count",count);
 		return "USER/userSpeech";
 	}
-	
+
 }
