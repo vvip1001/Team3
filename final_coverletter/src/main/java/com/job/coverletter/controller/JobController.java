@@ -112,7 +112,7 @@ public class JobController {
 	String login = "mint@email.com";
 	
 
-	@RequestMapping(value = "JOB_jobCenter.do")
+	@RequestMapping(value = "/JOB_jobCenter.do")
 	public String jobCenter() {
 		return "JOB/jobCenter";
 	}
@@ -125,7 +125,6 @@ public class JobController {
 		
 		
 		model.addAttribute("count",count);
-		
 		return "USER/userSpeech";
 	}
 	
