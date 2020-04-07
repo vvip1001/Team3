@@ -20,4 +20,7 @@ public interface CoverLetterDao {
 	public int CVdelete(String[] seq);	
 
 	public int PFdelete(String[] seq);
+	
+	//pf잣성
+	public int PFwrite(CoverLetterDto dto);
 }

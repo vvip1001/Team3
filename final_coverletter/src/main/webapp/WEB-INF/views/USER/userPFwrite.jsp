@@ -27,8 +27,8 @@
 		<div class="center" id="center">
 			<div id="pdfwrap">
 				<div id="PFinfo">
-				<form action="PFinsert.do" method="post"> 
-				<input type="hidden" name="pdfScr" id="pdfScr">
+				<form action="PFinsert.do" method="post" enctype="multipart/form-data"> 
+					<input type="file" name="uploadFile" id="pdfScr">
 					<h1 id="item">포트폴리오 필수항목</h1>
 					<table class="PFtable">
 						<tr>
@@ -60,6 +60,7 @@
 							<td class="PFinfo"><input type="text" ></td>
 						</tr>
 					</table>
+					</form>
 				</div>
 
 
@@ -101,7 +102,6 @@
 				</div>
 				<div id="filed"></div>
 			</div>
-			</form>
 			<button id="create_pdf" onclick="pdfprint();">포트폴리오 PDF변환</button>
 
 

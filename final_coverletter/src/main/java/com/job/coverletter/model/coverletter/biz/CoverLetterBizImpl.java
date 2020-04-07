@@ -42,4 +42,10 @@ public class CoverLetterBizImpl implements CoverLetterBiz {
 	public int PFdelete(String[] seq) {
 		return coverletterdao.PFdelete(seq);
 	}
+
+	@Override
+	public int PFwrite(CoverLetterDto dto) {
+
+		return coverletterdao.PFwrite(dto);
+	}
 }

@@ -122,6 +122,14 @@
 		</foreach>
 	</delete>
 
+
+	<!-- 포폴 게시판 등록 -->
+	<insert id="PFinsert" parameterType="joinuserdto">
+		INSERT INTO (TOTALSEQ,JOINEMAIL, GROUPSEQ, TITLE, REGDATE, FILEPATH)
+		VALUES (TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '포폴', PORTFOLIO_SEQ.NEXTVAL,
+		#{title},SYSDATE,#{filepath})
+	</insert>
+	
 	<!-- 포폴 게시판 삭제 -->
 	<delete id="PFmuldel" parameterType="map">
 		DELETE FROM COVERLETTER WHERE CVCATEGORY = '포폴' AND GROUPSEQ IN

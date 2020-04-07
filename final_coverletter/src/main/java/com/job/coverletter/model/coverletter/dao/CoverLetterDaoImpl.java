@@ -101,4 +101,19 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		return res;
 	}
 
+	@Override
+	public int PFwrite(CoverLetterDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE + "PFinsert", dto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("[error] : PFwrite");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 }

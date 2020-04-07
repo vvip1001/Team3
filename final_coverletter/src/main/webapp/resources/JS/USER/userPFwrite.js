@@ -25,6 +25,8 @@
 	// 파일추가
 	$(document).ready(function() {
 		$(".input_img").on("change", handleImgFileSelect);
+		
+		$("#pdfScr").hide();
 	});
 
 	function handleImgFileSelect(e) {
@@ -84,21 +86,58 @@
             }
             
             //파일 서버로 저장 
-            
-            var pdf = btoa(encodeURIComponent(doc.output()));
+           
+            //var pdf = btoa(encodeURIComponent(doc.output()));
+            var pdf = btoa(doc.output());
+            //var blob = doc.output('blob')
             var data = new FormData();
-            data.append("data" , pdf);
+            data.append("pdf", pdf);
             
-            $("$pdfScr").val(data);
+            //data.append("data" , pdf);
+            //var pdfdata = JSON.stringfy(data);
+
+            console.log(pdf)
+            console.log(data.get("pdf"));
+            
+            
+            
+            //console.log(pdfdata);
+            var pdf_data = {title : $("#title").val,
+            				uploadfile : data};
+            
+//            $.ajax({
+//            	type:"post",
+//            	url:"PFinsert.do",
+//            	data:pdf_data,
+//            	dataType:"json",
+//            	success : function(msg) {
+//					alert("성공 ");
+//					
+//				},
+//				error : function() {
+//					alert("통신실패");
+//				}
+//            });
+//            
+//            
+//            
+            
+            
+            
+            //$("#title").val(data);
             
           
             
             
             // 파일 저장
-            doc.save('sample.pdf');
+            //doc.save('final_coverletter/src/main/webapp/resources/PDF/sample.pdf');
           
-            
-            
+//            console.log(doc);
+//            console.log(data);
+//            console.log(pdfdata);
+//            console.log(canvas.toDataURL());
+//            
+           
             
 		});
 	}

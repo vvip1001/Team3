@@ -22,4 +22,7 @@ public interface CoverLetterBiz {
 
 	public int PFdelete(String[] seq);	
 	
+	//pf작성
+	public int PFwrite(CoverLetterDto dto);
+	
 }
