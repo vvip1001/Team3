@@ -16,10 +16,18 @@
 	rel="stylesheet">
 </head>
 <body>
-	<%@ include file="../ALL/header_login.jsp"%>
+	<c:choose>
+		<c:when test="${empty login }">
+			<%@ include file="../ALL/header_logout.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="../ALL/header_login.jsp"%>
+		</c:otherwise>
+	</c:choose>
+
 
 	<div id="All">
-		<input type="hidden" id="companyseq" value="${maindetail.companyseq }"/>
+		<input type="hidden" id="companyseq" value="${maindetail.companyseq }" />
 
 		<div class="container" id="main">
 			<div class="container" id=null></div>
@@ -44,7 +52,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="bookmark" id="button">
-						<button type="button" class="button" onclick="bookmark();">회사 즐겨찾기</button>
+							<button type="button" class="button" onclick="bookmark();">회사
+								즐겨찾기</button>
 						</div>
 					</div>
 				</div>
@@ -52,7 +61,7 @@
 
 				<div class="row" id="info">
 					<div class="col-md-12">
-						<h1 class="h1">${mainDetail.companyname }과(와)함께성장할 인재를 찾습니다</h1>
+						<h1 class="h1">${mainDetail.companyname }과(와)함께성장할인재를 찾습니다</h1>
 					</div>
 
 				</div>

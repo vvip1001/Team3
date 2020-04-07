@@ -27,6 +27,8 @@ import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.company.biz.CompanyBiz;
 import com.job.coverletter.model.company.dto.CompanyDto;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
+import com.job.coverletter.model.qnaboard.biz.QnaBoardBiz;
+import com.job.coverletter.model.qnaboard.dto.QnaBoardDto;
 
 @Controller
 public class JobController {
@@ -38,6 +40,9 @@ public class JobController {
 
 	@Autowired
 	private CompanyBiz companyBiz;
+	
+	 @Autowired
+	 private QnaBoardBiz qnaboardbiz;
 	
 
 	
@@ -113,7 +118,14 @@ public class JobController {
 	}
 	
 	@RequestMapping(value = "USER_speechForm.do")
-	public String jobSpeech() {
+	public String jobSpeech(Model model) {
+		
+		int count = qnaboardbiz.boardQnaListCount();
+		System.out.println(count);
+		
+		
+		model.addAttribute("count",count);
+		
 		return "USER/userSpeech";
 	}
 	

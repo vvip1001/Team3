@@ -3,7 +3,7 @@ package com.job.coverletter.model.qnaboard.dto;
 public class QnaBoardDto {
 
     // 시퀀스 
-    private int oanboardseq;
+    private int qnaboardseq;
 
     // 문제 
     private String question;
@@ -15,19 +15,19 @@ public class QnaBoardDto {
 		super();
 	}
 
-	public QnaBoardDto(int oanboardseq, String question, String answer) {
+	public QnaBoardDto(int qnaboardseq, String question, String answer) {
 		super();
-		this.oanboardseq = oanboardseq;
+		this.qnaboardseq = qnaboardseq;
 		this.question = question;
 		this.answer = answer;
 	}
 
-	public int getOanboardseq() {
-        return oanboardseq;
+	public int getqnaboardseq() {
+        return qnaboardseq;
     }
 
-    public void setOanboardseq(int oanboardseq) {
-        this.oanboardseq = oanboardseq;
+    public void setqnaboardseq(int qnaboardseq) {
+        this.qnaboardseq = qnaboardseq;
     }
 
     public String getQuestion() {
@@ -48,7 +48,7 @@ public class QnaBoardDto {
 
 	@Override
 	public String toString() {
-		return "QnaBoardDto [oanboardseq=" + oanboardseq + ", question=" + question + ", answer=" + answer + "]";
+		return "QnaBoardDto [qnaboardseq=" + qnaboardseq + ", question=" + question + ", answer=" + answer + "]";
 	}
 
 }

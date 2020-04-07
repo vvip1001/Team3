@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
@@ -21,6 +20,7 @@
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
 
+
 	<div class="container">
 		<!-- 글목록 영역 -->
 		<div class="board-list">
@@ -28,7 +28,8 @@
 
 			<input type="button" value="글작성" class="btn"
 				onclick="location.href='BOARD_boardWriteForm.do'">
-			<form action="USER_userCVdelete.do" method="post" enctype="multipart/form-data">
+			<form action="USER_userCVdelete.do" method="post"
+				enctype="multipart/form-data">
 				<table class="table table-bordered">
 					<col width="100" />
 					<col width="300" />
@@ -88,16 +89,16 @@
 											onClick="boardDetail(${dto.groupseq});">${dto.title }</td>
 										<td class="board-date"><fmt:formatDate
 												value="${dto.regdate}" pattern="yy-MM-dd HH:mm" /></td>
-										<td class="board-down">
-											<input type="button" class="btn" value="다운로드" onclick="fileDownLoad();">
-										</td>
+										<td class="board-down"><input type="button" class="btn"
+											value="다운로드" onclick="fileDownLoad();"></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 					</tbody>
 				</table>
-				<input type="button" id="deleteSub" class="btn" value="삭제" onclick="deleteSubmit();">
+				<input type="button" id="deleteSub" class="btn" value="삭제"
+					onclick="deleteSubmit();">
 			</form>
 		</div>
 		<!-- 글목록 영역 끝 -->
@@ -144,23 +145,23 @@
 		</nav>
 		<!-- 페이징 영역 끝 -->
 	</div>
-	
-		<!-- 모달 영역 -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
 
-						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-					</div>
-					<div class="modal-body">...</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+	<!-- 모달 영역 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
 
-					</div>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">...</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

@@ -31,11 +31,13 @@
 
 #logo {
    margin: 5px 20px 0px 20px;
+   cursor:  pointer;
 }
 
 img {
    height: 40px;
    width: 40px;
+   cursor: pointer;
 }
 
 #menu1 {
