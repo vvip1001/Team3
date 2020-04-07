@@ -612,10 +612,8 @@ public class UserController {
 	// 자기소개서 작성 페이지
 	@RequestMapping(value = "/USER_userCVwriteForm.do")
 	public String CVWriteForm(Model model) {
-		// CoverLetterDto dto = new CoverLetterDto();
-		// model.addAttribute("CoverLetterDto", dto);
-		// MultiRowTarget targets = new MultiRowTarget();
-		// model.addAttribute("MultiRowTarget", targets);
+		 MultiRowTarget targets = new MultiRowTarget();
+		 model.addAttribute("MultiRowTarget", targets);
 		return "USER/userCVwrite";
 	}
 
