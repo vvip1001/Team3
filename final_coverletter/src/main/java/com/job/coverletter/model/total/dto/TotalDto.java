@@ -29,7 +29,7 @@ public class TotalDto {
     private String joinpw;
 
     // 생년월일 
-    @Pattern(regexp = "^[0-9]{6}$", message = "생년월일을 입력해주세요.")
+    @Pattern(regexp = "^[0-9]{8}$", message = "생년월일을 입력해주세요.")
     private String joinbirth;
 
     // 성별 

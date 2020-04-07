@@ -78,8 +78,18 @@ CREATE TABLE TOTAL(
 );
 
 INSERT INTO TOTAL(TOTALSEQ,JOINEMAIL,JOINNAME,JOINBIRTH,JOINSEX,MILILTARY,PHONE,ADDRESS,ITSKILL1,ITSKILL2,ITSKILL3,ITSKILL4,ITSKILL5,MAJOR) VALUES(TOTAL_SEQ.NEXTVAL,'abc@naver.com','조수민','940802','남성','군필','010-8842-1869','인천광역시 부평구','자바','파이썬','씨언어','씨큐리티','오라클','항소');
+
+UPDATE TOTAL SET 
+JOINBIRTH = '', JOINSEX = '', MILILTARY = '', PHONE = '', ADDRESS = '', 
+CAREER = '', SCHOOLNAME= '', ADMISSION = '', GRADUATE = '', MAJOR = '',  GRADE='',
+ITSKILL1 = '', ITSKILL2 = '', ITSKILL3 = '', ITSKILL4 = '', ITSKILL5 = ''
+WHERE JOINEMAIL = 'abc@naver.com';
+
+
 SELECT * FROM TOTAL;
-DROP TABLE TOTAL;
+
+SELECT * FROM TOTAL WHERE JOINEMAIL = 'abc@naver.com';
+
 --======================================================================================================
 --파일 업로드 다운로드 댓글 게시판
 
@@ -135,25 +145,31 @@ CREATE SEQUENCE PORTFOLIO_SEQ;
 
 CREATE TABLE COVERLETTER
 (
-    TOTALSEQ          NUMBER            NOT NULL,   -- 전체 시퀀스    
+    TOTALSEQ          NUMBER            NOT NULL,    -- 전체 시퀀스    
     JOINEMAIL         VARCHAR2(200)     NOT NULL,    -- 이메일
-    CVCATEGORY        VARCHAR2(30)      NOT NULL,   -- 카테고리
-    GROUPSEQ          NUMBER         NOT NULL,    -- 자소서, 포폴용 각각의 시퀀스
-    QUESTION          VARCHAR2(1000),             -- 항목(질문)
-    TITLE             VARCHAR2(500)      NOT NULL,    -- 제목
-    SUBTITLE          VARCHAR2(500),             -- 소제목(내용의 핵심 키워드)
-    CONTENT           VARCHAR2(3000),             -- 내용
-    REGDATE           DATE            NOT NULL,   -- 작성일
-    FILEPATH          VARCHAR2(1000),
+    CVCATEGORY        VARCHAR2(30)      NOT NULL,    -- 카테고리
+    GROUPSEQ          NUMBER         	NOT NULL,    -- 자소서, 포폴용 각각의 시퀀스
+    GROUPNO		      NUMBER			NOT NULL,    -- 그룹번호
+    QUESTION          VARCHAR2(1000),                -- 자: 항목(질문), 포: 수행기간
+    TITLE             VARCHAR2(500)     NOT NULL,    -- 자: 제목, 포: 프로젝트명
+    SUBTITLE          VARCHAR2(500),                 -- 지: 소제목, 포: 개발목표
+    CONTENT           VARCHAR2(3000),                -- 지: 내용, 포: 개발환경
+    FUNCTIONS		  VARCHAR2(3000),	 		     -- 포: 구현기능
+    POSITIONS		  VARCHAR2(2000),				 -- 포: 담당역할
+    PARTICIPATION	  VARCHAR2(1000),				 -- 포: 참여도
+    FUNCTIONINFO	  VARCHAR2(3000),				 -- 포: 기능설명
+    VIEWINFO		  VARCHAR2(3000), 				 -- 포: 화면설명
+    REGDATE           DATE             NOT NULL,      -- 작성일
+    FILEPATH          VARCHAR2(1000),				 -- 포 : 이미지 경로
     CONSTRAINT COVERLETTER_PK PRIMARY KEY (TOTALSEQ),
     CONSTRAINT COVERLETTER_CK01 CHECK (CVCATEGORY IN('자소서','포폴')),
     CONSTRAINT COVERLETTER_TABLE_FK01 FOREIGN KEY(JOINEMAIL) REFERENCES JOINUSER(JOINEMAIL)
 );
 
 
-INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '자소서', COVERLETTER_SEQ.NEXTVAL, '자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '자소서', COVERLETTER_SEQ.NEXTVAL, 0,'자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
 
-INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '포폴', PORTFOLIO_SEQ.NEXTVAL, NULL, '제목:', NULL, NULL, SYSDATE, '파일')
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '포폴', PORTFOLIO_SEQ.NEXTVAL, 0, NULL, '제목:', NULL, NULL, SYSDATE, '이미지')
 
 
 

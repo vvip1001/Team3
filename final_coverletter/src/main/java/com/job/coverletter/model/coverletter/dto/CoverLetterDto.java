@@ -6,38 +6,55 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CoverLetterDto {
 
-	// 시퀀스
-	private int coverletterseq;
+    // 시퀀스 
+    private int coverletterseq;
 
-	// 이메일(ID)
-	private String joinemail;
+    // 이메일(ID) 
+    private String joinemail;
 
-	// 구분
-	private String cvcategory;
+    // 구분 
+    private String cvcategory;
 
-	// 각각 구분 시퀀스
-	private int groupseq;
+    // 그룹시퀀스 
+    private int groupseq;
 
-	// 항목(질문)
-	private String question;
+    // 작업단위 그룹번호 
+    private int groupno;
 
-	// 제목
-	private String title;
+    // 항목(질문), 수행기간 
+    private String question;
 
-	// 소제목
-	private String subtitle;
+    // 제목, 프로젝트명 
+    private String title;
 
-	// 내용
-	private String content;
+    // 소제목, 개발목표 
+    private String subtitle;
 
-	// 작성일
-	private Date regdate;
+    // 내용, 개발환경 
+    private String content;
 
-	// 파일경로
-	private String filepath;
+    // 구현기능 
+    private String functions;
 
-	private MultipartFile uploadFile;
+    // 담당역할 
+    private String positions;
 
+    // 참여도 
+    private String participation;
+
+    // 기능설명 
+    private String functioninfo;
+
+    // 화면설명 
+    private String viewinfo;
+
+    // 작성일 
+    private Date regdate;
+
+    // 파일경로 
+    private MultipartFile filepath;
+    
+    // 페이징
 	private int StartIndex;
 	private int CntPerPage;
 	// 현재페이지
@@ -52,200 +69,212 @@ public class CoverLetterDto {
 		super();
 	}
 
-
-	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int groupseq, String question,
-			String title, String subtitle, String content, Date regdate, String filepath, MultipartFile uploadFile,
-			int startIndex, int cntPerPage, int curPage, String category, String keyword) {
+	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int groupseq, int groupno,
+			String question, String title, String subtitle, String content, String functions, String positions,
+			String participation, String functioninfo, String viewinfo, Date regdate, MultipartFile filepath, int startIndex,
+			int cntPerPage, int curPage, String category, String keyword) {
 		super();
 		this.coverletterseq = coverletterseq;
 		this.joinemail = joinemail;
 		this.cvcategory = cvcategory;
 		this.groupseq = groupseq;
+		this.groupno = groupno;
 		this.question = question;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.content = content;
+		this.functions = functions;
+		this.positions = positions;
+		this.participation = participation;
+		this.functioninfo = functioninfo;
+		this.viewinfo = viewinfo;
 		this.regdate = regdate;
 		this.filepath = filepath;
-		this.uploadFile = uploadFile;
 		StartIndex = startIndex;
 		CntPerPage = cntPerPage;
 		this.curPage = curPage;
 		this.category = category;
 		this.keyword = keyword;
 	}
-
 
 	public int getCoverletterseq() {
 		return coverletterseq;
 	}
 
-
 	public void setCoverletterseq(int coverletterseq) {
 		this.coverletterseq = coverletterseq;
 	}
-
 
 	public String getJoinemail() {
 		return joinemail;
 	}
 
-
 	public void setJoinemail(String joinemail) {
 		this.joinemail = joinemail;
 	}
-
 
 	public String getCvcategory() {
 		return cvcategory;
 	}
 
-
 	public void setCvcategory(String cvcategory) {
 		this.cvcategory = cvcategory;
 	}
-
 
 	public int getGroupseq() {
 		return groupseq;
 	}
 
-
 	public void setGroupseq(int groupseq) {
 		this.groupseq = groupseq;
 	}
 
+	public int getGroupno() {
+		return groupno;
+	}
+
+	public void setGroupno(int groupno) {
+		this.groupno = groupno;
+	}
 
 	public String getQuestion() {
 		return question;
 	}
 
-
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-
 
 	public String getTitle() {
 		return title;
 	}
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 	public String getSubtitle() {
 		return subtitle;
 	}
 
-
 	public void setSubtitle(String subtitle) {
 		this.subtitle = subtitle;
 	}
-
 
 	public String getContent() {
 		return content;
 	}
 
-
 	public void setContent(String content) {
 		this.content = content;
 	}
 
+	public String getFunctions() {
+		return functions;
+	}
+
+	public void setFunctions(String functions) {
+		this.functions = functions;
+	}
+
+	public String getPositions() {
+		return positions;
+	}
+
+	public void setPositions(String positions) {
+		this.positions = positions;
+	}
+
+	public String getParticipation() {
+		return participation;
+	}
+
+	public void setParticipation(String participation) {
+		this.participation = participation;
+	}
+
+	public String getFunctioninfo() {
+		return functioninfo;
+	}
+
+	public void setFunctioninfo(String functioninfo) {
+		this.functioninfo = functioninfo;
+	}
+
+	public String getViewinfo() {
+		return viewinfo;
+	}
+
+	public void setViewinfo(String viewinfo) {
+		this.viewinfo = viewinfo;
+	}
 
 	public Date getRegdate() {
 		return regdate;
 	}
 
-
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 
-
-	public String getFilepath() {
+	public MultipartFile getFilepath() {
 		return filepath;
 	}
 
-
-	public void setFilepath(String filepath) {
+	public void setFilepath(MultipartFile filepath) {
 		this.filepath = filepath;
 	}
-
-
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-
-
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
-	}
-
 
 	public int getStartIndex() {
 		return StartIndex;
 	}
 
-
 	public void setStartIndex(int startIndex) {
 		StartIndex = startIndex;
 	}
-
 
 	public int getCntPerPage() {
 		return CntPerPage;
 	}
 
-
 	public void setCntPerPage(int cntPerPage) {
 		CntPerPage = cntPerPage;
 	}
-
 
 	public int getCurPage() {
 		return curPage;
 	}
 
-
 	public void setCurPage(int curPage) {
 		this.curPage = curPage;
 	}
-
 
 	public String getCategory() {
 		return category;
 	}
 
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
 
 	public String getKeyword() {
 		return keyword;
 	}
 
-
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
 
-
 	@Override
 	public String toString() {
 		return "CoverLetterDto [coverletterseq=" + coverletterseq + ", joinemail=" + joinemail + ", cvcategory="
-				+ cvcategory + ", groupseq=" + groupseq + ", question=" + question + ", title=" + title + ", subtitle="
-				+ subtitle + ", content=" + content + ", regdate=" + regdate + ", filepath=" + filepath
-				+ ", uploadFile=" + uploadFile + ", StartIndex=" + StartIndex + ", CntPerPage=" + CntPerPage
-				+ ", curPage=" + curPage + ", category=" + category + ", keyword=" + keyword + "]";
+				+ cvcategory + ", groupseq=" + groupseq + ", groupno=" + groupno + ", question=" + question + ", title="
+				+ title + ", subtitle=" + subtitle + ", content=" + content + ", functions=" + functions
+				+ ", positions=" + positions + ", participation=" + participation + ", functioninfo=" + functioninfo
+				+ ", viewinfo=" + viewinfo + ", regdate=" + regdate + ", filepath=" + filepath + ", StartIndex="
+				+ StartIndex + ", CntPerPage=" + CntPerPage + ", curPage=" + curPage + ", category=" + category
+				+ ", keyword=" + keyword + "]";
 	}
 
-	
-	
-}
 
+}
