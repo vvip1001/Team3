@@ -1,9 +1,20 @@
+/*---------- 웹폰트 ----------*/
+@font-face {
+	font-family: 'yg-jalnan';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
 	font-size: 18px !important;
 }
 
 /*---------- 타이틀 영역 ----------*/
 h1 {
+	font-family: 'yg-jalnan';
 	text-align: center !important;
 	margin: 4% 0% 4% 0% !important;
 	font-size: 36px !important;
@@ -11,16 +22,16 @@ h1 {
 	cursor: default;
 }
 
-/*---------- 중간여백 영역 ----------*/
-#fake-div {
-	background-color: #ebe6e6;
-	height: 20px;
-}
-
 /*---------- 자소서 제목 영역 ----------*/
 #title-area {
 	height: 150px;
 }
+
+.title-font {
+	text-align: center;
+	font-family: 'yg-jalnan';
+}
+
 
 /*---------- 자소서 작성 영역 ----------*/
 #cv-area {
@@ -33,6 +44,7 @@ h1 {
 
 .form-control{
 	font-size: 15px !important;
+	margin-bottom : 10px !important;
 }
 
 .col-md-6 {
@@ -134,3 +146,17 @@ h1 {
 }
 
 
+
+/*---------- 맞춤법검사 결과 영역 ----------*/
+.sugg-div {
+    display: inline-block;
+}
+
+.sugg-btn{
+	margin: 2px;
+	border: 1px solid gray !important;
+}
+
+.sugg-btn:hover{
+	background-color: #00BF6F !important;
+}

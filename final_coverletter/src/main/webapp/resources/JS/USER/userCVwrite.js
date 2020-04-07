@@ -70,14 +70,23 @@ function spellCheck(btn) {
 	// 보낼 데이터 (맞춤법 검사할 데이터)
 	var thisElement = btn;
 	var parent = $(thisElement).parents('.cv-container');
+	// 입력영역
 	var ta = $(parent).find('textarea');
+	var checkData = ta.val();
+	// 검사영역
 	var sd = $(parent).find('.cv-spell');
-
+	// 오류어, 수정어
+	var token;
+	var suggestions = [];
+	
+	// 검사마다 데이터 쌓이는 것 방지 (clear)
+	sd.text('');
+	
 	// node server로 보내기
 	$.ajax({
 		type : 'post',
 		url : 'http://127.0.0.1:3003/spellCheck/',
-		data : ta.val(),
+		data : checkData,
 		crossOrigin : true,
 	    crossDomain : true,
 		async : false,
@@ -86,28 +95,37 @@ function spellCheck(btn) {
 			console.log('통신성공');
 			console.log('넘어오는 데이터 : ' + data);
 			
-			// data = json 
+			if(data == null || data.length == 0){
+				sd.append('<p style=\'color=red; \'>오류가 없습니다.</p>');
+			}
+			
 			$.each(data, function(idx, obj) {
+				console.log('idx = ' + data[idx]);
 				$.each(obj, function(key, value) {
-					console.log('key = ' + key);
-					console.log('val = ' + value);
 					/*
 					 * -- KEY --
 					 * token : 오류
 					 * suggestions : 교정어
 					 * info : 맞춤법 검사 결과 설명
-					 * 
 					 * */
+					
 					if(key == 'token'){
-						
+						token = value;
 					}
 					
 					if(key == 'suggestions'){
-						// button 생성
-						sd.append
-							("<button class='btn spell-btn' type='button'>"
-							+ value
-							+ "</button>");
+						 suggestions = value;
+						 console.log(typeof(suggestions));
+						 
+						 // 검사결과 버튼 생성
+						 for(var i = 0; i < suggestions.length; i++){
+							 sd.append
+							 		("<div class='sugg-div'>" 
+									 + "<input class='sugg-value' type='hidden' value='" + token + "'>"
+							 		 + "<button class='btn sugg-btn' type='button' name='" + token + "'>"
+									 + suggestions[i]
+							         + "</button></div>");
+						 }
 					}
 					
 				});
@@ -121,10 +139,37 @@ function spellCheck(btn) {
 
 	});
 };
+/*---------- 맞춤법검사 : 검사결과 영역 버튼 클릭했을 때  ----------*/
+$(function() {
+	$(document).on("click",".sugg-btn",function(){  
+		console.log('버튼 누름');
+		// 보낼 데이터 (맞춤법 검사할 데이터)
+		var thisElement = this;
+		var parent = $(thisElement).parents('.cv-container');
+		// 입력영역 -> 영역 안 데이터
+		var ta = $(parent).find('textarea');
+		var checkData = ta.val();
+		
+		// 오류어
+		var token = $(thisElement).attr('name');
+		
+		// 수정어
+		var suggestion = $(thisElement).text();
+		// 누른 수정어는 검사영역에서 삭제
+		var clickSugg = $('.sugg-value[value=' + $.escapeSelector(token) + ']');
+		var clickSuggParent = clickSugg.parents('.sugg-div');
+		clickSuggParent.remove();
+		
+		// 오류어 -> 수정어
+		checkData = checkData.replace(token, suggestion);
+		console.log('변경 후 : ' + checkData);
+		ta.val(checkData);
+	});
+});
 
 /*---------- Toasts : bootstrap4 toast ----------*/
 $(function() {
-	$("#question").change(function(){
+	$(".question").change(function(){
 	    var selected = $("option:selected", this);
 	    
 	    // toast 속성
@@ -149,7 +194,7 @@ $(function() {
 	    // 경험과 사례 	
 	    } else if(selected.parent()[0].id == "four"){
 	    	$('.toast-body').html('경험과 사례는 최대한 구체적으로 작성해야합니다. <br/> 또한 나의 이야기를 설득력있게 전달하기 위해서는 이를 뒷받침해줄 <b>충분한 근거</b>가 필요합니다. <br/> 이 점을 잊지 말고 작성해보세요! 😊');
-	    	
+	    	$('.toast').toast('show');
 	    // 기타	
 	    } else if(selected.parent()[0].id == "five"){
 	    	$('.toast-body').html('자기소개서는 내가 어떤 사람인지 궁금해질 수 있도록, <br/> 나에 대한 <b>예고편</b>을 보여주는 것입니다.');

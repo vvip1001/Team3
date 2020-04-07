@@ -51,7 +51,7 @@
 			
 			<!-- 제목 title -->
 			<div>
-				<span>제&nbsp;&nbsp;목</span> 
+				<span class="title-font">제&nbsp;&nbsp;목</span> 
 				<f:input
 					type="text" id="title" path="targets[0].title" class="form-control"
 					placeholder="제목을 입력하세요."/>
@@ -59,24 +59,22 @@
 		</div>
 	</div>
 	<!-- 자소서 제목 영역 끝-->
-	<!-- 중간 여백 영역 -->
-	<div id="fake-div"></div>
-
+	
 	<!-- 자소서 작성 영역 -->
 	<div class="container cv-container">
 		<div id="cv-area">
 			<div id="input-grp">
 				<div>
-					<span>소제목</span> 
+					<span class="title-font">소제목</span> 
 					<f:input 
 						type="text" id="subtitle" path="targets[0].subtitle" class="form-control"
 						placeholder="소제목을 입력하세요."/>
 				</div>
 				<div>
-					<span>항&nbsp;&nbsp;&nbsp;&nbsp;목</span> 
+					<span class="title-font">항&nbsp;&nbsp;&nbsp;&nbsp;목</span> 
 					<!-- 자소서 질문 영역 -->
 					<f:select
-						id="question" path="targets[0].question" class="form-control">
+						id="question" path="targets[0].question" class="form-control question">
 						<optgroup label="기본" id="one">
 							<f:option value="자기소개"></f:option>
 							<f:option value="지원동기"></f:option>
@@ -108,7 +106,7 @@
 						<optgroup label="기타" id="five">
 							<f:option value="가장 감명깊게 읽은 책과 그 이유"></f:option>
 							<f:option value="즐겨찾는 인터넷 사이트와 그 이유"></f:option>
-							<f:option value="최근 사회 이슈 중 중요하다고 생각하는 한 가지를 선택하여 자신의 견해를 기술"></f:option>
+							<f:option value="최근 사회 이슈 중 중요하다고 생각하는 한 가지를 선택하여 자신의 견해를 기술하세요."></f:option>
 						</optgroup>
 					</f:select>
 					<!-- 자소서 질문 영역 끝 -->
@@ -123,7 +121,7 @@
 				<div class="row" class="">
 					<div class="col-md-6">
 						<fieldset class="cv-box">
-							<legend class="legend">작성</legend>
+							<legend class="legend title-font">작성</legend>
 							<f:textarea class="textarea" onkeydown="contentCnt(this);" id="content" path="targets[0].content"></f:textarea>
 						</fieldset>
 						
@@ -131,7 +129,7 @@
 					</div>
 					<div class="col-md-6">
 						<fieldset class="cv-box">
-							<legend class="legend">검사</legend>
+							<legend class="legend title-font">검사</legend>
 							<div class="cv-spell"></div>
 						</fieldset>
 						
