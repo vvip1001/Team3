@@ -10,6 +10,7 @@ public interface CompanyDao {
 	// 전체 선택
 	public List<CompanyDto> selectList(MariaPagination pagination);
 	
+
 	// 하나선택
 	public CompanyDto selectOne(int companyseq);
 	
@@ -21,6 +22,15 @@ public interface CompanyDao {
 
 	//회사가 가지고 있는 그룹번호
 	public List<CompanyDto> selectAll_group(int groupno);
+	
+	//메인 웹개발자(4개)
+	
+//	public List<CompanyDto> selectList_web();
+	
+	//메인 프론트앤드 (4개)
+	
+	//메인 백앤드 (4개)
+	
 
 	
 

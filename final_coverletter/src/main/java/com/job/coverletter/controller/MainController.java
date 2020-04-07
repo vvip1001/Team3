@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -58,12 +59,27 @@ public class MainController {
 	
 		List<CompanyDto> list_cnt20 = companyBiz.selectList_cnt20();
 		model.addAttribute("list_cnt20", list_cnt20);
-		
+	
 		
 		logger.info("Main go");
 		return "MAIN/main";
 	}
 	
+///*스크롤페이징 메인 ajax*/
+//@RequestMapping(value="/MAIM_mainAjax.do", method=RequestMethod.POST)
+//	public List<CompanyDto> mainAjax(@ModelAttribute CompanyDto companyname) {
+//	
+//		
+//		List<CompanyDto> ajax = new ArrayList<CompanyDto>();
+//		
+//		ajax.add(companyname);
+//
+//		
+//		return ajax;
+//		
+//	}
+//	
+//	
 	/*회사가 가지고있는 채용정보를 그룹넘버 불러 옴 */
 	@RequestMapping(value = "/MAIN_mainDetail.do", method = RequestMethod.GET)
 	public String selectOne(Model model, int companyseq ) {
@@ -78,18 +94,7 @@ public class MainController {
 
 	}
 	
-//	/*채용게시판 즐겨찾기 */
-//	@RequestMapping(value = "/MAIN_bookmarkAjax.do", method =RequestMethod.GET)
-//	@ResponseBody
-//	public Map<String,String> bookmarkAjax(Model model, HttpSession session ,@RequestBody CompanyDto dto){
-//		
-//	
-//		
-//		
-//		return null;
-//	}
-//	
-	
+ 
 	
 
 	/*-------------------------후원하기-------------------------*/

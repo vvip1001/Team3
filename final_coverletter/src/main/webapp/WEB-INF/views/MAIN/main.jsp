@@ -24,10 +24,10 @@
 
 <body>
 
-<c:if test="${empty list_cnt20}">
-	<c:set var="list_cnt20" value="<%=new ArrayList<CompanyDto>() %>"/>
-</c:if>
-	
+	<c:if test="${empty list_cnt20}">
+		<c:set var="list_cnt20" value="<%=new ArrayList<CompanyDto>()%>" />
+	</c:if>
+
 	<c:choose>
 		<c:when test="${empty login }">
 			<%@ include file="../ALL/header_logout.jsp"%>
@@ -36,7 +36,7 @@
 			<%@ include file="../ALL/header_login.jsp"%>
 		</c:otherwise>
 	</c:choose>
-	
+
 	<div class="container" style="background-color: #ebe6e6;">
 		<div id="MaintopDiv">
 			<h1>[자소서 성공 페이지]</h1>
@@ -46,78 +46,33 @@
 		<div class="company">
 			<h5 class="h5">웹 개발자</h5>
 
-			<div class="companyItem">
-				<div class="companyItemTop">
-					<a href="MAIN_mainDetail.do?companyseq=148"> <img
-						class="companyImg"
-						src="https://image.rocketpunch.com/company/37802/clab_logo_1584507642.png?s=400x400&t=inside" />
-					</a>
-				</div>
-				<br> <br>
-				<div class="companyItemBottom">
+			<c:choose>
+				<c:when test="${empty list_web}">
+					<h3>====================데이터가 없습니다.====================</h3>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list_web}" var="list_web">
+						<div class="totalCompanyItem">
+							<div class="companyItemTop">
+								<a
+									href="MAIN_mainDetail.do?companyseq=${list_web.companyseq }&groupno=${list_web.groupno}">
+									<img class="companyImg2" src="${list_web.imgurl}" />
+								</a>
 
-					<h5>주식회사 언더핀</h5>
-
-					<div class="front">Most be loved Global AI & BlockChain Company from Dreamer</div>
-					<br /> <br />
-				</div>
-			</div>
- 
-			<div class="companyItem">
-				<div class="companyItemTop">
-					<a href="MAIN_mainDetail.do?companyseq=275"> <img
-						class="companyImg"
-						src="https://image.rocketpunch.com/company/296/alice_logo_1541492949.png?s=400x400&t=inside" />
-					</a>
-				</div>
-				<br> <br>
-				<div class="companyItemBottom">
-
-					<h5>에피</h5>
-
-					<div class="front">★망리단길에서 글로벌 70개국 사용자 기반의 "HR플랫폼" 서비스와 "비주얼 협업" 툴을 운영중</div>
-					<br /> <br />
-				</div>
-			</div>
-			
-			<div class="companyItem">
-				<div class="companyItemTop">
-					<a href="MAIN_mainDetail.do?companyseq=412"> <img
-						class="companyImg"
-						src="https://image.rocketpunch.com/company/116429/repan_logo_1583194289.png?s=400x400&t=inside" />
-					</a>
-				</div>
-				<br> <br>
-				<div class="companyItemBottom">
-
-					<h5 >리판</h5>
-
-					<div class="front">분산된 부동산 자산운용을 위한 플랫폼</div>
-					<br /> <br />
-				</div>
-			</div>
-			
-			
-			<div class="companyItem">
-				<div class="companyItemTop">
-					<a href="MAIN_mainDetail.do?companyseq=428"> <img
-						class="companyImg"
-						src="https://image.rocketpunch.com/company/102123/wishhome_logo_1574901002.png?s=400x400&t=inside" />
-					</a>
-				</div>
-				<br> <br>
-				<div class="companyItemBottom">
-
-					<h5 >위시홈</h5>
-
-					<div class="front">최저가 인테리어 브랜드 비교 서비스</div>
-					<br /> <br />
-				</div>
-			</div>
+							</div>
+							<div class="companyItemBottom">
+								<div class="companyname" id="companyname">${list_web.companyname}</div>
+								<div class="business">${list_web.business}</div>
+							</div>
+						</div>
 
 
 
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</div>
+
 
 		<div class="companySide"></div>
 		<div class="company">
@@ -270,7 +225,7 @@
 					<h5>집펀드</h5>
 
 					<div>부동산 빅데이터/핀테크</div>
-					<br/> <br/>
+					<br /> <br />
 				</div>
 			</div>
 
@@ -297,13 +252,13 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${list_cnt20}" var="companyDto">
-							<div class="totalCompanyItem">
-								<div class="companyItemTop">
+							<div class="totalCompanyItem" id="totalCompanyItem">
+								<div class="companyItemTop" id="companyItemTop">
 									<a
-										href="MAIN_mainDetail.do?companyseq=${companyDto.companyseq }&groupno=${companyDto.groupno}">
+										href="MAIN_main	Detail.do?companyseq=${companyDto.companyseq }&groupno=${companyDto.groupno}">
 										<img class="companyImg2" src="${companyDto.imgurl}" />
 									</a>
-									
+
 								</div>
 								<div class="companyItemBottom">
 									<div class="companyname" id="companyname">${companyDto.companyname}</div>

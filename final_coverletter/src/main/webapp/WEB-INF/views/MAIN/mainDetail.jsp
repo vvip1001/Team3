@@ -16,7 +16,6 @@
 	rel="stylesheet">
 </head>
 <body>
-	<%@ include file="../ALL/header_login.jsp"%>
 
 	<div id="All">
 		<input type="hidden" id="companyseq" value="${maindetail.companyseq }"/>

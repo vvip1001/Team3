@@ -52,12 +52,13 @@ select * from company order by companyseq desc;
 select * from company; 
 
 
+
 select
 companyseq, groupno, companyname, imgurl, oneintro, 
 business, mainbusiness, jobdetail , salary, target, languages, enddate, intro,
 givetool, selfgrowth, mealtime, holiday, workinghour, insurance,
 incorporation, totalmember, homepage, location, mainfield
-FROM company02 WHERE companyseq = 690;
+FROM company02;	
 
 
 
