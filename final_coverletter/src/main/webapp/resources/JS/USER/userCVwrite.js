@@ -13,6 +13,7 @@ function removeBtn () {
 		$(removeBtn).attr('disabled', false);
 	}
 }
+
 /*---------- cv-container 복제 : add func ----------*/
 function add() {
 	// 마지막 cv-container를 복제
@@ -67,6 +68,8 @@ function contentCnt(textarea) {
 
 /*---------- 맞춤법 검사 : spellCheck func ----------*/
 function spellCheck(btn) {
+	console.log('ajax start!');
+	
 	// 보낼 데이터 (맞춤법 검사할 데이터)
 	var thisElement = btn;
 	var parent = $(thisElement).parents('.cv-container');
@@ -89,14 +92,17 @@ function spellCheck(btn) {
 		data : checkData,
 		crossOrigin : true,
 	    crossDomain : true,
-		async : false,
 		dataType: 'json',
+		beforeSend:function(){
+			$('#myModal').modal('show');
+		},
 		success : function(data) {
 			console.log('통신성공');
 			console.log('넘어오는 데이터 : ' + data);
+			$('#myModal').modal('hide');
 			
 			if(data == null || data.length == 0){
-				sd.append('<p style=\'color=red; \'>오류가 없습니다.</p>');
+				sd.append("<p class='non-err'>오류가 없습니다.</p>");
 			}
 			
 			$.each(data, function(idx, obj) {
@@ -108,7 +114,7 @@ function spellCheck(btn) {
 					 * suggestions : 교정어
 					 * info : 맞춤법 검사 결과 설명
 					 * */
-					
+				
 					if(key == 'token'){
 						token = value;
 					}
@@ -169,7 +175,7 @@ $(function() {
 
 /*---------- Toasts : bootstrap4 toast ----------*/
 $(function() {
-	$(".question").change(function(){
+	$(".toast-question").change(function(){
 	    var selected = $("option:selected", this);
 	    
 	    // toast 속성
@@ -181,9 +187,10 @@ $(function() {
 	    if(selected.parent()[0].id == "one"){
 	    	$('.toast-body').html('이 항목은 회사마다 달라야합니다. <br/> 질문의 의도에 맞게 <b>핵심</b> 위주로 대답하는 것이 좋습니다.');
 	    	$('.toast').toast('show');
+	    
 	    // 개인	
 	    } else if(selected.parent()[0].id == "two"){
-	    	$('.toast-body').html('성장과정을 물어보는 의도를 잘 생각해봅시다. <br/> 나의 인생 전체를 구술하기보다 기업과 직무에 연관되는 <b>특정한 사건, 인물 위주</b>로 작성하는 것이 좋습니다.');
+	    	$('.toast-body').html('지원자와 관련된 것을 물어보는 의도를 잘 생각해봅시다. <br/> 나의 인생 전체를 구술하기보다 기업과 직무에 연관되는 <b>특정한 사건, 인물 위주</b>로 작성하는 것이 좋습니다.');
 	    	$('.toast').toast('show');
 	    	
 	    // 직무역량 
@@ -195,6 +202,7 @@ $(function() {
 	    } else if(selected.parent()[0].id == "four"){
 	    	$('.toast-body').html('경험과 사례는 최대한 구체적으로 작성해야합니다. <br/> 또한 나의 이야기를 설득력있게 전달하기 위해서는 이를 뒷받침해줄 <b>충분한 근거</b>가 필요합니다. <br/> 이 점을 잊지 말고 작성해보세요! 😊');
 	    	$('.toast').toast('show');
+	    
 	    // 기타	
 	    } else if(selected.parent()[0].id == "five"){
 	    	$('.toast-body').html('자기소개서는 내가 어떤 사람인지 궁금해질 수 있도록, <br/> 나에 대한 <b>예고편</b>을 보여주는 것입니다.');
@@ -203,8 +211,102 @@ $(function() {
 	});
 });
 
+/*---------- 음성인식 : speech_to_text func ----------*/
+$(document).ready(function(){
+	   
+	   var message = document.getElementById("message");
+	   var button = document.getElementById("speech");
+	   var korea = document.getElementById("content"); // div
+	   var pract = document.getElementById("pract"); // div
+	   var isRecognizing = false;
+	})
 
+	   try {
+	      var recognition = new (window.SpeechRecognition
+	            || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+	   } catch (e) {
+	      console.error(e);
+	   }
+	   
+	   recognition.lang = 'ko-KR'; // 한국어 인식.
+	   recognition.interimResults = false;
+	   recognition.maxAlternatives = 5;
 
+	// recognition.continuous = true;
+
+	function speech_to_text() {
+
+	   recognition.start();
+	   isRecognizing = true;
+
+	   recognition.onstart = function() {
+	      console.log("음성인식이 시작 되었습니다.")
+	      message.innerHTML = "음성인식 시작...";
+	      button.innerHTML = "Listening...";
+	      button.disabled = true;
+	   }
+
+	   recognition.onspeechend = function() {
+	      message.innerHTML = "버튼을 누르고 아무말이나 하세요.";
+	      button.disabled = false;
+	      button.innerHTML = "Start STT";
+	   }
+
+	   recognition.onresult = function(event) { // 인식된 음성이 있을 경우 실행
+	      console.log('You said: ', event.results[0][0].transcript);
+	      // 결과를 출력
+	      var resText = event.results[0][0].transcript;
+	      korea.textContent = resText;
+
+	      // text to sppech
+	      text_to_speech(resText);
+
+	   };
+
+	   recognition.onend = function() {
+	      message.innerHTML = "버튼을 누르고 아무말이나 하세요.";
+	      button.disabled = false;
+	      button.innerHTML = "Start STT";
+	      isRecognizing = false;
+
+	   }
+	}
+
+	function stop() { // 음성 인식 종료
+	   recognition.stop();
+	   message.innerHTML = "버튼을 누르고 아무말이나 하세요.";
+	   button.disabled = false;
+	   button.innerHTML = "Start STT";
+	   isRecognizing = false;
+
+	}
+
+	// Text to speech
+	function text_to_speech(txt) {
+	   // Web Speech API - speech synthesis
+	   if ('speechSynthesis' in window) {
+	      // Synthesis support. Make your web apps talk!
+	      console.log("음성합성을 지원하는  브라우저입니다.");
+	   }
+	   var msg = new SpeechSynthesisUtterance();
+	   var voices = speechSynthesis.getVoices();
+	   // msg.voice = voices[9]; // 두번째 부터 완전 외국인 발음이 됨. 사용하지 말것.
+	   msg.voiceURI = 'Google 한국의';
+	   msg.voiceURI = 'native';
+	   msg.volume = 1; // 0 to 1 볼륨
+	   msg.rate = 1.5; // 0.1 to 10 말하는속도
+	   // msg.pitch = 1.5; //0 to 2 음의 높이
+	   msg.text = txt;
+	   msg.lang = 'ko-KR';
+
+	   msg.onend = function(e) {
+	      if (isRecognizing == false) {
+	         recognition.start();
+	      }
+	      console.log('Finished in ' + event.elapsedTime + ' seconds.');
+	   };
+	   window.speechSynthesis.speak(msg);
+	}
 
 
 

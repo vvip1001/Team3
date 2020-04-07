@@ -492,7 +492,10 @@ public class UserController {
 
 		if(targets.getTargets().size() != 1) {
 			for(int i = 0; i < targets.getTargets().size(); i++) {
+				// 첫번째 값
 				String title = targets.getTargets().get(0).getTitle();
+				
+				// 나머지 list(dto)에다 설정 set
 				targets.getTargets().get(i).setTitle(title);
 				targets.getTargets().get(i).setJoinemail(joinemail);
 				int res = coverletterBiz.CVinsert(targets.getTargets().get(i));

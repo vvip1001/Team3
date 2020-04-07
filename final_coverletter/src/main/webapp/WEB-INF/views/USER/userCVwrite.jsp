@@ -51,7 +51,7 @@
 			
 			<!-- 제목 title -->
 			<div>
-				<span class="title-font">제&nbsp;&nbsp;목</span> 
+				<span class="title-font">제&nbsp;&nbsp; 목 <span class="star">*</span></span> 
 				<f:input
 					type="text" id="title" path="targets[0].title" class="form-control"
 					placeholder="제목을 입력하세요."/>
@@ -65,16 +65,16 @@
 		<div id="cv-area">
 			<div id="input-grp">
 				<div>
-					<span class="title-font">소제목</span> 
+					<span class="title-font">소제목 <span class="star">*</span></span> 
 					<f:input 
 						type="text" id="subtitle" path="targets[0].subtitle" class="form-control"
 						placeholder="소제목을 입력하세요."/>
 				</div>
 				<div>
-					<span class="title-font">항&nbsp;&nbsp;&nbsp;&nbsp;목</span> 
+					<span class="title-font">항&nbsp;&nbsp;&nbsp;&nbsp;목 <span class="star">*</span></span> 
 					<!-- 자소서 질문 영역 -->
 					<f:select
-						id="question" path="targets[0].question" class="form-control question">
+						id="question" path="targets[0].question" class="form-control toast-question">
 						<optgroup label="기본" id="one">
 							<f:option value="자기소개"></f:option>
 							<f:option value="지원동기"></f:option>
@@ -125,7 +125,7 @@
 							<f:textarea class="textarea" onkeydown="contentCnt(this);" id="content" path="targets[0].content"></f:textarea>
 						</fieldset>
 						
-						<button class="btn cv-btn" type="button">음성입력</button>
+						<button class="btn cv-btn" type="button" onclick="speech_to_text();">음성입력</button>
 					</div>
 					<div class="col-md-6">
 						<fieldset class="cv-box">
@@ -133,7 +133,7 @@
 							<div class="cv-spell"></div>
 						</fieldset>
 						
-						<button class="btn cv-btn" type="button" onclick="spellCheck(this);">맞춤법검사</button>
+						<button class="btn cv-btn" type="button" onclick="spellCheck(this);" id="spell-check">맞춤법검사</button>
 					</div>
 				</div>
 			</div>
@@ -154,12 +154,18 @@
 	<!-- submit 영역 -->
 	<div class="container submit-container">
 		<div class="submit-area">
-			<input type="submit" class="btn" value="작성완료" >
+			<input type="submit" class="btn" value="저장" >
 			<button class="btn" onclick="location.href='JOB_jobCenter.do'" type="button">돌아가기</button>
 		</div>
 	</div>
-	</f:form>
+	</f:form>	
 	
+	<!-- 로딩 영역 -->
+   	<div class="modal" tabindex="-1" role="dialog" id="myModal">
+    	<div class="modal-body">
+        	<div class="loader">맞춤법 검사 중입니다...</div>
+      	</div>
+   	</div>
 	
 </body>
 </html>
