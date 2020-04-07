@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +22,31 @@
 
 
 	<div class="container">
-		<h1>스피치 연습</h1>
-		<div id="blank">
-				<div id="timer">타이머</div>
+		<div class="row">
+			<div class="col-md-12"></div>
 		</div>
+
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<select class="form-control" id="sel1" onchange="formChange(this);">
+						<option value="스피치연습">스피치연습</option>
+						<option value="문답">문답</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3" id="timeDP">
+				<div id="timer">
+					<p id="timerP">타이머</p>
+				</div>
+				<div id="end">
+					종료
+				</div>
+			</div>
+		</div>
+
+		<div id="blank"></div>
 		<div id="original">
 			<div class="main">
 				<div class="side"></div>
@@ -32,8 +54,8 @@
 
 					<div class="internal">
 						<fieldset class="fieldset">
-							<legend class="legend">대본</legend>
-							<textarea id="korea" rows="15" cols="40"></textarea>
+							<legend class="legend" id="legend1">대본 </legend>
+							<textarea id="korea" rows="15" cols="40" class="textarea"></textarea>
 						</fieldset>
 					</div>
 
@@ -41,8 +63,9 @@
 
 					<div class="internal">
 						<fieldset class="fieldset">
-							<legend class="legend">연습</legend>
-							<textarea id="pract" rows="15" cols="40"></textarea>
+							<legend class="legend" id="legend2">연습</legend>
+							<textarea id="pract" rows="10" cols="40" class="textarea"></textarea>
+							<div id="answerRes"></div>
 						</fieldset>
 					</div>
 
@@ -52,24 +75,23 @@
 
 			<div id="blank"></div>
 
-			<div class="main">
-				<div class="side"></div>
-				<div class="center">
+			<!-- 						<div class="internal_bewteen"> -->
+			<!-- 						<button id="stop" onclick="stop()">Stop</button> -->
+			<!-- 					</div> -->
 
-					<div class="internal">
-						<input type="button" value="대본녹음" class="speech" id="speech"
-							onclick="speech_to_text()" />
-					</div>
-					<div class="internal_bewteen">
-						<button id="stop" onclick="stop()">Stop</button>
-					</div>
-					<div class="internal">
-						<input type="button" value="연습녹음" class="speech"
-							onclick="pract_speech_to_text()" />
-					</div>
-
+			<div class="row" id="form">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<input type="hidden" id="randomSeq" />
+					<!-- 문제에 대한 seq -->
+					<input type="button" onclick="nextQuestion();" value="다음 문제"
+						class="button3" id="nextQuestion" /> <input type="button"
+						value="대본녹음" class="speech" id="speech" onclick="speech_to_text()" />
+					<input type="button" value="연습녹음" class="speech" id="answer"
+						onclick="pract_speech_to_text()" /> <input type="button"
+						value="확인" onclick="question();" id="quiz" class="button3" />
 				</div>
-				<div class="side"></div>
+				<div class="col-md-2"></div>
 			</div>
 		</div>
 
@@ -85,14 +107,13 @@
 					src="${pageContext.request.contextPath}/resources/IMG/minus.png">
 			</button>
 		</div>
-		
+
 		<div id="blank"></div>
-		
-		<div>
-			<p id="quiz">∨문답 펼치기∨</p>
-		</div>
+
 	</div>
 
+	<!-- DB에서 문제 COUNT 해온 값 저장 -->
+	<input type="hidden" value="${count}" id="count" />
 
 
 </body>

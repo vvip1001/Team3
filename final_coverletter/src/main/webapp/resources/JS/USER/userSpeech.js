@@ -6,6 +6,8 @@ function add_div() {
 
 }
 
+////////////////////////////////////////////////// 추가하기
+
 function remove_div(id) {
 	var field = document.getElementById(id);
 	var parent = field.parentNode;
@@ -14,6 +16,8 @@ function remove_div(id) {
 	bro.lastChild.remove();
 }
 
+////////////////////////////////////////////////// 제거하기
+
 $(document).ready(function(){
 	
 	var message = document.getElementById("message");
@@ -21,10 +25,6 @@ $(document).ready(function(){
 	var korea = document.getElementById("korea"); // div
 	var pract = document.getElementById("pract"); // div
 	var isRecognizing = false;
-	console.log(korea);
-	console.log(english);
-	console.log(message);
-	console.log(button);
 })
 
 	try {
@@ -115,14 +115,13 @@ function text_to_speech(txt) {
 }
 
 // recognition.continuous = true;
-
+////////////////////////////////////////////////////////////////////대본 음성부분
 function pract_speech_to_text(){
 
 	recognition.start();
 	isRecognizing = true;
 
 	recognition.onstart = function() {
-		console.log("음성인식이 시작 되었습니다.")
 		message.innerHTML = "음성인식 시작...";
 		button.innerHTML = "Listening...";
 		button.disabled = true;
@@ -160,7 +159,6 @@ function stop() { // 음성 인식 종료
 	button.disabled = false;
 	button.innerHTML = "Start STT";
 	isRecognizing = false;
-
 }
 
 // Text to speech
@@ -189,29 +187,174 @@ function pract_text_to_speech(txt) {
 	};
 	window.speechSynthesis.speak(msg);
 }
-$(function(){
+
+//////////////////////////////////////////////연습 음성부분
+
+$(function(){ // 타이머
+	var x;
+	console.log("randomSeq:"+$("#randomSeq").val());
 	
 	$("#timer").click(function(){
 		var time = 60;
 		var min = "";
 		var sec = "";
 		
-		var x = setInterval(function(){
-			min = parseInt(time/60);
-			sec = time%60;
+		x = setInterval(function(){
+		min = parseInt(time/60);
+		sec = time%60;
 			
-			document.getElementById("timer").innerHTML = min + "분" + sec + "초";
+		document.getElementById("timerP").textContent = min + "분" + sec + "초";
 			time--;
-			
+			 
 			if(time < 0) {
 				clearInterval(x);
-				document.getElementById("timer").innerHTML = "타이머";
+				document.getElementById("timerP").textContent = "타이머";
+				$("#timerP").css("color","black");
 			}else if(time <= 30 ){
-				document.getElementById("timer").css("color","red");
+				$("#timerP").css("color","red");
 			}
 		},1000);
-		document.getElementById("timer").css("color","black");
+	});
+	
+	$("#end").click(function(){
+		$("#timerP").html("타이머");
+		$("#timerP").css("color","black");
+		clearInterval(x);
 		
 	});
 	
+	$("#nextQuestion").hide();
+	$("#quiz").hide(); //다음문제
+	
+	
 })
+///////////////////////////////////////////////////////////타이머
+
+function fristQuestion(){ // 맨 처음 문제 뿌리기
+	var question = $("#question");
+	console.log(question);
+	var count = $("#count").val();
+	console.log("count: "+count);
+	var random = Math.floor(Math.random() * (count-1))+1;
+	$("#randomSeq").val(random);
+	console.log("random: "+random);
+	var randomSeq = {
+			"qnaboardseq" : random
+	};
+	
+	$.ajax({
+		type: "post",
+		url: "USER_question.do",
+		data: JSON.stringify(randomSeq),
+		contentType: "application/json",
+		dataType: "text",
+		success: function(data){
+			$("#korea").html(data);
+		},
+		error: function(){
+			alert("통신실패");
+		}
+	});
+}
+
+/////////////////////////////////////////////처음 문제 뿌리기
+
+function nextQuestion(){//다음 문제 뿌리기
+	var count = $("#count").val();
+	var random = Math.floor(Math.random() * (count-1))+1;
+	var inputSeq = $("#randomSeq").val();
+	
+	if(random === inputSeq){
+		random = Math.floor(Math.random() * (count-1))+1;
+	} else {
+		var randomSeq = {
+				"qnaboardseq" : random
+		};
+		$.ajax({
+			type: "post",
+			url: "USER_question.do",
+			data: JSON.stringify(randomSeq),
+			contentType: "application/json",
+			dataType: "text",
+			success: function(data){
+				$("#korea").html(data);
+			},
+			error: function(){
+				alert("통신실패");
+			}
+		});
+	}
+}
+
+///////////////////////////////////////////다음 문제 뿌리기
+
+function question(){ //정답 맞추기
+	
+	
+	var anvalue = { 
+			"answer" : $("#pract").val(),
+			"qnaboardseq" : $("#randomSeq").val()
+	};
+	console.log(anvalue);
+//	location.href="USER_question.do?anvalue="+anvalue;
+	$.ajax({
+		type : "post",
+		url : "USER_answer.do",
+		data : JSON.stringify(anvalue),
+		contentType: "application/json",
+		dataType: "json",
+		success : function(data){
+			console.log("통신됌 "+ data.result);
+			$.each(data , function(key,value){
+				if(data.result === "정답"){
+					console.log(data.result);
+					$("#answerRes").css("color","blue");
+					$("#answerRes").html(data.result+'<br/>'+data.answer);
+				}else {
+					console.log(data.result);
+					$("#answerRes").css("color","red");
+					$("#answerRes").html(data.result+'<br/>'+data.answer);
+				}
+			});
+			
+		},
+		error : function() {
+			alert("통신안됌");
+		}
+	});
+}
+
+///////////////////////////정답 맞추기
+
+function formChange(select) {
+	var chk = select.options[select.selectedIndex].value
+	
+	if(chk === "스피치연습"){
+		$("#korea").html("");
+		$("#pract").html("");
+		$("#legend1").html("대본");
+		$("#legend2").html("연습");
+		$("#speech").val("대본녹음");
+		$("#answer").val("스피치연습");
+		$("#speech").attr({"onclick":"speech_to_text();"});
+		$("#answer").attr({"onclick":"pract_speech_to_text();"});
+		$("#nextQuestion").hide();
+		$("#quiz").hide(); //다음문제 , 확인버튼 하이드
+		$("#custom_button2").show(); //+- clone 기능 버튼 show
+	} else {
+		$("#cloneDiv").children().remove()
+		$("#custom_button2").css("display","none"); //+- clone 기능 버튼 hide
+		$("#nextQuestion").show();
+		$("#quiz").show(); //다음문제 , 확인버튼 하이드
+		fristQuestion();
+		$("#legend1").html("문제");
+		$("#legend2").html("정답");
+		$("#speech").val("정답녹음");
+		$("#answer").val("정답확인");
+		$("#speech").attr({"onclick":"pract_speech_to_text();"});
+		$("#answer").attr({"onclick":"question();"});
+	}
+	///////////////////////////////////////////////////////////////////폼 바꾸기
+}
+
+
