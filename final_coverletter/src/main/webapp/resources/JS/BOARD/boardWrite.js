@@ -21,6 +21,8 @@ function boardWrite() {
 	var form = $('form');
 	var title = $('#title').val();
 	var content = $('.summernote').val();
+	var file = $("#fileupload").val();
+	
 	
 	// 글작성
 	if((title.trim() != '') && (content.trim() != '')){

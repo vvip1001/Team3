@@ -2,6 +2,7 @@ package com.job.coverletter.model.coverletter.dao;
 
 import java.util.List;
 
+import com.job.coverletter.all.util.MultiRowTarget;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 
 public interface CoverLetterDao {
@@ -20,4 +21,7 @@ public interface CoverLetterDao {
 	public int CVdelete(String[] seq);	
 
 	public int PFdelete(String[] seq);
+	
+	// 자기소개서 INSERT
+	public int CVinsert(CoverLetterDto dto);
 }

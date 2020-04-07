@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.google.gson.JsonObject;
 import com.job.coverletter.all.Pagination;
+import com.job.coverletter.all.util.MultiRowTarget;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 import com.job.coverletter.model.jobcalendar.biz.JobCalendarBiz;
@@ -43,6 +45,7 @@ import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
 import com.job.coverletter.model.joinUser.biz.JoinUserBiz;
 import com.job.coverletter.model.joinUser.biz.JoinUserBizImpl;
 import com.job.coverletter.model.joinUser.dto.JoinUserDto;
+import com.job.coverletter.model.qnaboard.biz.QnaBoardBiz;
 import com.job.coverletter.model.qnaboard.dto.QnaBoardDto;
 import com.job.coverletter.model.school.dto.SchoolDto;
 import com.job.coverletter.model.total.biz.TotalBiz;
@@ -75,6 +78,9 @@ public class UserController {
 
 	@Autowired
 	private SkillBiz skillBiz;
+	
+	@Autowired
+	private QnaBoardBiz qnaboardbiz;
 
 	// ==================================================================================
 
@@ -613,74 +619,74 @@ public class UserController {
 		return "USER/userCVwrite";
 	}
 
-//	// 자기소개서 INSERT
-//	@RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
-//	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets) {
-//
-//		if (targets.getTargets().size() != 1) {
-//			for (int i = 0; i < targets.getTargets().size(); i++) {
-//				// 첫번째 값
-//				String title = targets.getTargets().get(0).getTitle();
-//
-//				// 나머지 list(dto)에다 설정 set
-//				targets.getTargets().get(i).setTitle(title);
-//				targets.getTargets().get(i).setJoinemail(joinemail);
-//				int res = coverletterBiz.CVinsert(targets.getTargets().get(i));
-//			}
-//		}
-//
-//		return "redirect:/JOB_jobCenter.do";
-//	}
+	// 자기소개서 INSERT
+	@RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
+	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets) {
+
+		if (targets.getTargets().size() != 1) {
+			for (int i = 0; i < targets.getTargets().size(); i++) {
+				// 첫번째 값
+				String title = targets.getTargets().get(0).getTitle();
+
+				// 나머지 list(dto)에다 설정 set
+				targets.getTargets().get(i).setTitle(title);
+				targets.getTargets().get(i).setJoinemail(joinemail);
+				int res = coverletterBiz.CVinsert(targets.getTargets().get(i));
+			}
+		}
+
+		return "redirect:/JOB_jobCenter.do";
+	}
 	/*------------------------ 형권 : 스피치 작성 --------------------------*/
-//	@RequestMapping(value = "USER_question.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-//	@ResponseBody
-//	public String question(@RequestBody QnaBoardDto dto) {
-//
-//		String res = "";
-//
-//		QnaBoardDto list = qnaboardbiz.boardQnaListOne(dto.getqnaboardseq());
-//
-//		res = String.valueOf(list.getQuestion());
-//		return res;
-//	}
-//
-//	/*---------------------정답 확인--------------------- */
-//	@RequestMapping(value = "USER_answer.do", method = RequestMethod.POST)
-//	@ResponseBody
-//	public Map<String, String> answer(@RequestBody QnaBoardDto dto) {
-//
-//		Map<String, String> map = new HashMap<String, String>();
-//
-//		String result = "";
-//
-//		int num = dto.getqnaboardseq();
-//
-//		String userAnswer[] = dto.getAnswer().split(" ");
-//		QnaBoardDto AnswerDto = qnaboardbiz.QnaAnswer(num);
-//
-//		String Answer[] = String.valueOf(AnswerDto.getAnswer()).split(" ");
-//		Arrays.sort(userAnswer);
-//		Arrays.sort(Answer);
-//
-//		int answerCnt = 0; // 정답 개수
-//		int WronganswerCnt = 0; // 오답 개수
-//		if (userAnswer.length == Answer.length) {
-//
-//			for (int i = 0; i < Answer.length; i++) {
-//
-//				if (userAnswer[i].equals(Answer[i])) {
-//					answerCnt++;
-//				} else {
-//					WronganswerCnt++;
-//				}
-//			}
-//			result = (answerCnt == Answer.length ? "정답" : "오답");
-//		} else {
-//			result = "오답";
-//		}
-//		map.put("result", result);
-//		map.put("answer", String.valueOf(AnswerDto.getAnswer()));
-//
-//		return map;
-//	}
+	@RequestMapping(value = "USER_question.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String question(@RequestBody QnaBoardDto dto) {
+
+		String res = "";
+
+		QnaBoardDto list = qnaboardbiz.boardQnaListOne(dto.getqnaboardseq());
+
+		res = String.valueOf(list.getQuestion());
+		return res;
+	}
+
+	/*---------------------정답 확인--------------------- */
+	@RequestMapping(value = "USER_answer.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> answer(@RequestBody QnaBoardDto dto) {
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		String result = "";
+
+		int num = dto.getqnaboardseq();
+
+		String userAnswer[] = dto.getAnswer().split(" ");
+		QnaBoardDto AnswerDto = qnaboardbiz.QnaAnswer(num);
+
+		String Answer[] = String.valueOf(AnswerDto.getAnswer()).split(" ");
+		Arrays.sort(userAnswer);
+		Arrays.sort(Answer);
+
+		int answerCnt = 0; // 정답 개수
+		int WronganswerCnt = 0; // 오답 개수
+		if (userAnswer.length == Answer.length) {
+
+			for (int i = 0; i < Answer.length; i++) {
+
+				if (userAnswer[i].equals(Answer[i])) {
+					answerCnt++;
+				} else {
+					WronganswerCnt++;
+				}
+			}
+			result = (answerCnt == Answer.length ? "정답" : "오답");
+		} else {
+			result = "오답";
+		}
+		map.put("result", result);
+		map.put("answer", String.valueOf(AnswerDto.getAnswer()));
+
+		return map;
+	}
 }
