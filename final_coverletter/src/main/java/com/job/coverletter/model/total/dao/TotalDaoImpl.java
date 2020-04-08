@@ -25,16 +25,26 @@ public class TotalDaoImpl implements TotalDao {
 	private String login = "cv@email.com";
 
 	@Override
-	public int insert(TotalDto dto) {
+	public int ToTalInsert(TotalDto dto) {
 		int res = 0;
 
 		try {
-			res = sqlSession.insert(NAMESPACE + "insert", dto);
+			res = sqlSession.insert(NAMESPACE + "ToTalInsert", dto);
 		} catch (Exception e) {
 			System.out.println("[error] : insert");
 			e.printStackTrace();
 		}
 		return res;
+	}
+	
+	@Override
+	public TotalDto selectOne(String joinemail) {
+		return sqlSession.selectOne(NAMESPACE + "selectOne", joinemail);
+	}
+
+	@Override
+	public int updateOne(TotalDto dto) {
+		return sqlSession.update(NAMESPACE + "updateOne", dto);
 	}
 
 	/*-------------------------스킬차트-----------------------------*/
@@ -139,5 +149,10 @@ public class TotalDaoImpl implements TotalDao {
 		return arr;
 
 	}
+
+
+
+
+
 
 }

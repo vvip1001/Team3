@@ -48,10 +48,7 @@ public class JoinUserDaoImpl implements JoinUserDao {
 	
 	@Override
 	public JoinUserDto login(JoinUserDto dto) {
-		
-		
 		dto = sqlSession.selectOne("com.job.coverletter.JoinUser.login", dto);
-		
 		return dto;
 	}
 

@@ -49,4 +49,20 @@ public class CompanyDaoImpl implements CompanyDao {
 		return dto;
 	}
 
+	@Override
+	public List<CompanyDto> selectList_web() {
+		return sqlSessionTemPlateMariaDB.selectList(NAMESPACE + "selectList_web");
+	}
+
+	@Override
+	public List<CompanyDto> selectList_front() {
+ 
+		return sqlSessionTemPlateMariaDB.selectList(NAMESPACE + "selectList_front");
+	}
+
+	@Override
+	public List<CompanyDto> selectList_back() {
+		return sqlSessionTemPlateMariaDB.selectList(NAMESPACE + "selectList_back");
+	}
+
 }

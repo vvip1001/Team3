@@ -35,6 +35,7 @@ h1 {
 .fieldset {
 	border: 2px solid #bcbcbc;
 	border-radius: 15px;
+	height: 360px;
 }
 
 .legend {
@@ -52,10 +53,15 @@ h1 {
 	height: 25px;
 }
 
-textarea {
+.textarea{
 	border: none;
 	outline: none;
 	resize: none;
+}
+
+
+#form .col-md-8{
+	text-align: center;
 }
 
 .speech {
@@ -64,7 +70,9 @@ textarea {
 	border-radius: px;
 	background-color: #949494;
 	color: white;
+	text-align: center;
 }
+
 
 #custom_button2 {
 	text-align: center;
@@ -74,6 +82,12 @@ textarea {
 	background-color: black;
 	color: white;
 	border-radius: 50%;
+}
+.button3 {
+	background-color: #949494;
+	color: white;
+	height: 40px;
+	width: 150px;
 }
 
 #stop {
@@ -87,15 +101,38 @@ textarea {
 	cursor: pointer;
 }
 
+#timeDP{
+	display: flex;
+}
+
 #timer {
-	position: fixed;
+	flex:1;
 	cursor: pointer;
 	text-align: center !important;
 	width: 100px;
-	height: 40px;
-	line-height: 40px;
+	height: 36px;
+	line-height: 36px;
 	border: 1px solid #949494;
 	border-radius: 5px;
-	right: 8%;	
 	font-size: 14pt;
+}
+<!--  -->
+#end{
+	font-size: 14pt;
+	flex:1;
+	cursor: pointer;
+	text-align: center !important;
+	border: 1px solid #949494;
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	border-radius: 5px;
+}
+
+#quiz{
+	margin-bottom: 1%;
+}
+
+textarea{
+	resize: none;
 }

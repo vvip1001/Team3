@@ -6,9 +6,14 @@ import net.sf.json.JSONArray;
 
 public interface TotalDao {
 	String NAMESPACE = "com.job.coverletter.Total.";
-
-	public int insert(TotalDto dto);
-
+	
+	//추가
+	public int ToTalInsert(TotalDto dto);
+	//선택
+	public TotalDto selectOne(String joinemail);
+	//업데이트
+	public int updateOne(TotalDto dto);
+	
 	// IT역량차트
 	public JSONArray selectItSkill();
 

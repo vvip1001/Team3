@@ -2,6 +2,7 @@ package com.job.coverletter.model.coverletter.dao;
 
 import java.util.List;
 
+import com.job.coverletter.all.util.MultiRowTarget;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 
 public interface CoverLetterDao {
@@ -25,4 +26,6 @@ public interface CoverLetterDao {
  	public CoverLetterDto getGroupno(String joinemail);
 	//pf잣성
 	public int PFwrite(CoverLetterDto dto);
+	// 자기소개서 INSERT
+	public int CVinsert(CoverLetterDto dto);
 }

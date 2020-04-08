@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.job.coverletter.all.util.MultiRowTarget;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 
 @Repository
@@ -77,7 +78,7 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		try {
 			res = sqlSession.delete(NAMESPACE + "CVmuldel",map);
 		} catch (Exception e) {
-			System.out.println("[error] : boardList");
+			System.out.println("[error] : CVmuldel");
 			e.printStackTrace();
 		}
 		
@@ -94,7 +95,7 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		try {
 			res = sqlSession.delete(NAMESPACE + "PFmuldel",map);
 		} catch (Exception e) {
-			System.out.println("[error] : boardList");
+			System.out.println("[error] : PFmuldel");
 			e.printStackTrace();
 		}
 		
@@ -126,6 +127,19 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		
 		return res;
 	}
-
 	
+	// 자기소개서 INSERT
+	@Override
+	public int CVinsert(CoverLetterDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE + "CVinsert", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : CVinsert");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

@@ -8,13 +8,12 @@ public class JobCalendarDto {
 	// 이메일(ID)
 	private String joinemail;
 
-	private String companyseq;
+	private int companyseq;
 	// 회사명
 	private String companyname;
 
 	private String business;
 
-	// 마감일 마감일이 있는 것만 여기 등록
 	private String enddate;
 
 	private int StartIndex;
@@ -30,7 +29,7 @@ public class JobCalendarDto {
 		super();
 	}
 
-	public JobCalendarDto(int jobcalendarseq, String joinemail, String companyseq, String companyname, String business,
+	public JobCalendarDto(int jobcalendarseq, String joinemail, int companyseq, String companyname, String business,
 			String enddate, int startIndex, int cntPerPage, int curPage, String category, String keyword) {
 		super();
 		this.jobcalendarseq = jobcalendarseq;
@@ -57,11 +56,11 @@ public class JobCalendarDto {
 		this.joinemail = joinemail;
 	}
 
-	public String getCompanyseq() {
+	public int getCompanyseq() {
 		return companyseq;
 	}
 
-	public void setCompanyseq(String companyseq) {
+	public void setCompanyseq(int companyseq) {
 		this.companyseq = companyseq;
 	}
 

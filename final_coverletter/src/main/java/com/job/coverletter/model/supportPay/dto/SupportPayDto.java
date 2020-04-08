@@ -7,7 +7,7 @@ public class SupportPayDto {
 	private String tid;
 	private String cid;
 	private String partner_order_id;
-	private String partner_user_id;
+	private String joinemail;
 	private String payment_method_type;
 	//private String amount;
 	private String amount_total;
@@ -28,14 +28,14 @@ public class SupportPayDto {
 	
 	public SupportPayDto() {}
 	
-	public SupportPayDto(String tid, String cid, String partner_order_id, String partner_user_id,
+	public SupportPayDto(String tid, String cid, String partner_order_id, String joinemail,
 			String payment_method_type, String amount_total, String amount_tax_free, String item_name, String quantity,
 			Date created_at, int startIndex, int cntPerPage, int curPage, String category, String keyword) {
 		super();
 		this.tid = tid;
 		this.cid = cid;
 		this.partner_order_id = partner_order_id;
-		this.partner_user_id = partner_user_id;
+		this.joinemail = joinemail;
 		this.payment_method_type = payment_method_type;
 		this.amount_total = amount_total;
 		this.amount_tax_free = amount_tax_free;
@@ -51,13 +51,13 @@ public class SupportPayDto {
 
 
 
-	public SupportPayDto(String tid, String cid, String partner_order_id, String partner_user_id,
+	public SupportPayDto(String tid, String cid, String partner_order_id, String joinemail,
 			String payment_method_type, String amount_total, String amount_tax_free, String item_name,
 			String quantity, Date created_at) {
 		this.tid = tid;
 		this.cid = cid;
 		this.partner_order_id = partner_order_id;
-		this.partner_user_id = partner_user_id;
+		this.joinemail = joinemail;
 		this.payment_method_type = payment_method_type;
 		//this.amount = amount;
 		this.amount_total = amount_total;
@@ -91,12 +91,12 @@ public class SupportPayDto {
 		this.partner_order_id = partner_order_id;
 	}
 
-	public String getPartner_user_id() {
-		return partner_user_id;
+	public String getjoinemail() {
+		return joinemail;
 	}
 
-	public void setPartner_user_id(String partner_user_id) {
-		this.partner_user_id = partner_user_id;
+	public void setjoinemail(String joinemail) {
+		this.joinemail = joinemail;
 	}
 
 	public String getPayment_method_type() {
@@ -198,7 +198,7 @@ public class SupportPayDto {
 	@Override
 	public String toString() {
 		return "SupportPayDto [tid=" + tid + ", cid=" + cid + ", partner_order_id=" + partner_order_id
-				+ ", partner_user_id=" + partner_user_id + ", payment_method_type=" + payment_method_type
+				+ ", joinemail=" + joinemail + ", payment_method_type=" + payment_method_type
 				+ ", amount_total=" + amount_total + ", amount_tax_free=" + amount_tax_free + ", item_name=" + item_name
 				+ ", quantity=" + quantity + ", created_at=" + created_at + "]";
 	}

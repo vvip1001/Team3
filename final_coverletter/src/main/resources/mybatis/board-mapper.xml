@@ -101,7 +101,6 @@
 		)
 	</insert>
 	
-
 	<!-- 대댓글작성1 : 그룹시퀀스 업데이트 -->
 	<update id="rereUpdate" parameterType="boardDto">
 		UPDATE BOARD

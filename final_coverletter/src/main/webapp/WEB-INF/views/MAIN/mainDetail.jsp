@@ -16,10 +16,17 @@
 	rel="stylesheet">
 </head>
 <body>
-	<%@ include file="../ALL/header_login.jsp"%>
 
 	<div id="All">
-		<input type="hidden" id="companyseq" value="${maindetail.companyseq }"/>
+		<input type="hidden" id="companyseq" value="${mainDetail.companyseq }"/>
+	<c:choose>
+		<c:when test="${empty login }">
+			<%@ include file="../ALL/header_logout.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="../ALL/header_login.jsp"%>
+		</c:otherwise>
+	</c:choose>
 
 		<div class="container" id="main">
 			<div class="container" id=null></div>
@@ -32,79 +39,41 @@
 					</div>
 					<div class="row" id="companyname">
 						<div class="col-md-12">${mainDetail.companyname }</div>
-
 					</div>
-
 				</div>
-
 				<div class="row" id="oneintro">
 					<div class="col-md-12">${mainDetail.oneintro }</div>
 				</div>
-
-				<div class="row">
-					<div class="col-md-12">
-						<div class="bookmark" id="button">
-						<button type="button" class="button" onclick="bookmark();">회사 즐겨찾기</button>
-						</div>
-					</div>
-				</div>
-
-
 				<div class="row" id="info">
 					<div class="col-md-12">
-						<h1 class="h1">${mainDetail.companyname }과(와)함께성장할 인재를 찾습니다</h1>
+						<h1 class="h1">${mainDetail.companyname }과(와)함께성장할인재를 찾습니다</h1>
 					</div>
-
 				</div>
-
-
-
 			</form>
 		</div>
-
-
 		<div class="container" id="side"></div>
-
 		<div class="container" id="main">
 			<form action="" method="post" id="">
 				<div class="row">
-
 					<div class="col-md-12">
 						<h3>진행중인 채용정보</h3>
 					</div>
-
 				</div>
-
-
 				<c:choose>
 					<c:when test="${empty selectAll_group}">
 						<h3>====================데이터가 없습니다.====================</h3>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${selectAll_group }" var="companyDto">
-
 							<div class="information">
-
 								${companyDto.companyname}<br> ${companyDto.business }<br>
 								${companyDto.target }<br> ${companyDto.languages }<br>
-
 							</div>
-
-
 						</c:forEach>
-
 					</c:otherwise>
-
 				</c:choose>
-
-
-
-
 			</form>
-
 		</div>
-
-
 		<div class="container" id="side"></div>
 
 		<div class="container" id="main">
@@ -113,35 +82,22 @@
 					<div class="col-md-12">
 						<h3>기업 소개</h3>
 					</div>
-
 				</div>
-
-
 			</form>
 			<div class="intro">${mainDetail.intro }</div>
-
-
 		</div>
-
 		<div class="container" id="side"></div>
-
 		<div class="container" id="main">
 			<form action="" method="post">
 				<div class="row">
 					<div class="col-md-12">
 						<h3>복지</h3>
-
 					</div>
-
 				</div>
-
 				<div id="welfare">
-
 					<div>
 						<div class="title">개인장비</div>
-
 						<div class="content">${mainDetail.givetool }</div>
-
 					</div>
 					<br>
 
@@ -155,113 +111,80 @@
 
 					<div>
 						<div class="title">식사 시간</div>
-
 						<div class="content">${mainDetail.mealtime }</div>
-
 					</div>
 					<br>
 
 					<div>
 						<div class="title">연차,휴가</div>
-
 						<div class="content">${mainDetail.holiday }</div>
 
 					</div>
 					<br>
-
 					<div>
 						<div class="title">근무 형태</div>
-
 						<div class="content">${mainDetail.workinghour }</div>
 
 					</div>
 					<br>
-
 					<div>
 						<div class="title">보험,의료</div>
-
 						<div class="content">${mainDetail.insurance }</div>
 
 					</div>
 					<br>
-
 				</div>
-
 			</form>
-
 		</div>
-
-
 		<div class="container" id="side"></div>
-
 		<div class="container" id="main">
 			<form action="" method="post">
 				<div class="row">
 					<div class="col-md-12">
 						<h3>기업정보</h3>
 					</div>
-
 				</div>
-
-
 				<div id="incorporation">
-
-
 					<div>
 						<div class="title">설 립 일</div>
-
 						<div class="content">${mainDetail.incorporation }</div>
-
 					</div>
 					<br>
-
 					<div>
 						<div class="title">구 성 원</div>
-
 						<div class="content">${mainDetail.totalmember }</div>
-
 					</div>
 					<br>
-
 					<div>
 						<div class="title">홈페이지</div>
-
-
 						<div class="content">
 							<a href="${mainDetail.homepage }">${mainDetail.homepage }</a>
 						</div>
-
-
 					</div>
 					<br>
-
 					<div>
 						<div class="title">산업분야</div>
-
 						<div class="content">${mainDetail.mainfield }</div>
-
 					</div>
 					<br>
 
-
+ 
 					<div>
 						<div class="title">위 치</div>
 
-						<div class="content">${mainDetail.location }</div>
+						<div class="content">
+			 	
+						<a href="MAIN_kakaomap.do?companyseq=${mainDetail.companyseq }">${mainDetail.location }</a> </div>
 
 					</div>
 					<br>
+					
+			
 
 
 				</div>
 			</form>
-
-
 		</div>
-
-
-
 	</div>
-
 </body>
 </html>

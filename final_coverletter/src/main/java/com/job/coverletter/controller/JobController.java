@@ -45,6 +45,11 @@ import com.job.coverletter.model.company.dto.CompanyDto;
 import com.job.coverletter.model.coverletter.biz.CoverLetterBiz;
 import com.job.coverletter.model.coverletter.dto.CoverLetterDto;
 import com.job.coverletter.model.joinUser.dto.JoinUserDto;
+import com.job.coverletter.model.jobcalendar.biz.JobCalendarBiz;
+import com.job.coverletter.model.jobcalendar.dto.JobCalendarDto;
+import com.job.coverletter.model.joinUser.dto.JoinUserDto;
+import com.job.coverletter.model.qnaboard.biz.QnaBoardBiz;
+import com.job.coverletter.model.qnaboard.dto.QnaBoardDto;
 
 @Controller
 public class JobController {
@@ -56,6 +61,12 @@ public class JobController {
 
 	@Autowired
 	private CompanyBiz companyBiz;
+
+	@Autowired
+	private JobCalendarBiz jobcalendarBiz;
+
+	@Autowired
+	private QnaBoardBiz qnaboardbiz;
 
 	// 글목록(페이징기능)
 	@RequestMapping(value = "/JOB_jobSearch.do", method = RequestMethod.GET)
@@ -103,6 +114,7 @@ public class JobController {
 	@RequestMapping(value = "/JOB_jobSearchRes.do", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = "application/text;charset=utf8")
 	public @ResponseBody String jobSearchRes(@ModelAttribute CompanyDto jsonKey) {
 		logger.info("검색 테스트 : " + jsonKey);
+		logger.info("jobSearch");
 
 		ElasicHighLeverTemplat elastic = new ElasicHighLeverTemplat();
 
@@ -111,16 +123,93 @@ public class JobController {
 		return res;
 	}
 
-	// 로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
-	String login = "dltnwud07@hanmail.net";
 
-	@RequestMapping(value = "JOB_jobCenter.do")
+	@RequestMapping(value = "/JOB_jobDetail.do", method = RequestMethod.GET)
+	public String jobDetail(Model model, int companyseq) {
+		logger.info("jobDetail");
+		model.addAttribute("companydto", companyBiz.selectOne(companyseq));
+
+		return "JOB/jobDetail";
+	}
+
+	// 즐겨찾기 등록 여부
+	@RequestMapping(value = "/JOB_isJobBookmark.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String isBookmark(@ModelAttribute("companyseq") int companyseq, HttpSession session) {
+		logger.info("isJobBookmark");
+
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+
+		JobCalendarDto dto = new JobCalendarDto();
+		dto.setCompanyseq(companyseq);
+		dto.setJoinemail(userDto.getJoinemail());
+
+		boolean isbookmark = jobcalendarBiz.isJobBookmark(dto);
+
+		if (isbookmark) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+
+	// 즐게찾기 추가 삭제
+	@RequestMapping(value = "/JOB_jobBookmark.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String jobBookmark(@ModelAttribute("companyseq") int companyseq, HttpSession session) {
+		logger.info("jobBookmark");
+		System.out.println("확인 : " + companyseq);
+
+		CompanyDto companyDto = companyBiz.selectOne(companyseq);
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+
+		// 즐겨찾기 등록여부
+		JobCalendarDto inputDto = new JobCalendarDto();
+		inputDto.setCompanyseq(companyseq);
+		inputDto.setJoinemail(userDto.getJoinemail());
+
+		boolean isbookmark = jobcalendarBiz.isJobBookmark(inputDto);
+
+		if (isbookmark) {
+			JobCalendarDto dto = new JobCalendarDto();
+			dto.setJoinemail(userDto.getJoinemail());
+			dto.setCompanyseq(companyseq);
+			dto.setCompanyname(companyDto.getCompanyname());
+			dto.setBusiness(companyDto.getBusiness());
+			dto.setEnddate(companyDto.getEnddate());
+
+			int res = jobcalendarBiz.boardJobInsert(dto);
+			if (res > 0) {
+				return "insertSuccess";
+			} else {
+				return "insertFail";
+			}
+		} else {
+			JobCalendarDto deleteDto = new JobCalendarDto();
+			deleteDto.setCompanyseq(companyseq);
+			deleteDto.setJoinemail(userDto.getJoinemail());
+
+			int res = jobcalendarBiz.bookmarkDelete(deleteDto);
+			if (res > 0) {
+				return "deleteSuccess";
+			} else {
+				return "deleteFail";
+			}
+		}
+	}
+
+	@RequestMapping(value = "/JOB_jobCenter.do")
 	public String jobCenter() {
 		return "JOB/jobCenter";
 	}
 
 	@RequestMapping(value = "USER_speechForm.do")
-	public String jobSpeech() {
+	public String jobSpeech(Model model) {
+		
+		int count = qnaboardbiz.boardQnaListCount();
+		System.out.println(count);
+		
+		model.addAttribute("count",count);
 		return "USER/userSpeech";
 	}
 
@@ -149,7 +238,7 @@ public class JobController {
 		groupno += 1;  
 		logger.info("확인!!!!!!!!!!!!!!!!!!!!!");
 		 
-		MultipartFile file = targets.getTargets().get(0).getfileUpload();
+		MultipartFile file = targets.getTargets().get(0).getFileUpload();
 		if (file.getSize() != 0) {
 			String name = file.getOriginalFilename();
 			

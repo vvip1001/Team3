@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -50,15 +51,28 @@ public class MainController {
 	@Autowired
 	private SupportPayBiz supportpaybiz;
 
-	
-	/*메인에 뿌려 줄 리스트 20개 */
+	 
 	@RequestMapping(value = "/MAIN_main.do", method = RequestMethod.GET)
 	public String selectOne(Model model) {
 		
-	
+		
+		//전체화면 20개
 		List<CompanyDto> list_cnt20 = companyBiz.selectList_cnt20();
 		model.addAttribute("list_cnt20", list_cnt20);
 		
+		System.out.println(list_cnt20+"sssssssssssssssssss");
+	
+		//웹 분야 4개
+		List<CompanyDto> list_web = companyBiz.selectList_web();
+		model.addAttribute("list_web", list_web);
+		
+		//프론트 분야 4개
+		List<CompanyDto> list_front = companyBiz.selectList_front();
+		model.addAttribute("list_front", list_front);
+		
+		//백 분야 4개
+		List<CompanyDto> list_back = companyBiz.selectList_back();
+		model.addAttribute("list_back", list_back);
 		
 		logger.info("Main go");
 		return "MAIN/main";
@@ -78,20 +92,19 @@ public class MainController {
 
 	}
 	
-//	/*채용게시판 즐겨찾기 */
-//	@RequestMapping(value = "/MAIN_bookmarkAjax.do", method =RequestMethod.GET)
-//	@ResponseBody
-//	public Map<String,String> bookmarkAjax(Model model, HttpSession session ,@RequestBody CompanyDto dto){
-//		
-//	
-//		
-//		
-//		return null;
-//	}
-//	
-	
-	
+	@RequestMapping(value = "/MAIN_kakaomap.do", method = RequestMethod.GET)
+	public String kakaomap(Model model,  int companyseq) {
+		
+		CompanyDto kakaomap_selectOne = companyBiz.selectOne(companyseq);
 
+		model.addAttribute("kakaomap_selectOne", kakaomap_selectOne);
+	
+ 
+		
+		return "MAIN/kakaomap";
+
+	}
+	
 	/*-------------------------후원하기-------------------------*/
 	@RequestMapping(value = "/MAIN_pay.do")
 	public String pay(Model model, String joinemail) {
@@ -235,7 +248,7 @@ public class MainController {
 			dto.setTid(tmp_tid);
 			dto.setCid(cid);
 			dto.setPartner_order_id(partner_order_id);
-			dto.setPartner_user_id(partner_user_id);
+			dto.setjoinemail(partner_user_id);
 			dto.setPayment_method_type(payment_method_type);
 			//dto.setAmount(amount);
 			dto.setAmount_total(amount_total);
@@ -260,7 +273,7 @@ public class MainController {
 	
 		// 총 게시글 수
 		int listCnt = supportpaybiz.payListCount(dto);
-		dto.setPartner_user_id("USER@GMAIL.COM");
+		dto.setjoinemail("USER@GMAIL.COM");
 
 		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);

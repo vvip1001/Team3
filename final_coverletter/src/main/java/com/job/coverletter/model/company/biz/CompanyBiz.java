@@ -1,8 +1,9 @@
 package com.job.coverletter.model.company.biz;
 
 import java.util.List;
+
+
 import com.job.coverletter.all.pagination.MariaPagination;
-import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.company.dto.CompanyDto;
 
 public interface CompanyBiz {
@@ -26,5 +27,11 @@ public interface CompanyBiz {
 	
 	public List<CompanyDto> selectAll_group(int groupno);
 
+	//메인에 웹 개발자 모집(4개)
+	public List<CompanyDto> selectList_web();
+	//메인에 프론트 개발자 모집(4개)
+	public List<CompanyDto> selectList_front();
+	//메인에 백앤드개발자 모집(4개)
+	public List<CompanyDto> selectList_back();
 	
 }

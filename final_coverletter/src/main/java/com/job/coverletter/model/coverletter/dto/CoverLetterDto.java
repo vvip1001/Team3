@@ -6,288 +6,284 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CoverLetterDto {
 
-    // 시퀀스 
-    private int coverletterseq;
+	// 시퀀스
+	private int coverletterseq;
 
-    // 이메일(ID) 
-    private String joinemail;
+	// 이메일(ID)
+	private String joinemail;
 
-    // 구분 
-    private String cvcategory;
+	// 구분
+	private String cvcategory;
 
-    // 그룹시퀀스 
-    private int groupseq;
+	// 그룹시퀀스
+	private int groupseq;
 
-    // 작업단위 그룹번호 
-    private int groupno;
+	// 작업단위 그룹번호
+	private int groupno;
 
-    // 항목(질문), 수행기간 
-    private String question;
+	// 항목(질문), 수행기간
+	private String question;
 
-    // 제목, 프로젝트명 
-    private String title;
+	// 제목, 프로젝트명
+	private String title;
 
-    // 소제목, 개발목표 
-    private String subtitle;
+	// 소제목, 개발목표
+	private String subtitle;
 
-    // 내용, 개발환경 
-    private String content;
+	// 내용, 개발환경
+	private String content;
 
-    // 구현기능 
-    private String functions;
+	// 구현기능
+	private String functions;
 
-    // 담당역할 
-    private String positions;
+	// 담당역할
+	private String positions;
 
-    // 참여도 
-    private String participation;
+	// 참여도
+	private String participation;
 
-    // 기능설명 
-    private String functioninfo;
+	// 기능설명
+	private String functioninfo;
 
-    // 화면설명 
-    private String viewinfo;
+	// 화면설명
+	private String viewinfo;
 
-    // 작성일 
-    private Date regdate;
+	// 작성일
+	private Date regdate;
 
-    // 파일경로 
-    private String filepath;
-    
-    // 파일업로드
-    private MultipartFile fileUpload;
-    
-    // 페이징
-   private int StartIndex;
-   private int CntPerPage;
-   // 현재페이지
-   private int curPage;
+	// 파일경로
+	private String filepath;
 
-   /*---------- 검색 ----------*/
-   private String category;
-   private String keyword;
+	private MultipartFile fileUpload;
 
+	// 페이징
+	private int StartIndex;
+	private int CntPerPage;
+	// 현재페이지
+	private int curPage;
 
-    public CoverLetterDto() {
-      super();
-   }
+	/*---------- 검색 ----------*/
+	private String category;
+	private String keyword;
 
-   public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int groupseq, int groupno,
-         String question, String title, String subtitle, String content, String functions, String positions,
-         String participation, String functioninfo, String viewinfo, Date regdate, String filepath, int startIndex,
-         int cntPerPage, int curPage, String category, String keyword, MultipartFile fileUpload) {
-      super();
-      this.coverletterseq = coverletterseq;
-      this.joinemail = joinemail;
-      this.cvcategory = cvcategory;
-      this.groupseq = groupseq;
-      this.groupno = groupno;
-      this.question = question;
-      this.title = title;
-      this.subtitle = subtitle;
-      this.content = content;
-      this.functions = functions;
-      this.positions = positions;
-      this.participation = participation;
-      this.functioninfo = functioninfo;
-      this.viewinfo = viewinfo;
-      this.regdate = regdate;
-      this.filepath = filepath;
-      StartIndex = startIndex;
-      CntPerPage = cntPerPage;
-      this.curPage = curPage;
-      this.category = category;
-      this.keyword = keyword;
-      this.fileUpload = fileUpload;
-   }
+	public CoverLetterDto() {
+		super();
+	}
 
-   public int getCoverletterseq() {
-      return coverletterseq;
-   }
+	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int groupseq, int groupno,
+			String question, String title, String subtitle, String content, String functions, String positions,
+			String participation, String functioninfo, String viewinfo, Date regdate, String filepath, int startIndex,
+			int cntPerPage, int curPage, String category, String keyword) {
+		super();
+		this.coverletterseq = coverletterseq;
+		this.joinemail = joinemail;
+		this.cvcategory = cvcategory;
+		this.groupseq = groupseq;
+		this.groupno = groupno;
+		this.question = question;
+		this.title = title;
+		this.subtitle = subtitle;
+		this.content = content;
+		this.functions = functions;
+		this.positions = positions;
+		this.participation = participation;
+		this.functioninfo = functioninfo;
+		this.viewinfo = viewinfo;
+		this.regdate = regdate;
+		this.filepath = filepath;
+		StartIndex = startIndex;
+		CntPerPage = cntPerPage;
+		this.curPage = curPage;
+		this.category = category;
+		this.keyword = keyword;
+	}
 
-   public void setCoverletterseq(int coverletterseq) {
-      this.coverletterseq = coverletterseq;
-   }
+	public int getCoverletterseq() {
+		return coverletterseq;
+	}
 
-   public String getJoinemail() {
-      return joinemail;
-   }
+	public void setCoverletterseq(int coverletterseq) {
+		this.coverletterseq = coverletterseq;
+	}
 
-   public void setJoinemail(String joinemail) {
-      this.joinemail = joinemail;
-   }
+	public String getJoinemail() {
+		return joinemail;
+	}
 
-   public String getCvcategory() {
-      return cvcategory;
-   }
+	public void setJoinemail(String joinemail) {
+		this.joinemail = joinemail;
+	}
 
-   public void setCvcategory(String cvcategory) {
-      this.cvcategory = cvcategory;
-   }
+	public String getCvcategory() {
+		return cvcategory;
+	}
 
-   public int getGroupseq() {
-      return groupseq;
-   }
+	public void setCvcategory(String cvcategory) {
+		this.cvcategory = cvcategory;
+	}
 
-   public void setGroupseq(int groupseq) {
-      this.groupseq = groupseq;
-   }
+	public int getGroupseq() {
+		return groupseq;
+	}
 
-   public int getGroupno() {
-      return groupno;
-   }
+	public void setGroupseq(int groupseq) {
+		this.groupseq = groupseq;
+	}
 
-   public void setGroupno(int groupno) {
-      this.groupno = groupno;
-   }
+	public int getGroupno() {
+		return groupno;
+	}
 
-   public String getQuestion() {
-      return question;
-   }
+	public void setGroupno(int groupno) {
+		this.groupno = groupno;
+	}
 
-   public void setQuestion(String question) {
-      this.question = question;
-   }
+	public String getQuestion() {
+		return question;
+	}
 
-   public String getTitle() {
-      return title;
-   }
+	public void setQuestion(String question) {
+		this.question = question;
+	}
 
-   public void setTitle(String title) {
-      this.title = title;
-   }
+	public String getTitle() {
+		return title;
+	}
 
-   public String getSubtitle() {
-      return subtitle;
-   }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-   public void setSubtitle(String subtitle) {
-      this.subtitle = subtitle;
-   }
+	public String getSubtitle() {
+		return subtitle;
+	}
 
-   public String getContent() {
-      return content;
-   }
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
 
-   public void setContent(String content) {
-      this.content = content;
-   }
+	public String getContent() {
+		return content;
+	}
 
-   public String getFunctions() {
-      return functions;
-   }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-   public void setFunctions(String functions) {
-      this.functions = functions;
-   }
+	public String getFunctions() {
+		return functions;
+	}
 
-   public String getPositions() {
-      return positions;
-   }
+	public void setFunctions(String functions) {
+		this.functions = functions;
+	}
 
-   public void setPositions(String positions) {
-      this.positions = positions;
-   }
+	public String getPositions() {
+		return positions;
+	}
 
-   public String getParticipation() {
-      return participation;
-   }
+	public void setPositions(String positions) {
+		this.positions = positions;
+	}
 
-   public void setParticipation(String participation) {
-      this.participation = participation;
-   }
+	public String getParticipation() {
+		return participation;
+	}
 
-   public String getFunctioninfo() {
-      return functioninfo;
-   }
+	public void setParticipation(String participation) {
+		this.participation = participation;
+	}
 
-   public void setFunctioninfo(String functioninfo) {
-      this.functioninfo = functioninfo;
-   }
+	public String getFunctioninfo() {
+		return functioninfo;
+	}
 
-   public String getViewinfo() {
-      return viewinfo;
-   }
+	public void setFunctioninfo(String functioninfo) {
+		this.functioninfo = functioninfo;
+	}
 
-   public void setViewinfo(String viewinfo) {
-      this.viewinfo = viewinfo;
-   }
+	public String getViewinfo() {
+		return viewinfo;
+	}
 
-   public Date getRegdate() {
-      return regdate;
-   }
+	public void setViewinfo(String viewinfo) {
+		this.viewinfo = viewinfo;
+	}
 
-   public void setRegdate(Date regdate) {
-      this.regdate = regdate;
-   }
+	public Date getRegdate() {
+		return regdate;
+	}
 
-   public String getFilepath() {
-      return filepath;
-   }
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
 
-   public void setFilepath(String filepath) {
-      this.filepath = filepath;
-   }
+	public String getFilepath() {
+		return filepath;
+	}
 
-   public int getStartIndex() {
-      return StartIndex;
-   }
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
 
-   public void setStartIndex(int startIndex) {
-      StartIndex = startIndex;
-   }
+	}
 
-   public int getCntPerPage() {
-      return CntPerPage;
-   }
+	public MultipartFile getFileUpload() {
+		return fileUpload;
+	}
 
-   public void setCntPerPage(int cntPerPage) {
-      CntPerPage = cntPerPage;
-   }
+	public void setFileUpload(MultipartFile fileUpload) {
+		this.fileUpload = fileUpload;
+	}
 
-   public int getCurPage() {
-      return curPage;
-   }
+	public int getStartIndex() {
+		return StartIndex;
+	}
 
-   public void setCurPage(int curPage) {
-      this.curPage = curPage;
-   }
+	public void setStartIndex(int startIndex) {
+		StartIndex = startIndex;
+	}
 
-   public String getCategory() {
-      return category;
-   }
+	public int getCntPerPage() {
+		return CntPerPage;
+	}
 
-   public void setCategory(String category) {
-      this.category = category;
-   }
+	public void setCntPerPage(int cntPerPage) {
+		CntPerPage = cntPerPage;
+	}
 
-   public String getKeyword() {
-      return keyword;
-   }
+	public int getCurPage() {
+		return curPage;
+	}
 
-   public void setKeyword(String keyword) {
-      this.keyword = keyword;
-   }
-   
-   public MultipartFile getfileUpload() {
-	   return fileUpload;
-   }
-   
-   public void setfileUpload(MultipartFile fileUpload) {
-	   this.fileUpload = fileUpload;
-   }
-   
+	public void setCurPage(int curPage) {
+		this.curPage = curPage;
+	}
 
-   @Override
-   public String toString() {
-      return "CoverLetterDto [coverletterseq=" + coverletterseq + ", joinemail=" + joinemail + ", cvcategory="
-            + cvcategory + ", groupseq=" + groupseq + ", groupno=" + groupno + ", question=" + question + ", title="
-            + title + ", subtitle=" + subtitle + ", content=" + content + ", functions=" + functions
-            + ", positions=" + positions + ", participation=" + participation + ", functioninfo=" + functioninfo
-            + ", viewinfo=" + viewinfo + ", regdate=" + regdate + ", filepath=" + filepath + ", StartIndex="
-            + StartIndex + ", CntPerPage=" + CntPerPage + ", curPage=" + curPage + ", category=" + category
-            + ", keyword=" + keyword + "]";
-   }
+	public String getCategory() {
+		return category;
+	}
 
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	@Override
+	public String toString() {
+		return "CoverLetterDto [coverletterseq=" + coverletterseq + ", joinemail=" + joinemail + ", cvcategory="
+				+ cvcategory + ", groupseq=" + groupseq + ", groupno=" + groupno + ", question=" + question + ", title="
+				+ title + ", subtitle=" + subtitle + ", content=" + content + ", functions=" + functions
+				+ ", positions=" + positions + ", participation=" + participation + ", functioninfo=" + functioninfo
+				+ ", viewinfo=" + viewinfo + ", regdate=" + regdate + ", filepath=" + filepath + ", StartIndex="
+				+ StartIndex + ", CntPerPage=" + CntPerPage + ", curPage=" + curPage + ", category=" + category
+				+ ", keyword=" + keyword + "]";
+	}
 
 }

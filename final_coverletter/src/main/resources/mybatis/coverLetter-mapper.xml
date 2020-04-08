@@ -11,13 +11,15 @@
 	<!-- </resultMap> -->
 
 	<!-- 글목록(게시글 수) -->
-	
+
 	<!-- 자소서 게시판 -->
-	<select id="boardCVListCount" resultType="int" parameterType="coverLetterDto">
+	<select id="boardCVListCount" resultType="int"
+		parameterType="coverLetterDto">
 		SELECT COUNT(*)
 		FROM COVERLETTER
-		WHERE CVCATEGORY = #{cvcategory} 
-		AND JOINEMAIL = #{joinemail}
+		WHERE CVCATEGORY = #{cvcategory}
+		AND
+		JOINEMAIL = #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
@@ -39,10 +41,12 @@
 		resultType="coverLetterDto">
 		SELECT B.*
 		FROM (
-		SELECT A.*, ROW_NUMBER() OVER(ORDER BY GROUPSEQ DESC) AS RNUM
+		SELECT A.*, ROW_NUMBER() OVER(ORDER BY GROUPSEQ DESC)
+		AS RNUM
 		FROM COVERLETTER A
-		WHERE CVCATEGORY = #{cvcategory} 
-		AND JOINEMAIL = #{joinemail}
+		WHERE CVCATEGORY = #{cvcategory}
+		AND JOINEMAIL
+		= #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
@@ -59,17 +63,20 @@
 		</trim>
 		) B
 		WHERE RNUM BETWEEN #{StartIndex} + 1 AND #{CntPerPage}
-		ORDER BY GROUPSEQ DESC
+		ORDER BY
+		GROUPSEQ DESC
 	</select>
-	
-	<!--          포폴 게시판                     -->
-	
-	<select id="boardPFListCount" resultType="int" parameterType="coverLetterDto">
+
+	<!-- 포폴 게시판 -->
+
+	<select id="boardPFListCount" resultType="int"
+		parameterType="coverLetterDto">
 		SELECT COUNT(*)
 		FROM COVERLETTER
 		WHERE CVCATEGORY = #{cvcategory}
-		AND JOINEMAIL = #{joinemail}
-		<trim prefix="AND" prefixOverrides="AND">		
+		AND
+		JOINEMAIL = #{joinemail}
+		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
 				AND TITLE LIKE ('%' || #{keyword} || '%')
@@ -90,10 +97,12 @@
 		resultType="coverLetterDto">
 		SELECT B.*
 		FROM (
-		SELECT A.*, ROW_NUMBER() OVER(ORDER BY GROUPSEQ DESC) AS RNUM
+		SELECT A.*, ROW_NUMBER() OVER(ORDER BY GROUPSEQ DESC)
+		AS RNUM
 		FROM COVERLETTER A
-		WHERE CVCATEGORY = #{cvcategory} 
-		AND JOINEMAIL = #{joinemail}
+		WHERE CVCATEGORY = #{cvcategory}
+		AND JOINEMAIL
+		= #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'title' and keyword != null and keyword != ''">
@@ -110,14 +119,16 @@
 		</trim>
 		) B
 		WHERE RNUM BETWEEN #{StartIndex} + 1 AND #{CntPerPage}
-		ORDER BY GROUPSEQ DESC
+		ORDER BY
+		GROUPSEQ DESC
 	</select>
 
 
 	<!-- 이력서 게시판 삭제 -->
 	<delete id="CVmuldel" parameterType="map">
 		DELETE FROM COVERLETTER WHERE CVCATEGORY = '자소서' AND GROUPSEQ IN
-		<foreach collection="seqs" item ="groupseq" open="(" separator="," close=")">
+		<foreach collection="seqs" item="groupseq" open="("
+			separator="," close=")">
 			#{groupseq}
 		</foreach>
 	</delete>
@@ -137,10 +148,42 @@
 	<!-- 포폴 게시판 삭제 -->
 	<delete id="PFmuldel" parameterType="map">
 		DELETE FROM COVERLETTER WHERE CVCATEGORY = '포폴' AND GROUPSEQ IN
-		<foreach collection="seqs" item ="groupseq" open="(" separator="," close=")">
+		<foreach collection="seqs" item="groupseq" open="("
+			separator="," close=")">
 			#{groupseq}
 		</foreach>
 	</delete>
 	
 	
+	<!-- 자기소개서 입력 (첫 문항) -->
+	<insert id="CVinsert" parameterType="coverLetterDto">
+		INSERT INTO COVERLETTER
+		(TOTALSEQ, JOINEMAIL, CVCATEGORY, GROUPSEQ, QUESTION, TITLE, SUBTITLE,
+		CONTENT,
+		REGDATE)
+		VALUES
+		(TOTAL_SEQ.NEXTVAL, #{joinemail}, '자소서',
+		COVERLETTER_SEQ.NEXTVAL, #{question},
+		#{title}, #{subtitle},
+		#{content}, SYSDATE)
+	</insert>
+
+	<!-- 자기소개서 입력 (나머지 문항) -->
+	<insert id="CVinserts" parameterType="coverLetterDto">
+		INSERT INTO COVERLETTER
+		(TOTALSEQ, JOINEMAIL, CVCATEGORY, GROUPSEQ, QUESTION, TITLE, SUBTITLE,
+		CONTENT,
+		REGDATE)
+		VALUES
+		(TOTAL_SEQ.NEXTVAL, 
+		#{joinemail}, 
+		'자소서',
+		(SELECT COVERLETTER_SEQ FROM COVERLETTER WHERE ), 
+		#{question},
+		#{title}, #{subtitle},
+		#{content}, SYSDATE)
+	</insert>
+
+
+
 </mapper>
