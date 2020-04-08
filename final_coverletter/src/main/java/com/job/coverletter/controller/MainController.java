@@ -59,6 +59,8 @@ public class MainController {
 		//전체화면 20개
 		List<CompanyDto> list_cnt20 = companyBiz.selectList_cnt20();
 		model.addAttribute("list_cnt20", list_cnt20);
+		
+		System.out.println(list_cnt20+"sssssssssssssssssss");
 	
 		//웹 분야 4개
 		List<CompanyDto> list_web = companyBiz.selectList_web();
