@@ -37,6 +37,7 @@ import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.board.dto.BoardDto;
 import com.job.coverletter.model.company.biz.CompanyBiz;
 import com.job.coverletter.model.company.dto.CompanyDto;
+import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 import com.job.coverletter.model.supportPay.biz.SupportPayBiz;
 import com.job.coverletter.model.supportPay.dto.SupportPayDto;
 
@@ -107,16 +108,20 @@ public class MainController {
 	
 	/*-------------------------후원하기-------------------------*/
 	@RequestMapping(value = "/MAIN_pay.do")
-	public String pay(Model model, String joinemail) {
-
+	public String pay(Model model , HttpSession session) {
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
+		
 		model.addAttribute("joinemail", joinemail);
 
 		return "PAY/pay";
 	}
 
 	@RequestMapping(value="MAIN_payReady.do")
-	public String readyPay(Model model , HttpServletRequest request , int quantity , String joinemail) throws IOException {
-	
+	public String readyPay(Model model , HttpServletRequest request , int quantity , HttpSession session) throws IOException {
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
+		
 		URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
 		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 		connection.setRequestMethod("POST");
@@ -125,7 +130,6 @@ public class MainController {
 		connection.setDoInput(true);
 		connection.setDoOutput(true);
 		
-		HttpSession session = request.getSession();
 		
 		String partner_order_id = "coverletter";
 		String partner_user_id = joinemail;
@@ -269,11 +273,12 @@ public class MainController {
 	
 	@RequestMapping(value = "/PAY_payList.do")
 	public String payList(@ModelAttribute("SupportPayDto") SupportPayDto dto, @RequestParam(defaultValue = "1") int curPage,
-			HttpServletRequest request, Model model) {
-	
+			HttpServletRequest request, Model model , HttpSession session) {
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
 		// 총 게시글 수
 		int listCnt = supportpaybiz.payListCount(dto);
-		dto.setjoinemail("USER@GMAIL.COM");
+		dto.setjoinemail(joinemail);
 
 		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);

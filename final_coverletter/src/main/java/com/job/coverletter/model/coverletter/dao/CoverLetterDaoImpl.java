@@ -140,13 +140,9 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 	@Override
 	public int CVinsert(CoverLetterDto dto) {
 		int res = 0;
-		
-		try {
+
 			res = sqlSession.insert(NAMESPACE + "CVinsert", dto);
-		} catch (Exception e) {
-			System.out.println("[error] : CVinsert");
-			e.printStackTrace();
-		}
+			System.out.println(res);
 		return res;
 	}
 

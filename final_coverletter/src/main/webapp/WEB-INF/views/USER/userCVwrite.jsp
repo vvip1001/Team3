@@ -24,7 +24,8 @@
 <!-- include -->   
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
 </head>
 <body>
 <!-- toast 영역 -->
@@ -41,8 +42,7 @@
   </div>
 <!-- toast 영역 끝 -->   
 
-<f:form action="USER_userCVinsert.do" method="post"
-         modelAttribute="MultiRowTarget">
+<f:form action="USER_userCVinsert.do" method="post" modelAttribute="MultiRowTarget">
          <f:input type="hidden" path="targets[0].joinemail" value="a"/>
    <!-- 자소서 제목 영역 -->
    <div class="container title-container">
@@ -140,12 +140,10 @@
          <!-- CLONE button 영역 -->
          <div class="clone-btn-grp" id="">
             <button class="add-btn" onclick="add();" type="button">
-               <img alt=""
-                  src="${pageContext.request.contextPath}/resources/IMG/button.png">
+               <span class="glyphicon glyphicon-plus"></span>
             </button>
             <button class="remove-btn" onclick="remove(this)" type="button">
-               <img alt=""
-                  src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+               <span class="glyphicon glyphicon-minus"></span>
             </button>
          </div>
       </div>

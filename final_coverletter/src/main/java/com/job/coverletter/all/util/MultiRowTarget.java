@@ -24,7 +24,6 @@ public class MultiRowTarget {
 	public void setTargets(List<CoverLetterDto> targets) {
 		this.targets = targets;
 	}
-
 	
 	@Override
 	public String toString() {

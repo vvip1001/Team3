@@ -482,35 +482,7 @@ public class UserController {
 
       return "USER/userCVdown";
    }
-
-   // 이력서(자기소개서) 파일 다운로드
-   @RequestMapping(value = "/CVdownload.do", method = RequestMethod.POST)
-   @ResponseBody
-   public byte[] CVfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
-      // 연속적인 바이트들의 흐름 : byte[]
-      byte[] down = null;
-      String path;
-
-      try {
-         path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-
-         File file = new File(path + "/" + name);
-
-         down = FileCopyUtils.copyToByteArray(file);
-         String filename = new String(file.getName().getBytes(), "8859_1");
-
-         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-         response.setContentLength(down.length);
-
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return down;
-   }
-   
+ 
    
    @RequestMapping(value="/USER_boardCVDetail.do", method = RequestMethod.GET)
    public String boardCVDetail() {
@@ -552,33 +524,6 @@ public class UserController {
       return "USER/userPFdown";
    }
 
-   // 포트폴리오 파일 다운로드
-   @RequestMapping(value = "/PFdownload.do", method = RequestMethod.POST)
-   @ResponseBody
-   public byte[] PFfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
-      // 연속적인 바이트들의 흐름 : byte[]
-      byte[] down = null;
-      String path;
-
-      try {
-         path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-
-         File file = new File(path + "/" + name);
-
-         down = FileCopyUtils.copyToByteArray(file);
-         String filename = new String(file.getName().getBytes(), "8859_1");
-
-         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-         response.setContentLength(down.length);
-
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return down;
-   }
 
    // 포토폴리오 삭제
    @RequestMapping(value = "/USER_userPFdelete.do", method = RequestMethod.POST)
@@ -615,84 +560,97 @@ public class UserController {
    }
 
    /*------------------------ 박하 : 자기소개서 작성 --------------------------*/
-   // 자기소개서 작성 페이지
-   @RequestMapping(value = "/USER_userCVwriteForm.do")
-   public String CVWriteForm(Model model) {
-      // CoverLetterDto dto = new CoverLetterDto();
-      // model.addAttribute("CoverLetterDto", dto);
-      // MultiRowTarget targets = new MultiRowTarget();
-      // model.addAttribute("MultiRowTarget", targets);
-      return "USER/userCVwrite";
-   }
+	// 자기소개서 작성 페이지
+	@RequestMapping(value = "/USER_userCVwriteForm.do")
+	public String CVWriteForm(Model model) {
+		 MultiRowTarget targets = new MultiRowTarget();
+		 model.addAttribute("MultiRowTarget", targets);
+		return "USER/userCVwrite";
+	}
 
-   // 자기소개서 INSERT
-   @RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
-   public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets) {
+	// 자기소개서 INSERT
+	@RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
+	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets , HttpSession session) {
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
+		System.out.println("userDto:==========================="+userDto);
+		
+		System.out.println("=============여기와?============" + targets);
+		int res = 0;
+		if (targets.getTargets().size() != 1) {
+			for (int i = 0; i < targets.getTargets().size(); i++) {
+				// 첫번째 값
+				String title = targets.getTargets().get(0).getTitle();
+				System.out.println("==============================================");
+				System.out.println(targets.getTargets().get(i));
+				// 나머지 list(dto)에다 설정 set
+				targets.getTargets().get(i).setTitle(title);
+				targets.getTargets().get(i).setJoinemail(joinemail);
+				res = coverletterBiz.CVinsert(targets.getTargets().get(i));
+			}
+		} else {
+			targets.getTargets().get(0).setJoinemail(joinemail);
+			res = coverletterBiz.CVinsert(targets.getTargets().get(0));
+		}
 
-      if (targets.getTargets().size() != 1) {
-         for (int i = 0; i < targets.getTargets().size(); i++) {
-            // 첫번째 값
-            String title = targets.getTargets().get(0).getTitle();
+		if(res > 0) {
+			return "redirect:/JOB_jobCenter.do";
+			
+		} else {
+			return "redirect:/MAIN_Main.do";
+		}
+	}
+	/*------------------------ 형권 : 스피치 작성 --------------------------*/
+	@RequestMapping(value = "USER_question.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String question(@RequestBody QnaBoardDto dto) {
 
-            // 나머지 list(dto)에다 설정 set
-            targets.getTargets().get(i).setTitle(title);
-            targets.getTargets().get(i).setJoinemail(joinemail);
-            int res = coverletterBiz.CVinsert(targets.getTargets().get(i));
-         }
-      }
+		String res = "";
 
-      return "redirect:/JOB_jobCenter.do";
-   }
-   /*------------------------ 형권 : 스피치 작성 --------------------------*/
-   @RequestMapping(value = "USER_question.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-   @ResponseBody
-   public String question(@RequestBody QnaBoardDto dto) {
+		QnaBoardDto list = qnaboardbiz.boardQnaListOne(dto.getqnaboardseq());
 
-      String res = "";
+		res = String.valueOf(list.getQuestion());
+		return res;
+	}
 
-      QnaBoardDto list = qnaboardbiz.boardQnaListOne(dto.getqnaboardseq());
+	/*---------------------정답 확인--------------------- */
+	@RequestMapping(value = "USER_answer.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> answer(@RequestBody QnaBoardDto dto) {
 
-      res = String.valueOf(list.getQuestion());
-      return res;
-   }
+		Map<String, String> map = new HashMap<String, String>();
 
-   /*---------------------정답 확인--------------------- */
-   @RequestMapping(value = "USER_answer.do", method = RequestMethod.POST)
-   @ResponseBody
-   public Map<String, String> answer(@RequestBody QnaBoardDto dto) {
+		String result = "";
 
-      Map<String, String> map = new HashMap<String, String>();
+		int num = dto.getqnaboardseq();
 
-      String result = "";
+		String userAnswer[] = dto.getAnswer().split(" ");
+		QnaBoardDto AnswerDto = qnaboardbiz.QnaAnswer(num);
 
-      int num = dto.getqnaboardseq();
+		String Answer[] = String.valueOf(AnswerDto.getAnswer()).split(" ");
+		Arrays.sort(userAnswer);
+		Arrays.sort(Answer);
 
-      String userAnswer[] = dto.getAnswer().split(" ");
-      QnaBoardDto AnswerDto = qnaboardbiz.QnaAnswer(num);
+		int answerCnt = 0; // 정답 개수
+		int WronganswerCnt = 0; // 오답 개수
+		if (userAnswer.length == Answer.length) {
 
-      String Answer[] = String.valueOf(AnswerDto.getAnswer()).split(" ");
-      Arrays.sort(userAnswer);
-      Arrays.sort(Answer);
+			for (int i = 0; i < Answer.length; i++) {
 
-      int answerCnt = 0; // 정답 개수
-      int WronganswerCnt = 0; // 오답 개수
-      if (userAnswer.length == Answer.length) {
+				if (userAnswer[i].equals(Answer[i])) {
+					answerCnt++;
+				} else {
+					WronganswerCnt++;
+				}
+			}
+			result = (answerCnt == Answer.length ? "정답" : "오답");
+		} else {
+			result = "오답";
+		}
+		map.put("result", result);
+		map.put("answer", String.valueOf(AnswerDto.getAnswer()));
 
-         for (int i = 0; i < Answer.length; i++) {
-
-            if (userAnswer[i].equals(Answer[i])) {
-               answerCnt++;
-            } else {
-               WronganswerCnt++;
-            }
-         }
-         result = (answerCnt == Answer.length ? "정답" : "오답");
-      } else {
-         result = "오답";
-      }
-      map.put("result", result);
-      map.put("answer", String.valueOf(AnswerDto.getAnswer()));
-
-      return map;
-   }
+		return map;
+	}
+   
 }

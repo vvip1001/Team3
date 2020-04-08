@@ -22,13 +22,14 @@
 
 
 	<div class="container">
+	 <h1>스피치 연습</h1>
+	 
 		<div class="row">
 			<div class="col-md-12"></div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
+			<div class="select-div">
 				<div class="form-group">
 					<select class="form-control" id="sel1" onchange="formChange(this);">
 						<option value="스피치연습">스피치연습</option>
@@ -36,13 +37,15 @@
 					</select>
 				</div>
 			</div>
-			<div class="col-md-3" id="timeDP">
-				<div id="timer">
+			<div class="row">
+			<div id="timeDP">
+				<div class="col-md-6" id="timer">
 					<p id="timerP">타이머</p>
 				</div>
-				<div id="end">
+				<div class="col-md-6" id="end">
 					종료
 				</div>
+			</div>
 			</div>
 		</div>
 
@@ -53,20 +56,28 @@
 				<div class="center">
 
 					<div class="internal">
-						<fieldset class="fieldset">
+						<fieldset class="speech-box">
 							<legend class="legend" id="legend1">대본 </legend>
 							<textarea id="korea" rows="15" cols="40" class="textarea"></textarea>
 						</fieldset>
+						<input type="button" onclick="nextQuestion();" value="다음 문제"
+						class="button3 btn speech-btn" id="nextQuestion" /> 
+						<input type="button"
+						value="대본녹음" class="speech btn speech-btn" id="speech" onclick="speech_to_text()" />
+						
 					</div>
 
 					<div class="internal_bewteen"></div>
 
 					<div class="internal">
-						<fieldset class="fieldset">
+						<fieldset class="speech-box">
 							<legend class="legend" id="legend2">연습</legend>
 							<textarea id="pract" rows="10" cols="40" class="textarea"></textarea>
 							<div id="answerRes"></div>
 						</fieldset>
+						<input type="button" value="연습녹음" class="speech btn speech-btn" id="answer"
+						onclick="pract_speech_to_text()" /> <input type="button"
+						value="확인" onclick="question();" id="quiz" class="button3 btn speech-btn" />
 					</div>
 
 				</div>
@@ -84,12 +95,8 @@
 				<div class="col-md-8">
 					<input type="hidden" id="randomSeq" />
 					<!-- 문제에 대한 seq -->
-					<input type="button" onclick="nextQuestion();" value="다음 문제"
-						class="button3" id="nextQuestion" /> <input type="button"
-						value="대본녹음" class="speech" id="speech" onclick="speech_to_text()" />
-					<input type="button" value="연습녹음" class="speech" id="answer"
-						onclick="pract_speech_to_text()" /> <input type="button"
-						value="확인" onclick="question();" id="quiz" class="button3" />
+					
+					
 				</div>
 				<div class="col-md-2"></div>
 			</div>
@@ -97,14 +104,12 @@
 
 		<div id="cloneDiv"></div>
 
-		<div id="custom_button2">
+		<div id="custom_button2" class="clone-btn-grp">
 			<button class="button2" onclick="add_div();">
-				<img alt=""
-					src="${pageContext.request.contextPath}/resources/IMG/button.png">
+				 <span class="glyphicon glyphicon-plus"></span>
 			</button>
 			<button class="button2" id="button2" onclick="remove_div(this.id);">
-				<img alt=""
-					src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+				 <span class="glyphicon glyphicon-minus"></span>
 			</button>
 		</div>
 
