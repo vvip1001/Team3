@@ -204,12 +204,12 @@ public class CompanyDto {
 		this.languages = languages;
 	}
 
-	public String getEndeate() {
+	public String getEnddate() {
 		return enddate;
 	}
 
-	public void setEndeate(String endeate) {
-		this.enddate = endeate;
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
 	}
 
 	public String getIntro() {
@@ -308,14 +308,6 @@ public class CompanyDto {
 		this.mainfield = mainfield;
 	}
 
-	public String getEnddate() {
-		return enddate;
-	}
-
-	public void setEnddate(String enddate) {
-		this.enddate = enddate;
-	}
-
 	public String getFrom() {
 		return from;
 	}
@@ -329,7 +321,7 @@ public class CompanyDto {
 		return "CompanyDto [companyseq=" + companyseq + ", groupno=" + groupno + ", companyname=" + companyname
 				+ ", imgurl=" + imgurl + ", oneintro=" + oneintro + ", business=" + business + ", mainbusiness="
 				+ mainbusiness + ", jobdetail=" + jobdetail + ", salary=" + salary + ", target=" + target
-				+ ", languages=" + languages + ", endeate=" + enddate + ", intro=" + intro + ", givetool=" + givetool
+				+ ", languages=" + languages + ", enddate=" + enddate + ", intro=" + intro + ", givetool=" + givetool
 				+ ", selfgrowth=" + selfgrowth + ", mealtime=" + mealtime + ", holiday=" + holiday + ", workinghour="
 				+ workinghour + ", insurance=" + insurance + ", incorporation=" + incorporation + ", totalmember="
 				+ totalmember + ", homepage=" + homepage + ", location=" + location + ", mainfield=" + mainfield + "]";

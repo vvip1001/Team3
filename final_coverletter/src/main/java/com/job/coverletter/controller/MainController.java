@@ -246,7 +246,7 @@ public class MainController {
 			dto.setTid(tmp_tid);
 			dto.setCid(cid);
 			dto.setPartner_order_id(partner_order_id);
-			dto.setPartner_user_id(partner_user_id);
+			dto.setjoinemail(partner_user_id);
 			dto.setPayment_method_type(payment_method_type);
 			//dto.setAmount(amount);
 			dto.setAmount_total(amount_total);
@@ -271,7 +271,7 @@ public class MainController {
 	
 		// 총 게시글 수
 		int listCnt = supportpaybiz.payListCount(dto);
-		dto.setPartner_user_id("USER@GMAIL.COM");
+		dto.setjoinemail("USER@GMAIL.COM");
 
 		// 페이징 (시작글번호, 표시될 게시글) : 연산해서 쿼리문에 사용
 		Pagination pagination = new Pagination(listCnt, curPage);

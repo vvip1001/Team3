@@ -23,6 +23,7 @@
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 </head>
+	
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
 
@@ -34,8 +35,8 @@
 					<h3>1.인적사항</h3>
 					<div class="col-md-1" id="photo">사진업로드</div>
 					<div id="p_up">
-							<f:input path="joinname" id="small" cssClass="col-md-4" placeholder ="이름"/>
-							<f:input path="joinbirth" id="big" cssClass="col-md-4" placeholder ="생년월일"/>
+							<f:input path="joinname" id="small" cssClass="col-md-4" placeholder ="이름" readonly="readonly"/>
+							<f:input path="joinbirth" id="big" cssClass="col-md-4" placeholder ="생년월일(yyyyMMdd)"/>
 							<f:select path="joinsex" id="small" cssClass="col-md-4">
 								<f:option value="성별"></f:option>
 								<f:option value="남성"></f:option>
@@ -68,7 +69,7 @@
 						<f:option value="군필"></f:option>
 						<f:option value="면제"></f:option>
 					</f:select> 
-					<f:input path="phone" id="big" cssClass="col-md-4" placeholder ="전화번호"/>
+					<f:input path="phone" id="big" cssClass="col-md-4" placeholder ="전화번호(010-1234-5678)"/>
 					<f:input path="address" id="bigbig" cssClass="col-md-4" placeholder ="주소" onclick="Address();" readonly="readonly" />
 					</div>
 					<div>

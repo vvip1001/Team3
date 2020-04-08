@@ -7,7 +7,6 @@ window.onscroll = function(e) {
 	if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 		// 실행할 로직 (콘텐츠 추가)
 		count++;
-		
 		$.ajax({
 			url:"MAIM_mainAjax.do",
 			type:"POST",
@@ -26,6 +25,14 @@ window.onscroll = function(e) {
 		       alert("통신 실패");
 		    }
 		})
+
+		var companyItemTop =document.createElement("div")
+		companyItemTop.setAttribute("class", "companyItemTop")
+		
+//		var a = document.createElement("a")
+//		a.setAttribute("href", "MAIN_mainDetail.do?companyseq="+companyseq)
+//		companyItemTop.appendChild(a)
+
 		
 
 		// var totalCompanyItem = document.createElement("div")
@@ -46,7 +53,6 @@ window.onscroll = function(e) {
 		// article에 추가되는 콘텐츠를 append
 		// $('article').append(addContent);
 	}
-
 };
 
 // Javascript

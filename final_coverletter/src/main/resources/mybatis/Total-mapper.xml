@@ -15,7 +15,7 @@
 		<result property="address" column="ADDRESS"/>
 		<result property="kakao" column="KAKAO"/>
 		<result property="singup" column="SIGNUP"/>
-		<result property="skillseq" column="SKILLSEQ"/>
+<!-- 		<result property="skillseq" column="SKILLSEQ"/> -->
 		<result property="category" column="CATEGORY"/>
 		<result property="itskill1" column="ITSKILL1"/>
 		<result property="itskill2" column="ITSKILL2"/>
@@ -36,7 +36,7 @@
 		<result property="organization" column="ORGANIZATION"/>
 		<result property="startorganization" column="STARTORGANIZATION"/>
 		<result property="regdate" column="REGDATE"/>
-		<result property="schoolseq" column="SCHOOLSEQ"/>
+<!-- 		<result property="schoolseq" column="SCHOOLSEQ"/> -->
 		<result property="career" column="CAREER"/>
 		<result property="schoolname" column="SCHOOLNAME"/>
 		<result property="admission" column="ADMISSION"/>
@@ -45,9 +45,23 @@
 		<result property="grade" column="GRADE"/>
 	</resultMap>	
 	
-	<insert id="insert" parameterType="totalDto">
-		INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},null,#{joinbirth},#{joinsex},null,#{mililtary},#{phone},#{address},null,null,null,#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
+	<insert id="ToTalInsert" parameterType="totalDto">
+		INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},#{joinpw},#{joinbirth},#{joinsex},#{photo},#{mililtary},#{phone},#{address},null,'Y','category',#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
 	</insert>
+
+	<select id="selectOne" resultMap="totalMap">
+		SELECT * FROM TOTAL WHERE JOINEMAIL = #{joinemail}
+	</select>
+
+	<update id="updateOne" parameterType="totalDto">
+		UPDATE TOTAL 
+		SET JOINBIRTH = #{joinbirth}, JOINSEX = #{joinsex}, MILILTARY = #{mililtary}, PHONE = #{phone}, ADDRESS = #{address}, 
+		CAREER = #{career}, SCHOOLNAME= #{schoolname}, ADMISSION = #{admission}, GRADUATE = #{graduate}, MAJOR = #{major},  GRADE=#{grade},
+		ITSKILL1 = #{itskill1}, ITSKILL2 = #{itskill2}, ITSKILL3 = #{itskill3}, ITSKILL4 = #{itskill4}, ITSKILL5 = #{itskill5}
+		WHERE JOINEMAIL = #{joinemail}
+	</update>
+		
+
 
 	<!-- it역량차트 -->
 	<select id="selectItSkill" parameterType="totalDto"
@@ -65,6 +79,8 @@
 		FROM TOTAL
 		WHERE JOINEMAIL = #{joinemail}
 	</select>
+	
+	
 
 
 

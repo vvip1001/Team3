@@ -5,7 +5,13 @@ import com.job.coverletter.model.total.dto.TotalDto;
 import net.sf.json.JSONArray;
 
 public interface TotalBiz {
-	public int insert(TotalDto dto);
+	public int ToTalInsert(TotalDto dto);
+
+	// 선택
+	public TotalDto selectOne(String joinemail);
+
+	// 업데이트
+	public int updateOne(TotalDto dto);
 
 	// IT역량차트
 	public JSONArray selectItSkill();

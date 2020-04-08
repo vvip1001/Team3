@@ -25,7 +25,7 @@
     <mapper resource="mybatis/Skill-mapper.xml"/>
     <mapper resource="mybatis/SupportPay-mapper.xml"/>
     <mapper resource="mybatis/Total-mapper.xml"/>
-    <mapper resource="mybatis/qanboard-mapper.xml"/>
+    <mapper resource="mybatis/qnaboard-mapper.xml"/>
     <!-- join된  mapper 추가 -->
   </mappers>
 

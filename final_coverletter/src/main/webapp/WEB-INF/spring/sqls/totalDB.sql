@@ -36,9 +36,9 @@ DROP TABLE TOTAL;
 CREATE SEQUENCE TOTAL_SEQ;
 
 CREATE TABLE TOTAL(
-   TOTALSEQ NUMBER, 
-   JOINEMAIL VARCHAR2(1000) PRIMARY KEY,
-   JOINNAME VARCHAR2(1000) ,
+   TOTALSEQ NUMBER PRIMARY KEY, 
+   JOINEMAIL VARCHAR2(1000),
+   JOINNAME VARCHAR2(1000),
    JOINPW VARCHAR2(1000),
    JOINBIRTH VARCHAR2(1000) ,
    JOINSEX VARCHAR2(1000) ,
@@ -73,11 +73,22 @@ CREATE TABLE TOTAL(
    ADMISSION VARCHAR2(1000),
    GRADUATE VARCHAR2(1000),
    MAJOR VARCHAR2(1000),
-   GRADE VARCHAR2(1000)
+   GRADE VARCHAR2(1000),
+   CONSTRAINT TOTAL_TABLE_FK01 FOREIGN KEY(JOINEMAIL) REFERENCES JOINUSER(JOINEMAIL)
 );
-INSERT INTO TOTAL(TOTALSEQ,JOINEMAIL,JOINNAME,JOINBIRTH,JOINSEX,MILILTARY,PHONE,ADDRESS,ITSKILL1,ITSKILL2,ITSKILL3,ITSKILL4,ITSKILL5,MAJOR) VALUES(TOTAL_SEQ.NEXTVAL,'igs99275@naver.com','조수민','940802','남성','군필','010-8842-1869','인천광역시 부평구','자바','파이썬','씨언어','씨큐리티','오라클','항소');
+
+INSERT INTO TOTAL(TOTALSEQ,JOINEMAIL,JOINNAME,JOINBIRTH,JOINSEX,MILILTARY,PHONE,ADDRESS,ITSKILL1,ITSKILL2,ITSKILL3,ITSKILL4,ITSKILL5,MAJOR) VALUES(TOTAL_SEQ.NEXTVAL,'abc@naver.com','조수민','940802','남성','군필','010-8842-1869','인천광역시 부평구','자바','파이썬','씨언어','씨큐리티','오라클','항소');
+
+UPDATE TOTAL SET 
+JOINBIRTH = '', JOINSEX = '', MILILTARY = '', PHONE = '', ADDRESS = '', 
+ITSKILL1 = '', ITSKILL2 = '', ITSKILL3 = '', ITSKILL4 = '', ITSKILL5 = '', MAJOR = ''
+WHERE JOINEMAIL = 'abc@naver.com';
+
+
 SELECT * FROM TOTAL;
-DROP TABLE TOTAL;
+
+
+
 --======================================================================================================
 --파일 업로드 다운로드 댓글 게시판
 
@@ -92,11 +103,12 @@ CREATE TABLE BOARD
     GROUPSEQ     NUMBER            NOT NULL,    -- 같은 그룹내의 순서
     TITLETAB     NUMBER                     ,    -- 탭 구분(첫글null, 댓글0, 대댓1)
     JOINEMAIL    VARCHAR2(200)     NOT NULL,    -- 이메일(ID) 작성자
-    TITLE        VARCHAR2(1000)             ,    -- 제목(댓글은 제목없음)
+    TITLE        VARCHAR2(1000),             -- 제목(댓글은 제목없음)
     CONTENT      VARCHAR2(4000)    NOT NULL,    -- 내용
-    FILEPATH     VARCHAR2(1000),             -- 파일 경로
+    FILEPATH     VARCHAR2(1000),                -- 파일 경로
     REGDATE      DATE              NOT NULL, 
-    CONSTRAINT BOARD_PK PRIMARY KEY (BOARDSEQ)
+    CONSTRAINT BOARD_PK PRIMARY KEY (BOARDSEQ),
+    CONSTRAINT BOARD_TABLE_FK01 FOREIGN KEY(JOINEMAIL) REFERENCES JOINUSER(JOINEMAIL)
 );
 
 SELECT * FROM BOARD;
@@ -132,24 +144,31 @@ CREATE SEQUENCE PORTFOLIO_SEQ;
 
 CREATE TABLE COVERLETTER
 (
-    TOTALSEQ         NUMBER            NOT NULL,   -- 전체 시퀀스    
+    TOTALSEQ          NUMBER            NOT NULL,    -- 전체 시퀀스    
     JOINEMAIL         VARCHAR2(200)     NOT NULL,    -- 이메일
-    CVCATEGORY        VARCHAR2(30)      NOT NULL,   -- 카테고리
-    GROUPSEQ        NUMBER         NOT NULL,    -- 자소서, 포폴용 각각의 시퀀스
-    QUESTION          VARCHAR2(1000),             -- 항목(질문)
-    TITLE             VARCHAR2(500)      NOT NULL,    -- 제목
-    SUBTITLE          VARCHAR2(500),             -- 소제목(내용의 핵심 키워드)
-    CONTENT           VARCHAR2(3000),             -- 내용
-    REGDATE           DATE            NOT NULL,   -- 작성일
-    FILEPATH        VARCHAR2(1000),
+    CVCATEGORY        VARCHAR2(30)      NOT NULL,    -- 카테고리
+    GROUPSEQ          NUMBER            NOT NULL,    -- 자소서, 포폴용 각각의 시퀀스
+    GROUPNO            NUMBER         NOT NULL,    -- 그룹번호
+    QUESTION          VARCHAR2(1000),                -- 자: 항목(질문), 포: 수행기간
+    TITLE             VARCHAR2(500)     NOT NULL,    -- 자: 제목, 포: 프로젝트명
+    SUBTITLE          VARCHAR2(500),                 -- 지: 소제목, 포: 개발목표
+    CONTENT           VARCHAR2(3000),                -- 지: 내용, 포: 개발환경
+    FUNCTIONS        VARCHAR2(3000),               -- 포: 구현기능
+    POSITIONS        VARCHAR2(2000),             -- 포: 담당역할
+    PARTICIPATION     VARCHAR2(1000),             -- 포: 참여도
+    FUNCTIONINFO     VARCHAR2(3000),             -- 포: 기능설명
+    VIEWINFO        VARCHAR2(3000),              -- 포: 화면설명
+    REGDATE           DATE             NOT NULL,      -- 작성일
+    FILEPATH          VARCHAR2(1000),             -- 포 : 이미지 경로
     CONSTRAINT COVERLETTER_PK PRIMARY KEY (TOTALSEQ),
-    CONSTRAINT COVERLETTER_CK01 CHECK (CVCATEGORY IN('자소서','포폴'))
+    CONSTRAINT COVERLETTER_CK01 CHECK (CVCATEGORY IN('자소서','포폴')),
+    CONSTRAINT COVERLETTER_TABLE_FK01 FOREIGN KEY(JOINEMAIL) REFERENCES JOINUSER(JOINEMAIL)
 );
 
 
-INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '자소서', COVERLETTER_SEQ.NEXTVAL, '자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '자소서', COVERLETTER_SEQ.NEXTVAL, 0,'자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
 
-INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '포폴', PORTFOLIO_SEQ.NEXTVAL, NULL, '제목:', NULL, NULL, SYSDATE, '파일')
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '포폴', PORTFOLIO_SEQ.NEXTVAL, 0, NULL, '제목:', NULL, NULL, SYSDATE, '이미지')
 
 
 
@@ -164,38 +183,44 @@ CREATE SEQUENCE JOBCALENDAR_SEQ;
 
 CREATE TABLE JOBCALENDAR
 (
-    JOBCALENDARSEQ     NUMBER                NOT NULL,    
+    JOBCALENDARSEQ     NUMBER              NOT NULL,    
     JOINEMAIL          VARCHAR2(200)       NOT NULL, 
-    COMPANYNAMESEQ     NUMBER               NOT NULL,      -- 회사테이블 프라이머리키
-    COMPANYNAME        VARCHAR2(20)          NOT NULL,    -- 회사명
-    BUSINESS             VARCHAR2(1000)      NOT NULL,       -- 채용제목
+    COMPANYSEQ          NUMBER              NOT NULL,      -- 회사테이블 프라이머리키
+    COMPANYNAME        VARCHAR2(200)        NOT NULL,    -- 회사명
+    BUSINESS           VARCHAR2(1000)      NOT NULL,       -- 채용제목
     ENDDATE            VARCHAR2(20)        NOT NULL,    -- 마감일
-    CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ)
+    CONSTRAINT JOBCALENDAR_PK PRIMARY KEY (JOBCALENDARSEQ),
+    CONSTRAINT JOBCALENDAR_TABLE_FK01 FOREIGN KEY(JOINEMAIL) REFERENCES JOINUSER(JOINEMAIL)
 ); 
 
-INSERT INTO JOBCALENDAR VALUES(JOBCALENDAR_SEQ.NEXTVAL, 'USER@GMAIL.COM', 123, '운토티', '백엔드 개발자 채용', '200405');
+INSERT INTO JOBCALENDAR VALUES(JOBCALENDAR_SEQ.NEXTVAL, 'abc@naver.com', 123, '운토티', '백엔드 개발자 채용', '수시채용');
+
+SELECT * FROM JOBCALENDAR;
+
+SELECT * FROM JOBCALENDAR
+WHERE JOINEMAIL = 'abc@naver.com' AND NOT ENDDATE = '수시채용';
 
 --=====================================================================================================================
 -- 후원 내역 테이블
 DROP SEQUENCE SUPPORTPAY_SEQ;
 DROP TABLE SUPPORTPAY;
 
-
 CREATE SEQUENCE SUPPORTPAY_SEQ;
 
 CREATE TABLE SUPPORTPAY
 (
-   TID                 VARCHAR2(200)    NOT NULL,   -- 결제 고유 번호. 결제요청 API 응답에 오는 값과 동일해야 함
-   CID                 VARCHAR2(200)    NOT NULL,   -- 가맹점 코드. 결제준비 API에서 요청한 값과 일치해야 함   
+    TID                    VARCHAR2(200)    NOT NULL,   -- 결제 고유 번호. 결제요청 API 응답에 오는 값과 동일해야 함
+    CID                    VARCHAR2(200)    NOT NULL,   -- 가맹점 코드. 결제준비 API에서 요청한 값과 일치해야 함   
     PARTNER_ORDER_ID        VARCHAR2(200)    NOT NULL, -- 가맹점 주문번호   
-    PARTNER_USER_ID            VARCHAR2(200)    NOT NULL, -- 가맹점 회원 id   
-    PAYMENT_METHOD_TYPE      VARCHAR2(100)    NOT NULL, -- 결제 수단. CARD, MONEY 중 하나   
-    AMOUNT_TOTAL             VARCHAR2(100)    NOT NULL, -- 총 결제 금액
+    JOINEMAIL               VARCHAR2(200)    NOT NULL, -- 가맹점 회원 id   
+    PAYMENT_METHOD_TYPE     VARCHAR2(100)    NOT NULL, -- 결제 수단. CARD, MONEY 중 하나   
+    AMOUNT_TOTAL            VARCHAR2(100)    NOT NULL, -- 총 결제 금액
     AMOUNT_TAX_FREE         VARCHAR2(100)    NOT NULL, -- 결제 부과세 
-    ITEM_NAME              VARCHAR2(100)    NOT NULL, -- 상품 이름. 최대 100자   
-    QUANTITY               VARCHAR2(100)    NOT NULL, -- 후원금액
-    CREATED_AT             DATE             NOT NULL,   -- 결제 준비 요청 시각   
-    CONSTRAINT TID PRIMARY KEY (TID)
+    ITEM_NAME               VARCHAR2(100)    NOT NULL, -- 상품 이름. 최대 100자   
+    QUANTITY                VARCHAR2(100)    NOT NULL, -- 후원금액
+    CREATED_AT              DATE             NOT NULL,   -- 결제 준비 요청 시각   
+    CONSTRAINT TID PRIMARY KEY (TID),
+    CONSTRAINT SUPPORTPAY_TABLE_FK01 FOREIGN KEY(JOINEMAIL) REFERENCES JOINUSER(JOINEMAIL)
 );
 
 SELECT * FROM SUPPORTPAY;
@@ -204,6 +229,7 @@ SELECT * FROM SUPPORTPAY;
 DROP TABLE QNABOARD;
 DROP SEQUENCE QNABOARD_SEQ;
 
+CREATE SEQUENCE QNABOARD_SEQ;
 CREATE TABLE QNABOARD
 (
     OANBOARDSEQ    NUMBER            NOT NULL, 
@@ -211,5 +237,3 @@ CREATE TABLE QNABOARD
     ANSWER         VARCHAR2(1000)    NULL, 
     CONSTRAINT QNABOARD_PK PRIMARY KEY (OANBOARDSEQ)
 );
-
-CREATE SEQUENCE QNABOARD_SEQ;

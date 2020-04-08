@@ -18,6 +18,11 @@
 <link
 	href="${pageContext.request.contextPath}/resources/CSS/MAIN/main.css"
 	rel="stylesheet">
+	
+	
+<!-- include animate css -->	
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+ 	
 </head>
 
 
@@ -39,12 +44,12 @@
 
 	<div class="container" style="background-color: #ebe6e6;">
 		<div id="MaintopDiv">
-			<h1>[자소서 성공 페이지]</h1>
+			<h1 class="title animated  bounce delay-1s duration-3s">자소서 성공 패키지</h1>
 		</div>
 
-		<div class="companySide"></div>
+		
 		<div class="company">
-			<h5 class="h5">웹 개발자</h5>
+			<h5 class="h5" >- 웹 개발자 -</h5>
 
 			<c:choose>
 				<c:when test="${empty list_web}">
@@ -74,9 +79,10 @@
 		</div>
 
 
-		<div class="companySide"></div>
+		
 		<div class="company">
-			<h5 class="h5">프론트앤드</h5>
+			<h5 class="h5">- 프론트앤드 -</h5>
+
 
 		<c:choose>
 				<c:when test="${empty list_front}">
@@ -98,8 +104,6 @@
 							</div>
 						</div>
 
-
-
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
@@ -108,11 +112,8 @@
 
 		</div>
 
-		<div class="companySide"></div>
-
 		<div class="company">
-			<h5 class="h5">백앤드</h5>
-
+			<h5 class="h5">- 백앤드 -</h5>
 			<c:choose>
 				<c:when test="${empty list_back}">
 					<h3>--데이터가 비었습니다--</h3>
@@ -144,17 +145,15 @@
 
 		</div>
 
-
-		<div class="companySide"></div>
 		<article>
 			<div class="totalCompany" id="totalCompany">
 
-				<h5 class="h6">전체</h5>
+				<h5 class="h5">- 전체 -</h5>
 
 
 				<c:choose>
 					<c:when test="${empty list_cnt20}">
-						<h3>====================데이터가 없습니다.====================</h3>
+						<h5 class="h5">==================== 데이터가 없습니다. ===================</h5>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${list_cnt20}" var="companyDto">
