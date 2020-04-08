@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +25,7 @@
 		<!-- 글목록 영역 -->
 		<div class="board-list">
 			<h1>이력서 다운로드 게시판</h1>
-
+			
 			<input type="button" value="글작성" class="btn"
 				onclick="location.href='BOARD_boardWriteForm.do'">
 			<form action="USER_userCVdelete.do" method="post"
@@ -99,6 +99,7 @@
 				</table>
 				<input type="button" id="deleteSub" class="btn" value="삭제"
 					onclick="deleteSubmit();">
+					<a href="USER_boardCVDetail.do">이동</a>
 			</form>
 		</div>
 		<!-- 글목록 영역 끝 -->

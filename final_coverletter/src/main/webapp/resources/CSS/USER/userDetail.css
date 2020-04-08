@@ -216,6 +216,12 @@ input {
 	margin-bottom: 13px;
 }
 
+#bigbig2 {
+	width: 50%;
+	height: 50px;
+	margin-bottom: 13px;
+}
+
 #ex1Slider .slider-selection {
 	background: #BABABA;
 }
@@ -305,4 +311,14 @@ div#itdiv{
 	margin-left: 46%;
 	
 }
+.col-md-12{
+	text-align: center;
+}
+
+#submit_btn{
+	width: 200px;
+}
+
+
+
 /**/

@@ -78,7 +78,7 @@
 									<tr>
 										<td class=""><input type="checkbox" name="chk" value="${dto.jobcalendarseq }"></td>
 										<td class="">
-											1
+											${dto.jobcalendarseq }
 										</td>
 										<td>
 											<a href="MAIN_mainDetail.do?companyseq=${dto.companyseq}">${dto.companyname }</a>

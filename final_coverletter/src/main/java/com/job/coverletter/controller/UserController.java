@@ -71,8 +71,6 @@ public class UserController {
    private JobCalendarBiz jobCalendarBiz;
 
    String cvcategory = "";
-   String joinemail = "USER@GMAIL.COM";
-
    @Autowired
    private CoverLetterBiz coverletterBiz;
 
@@ -86,19 +84,19 @@ public class UserController {
 
    // join go
    @RequestMapping(value = "/USER_join.do", method = RequestMethod.GET)
-   public String join(Model model) {
+   public String join() {
       logger.info("joinpage go");
-      model.addAttribute("JoinUserDto", new JoinUserDto());
+
       return "MAIN/join";
    }
 
    // 회원가입 res
    @RequestMapping(value = "/USER_joinRes.do", method = RequestMethod.POST)
-   public String joinRes(Model model, @ModelAttribute("JoinUserDto") @Valid JoinUserDto dto, BindingResult result, Map<String,BindingResult> model2) throws Exception {
+   public String joinRes(Model model, @ModelAttribute("JoinuserDto") @Valid JoinUserDto dto, BindingResult result) {
       logger.info("joinRes.do");
 
       model.addAttribute("joinuserDto", dto);
-      model2.put(BindingResult.class.getName()+"JoinuserDto",result);
+
       System.out.println("===============joinuserDto" + dto);
 
       if (result.hasErrors()) {
@@ -283,6 +281,7 @@ public class UserController {
          model.addAttribute("joinuserDto", dto);
          return "MAIN/login";
       }
+
    }
 
    // 로그아웃
@@ -331,45 +330,43 @@ public class UserController {
       }
    }
 
-//==============================재현 회원가입 수정함=========================================
-
    // 마이페이지
-   @RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
-   public String userMain(Model model, HttpSession session) {
-      logger.info("userMain go");
+	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
+	public String userMain(Model model, HttpSession session) {
+		logger.info("userMain go");
 
-      JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
-      
-      CoverLetterDto cvdto = new CoverLetterDto();
-      cvdto.setCvcategory("자소서");
-      cvdto.setJoinemail(userDto.getJoinemail());
-      int cvlist = coverletterBiz.boardCVListCount(cvdto);
-      System.out.println("cvlist : " + cvlist);
-      CoverLetterDto pfdto = new CoverLetterDto();
-      pfdto.setCvcategory("포폴");
-      pfdto.setJoinemail(userDto.getJoinemail());
-      int pflist = coverletterBiz.boardPFListCount(pfdto);
-      System.out.println("pflist : " + pflist);
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		
+		CoverLetterDto cvdto = new CoverLetterDto();
+		cvdto.setCvcategory("자소서");
+		cvdto.setJoinemail(userDto.getJoinemail());
+		int cvlist = coverletterBiz.boardCVListCount(cvdto);
+		System.out.println("cvlist : " + cvlist);
+		CoverLetterDto pfdto = new CoverLetterDto();
+		pfdto.setCvcategory("포폴");
+		pfdto.setJoinemail(userDto.getJoinemail());
+		int pflist = coverletterBiz.boardPFListCount(pfdto);
+		System.out.println("pflist : " + pflist);
 
-      JobCalendarDto jbdto = new JobCalendarDto();
-      jbdto.setJoinemail(userDto.getJoinemail());
-      int jblist = jobCalendarBiz.boardJobListCount(jbdto);
-      System.out.println("jblist : " + jblist);
+		JobCalendarDto jbdto = new JobCalendarDto();
+		jbdto.setJoinemail(userDto.getJoinemail());
+		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
+		System.out.println("jblist : " + jblist);
 
-      model.addAttribute("cvlist", cvlist);
-      model.addAttribute("pflist", pflist);
-      model.addAttribute("jblist", jblist);
+		model.addAttribute("cvlist", cvlist);
+		model.addAttribute("pflist", pflist);
+		model.addAttribute("jblist", jblist);
 
-      // IT역량 차트
-      JSONArray itSkill = totalBiz.selectItSkill();
-      model.addAttribute("itSkill", itSkill);
+		// IT역량 차트
+		JSONArray itSkill = totalBiz.selectItSkill();
+		model.addAttribute("itSkill", itSkill);
 
-      // 스펙 차트
-      JSONArray mySkill = totalBiz.selectMySkill();
-      model.addAttribute("mySkill", mySkill);
+		// 스펙 차트
+		JSONArray mySkill = totalBiz.selectMySkill();
+		model.addAttribute("mySkill", mySkill);
 
-      return "USER/userMain";
-   }
+		return "USER/userMain";
+	}
 
    // fullCalendar 데이터 불러오기
    @RequestMapping(value = "/USER_getFullCalendarData.do", method = { RequestMethod.POST, RequestMethod.GET })
@@ -429,40 +426,42 @@ public class UserController {
    }
 
    // 인적사항 수정
-   @RequestMapping(value = "/USER_detailRes.do", method = RequestMethod.POST)
-   public String personal_insert(Model model, @ModelAttribute("totalDto") @Valid TotalDto dto, BindingResult result) {
-      if (result.hasErrors()) {
-         logger.info("유효성검사 실패");
-         logger.info(dto.getJoinname());
-         logger.info(dto.getCertificate());
-         logger.info(dto.getRegdate());
-         List<ObjectError> list = result.getAllErrors();
-         for (ObjectError error : list) {
-            System.out.println(error);
-         }
-         return "USER/userDetail";
-      } else {
-         logger.info("유효성 검사 통과");
-         logger.info(dto.getCertificate());
-         logger.info(dto.getRegdate());
-         int res = totalBiz.updateOne(dto);
-         System.out.println(res);
-         if (res > 0) {
+	@RequestMapping(value = "/USER_detailRes.do", method = RequestMethod.POST)
+	public String personal_insert(Model model, @ModelAttribute("totalDto") @Valid TotalDto dto, BindingResult result) {
+		if (result.hasErrors()) {
+			logger.info("유효성검사 실패");
+			logger.info(dto.getJoinname());
+			logger.info(dto.getCertificate());
+			logger.info(dto.getRegdate());
+			List<ObjectError> list = result.getAllErrors();
+			for (ObjectError error : list) {
+				System.out.println(error);
+			}
+			return "USER/userDetail";
+		} else {
+			logger.info("유효성 검사 통과");
+			logger.info(dto.getCertificate());
+			logger.info(dto.getRegdate());
+			int res = totalBiz.updateOne(dto);
+			System.out.println(res);
+			if (res > 0) {
 
-            return "redirect:USER_userMain.do";
-         } else {
-            return "USER/userDetail";
-         }
-      }
-   }
+				return "redirect:USER_userMain.do";
+			} else {
+				return "USER/userDetail";
+			}
+		}
+	}
 
    /*--------------------------------- 이력서 자기소개서 채용공고 게시판 ----------------------------------------------------------------------------------------------------*/
    // 이력서(자기소개서) 게시판
    @RequestMapping(value = "/USER_userCVList.do")
    public String boardListCV(@ModelAttribute("CoverLetterDto") CoverLetterDto dto,
-         @RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model) {
+         @RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model,HttpSession session) {
       cvcategory = "자소서";
-
+      JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+      String joinemail = userDto.getJoinemail();
+      System.out.println(joinemail);
       dto.setCvcategory(cvcategory);
       dto.setJoinemail(joinemail);
 
@@ -482,16 +481,35 @@ public class UserController {
 
       return "USER/userCVdown";
    }
- 
-   
-   @RequestMapping(value="/USER_boardCVDetail.do", method = RequestMethod.GET)
-   public String boardCVDetail() {
-      logger.info("boardCVDetail");
-      
-      return "USER/userCVDetail";
+
+   // 이력서(자기소개서) 파일 다운로드
+   @RequestMapping(value = "/CVdownload.do", method = RequestMethod.POST)
+   @ResponseBody
+   public byte[] CVfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
+      // 연속적인 바이트들의 흐름 : byte[]
+      byte[] down = null;
+      String path;
+
+      try {
+         path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+
+         File file = new File(path + "/" + name);
+
+         down = FileCopyUtils.copyToByteArray(file);
+         String filename = new String(file.getName().getBytes(), "8859_1");
+
+         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+         response.setContentLength(down.length);
+
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+
+      return down;
    }
-   
-   
+
    // 자기소개서 삭제
    @RequestMapping(value = "/USER_userCVdelete.do", method = RequestMethod.POST)
    public String boardCVDelete(@RequestParam(name = "chk") String[] seq) {
@@ -500,11 +518,12 @@ public class UserController {
    }
 
    // 포트폴리오 게시판
-   @RequestMapping(value = "/USER_userPFList.do", method= {RequestMethod.POST, RequestMethod.GET})
+   @RequestMapping(value = "/USER_userPFList.do")
    public String boardListPF(@ModelAttribute("CoverLetterDto") CoverLetterDto dto,
-         @RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model) {
+         @RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model , HttpSession session) {
       cvcategory = "포폴";
-
+      JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+      String joinemail = userDto.getJoinemail();
       dto.setCvcategory(cvcategory);
       dto.setJoinemail(joinemail);
 
@@ -524,6 +543,33 @@ public class UserController {
       return "USER/userPFdown";
    }
 
+   // 포트폴리오 파일 다운로드
+   @RequestMapping(value = "/PFdownload.do", method = RequestMethod.POST)
+   @ResponseBody
+   public byte[] PFfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
+      // 연속적인 바이트들의 흐름 : byte[]
+      byte[] down = null;
+      String path;
+
+      try {
+         path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+
+         File file = new File(path + "/" + name);
+
+         down = FileCopyUtils.copyToByteArray(file);
+         String filename = new String(file.getName().getBytes(), "8859_1");
+
+         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+         response.setContentLength(down.length);
+
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+
+      return down;
+   }
 
    // 포토폴리오 삭제
    @RequestMapping(value = "/USER_userPFdelete.do", method = RequestMethod.POST)
@@ -560,97 +606,96 @@ public class UserController {
    }
 
    /*------------------------ 박하 : 자기소개서 작성 --------------------------*/
-	// 자기소개서 작성 페이지
-	@RequestMapping(value = "/USER_userCVwriteForm.do")
-	public String CVWriteForm(Model model) {
-		 MultiRowTarget targets = new MultiRowTarget();
-		 model.addAttribute("MultiRowTarget", targets);
-		return "USER/userCVwrite";
-	}
+   // 자기소개서 작성 페이지
+   @RequestMapping(value = "/USER_userCVwriteForm.do")
+   public String CVWriteForm(Model model) {
+       MultiRowTarget targets = new MultiRowTarget();
+       model.addAttribute("MultiRowTarget", targets);
+      return "USER/userCVwrite";
+   }
 
-	// 자기소개서 INSERT
-	@RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
-	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets , HttpSession session) {
-		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
-		String joinemail = userDto.getJoinemail();
-		System.out.println("userDto:==========================="+userDto);
-		
-		System.out.println("=============여기와?============" + targets);
-		int res = 0;
-		if (targets.getTargets().size() != 1) {
-			for (int i = 0; i < targets.getTargets().size(); i++) {
-				// 첫번째 값
-				String title = targets.getTargets().get(0).getTitle();
-				System.out.println("==============================================");
-				System.out.println(targets.getTargets().get(i));
-				// 나머지 list(dto)에다 설정 set
-				targets.getTargets().get(i).setTitle(title);
-				targets.getTargets().get(i).setJoinemail(joinemail);
-				res = coverletterBiz.CVinsert(targets.getTargets().get(i));
-			}
-		} else {
-			targets.getTargets().get(0).setJoinemail(joinemail);
-			res = coverletterBiz.CVinsert(targets.getTargets().get(0));
-		}
+   // 자기소개서 INSERT
+   @RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
+   public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets , HttpSession session) {
+      JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+      String joinemail = userDto.getJoinemail();
+      System.out.println("userDto:==========================="+userDto);
+      
+      System.out.println("=============여기와?============" + targets);
+      int res = 0;
+      if (targets.getTargets().size() != 1) {
+         for (int i = 0; i < targets.getTargets().size(); i++) {
+            // 첫번째 값
+            String title = targets.getTargets().get(0).getTitle();
+            System.out.println("==============================================");
+            System.out.println(targets.getTargets().get(i));
+            // 나머지 list(dto)에다 설정 set
+            targets.getTargets().get(i).setTitle(title);
+            targets.getTargets().get(i).setJoinemail(joinemail);
+            res = coverletterBiz.CVinsert(targets.getTargets().get(i));
+         }
+      } else {
+         targets.getTargets().get(0).setJoinemail(joinemail);
+         res = coverletterBiz.CVinsert(targets.getTargets().get(0));
+      }
 
-		if(res > 0) {
-			return "redirect:/JOB_jobCenter.do";
-			
-		} else {
-			return "redirect:/MAIN_Main.do";
-		}
-	}
-	/*------------------------ 형권 : 스피치 작성 --------------------------*/
-	@RequestMapping(value = "USER_question.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-	@ResponseBody
-	public String question(@RequestBody QnaBoardDto dto) {
+      if(res > 0) {
+         return "redirect:/JOB_jobCenter.do";
+         
+      } else {
+         return "redirect:/MAIN_Main.do";
+      }
+   }
+   /*------------------------ 형권 : 스피치 작성 --------------------------*/
+   @RequestMapping(value = "USER_question.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+   @ResponseBody
+   public String question(@RequestBody QnaBoardDto dto) {
 
-		String res = "";
+      String res = "";
 
-		QnaBoardDto list = qnaboardbiz.boardQnaListOne(dto.getqnaboardseq());
+      QnaBoardDto list = qnaboardbiz.boardQnaListOne(dto.getqnaboardseq());
 
-		res = String.valueOf(list.getQuestion());
-		return res;
-	}
+      res = String.valueOf(list.getQuestion());
+      return res;
+   }
 
-	/*---------------------정답 확인--------------------- */
-	@RequestMapping(value = "USER_answer.do", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, String> answer(@RequestBody QnaBoardDto dto) {
+   /*---------------------정답 확인--------------------- */
+   @RequestMapping(value = "USER_answer.do", method = RequestMethod.POST)
+   @ResponseBody
+   public Map<String, String> answer(@RequestBody QnaBoardDto dto) {
 
-		Map<String, String> map = new HashMap<String, String>();
+      Map<String, String> map = new HashMap<String, String>();
 
-		String result = "";
+      String result = "";
 
-		int num = dto.getqnaboardseq();
+      int num = dto.getqnaboardseq();
 
-		String userAnswer[] = dto.getAnswer().split(" ");
-		QnaBoardDto AnswerDto = qnaboardbiz.QnaAnswer(num);
+      String userAnswer[] = dto.getAnswer().split(" ");
+      QnaBoardDto AnswerDto = qnaboardbiz.QnaAnswer(num);
 
-		String Answer[] = String.valueOf(AnswerDto.getAnswer()).split(" ");
-		Arrays.sort(userAnswer);
-		Arrays.sort(Answer);
+      String Answer[] = String.valueOf(AnswerDto.getAnswer()).split(" ");
+      Arrays.sort(userAnswer);
+      Arrays.sort(Answer);
 
-		int answerCnt = 0; // 정답 개수
-		int WronganswerCnt = 0; // 오답 개수
-		if (userAnswer.length == Answer.length) {
+      int answerCnt = 0; // 정답 개수
+      int WronganswerCnt = 0; // 오답 개수
+      if (userAnswer.length == Answer.length) {
 
-			for (int i = 0; i < Answer.length; i++) {
+         for (int i = 0; i < Answer.length; i++) {
 
-				if (userAnswer[i].equals(Answer[i])) {
-					answerCnt++;
-				} else {
-					WronganswerCnt++;
-				}
-			}
-			result = (answerCnt == Answer.length ? "정답" : "오답");
-		} else {
-			result = "오답";
-		}
-		map.put("result", result);
-		map.put("answer", String.valueOf(AnswerDto.getAnswer()));
+            if (userAnswer[i].equals(Answer[i])) {
+               answerCnt++;
+            } else {
+               WronganswerCnt++;
+            }
+         }
+         result = (answerCnt == Answer.length ? "정답" : "오답");
+      } else {
+         result = "오답";
+      }
+      map.put("result", result);
+      map.put("answer", String.valueOf(AnswerDto.getAnswer()));
 
-		return map;
-	}
-   
+      return map;
+   }
 }

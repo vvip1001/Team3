@@ -20,7 +20,7 @@
    
 
          <f:form action="USER_joinRes.do" method="post" modelAttribute="JoinUserDto" onsubmit="return confirmSubmit()">
-			
+         
             <h1 id="hello">환영합니다</h1>
             <table id="jointable">
                
@@ -110,4 +110,3 @@
       </div>
 </body>
 </html>
-
