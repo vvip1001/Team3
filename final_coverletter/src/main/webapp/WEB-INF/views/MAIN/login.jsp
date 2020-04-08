@@ -29,7 +29,8 @@
 	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="879634557485-v55qv49tpffgt0ujgmeq6glvtpa8lfmc.apps.googleusercontent.com">
+<meta name="google-signin-client_id"
+	content="879634557485-v55qv49tpffgt0ujgmeq6glvtpa8lfmc.apps.googleusercontent.com">
 
 
 </head>
@@ -38,46 +39,48 @@
 %>
 <body>
 
-<%@ include file="../ALL/header_logout.jsp"%>
+	<%@ include file="../ALL/header_logout.jsp"%>
 
 	<div class="container">
 		<div id="wap">
 			<div class="margin"></div>
 			<div id="loginform">
-				<h1>로그인</h1>
-				<table class="login">
-					<tbody>
-						<tr>
-							<td class="logininfo"><input type="text" id="joinemail"
-								name="joinemail" class="idpw" placeholder="이메일"></td>
-							<td rowspan="2" class="logincell">
-								<button id="loginbtn" onclick="login();">로그인</button>
-							</td>
+				<h1>Sign In</h1>
+				<div class="login-box">
+					<table class="login">
+						<tbody>
+							<tr>
+								<td class="logininfo"><input type="text" id="joinemail"
+									name="joinemail" class="idpw form-control" placeholder="이메일"></td>
+								<td rowspan="2" class="logincell">
+									<button class="btn" id="loginbtn" onclick="login();">로그인</button>
+								</td>
 
-						</tr>
-						<tr>
-							<td class="logininfo"><input type="password" id="joinpw"
-								name="joinpw" class="idpw" placeholder="비밀번호"></td>
-						</tr>
-						<tr>
-							<td colspan="2"><p id="findidpw">
-									<a href="javascript:modal();">아이디/비밀번호 찾기</a>
-						</tr>
+							</tr>
+							<tr>
+								<td class="logininfo"><input type="password" id="joinpw"
+									name="joinpw" class="idpw form-control" placeholder="비밀번호"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><p id="findidpw">
+										<a href="javascript:modal();">아이디/비밀번호 찾기</a>
+							</tr>
 
-						<tr>
-							<td colspan="2" id="error" align="left"></td>
-						</tr>
-					</tbody>
-				</table>
-				<div id="snslogin" class="">
-					<button id="kakao-login-btn" onclick="kakao();">카카오로그인</button>
-					<a href="http://developers.kakao.com/logout"></a>
-					</br>
-					
-					<button class="g-signin2" data-onsuccess="onSignIn" onclick="">구글로그인</button>
-					<p>
-						아직 회원이 아니세요?<a href="USER_join.do">회원가입</a>
-					</p>
+							<tr>
+								<td colspan="2" id="error" align="left"></td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="snslogin" class="">
+					<!-- 카카오, 구글로그인 -->
+						<button id="kakao-login-btn" class="btn" onclick="kakao();"> </button>
+						<a href="http://developers.kakao.com/logout"></a> </br>
+
+						<button id="google-login-btn" class="btn g-signin2" data-onsuccess="onSignIn" onclick=""> </button>
+						<p>
+							아직 회원이 아니세요? <a class="join" href="USER_join.do">회원가입</a>
+						</p>
+					</div>
 				</div>
 			</div>
 			<div class="margin"></div>
@@ -97,16 +100,16 @@
 						<table class="M_table">
 							<tr>
 								<th>이메일</th>
-								<td><input type="text" id="joinemail2" name="joinemail"
+								<td><input class="form-control" type="text" id="joinemail2" name="joinemail"
 									onclick="checkid();"></td>
 							</tr>
 							<tr>
 								<th>새비밀번호</th>
-								<td><input type="password" id="newpw" name="joinpw"></td>
+								<td><input class="form-control" type="password" id="newpw" name="joinpw"></td>
 							</tr>
 							<tr>
 								<th>비밀번호 확인</th>
-								<td><input type="password" id="pwcheck"></td>
+								<td><input class="form-control" type="password" id="pwcheck"></td>
 							</tr>
 							<tr>
 								<th></th>
@@ -123,6 +126,7 @@
 	</div>
 
 
-<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=init" async
+		defer></script>
 </body>
 </html>

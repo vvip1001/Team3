@@ -14,9 +14,9 @@ public interface TotalBiz {
 	public int updateOne(TotalDto dto);
 
 	// IT역량차트
-	public JSONArray selectItSkill();
+	public JSONArray selectItSkill(String joinemail);
 
 	// 스킬차트
-	public JSONArray selectMySkill();
+	public JSONArray selectMySkill(String joinemail);
 
 }

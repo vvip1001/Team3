@@ -8,6 +8,16 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'MapoPeacefull';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
 body {
 	font-size: 18px !important;
 }
@@ -36,9 +46,14 @@ h1 {
 	font-family: 'yg-jalnan';
 }
 
+#title-area .form-control {
+	font-family: 'MapoPeacefull';
+}
+
 /*---------- 자소서 작성 영역 ----------*/
 #cv-area {
 	height: 700px;
+	font-family: 'MapoPeacefull';
 }
 
 #input-grp {
@@ -160,6 +175,7 @@ h1 {
 
 /*---------- toast 영역 ----------*/
 .toast {
+	font-family: 'MapoPeacefull';
 	max-width: 450px !important;
 	font-size: 14px !important;
 	position: absolute;

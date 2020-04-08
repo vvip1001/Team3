@@ -31,15 +31,15 @@ public class TotalBizImpl implements TotalBiz {
 	
 
 	@Override
-	public JSONArray selectItSkill() {
+	public JSONArray selectItSkill(String joinemail) {
 		// TODO Auto-generated method stub
-		return totaldao.selectItSkill();
+		return totaldao.selectItSkill(joinemail);
 	}
 
 	@Override
-	public JSONArray selectMySkill() {
+	public JSONArray selectMySkill(String joinemail) {
 		// TODO Auto-generated method stub
-		return totaldao.selectMySkill();
+		return totaldao.selectMySkill(joinemail);
 	}
 
 	
