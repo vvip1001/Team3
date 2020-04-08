@@ -49,8 +49,9 @@ public class CoverLetterBizImpl implements CoverLetterBiz {
 	@Override
 	public CoverLetterDto getGroupno(String joinemail) {
 		System.out.println("biz 그룹 실행 ");
-		
-		return coverletterdao.getGroupno(joinemail);
+		CoverLetterDto dto =  coverletterdao.getGroupno(joinemail);
+		System.out.println("biz 그룹 실행 res" + dto);
+		return dto;
 	}
 	
 	@Override

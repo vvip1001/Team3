@@ -96,7 +96,7 @@
             doc.save('portfolio.pdf');
             
             
-            PFform.submit();
+            //PFform.submit();
 
             //파일 서버로 저장 
 //          var pdf = btoa(doc.output());
@@ -126,5 +126,7 @@
           
 		});
 	}
+	
+
 	
 	

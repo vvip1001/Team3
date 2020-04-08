@@ -528,7 +528,7 @@ public class UserController {
    }
 
    // 포트폴리오 게시판
-   @RequestMapping(value = "/USER_userPFList.do")
+   @RequestMapping(value = "/USER_userPFList.do", method= {RequestMethod.POST, RequestMethod.GET})
    public String boardListPF(@ModelAttribute("CoverLetterDto") CoverLetterDto dto,
          @RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model) {
       cvcategory = "포폴";

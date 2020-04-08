@@ -105,9 +105,17 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 	
 	@Override
 	public CoverLetterDto getGroupno(String joinemail) {
-		System.out.println("dao 그룹번호 실행 ");
-		
-		return sqlSession.selectOne(NAMESPACE + "getGroupno", joinemail);
+		System.out.println("dao 그룹번호 실행 " + joinemail);
+		CoverLetterDto dto = new CoverLetterDto();
+		int res = 0;
+		if(sqlSession.selectOne(NAMESPACE + "getGroupno", joinemail) != null) {
+			res = sqlSession.selectOne(NAMESPACE + "getGroupno", joinemail);
+			dto.setGroupno(res);
+			return dto;
+		} else {
+			dto.setGroupno(res);
+			return dto;
+		}
 	}
 
 

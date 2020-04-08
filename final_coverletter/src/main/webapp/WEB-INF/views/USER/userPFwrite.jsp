@@ -25,9 +25,10 @@
 	<%@ include file="../ALL/header_login.jsp"%>
 	
 	<div class="container">
+	
 		<div class="center" id="center">
+		<f:form name="PFform" action="PFinsert.do" method="post" modelAttribute="MultiRowTarget" enctype="multipart/form-data"> 
 			<div id="pdfwrap">
-				<f:form name="PFform" action="PFinsert.do" method="post" modelAttribute="MultiRowTarget" enctype="multipart/form-data"> 
 				<div id="PFinfo">
 					<h1 id="item">포트폴리오 필수항목</h1>
 					<table class="PFtable">
@@ -35,6 +36,7 @@
 							<th>프로젝트명</th>
 							<td class="PFinfo"><f:input type="text" path="targets[0].title"/></td>
 						</tr>
+						
 						<tr>
 							<th>수행기간</th>
 							<td class="PFinfo"><f:input type="text" path="targets[0].question"/></td>
@@ -101,25 +103,21 @@
 					</div>
 				</div>
 				<div id="filed"></div>
-				</f:form>
+				
 			</div>
-			<button id="create_pdf" onclick="pdfprint();">포트폴리오 PDF변환</button>
-
-
+			<input type="submit" id="create_pdf" value="저장하기">
+			<input type="button" id="create_pdf" value="PDF다운로드" onclick="pdfprint();"/>
+</f:form>
 			<button id="plus" onclick="plus();">
 				<img id="plusbtn" alt="plusbtn" src="resources/IMG/plus.jpg">
 			</button>
 
-
-
-
-
-
-
-
 		</div>
+		
 	</div>
 </body>
+<script type="text/javascript">
 
+</script>
 
 </html>

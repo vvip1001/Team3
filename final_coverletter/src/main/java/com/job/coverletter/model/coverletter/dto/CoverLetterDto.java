@@ -2,6 +2,7 @@ package com.job.coverletter.model.coverletter.dto;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CoverLetterDto {
@@ -25,6 +26,7 @@ public class CoverLetterDto {
 	private String question;
 
 	// 제목, 프로젝트명
+	@NotEmpty(message = "제목을 입력하여 주세요.")
 	private String title;
 
 	// 소제목, 개발목표

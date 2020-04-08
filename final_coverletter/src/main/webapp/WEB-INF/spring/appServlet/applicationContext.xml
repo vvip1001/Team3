@@ -103,12 +103,12 @@
     		<!-- 트랜잭션을 처리할 메소드 정의 -->
     		<!-- board_selectOne(), board_insertOne() 등등 이런식으로 사용하기 위해서 앞머리의 이름을 통일 시킨다 -->
     		<tx:method name="select*" rollback-for="Exception" read-only="true"/>
-    		<tx:method name="*insert*" rollback-for="Exception"/>
+<!--     		<tx:method name="*insert*" rollback-for="Exception"/>
     		<tx:method name="*update*" rollback-for="Exception"/>
     		<tx:method name="*delete*" rollback-for="Exception"/>
     		<tx:method name="*Insert*" rollback-for="Exception"/>
     		<tx:method name="*Update*" rollback-for="Exception"/>
-    		<tx:method name="*Delete*" rollback-for="Exception"/>
+    		<tx:method name="*Delete*" rollback-for="Exception"/> -->
     	</tx:attributes>
     </tx:advice>
     

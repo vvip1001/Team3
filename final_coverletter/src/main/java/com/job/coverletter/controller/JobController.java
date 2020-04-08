@@ -13,6 +13,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -123,7 +125,6 @@ public class JobController {
 		return res;
 	}
 
-
 	@RequestMapping(value = "/JOB_jobDetail.do", method = RequestMethod.GET)
 	public String jobDetail(Model model, int companyseq) {
 		logger.info("jobDetail");
@@ -205,11 +206,11 @@ public class JobController {
 
 	@RequestMapping(value = "USER_speechForm.do")
 	public String jobSpeech(Model model) {
-		
+
 		int count = qnaboardbiz.boardQnaListCount();
 		System.out.println(count);
-		
-		model.addAttribute("count",count);
+
+		model.addAttribute("count", count);
 		return "USER/userSpeech";
 	}
 
@@ -224,139 +225,135 @@ public class JobController {
 	}
 
 	// 포폴작성
-	@RequestMapping(value = "/PFinsert.do", method = RequestMethod.POST, consumes = { "multipart/form-data" })
-	public String PFinsert(Model model,@ModelAttribute("MultiRowTarget") MultiRowTarget targets, HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "/PFinsert.do", method = { RequestMethod.POST }, consumes = { "multipart/form-data" })
+	public String PFinsert(Model model, @ModelAttribute("MultiRowTarget") @Valid MultiRowTarget targets,
+			 HttpServletRequest request, HttpSession session) {
 		logger.info("PFinsert");
-		
-		
-		
-		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
-		logger.info("확인22222222222!!!!!!!!!!!!!!!!!!!!!");
-		
-		//가장 큰 그룹번호 가져오기
-		int groupno = coverletterBiz.getGroupno(userDto.getJoinemail()).getGroupno();
-		groupno += 1;  
-		logger.info("확인!!!!!!!!!!!!!!!!!!!!!");
-		 
-		MultipartFile file = targets.getTargets().get(0).getFileUpload();
-		if (file.getSize() != 0) {
-			String name = file.getOriginalFilename();
-			
-		
-			System.out.println("----------------------------------------");
 
-			System.out.println("file = " + file.getSize());
-			try {
-				System.out.println("file = " + file.getInputStream());
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			System.out.println("name = " + name);
+	
+			JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+			logger.info("확인22222222222!!!!!!!!!!!!!!!!!!!!!" + userDto);
+
+			// 가장 큰 그룹번호 가져오기
+			int groupno = coverletterBiz.getGroupno(userDto.getJoinemail()).getGroupno();
+			groupno += 1;
+
+			logger.info("확인!!!!!!!!!!!!!!!!!!!!!" + groupno);
+
+			MultipartFile file = targets.getTargets().get(0).getFileUpload();
+			if (file.getSize() != 0) {
+				String name = file.getOriginalFilename();
+
+				System.out.println("----------------------------------------");
+
+				System.out.println("file = " + file.getSize());
+				try {
+					System.out.println("file = " + file.getInputStream());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				System.out.println("name = " + name);
 
 //		이름과 설명을 넘김.
-			InputStream inputStream = null;
-			OutputStream outputStream = null;
+				InputStream inputStream = null;
+				OutputStream outputStream = null;
 
-			try {
-				inputStream = file.getInputStream();
-				// 경로
-				String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-				System.out.println("upload real path : " + path);
-
-				File storage = new File(path);
-				if (!storage.exists()) {
-					storage.mkdir();
-				} // 해당 파일이 있으면 넘어간다.
-
-				File newFile = new File(path + "/" + name);
-				if (!newFile.exists()) {
-					newFile.createNewFile();
-				} // 새로운 파일이 없으면
-
-				outputStream = new FileOutputStream(newFile); // 업로드 되는 파일
-
-				int read = 0;
-				byte[] b = new byte[(int) file.getSize()];
-				while ((read = inputStream.read(b)) != -1) {
-					outputStream.write(b, 0, read);
-				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
 				try {
-					inputStream.close();
-					outputStream.close();
+					inputStream = file.getInputStream();
+					// 경로
+					String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+					System.out.println("upload real path : " + path);
+
+					File storage = new File(path);
+					if (!storage.exists()) {
+						storage.mkdir();
+					} // 해당 파일이 있으면 넘어간다.
+
+					File newFile = new File(path + "/" + name);
+					if (!newFile.exists()) {
+						newFile.createNewFile();
+					} // 새로운 파일이 없으면
+
+					outputStream = new FileOutputStream(newFile); // 업로드 되는 파일
+
+					int read = 0;
+					byte[] b = new byte[(int) file.getSize()];
+					while ((read = inputStream.read(b)) != -1) {
+						outputStream.write(b, 0, read);
+					}
+
 				} catch (IOException e) {
 					e.printStackTrace();
+				} finally {
+					try {
+						inputStream.close();
+						outputStream.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
+
+				System.out.println("if문 들어왔다lo");
+
+				for (int i = 0; i < targets.getTargets().size(); i++) {
+
+					String title = targets.getTargets().get(0).getTitle();
+					String subtitle = targets.getTargets().get(0).getSubtitle();
+					String question = targets.getTargets().get(0).getQuestion();
+					String content = targets.getTargets().get(0).getContent();
+					String functions = targets.getTargets().get(0).getFunctions();
+					String positions = targets.getTargets().get(0).getPositions();
+					String participation = targets.getTargets().get(0).getParticipation();
+
+					targets.getTargets().get(i).setTitle(title);
+					targets.getTargets().get(i).setSubtitle(subtitle);
+					targets.getTargets().get(i).setQuestion(question);
+					targets.getTargets().get(i).setContent(content);
+					targets.getTargets().get(i).setFunctions(functions);
+					targets.getTargets().get(i).setPositions(positions);
+					targets.getTargets().get(i).setParticipation(participation);
+					targets.getTargets().get(i).setFilepath(name);
+					targets.getTargets().get(i).setJoinemail(userDto.getJoinemail());
+					targets.getTargets().get(i).setGroupno(groupno);
+					System.out.println("========================insert 이전 dto 값 : " + targets.getTargets().get(i));
+					coverletterBiz.PFwrite(targets.getTargets().get(i));
+					System.out.println("========================dto 값 : " + targets.getTargets().get(i));
+
+				}
+
+				return "redirect:/USER_userPFList.do";
+
+			} else {
+				System.out.println("else문 들어왔다");
+				String name = "";
+
+				for (int i = 0; i < targets.getTargets().size(); i++) {
+
+					String title = targets.getTargets().get(0).getTitle();
+					String subtitle = targets.getTargets().get(0).getSubtitle();
+					String question = targets.getTargets().get(0).getQuestion();
+					String content = targets.getTargets().get(0).getContent();
+					String functions = targets.getTargets().get(0).getFunctions();
+					String positions = targets.getTargets().get(0).getPositions();
+					String participation = targets.getTargets().get(0).getParticipation();
+
+					targets.getTargets().get(i).setTitle(title);
+					targets.getTargets().get(i).setSubtitle(subtitle);
+					targets.getTargets().get(i).setQuestion(question);
+					targets.getTargets().get(i).setContent(content);
+					targets.getTargets().get(i).setFunctions(functions);
+					targets.getTargets().get(i).setPositions(positions);
+					targets.getTargets().get(i).setParticipation(participation);
+					targets.getTargets().get(i).setFilepath(name);
+					targets.getTargets().get(i).setJoinemail(userDto.getJoinemail());
+					targets.getTargets().get(i).setGroupno(groupno);
+					coverletterBiz.PFwrite(targets.getTargets().get(i));
+					System.out.println("========================dto 값 : " + targets.getTargets().get(i));
+				}
+
+				return "redirect:/PFinsert.do";
+
 			}
-
-			System.out.println("if문 들어왔다lo");
-				
-		
-			
-			for (int i = 0; i < targets.getTargets().size(); i++) {
-
-				String title = targets.getTargets().get(0).getTitle();
-				String subtitle = targets.getTargets().get(0).getSubtitle();
-				String question = targets.getTargets().get(0).getQuestion();
-				String content = targets.getTargets().get(0).getContent();
-				String functions = targets.getTargets().get(0).getFunctions();
-				String positions = targets.getTargets().get(0).getPositions();
-				String participation = targets.getTargets().get(0).getParticipation();
-
-				targets.getTargets().get(i).setTitle(title);
-				targets.getTargets().get(i).setSubtitle(subtitle);
-				targets.getTargets().get(i).setQuestion(question);
-				targets.getTargets().get(i).setContent(content);
-				targets.getTargets().get(i).setFunctions(functions);
-				targets.getTargets().get(i).setPositions(positions);
-				targets.getTargets().get(i).setParticipation(participation);
-				targets.getTargets().get(i).setFilepath(name);
-				targets.getTargets().get(i).setJoinemail(userDto.getJoinemail());
-				targets.getTargets().get(i).setGroupno(groupno);
-				coverletterBiz.PFwrite(targets.getTargets().get(i));
-				System.out.println("========================dto 값 : "+ targets.getTargets().get(i));
-
-			}
-			
-			
-			return "redirect:/USER_userPFList.do";
-
-		} else {
-			System.out.println("else문 들어왔다");
-			String name = "";
-		
-
-			for (int i = 0; i < targets.getTargets().size(); i++) {
-
-				String title = targets.getTargets().get(0).getTitle();
-				String subtitle = targets.getTargets().get(0).getSubtitle();
-				String question = targets.getTargets().get(0).getQuestion();
-				String content = targets.getTargets().get(0).getContent();
-				String functions = targets.getTargets().get(0).getFunctions();
-				String positions = targets.getTargets().get(0).getPositions();
-				String participation = targets.getTargets().get(0).getParticipation();
-
-				targets.getTargets().get(i).setTitle(title);
-				targets.getTargets().get(i).setSubtitle(subtitle);
-				targets.getTargets().get(i).setQuestion(question);
-				targets.getTargets().get(i).setContent(content);
-				targets.getTargets().get(i).setFunctions(functions);
-				targets.getTargets().get(i).setPositions(positions);
-				targets.getTargets().get(i).setParticipation(participation);
-				targets.getTargets().get(i).setFilepath(name);
-				targets.getTargets().get(i).setJoinemail(userDto.getJoinemail());
-				targets.getTargets().get(i).setGroupno(groupno);
-				coverletterBiz.PFwrite(targets.getTargets().get(i));
-				System.out.println("========================dto 값 : "+ targets.getTargets().get(i));
-			}
-			
-			
-			return "redirect:/PFinsert.do";
-
 		}
 	}
 
-}
