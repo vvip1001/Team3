@@ -40,10 +40,20 @@ public class CompanyBizImpl implements CompanyBiz {
 		return companydao.selectAll_group(groupno);
 	}
 
-//	@Override
-//	public List<CompanyDto> selectList_web() {
-//
-//		return companydao.selectList_web();
-//	}
+	@Override
+	public List<CompanyDto> selectList_web() {
+
+		return companydao.selectList_web();
+	}
+
+	@Override
+	public List<CompanyDto> selectList_front() {
+		return companydao.selectList_front();
+	}
+
+	@Override
+	public List<CompanyDto> selectList_back() {
+		return companydao.selectList_back();
+	}
 
 }

@@ -18,7 +18,7 @@
 <body>
 
 	<div id="All">
-		<input type="hidden" id="companyseq" value="${maindetail.companyseq }"/>
+		<input type="hidden" id="companyseq" value="${mainDetail.companyseq }"/>
 
 		<div class="container" id="main">
 			<div class="container" id=null></div>
@@ -40,13 +40,7 @@
 					<div class="col-md-12">${mainDetail.oneintro }</div>
 				</div>
 
-				<div class="row">
-					<div class="col-md-12">
-						<div class="bookmark" id="button">
-						<button type="button" class="button" onclick="bookmark();">회사 즐겨찾기</button>
-						</div>
-					</div>
-				</div>
+	 
 
 
 				<div class="row" id="info">
@@ -242,23 +236,28 @@
 					</div>
 					<br>
 
-
+ 
 					<div>
 						<div class="title">위 치</div>
 
-						<div class="content">${mainDetail.location }</div>
+						<div class="content">
+			 	
+						<a href="MAIN_kakaomap.do?companyseq=${mainDetail.companyseq }">${mainDetail.location }</a> </div>
 
 					</div>
 					<br>
+					
+			
 
 
 				</div>
+			<div class="100"></div>
 			</form>
 
-
+		<div class="100"></div>
 		</div>
 
-
+		<div class="100"></div>
 
 	</div>
 

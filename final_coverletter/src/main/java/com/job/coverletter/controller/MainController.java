@@ -51,35 +51,31 @@ public class MainController {
 	@Autowired
 	private SupportPayBiz supportpaybiz;
 
-	
-	/*메인에 뿌려 줄 리스트 20개 */
+	 
 	@RequestMapping(value = "/MAIN_main.do", method = RequestMethod.GET)
 	public String selectOne(Model model) {
 		
-	
+		
+		//전체화면 20개
 		List<CompanyDto> list_cnt20 = companyBiz.selectList_cnt20();
 		model.addAttribute("list_cnt20", list_cnt20);
 	
+		//웹 분야 4개
+		List<CompanyDto> list_web = companyBiz.selectList_web();
+		model.addAttribute("list_web", list_web);
+		
+		//프론트 분야 4개
+		List<CompanyDto> list_front = companyBiz.selectList_front();
+		model.addAttribute("list_front", list_front);
+		
+		//백 분야 4개
+		List<CompanyDto> list_back = companyBiz.selectList_back();
+		model.addAttribute("list_back", list_back);
 		
 		logger.info("Main go");
 		return "MAIN/main";
 	}
 	
-///*스크롤페이징 메인 ajax*/
-//@RequestMapping(value="/MAIM_mainAjax.do", method=RequestMethod.POST)
-//	public List<CompanyDto> mainAjax(@ModelAttribute CompanyDto companyname) {
-//	
-//		
-//		List<CompanyDto> ajax = new ArrayList<CompanyDto>();
-//		
-//		ajax.add(companyname);
-//
-//		
-//		return ajax;
-//		
-//	}
-//	
-//	
 	/*회사가 가지고있는 채용정보를 그룹넘버 불러 옴 */
 	@RequestMapping(value = "/MAIN_mainDetail.do", method = RequestMethod.GET)
 	public String selectOne(Model model, int companyseq ) {
@@ -94,9 +90,19 @@ public class MainController {
 
 	}
 	
- 
-	
+	@RequestMapping(value = "/MAIN_kakaomap.do", method = RequestMethod.GET)
+	public String kakaomap(Model model,  int companyseq) {
+		
+		CompanyDto kakaomap_selectOne = companyBiz.selectOne(companyseq);
 
+		model.addAttribute("kakaomap_selectOne", kakaomap_selectOne);
+	
+ 
+		
+		return "MAIN/kakaomap";
+
+	}
+	
 	/*-------------------------후원하기-------------------------*/
 	@RequestMapping(value = "/MAIN_pay.do")
 	public String pay(Model model, String joinemail) {
