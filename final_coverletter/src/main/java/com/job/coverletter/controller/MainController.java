@@ -108,8 +108,10 @@ public class MainController {
 	
 	/*-------------------------후원하기-------------------------*/
 	@RequestMapping(value = "/MAIN_pay.do")
-	public String pay(Model model, String joinemail) {
-
+	public String pay(Model model , HttpSession session) {
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
+		
 		model.addAttribute("joinemail", joinemail);
 
 		return "PAY/pay";

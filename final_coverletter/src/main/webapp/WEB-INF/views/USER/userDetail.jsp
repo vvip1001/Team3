@@ -131,10 +131,10 @@
 							<div id="field2"></div>
 							<div id="custom_button2">
 								<button type="button" id="button2" onclick="add_div(this.id);">
-									<img alt="" src="${pageContext.request.contextPath}/resources/IMG/button.png">
+									 <span class="glyphicon glyphicon-plus"></span>
 								</button>
 								<button type="button" onclick="remove_div(this);">
-									<img alt=""	src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+									 <span class="glyphicon glyphicon-minus"></span>
 								</button>
 							</div>
 						</div>
@@ -212,12 +212,10 @@
 				<div id="field4"></div>
 				<div class="btn333" id="custom_button4">
 					<button id="button4" type="button" onclick="add_div(this.id);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/button.png">
+						 <span class="glyphicon glyphicon-plus"></span>
 					</button>
 					<button type="button" onclick="remove_div(this);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+						 <span class="glyphicon glyphicon-minus"></span>
 					</button>
 				</div>
 			</div>
@@ -232,12 +230,10 @@
 				<div id="field5"></div>
 				<div class="btn333" id="custom_button5">
 					<button type="button" id="button5" onclick="add_div(this.id);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/button.png">
+					 <span class="glyphicon glyphicon-plus"></span>
 					</button>
 					<button type="button" onclick="remove_div(this);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+						 <span class="glyphicon glyphicon-minus"></span>
 					</button>
 				</div>
 
@@ -253,12 +249,10 @@
 				<div id="field6"></div>
 				<div class="btn333" id="custom_button6">
 					<button type="button" id="button6" onclick="add_div(this.id);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/button.png">
+					 <span class="glyphicon glyphicon-plus"></span>
 					</button>
 					<button type="button" onclick="remove_div(this);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+						 <span class="glyphicon glyphicon-minus"></span>
 					</button>
 				</div>
 			</div>

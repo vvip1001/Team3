@@ -149,7 +149,7 @@ CREATE TABLE COVERLETTER
     JOINEMAIL         VARCHAR2(200)     NOT NULL,    -- 이메일
     CVCATEGORY        VARCHAR2(30)      NOT NULL,    -- 카테고리
     GROUPSEQ          NUMBER            NOT NULL,    -- 자소서, 포폴용 각각의 시퀀스
-    GROUPNO            NUMBER         NOT NULL,    -- 그룹번호
+    GROUPNO            NUMBER         ,    -- 그룹번호
     QUESTION          VARCHAR2(1000),                -- 자: 항목(질문), 포: 수행기간
     TITLE             VARCHAR2(500)     NOT NULL,    -- 자: 제목, 포: 프로젝트명
     SUBTITLE          VARCHAR2(500),                 -- 지: 소제목, 포: 개발목표

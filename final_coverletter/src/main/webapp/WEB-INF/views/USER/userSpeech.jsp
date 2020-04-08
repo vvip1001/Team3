@@ -29,8 +29,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
+			<div class="select-div">
 				<div class="form-group">
 					<select class="form-control" id="sel1" onchange="formChange(this);">
 						<option value="스피치연습">스피치연습</option>
@@ -38,13 +37,15 @@
 					</select>
 				</div>
 			</div>
-			<div class="col-md-3" id="timeDP">
-				<div id="timer">
+			<div class="row">
+			<div id="timeDP">
+				<div class="col-md-6" id="timer">
 					<p id="timerP">타이머</p>
 				</div>
-				<div id="end">
+				<div class="col-md-6" id="end">
 					종료
 				</div>
+			</div>
 			</div>
 		</div>
 
@@ -103,14 +104,12 @@
 
 		<div id="cloneDiv"></div>
 
-		<div id="custom_button2">
+		<div id="custom_button2" class="clone-btn-grp">
 			<button class="button2" onclick="add_div();">
-				<img alt=""
-					src="${pageContext.request.contextPath}/resources/IMG/button.png">
+				 <span class="glyphicon glyphicon-plus"></span>
 			</button>
 			<button class="button2" id="button2" onclick="remove_div(this.id);">
-				<img alt=""
-					src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+				 <span class="glyphicon glyphicon-minus"></span>
 			</button>
 		</div>
 

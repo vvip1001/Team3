@@ -101,7 +101,7 @@
 				<button class="btn" onclick="">취업센터</button><br/> <br/> 
 				<button class="btn" onclick="window.open('MAIN_pay.do', '', 'width=450,height=400,top=150,left=400');">
 				후원하기</button>
-				<button class="btn" onclick="loaction.href='PAY_payList.do'">후원내역 확인하기</button>
+				<button class="btn" onclick="location.href='PAY_payList.do'">후원내역 확인하기</button>
 			</div>
 			<div class="center1heightside"></div>
 

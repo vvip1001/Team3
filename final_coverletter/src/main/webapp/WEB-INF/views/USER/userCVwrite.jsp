@@ -42,8 +42,7 @@
   </div>
 <!-- toast 영역 끝 -->   
 
-<f:form action="USER_userCVinsert.do" method="post"
-         modelAttribute="MultiRowTarget">
+<f:form action="USER_userCVinsert.do" method="post" modelAttribute="MultiRowTarget">
          <f:input type="hidden" path="targets[0].joinemail" value="a"/>
    <!-- 자소서 제목 영역 -->
    <div class="container title-container">
@@ -141,12 +140,10 @@
          <!-- CLONE button 영역 -->
          <div class="clone-btn-grp" id="">
             <button class="add-btn" onclick="add();" type="button">
-               <img alt=""
-                  src="${pageContext.request.contextPath}/resources/IMG/button.png">
+               <span class="glyphicon glyphicon-plus"></span>
             </button>
             <button class="remove-btn" onclick="remove(this)" type="button">
-               <img alt=""
-                  src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+               <span class="glyphicon glyphicon-minus"></span>
             </button>
          </div>
       </div>

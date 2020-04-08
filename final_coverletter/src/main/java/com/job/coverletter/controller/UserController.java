@@ -624,23 +624,34 @@ public class UserController {
 	// 자기소개서 INSERT
 	@RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
 	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets , HttpSession session) {
-		
 		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
 		String joinemail = userDto.getJoinemail();
+		System.out.println("userDto:==========================="+userDto);
 		
+		System.out.println("=============여기와?============" + targets);
+		int res = 0;
 		if (targets.getTargets().size() != 1) {
 			for (int i = 0; i < targets.getTargets().size(); i++) {
 				// 첫번째 값
 				String title = targets.getTargets().get(0).getTitle();
-
+				System.out.println("==============================================");
+				System.out.println(targets.getTargets().get(i));
 				// 나머지 list(dto)에다 설정 set
 				targets.getTargets().get(i).setTitle(title);
 				targets.getTargets().get(i).setJoinemail(joinemail);
-				int res = coverletterBiz.CVinsert(targets.getTargets().get(i));
+				res = coverletterBiz.CVinsert(targets.getTargets().get(i));
 			}
+		} else {
+			targets.getTargets().get(0).setJoinemail(joinemail);
+			res = coverletterBiz.CVinsert(targets.getTargets().get(0));
 		}
 
-		return "redirect:/JOB_jobCenter.do";
+		if(res > 0) {
+			return "redirect:/JOB_jobCenter.do";
+			
+		} else {
+			return "redirect:/MAIN_Main.do";
+		}
 	}
 	/*------------------------ 형권 : 스피치 작성 --------------------------*/
 	@RequestMapping(value = "USER_question.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
