@@ -7,33 +7,28 @@ window.onscroll = function(e) {
 	if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 		// 실행할 로직 (콘텐츠 추가)
 		count++;
+		
 		$.ajax({
-			url:"MAIM_mainAjax.do",
-			type:"POST",
-			data: ({
-				imgurl : imgurl,
-				companyname : companyname,
-				business : business
-			}),
-	        dataType :"JSON",
-	        success : function(data){
-	         
-	        	alert("꾸꾸");
-	          
+			url : "MAIM_mainAjax.do",
+			type : "POST",
+			dataType : "JSON",
+			success : function(data) {
+				$.each(data, function(index, item){
+				
+			})
+ 
 			},
-		    error: function(){
-		       alert("통신 실패");
-		    }
+			error : function() {
+				alert("통신 실패");
+			}
 		})
 
-		var companyItemTop =document.createElement("div")
+		var companyItemTop = document.createElement("div")
 		companyItemTop.setAttribute("class", "companyItemTop")
-		
-//		var a = document.createElement("a")
-//		a.setAttribute("href", "MAIN_mainDetail.do?companyseq="+companyseq)
-//		companyItemTop.appendChild(a)
 
-		
+		// var a = document.createElement("a")
+		// a.setAttribute("href", "MAIN_mainDetail.do?companyseq="+companyseq)
+		// companyItemTop.appendChild(a)
 
 		// var totalCompanyItem = document.createElement("div")
 		// totalCompanyItem.setAttribute("class", "totalCompanyItem")
