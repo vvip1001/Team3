@@ -44,6 +44,7 @@
 	</update>
 	
 	<!-- 회원탈퇴 -->
+
 	<update id="userdelete" parameterType="string">
 		UPDATE JOINUSER SET SINGUP = 'N'
 		WHERE JOINEMAIL = #{joinemail}

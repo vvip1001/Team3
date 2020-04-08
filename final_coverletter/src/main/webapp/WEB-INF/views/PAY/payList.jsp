@@ -75,7 +75,7 @@
 								<c:forEach items="${boardList }" var="dto">
 									<tr>
 										<td>${dto.partner_order_id}</td>
-										<td>${dto.partner_user_id }</td>
+										<td>${dto.joinemail}</td>
 										<td>${dto.payment_method_type}</td>
 										<td>${dto.amount_total}원</td>
 										<td>${dto.amount_tax_free}원</td>

@@ -2,59 +2,63 @@ package com.job.coverletter.model.coverletter.dto;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CoverLetterDto {
 
-    // 시퀀스 
-    private int coverletterseq;
+	// 시퀀스
+	private int coverletterseq;
 
-    // 이메일(ID) 
-    private String joinemail;
+	// 이메일(ID)
+	private String joinemail;
 
-    // 구분 
-    private String cvcategory;
+	// 구분
+	private String cvcategory;
 
-    // 그룹시퀀스 
-    private int groupseq;
+	// 그룹시퀀스
+	private int groupseq;
 
-    // 작업단위 그룹번호 
-    private int groupno;
+	// 작업단위 그룹번호
+	private int groupno;
 
-    // 항목(질문), 수행기간 
-    private String question;
+	// 항목(질문), 수행기간
+	private String question;
 
-    // 제목, 프로젝트명 
-    private String title;
+	// 제목, 프로젝트명
+	@NotEmpty(message = "제목을 입력하여 주세요.")
+	private String title;
 
-    // 소제목, 개발목표 
-    private String subtitle;
+	// 소제목, 개발목표
+	private String subtitle;
 
-    // 내용, 개발환경 
-    private String content;
+	// 내용, 개발환경
+	private String content;
 
-    // 구현기능 
-    private String functions;
+	// 구현기능
+	private String functions;
 
-    // 담당역할 
-    private String positions;
+	// 담당역할
+	private String positions;
 
-    // 참여도 
-    private String participation;
+	// 참여도
+	private String participation;
 
-    // 기능설명 
-    private String functioninfo;
+	// 기능설명
+	private String functioninfo;
 
-    // 화면설명 
-    private String viewinfo;
+	// 화면설명
+	private String viewinfo;
 
-    // 작성일 
-    private Date regdate;
+	// 작성일
+	private Date regdate;
 
-    // 파일경로 
-    private MultipartFile filepath;
-    
-    // 페이징
+	// 파일경로
+	private String filepath;
+
+	private MultipartFile fileUpload;
+
+	// 페이징
 	private int StartIndex;
 	private int CntPerPage;
 	// 현재페이지
@@ -64,14 +68,13 @@ public class CoverLetterDto {
 	private String category;
 	private String keyword;
 
-
-    public CoverLetterDto() {
+	public CoverLetterDto() {
 		super();
 	}
 
 	public CoverLetterDto(int coverletterseq, String joinemail, String cvcategory, int groupseq, int groupno,
 			String question, String title, String subtitle, String content, String functions, String positions,
-			String participation, String functioninfo, String viewinfo, Date regdate, MultipartFile filepath, int startIndex,
+			String participation, String functioninfo, String viewinfo, Date regdate, String filepath, int startIndex,
 			int cntPerPage, int curPage, String category, String keyword) {
 		super();
 		this.coverletterseq = coverletterseq;
@@ -217,12 +220,21 @@ public class CoverLetterDto {
 		this.regdate = regdate;
 	}
 
-	public MultipartFile getFilepath() {
+	public String getFilepath() {
 		return filepath;
 	}
 
-	public void setFilepath(MultipartFile filepath) {
+	public void setFilepath(String filepath) {
 		this.filepath = filepath;
+
+	}
+
+	public MultipartFile getFileUpload() {
+		return fileUpload;
+	}
+
+	public void setFileUpload(MultipartFile fileUpload) {
+		this.fileUpload = fileUpload;
 	}
 
 	public int getStartIndex() {
@@ -275,6 +287,5 @@ public class CoverLetterDto {
 				+ StartIndex + ", CntPerPage=" + CntPerPage + ", curPage=" + curPage + ", category=" + category
 				+ ", keyword=" + keyword + "]";
 	}
-
 
 }

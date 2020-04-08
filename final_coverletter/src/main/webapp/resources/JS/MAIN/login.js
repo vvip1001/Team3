@@ -15,8 +15,7 @@ function idpwcheck() {
 
 // 이메일 인증 팝업
 function checkid() {
-	window
-			.open("USER_emailcheckpopup_login.do", "",
+	window.open("USER_emailcheckpopup_login.do", "",
 					"width=500px,height=500px");
 	chk01 = true
 }

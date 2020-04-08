@@ -4,7 +4,7 @@
 	id="WebApp_ID" version="4.0">
 	
 	<welcome-file-list>
-        <welcome-file>/WEB-INF/views/MAIN/main.jsp</welcome-file>
+        <welcome-file>/MAIN_main.do</welcome-file>
     </welcome-file-list>
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>

@@ -15,7 +15,6 @@ public class MultiRowTarget {
 	}
 
 	public MultiRowTarget() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public List<CoverLetterDto> getTargets() {
@@ -26,7 +25,10 @@ public class MultiRowTarget {
 		this.targets = targets;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "MultiRowTarget [targets=" + targets + "]";
+	}
 	
 	
 }

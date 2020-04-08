@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/*헤더 - 로그인 */
+/*헤더_not logout  */
 /*-- web font --*/
 @font-face {
    font-family: 'GmarketSansMedium';
@@ -15,7 +15,6 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   
 }
 
 #headerwap {
@@ -31,10 +30,11 @@
 
 #logo {
    margin: 5px 20px 0px 20px;
-   cursor:  pointer;
+   cursor: pointer;
 }
 
-img {
+/* 로고  */
+#logo img {
    height: 40px;
    width: 40px;
    cursor: pointer;
@@ -66,6 +66,7 @@ img {
    color: #fff;
    letter-spacing: -.5px;
    text-decoration: none;
+   margin-top: 5px !important;
 }
 
 #menu1 a:hover, #menu2 a:hover {
@@ -81,7 +82,7 @@ img {
 #menu1 a:after, #menu2 a:after {
    position: absolute;
    left: 0;
-   bottom: -4px;
+   bottom: -0.1px;
    width: 0%;
    height: 5px;
    background-color: #ffe800;
@@ -105,4 +106,7 @@ body {
     margin-right: auto;
     margin-left: auto;
     background-color: #fff;
+}
+a{
+	cursor: pointer; 
 }

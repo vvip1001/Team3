@@ -48,7 +48,11 @@ insert into company values(NEXT VALUE for companyseq02, 0, '회사이름', '이�
 
 select * from company order by companyseq desc;
 
-select * from company; 
+select * from company02; 
+
+SELECT COMPANYSEQ,COMPANYNAME,IMGURL,ONEINTRO,BUSINESS
+FROM COMPANY02 WHERE BUSINESS LIKE CONCAT('%','백엔드','%')  ORDER BY RAND() LIMIT 4
+
 
 
 select
@@ -56,7 +60,9 @@ companyseq, groupno, companyname, imgurl, oneintro,
 business, mainbusiness, jobdetail , salary, target, languages, enddate, intro,
 givetool, selfgrowth, mealtime, holiday, workinghour, insurance,
 incorporation, totalmember, homepage, location, mainfield
-FROM company02 WHERE companyseq = 690;
+FROM company02;	
+
+
 
 
 

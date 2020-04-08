@@ -8,7 +8,7 @@
 <title>이메일 체크</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/MAIN/emailChk.css?ver=3">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk.js?ver=3"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk.js"></script>
 </head>
 <%
 int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);

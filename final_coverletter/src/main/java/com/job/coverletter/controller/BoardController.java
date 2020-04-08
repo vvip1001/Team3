@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -35,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.job.coverletter.all.Pagination;
 import com.job.coverletter.model.board.biz.BoardBiz;
 import com.job.coverletter.model.board.dto.BoardDto;
+import com.job.coverletter.model.joinUser.dto.JoinUserDto;
 
 @Controller
 public class BoardController {
@@ -45,8 +47,6 @@ public class BoardController {
 	private BoardBiz boardBiz;
 
 	// 로그인 기능 완성되면 로그인 세션에 있는 아이디로 바꿔야됨
-	String login = "mint@email.com";
-
 	// 글목록(페이징기능)
 	@RequestMapping(value = "/BOARD_boardList.do", method = RequestMethod.GET)
 	public String boardList(@ModelAttribute("BoardDto") BoardDto dto, @RequestParam(defaultValue = "1") int curPage,
@@ -77,8 +77,11 @@ public class BoardController {
 
 	// 글작성
 	@RequestMapping(value = "/BOARD_boardWrite.do", method = RequestMethod.POST)
-	public String boardWrite(@ModelAttribute("BoardDto") BoardDto dto, HttpServletRequest request) {
-
+	public String boardWrite(@ModelAttribute("BoardDto") BoardDto dto, HttpServletRequest request , HttpSession session) {
+		
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String login = userDto.getJoinemail();
+		
 		MultipartFile file = dto.getUploadFile();
 		if (file.getSize() != 0) {
 			String name = file.getOriginalFilename();
@@ -202,7 +205,9 @@ public class BoardController {
 
 	// 댓글작성
 	@RequestMapping(value = "/BOARD_replyInsert.do")
-	public String replyInsert(@ModelAttribute("BoardDto") BoardDto dto, int curPage, Model model) {
+	public String replyInsert(@ModelAttribute("BoardDto") BoardDto dto, int curPage, Model model , HttpSession session) {
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String login = userDto.getJoinemail();
 		// 댓글작성자 : 로그인 완성되면 로그인 세션 아이디로 바꿔야됨
 		dto.setJoinemail(login);
 		boardBiz.replyInsert(dto);
@@ -213,8 +218,10 @@ public class BoardController {
 
 	// 대댓글작성
 	@RequestMapping(value = "/BOARD_rereInsert.do")
-	public String rereInsert(@ModelAttribute("BoardDto") BoardDto dto, int parentboardseq, int curPage, Model model) {
+	public String rereInsert(@ModelAttribute("BoardDto") BoardDto dto, int parentboardseq, int curPage, Model model , HttpSession session) {
 		// 댓글작성자 : 로그인 완성되면 로그인 세션 아이디로 바꿔야됨
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String login = userDto.getJoinemail();
 		dto.setJoinemail(login);
 		boardBiz.rereInsert(dto);
 

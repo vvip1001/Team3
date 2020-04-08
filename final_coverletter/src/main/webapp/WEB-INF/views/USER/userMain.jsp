@@ -92,11 +92,13 @@
 				<h2>김라이언 님</h2>
 				<br> <br>
 				<button class="btn" id="userUpdate">개인정보 수정</button>
-				<br> <br> <span style="font-weight: bold;">---나의
-					이력---</span> <br>
+				<br> <br> <span style="font-weight: bold;">---나의이력---</span> <br>
 				<button class="btn" onclick="location.href='USER_userDetail.do'">인적사항</button>
 				<br>
 				<button class="btn" onclick="location.href='JOB_jobCenter.do'">취업센터</button>
+				<br/>
+				<button class="btn" onclick="window.open('MAIN_pay.do', '', 'width=450,height=400,top=150,left=400');">후원하기</button>
+				<button class="btn" onclick="location.href='PAY_payList.do'">후원내역 확인하기</button>
 			</div>
 			<div class="center1heightside"></div>
 
