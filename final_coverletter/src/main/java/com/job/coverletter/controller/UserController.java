@@ -84,18 +84,19 @@ public class UserController {
 
    // join go
    @RequestMapping(value = "/USER_join.do", method = RequestMethod.GET)
-   public String join() {
+   public String join(Model model) {
       logger.info("joinpage go");
-
+      
+      model.addAttribute("joinUserDto",new JoinUserDto());
       return "MAIN/join";
    }
 
    // 회원가입 res
    @RequestMapping(value = "/USER_joinRes.do", method = RequestMethod.POST)
-   public String joinRes(Model model, @ModelAttribute("JoinuserDto") @Valid JoinUserDto dto, BindingResult result) {
+   public String joinRes(Model model, @ModelAttribute("joinUserDto") @Valid JoinUserDto dto, BindingResult result) {
       logger.info("joinRes.do");
 
-      model.addAttribute("joinuserDto", dto);
+      model.addAttribute("joinUserDto", dto);
 
       System.out.println("===============joinuserDto" + dto);
 
@@ -331,42 +332,42 @@ public class UserController {
    }
 
    // 마이페이지
-	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
-	public String userMain(Model model, HttpSession session) {
-		logger.info("userMain go");
+   @RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
+   public String userMain(Model model, HttpSession session) {
+      logger.info("userMain go");
 
-		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
-		
-		CoverLetterDto cvdto = new CoverLetterDto();
-		cvdto.setCvcategory("자소서");
-		cvdto.setJoinemail(userDto.getJoinemail());
-		int cvlist = coverletterBiz.boardCVListCount(cvdto);
-		System.out.println("cvlist : " + cvlist);
-		CoverLetterDto pfdto = new CoverLetterDto();
-		pfdto.setCvcategory("포폴");
-		pfdto.setJoinemail(userDto.getJoinemail());
-		int pflist = coverletterBiz.boardPFListCount(pfdto);
-		System.out.println("pflist : " + pflist);
+      JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+      
+      CoverLetterDto cvdto = new CoverLetterDto();
+      cvdto.setCvcategory("자소서");
+      cvdto.setJoinemail(userDto.getJoinemail());
+      int cvlist = coverletterBiz.boardCVListCount(cvdto);
+      System.out.println("cvlist : " + cvlist);
+      CoverLetterDto pfdto = new CoverLetterDto();
+      pfdto.setCvcategory("포폴");
+      pfdto.setJoinemail(userDto.getJoinemail());
+      int pflist = coverletterBiz.boardPFListCount(pfdto);
+      System.out.println("pflist : " + pflist);
 
-		JobCalendarDto jbdto = new JobCalendarDto();
-		jbdto.setJoinemail(userDto.getJoinemail());
-		int jblist = jobCalendarBiz.boardJobListCount(jbdto);
-		System.out.println("jblist : " + jblist);
+      JobCalendarDto jbdto = new JobCalendarDto();
+      jbdto.setJoinemail(userDto.getJoinemail());
+      int jblist = jobCalendarBiz.boardJobListCount(jbdto);
+      System.out.println("jblist : " + jblist);
 
-		model.addAttribute("cvlist", cvlist);
-		model.addAttribute("pflist", pflist);
-		model.addAttribute("jblist", jblist);
+      model.addAttribute("cvlist", cvlist);
+      model.addAttribute("pflist", pflist);
+      model.addAttribute("jblist", jblist);
 
-		// IT역량 차트
-		JSONArray itSkill = totalBiz.selectItSkill();
-		model.addAttribute("itSkill", itSkill);
+      // IT역량 차트
+      JSONArray itSkill = totalBiz.selectItSkill();
+      model.addAttribute("itSkill", itSkill);
 
-		// 스펙 차트
-		JSONArray mySkill = totalBiz.selectMySkill();
-		model.addAttribute("mySkill", mySkill);
+      // 스펙 차트
+      JSONArray mySkill = totalBiz.selectMySkill();
+      model.addAttribute("mySkill", mySkill);
 
-		return "USER/userMain";
-	}
+      return "USER/userMain";
+   }
 
    // fullCalendar 데이터 불러오기
    @RequestMapping(value = "/USER_getFullCalendarData.do", method = { RequestMethod.POST, RequestMethod.GET })
@@ -426,32 +427,32 @@ public class UserController {
    }
 
    // 인적사항 수정
-	@RequestMapping(value = "/USER_detailRes.do", method = RequestMethod.POST)
-	public String personal_insert(Model model, @ModelAttribute("totalDto") @Valid TotalDto dto, BindingResult result) {
-		if (result.hasErrors()) {
-			logger.info("유효성검사 실패");
-			logger.info(dto.getJoinname());
-			logger.info(dto.getCertificate());
-			logger.info(dto.getRegdate());
-			List<ObjectError> list = result.getAllErrors();
-			for (ObjectError error : list) {
-				System.out.println(error);
-			}
-			return "USER/userDetail";
-		} else {
-			logger.info("유효성 검사 통과");
-			logger.info(dto.getCertificate());
-			logger.info(dto.getRegdate());
-			int res = totalBiz.updateOne(dto);
-			System.out.println(res);
-			if (res > 0) {
+   @RequestMapping(value = "/USER_detailRes.do", method = RequestMethod.POST)
+   public String personal_insert(Model model, @ModelAttribute("totalDto") @Valid TotalDto dto, BindingResult result) {
+      if (result.hasErrors()) {
+         logger.info("유효성검사 실패");
+         logger.info(dto.getJoinname());
+         logger.info(dto.getCertificate());
+         logger.info(dto.getRegdate());
+         List<ObjectError> list = result.getAllErrors();
+         for (ObjectError error : list) {
+            System.out.println(error);
+         }
+         return "USER/userDetail";
+      } else {
+         logger.info("유효성 검사 통과");
+         logger.info(dto.getCertificate());
+         logger.info(dto.getRegdate());
+         int res = totalBiz.updateOne(dto);
+         System.out.println(res);
+         if (res > 0) {
 
-				return "redirect:USER_userMain.do";
-			} else {
-				return "USER/userDetail";
-			}
-		}
-	}
+            return "redirect:USER_userMain.do";
+         } else {
+            return "USER/userDetail";
+         }
+      }
+   }
 
    /*--------------------------------- 이력서 자기소개서 채용공고 게시판 ----------------------------------------------------------------------------------------------------*/
    // 이력서(자기소개서) 게시판
@@ -482,33 +483,6 @@ public class UserController {
       return "USER/userCVdown";
    }
 
-   // 이력서(자기소개서) 파일 다운로드
-   @RequestMapping(value = "/CVdownload.do", method = RequestMethod.POST)
-   @ResponseBody
-   public byte[] CVfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
-      // 연속적인 바이트들의 흐름 : byte[]
-      byte[] down = null;
-      String path;
-
-      try {
-         path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-
-         File file = new File(path + "/" + name);
-
-         down = FileCopyUtils.copyToByteArray(file);
-         String filename = new String(file.getName().getBytes(), "8859_1");
-
-         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-         response.setContentLength(down.length);
-
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return down;
-   }
 
    // 자기소개서 삭제
    @RequestMapping(value = "/USER_userCVdelete.do", method = RequestMethod.POST)
@@ -517,6 +491,37 @@ public class UserController {
       return "redirect:/USER_userCVList.do";
    }
 
+   
+   // 이력서 디테일
+   @RequestMapping(value="USER_userCVDetail.do", method=RequestMethod.GET)
+   public String userCVDetail(Model model, String title, HttpSession session) {
+	   logger.info("userCVDetail");
+	   
+	   JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+	   
+	   //totalDto -- 아이디
+	   TotalDto totalDto = totalBiz.selectOne(userDto.getJoinemail());
+	   
+	   CoverLetterDto dto = new CoverLetterDto();
+	   dto.setJoinemail(userDto.getJoinemail());
+	   dto.setTitle(title);
+	   
+	   //User 이력서 
+	   List<CoverLetterDto> CVDto = coverletterBiz.CVselectList(dto);
+	   
+	   logger.info("확인1 totalDto: =========================>> " + totalDto);
+	   logger.info("확인2 CVDto : =========================>> " + CVDto);
+	   
+	   
+	   model.addAttribute("totalDto", totalDto);
+	   model.addAttribute("CVDto", CVDto);
+	   
+	   
+	   return "USER/userCVDetail";
+   }
+   
+   
+   
    // 포트폴리오 게시판
    @RequestMapping(value = "/USER_userPFList.do")
    public String boardListPF(@ModelAttribute("CoverLetterDto") CoverLetterDto dto,
@@ -543,33 +548,6 @@ public class UserController {
       return "USER/userPFdown";
    }
 
-   // 포트폴리오 파일 다운로드
-   @RequestMapping(value = "/PFdownload.do", method = RequestMethod.POST)
-   @ResponseBody
-   public byte[] PFfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
-      // 연속적인 바이트들의 흐름 : byte[]
-      byte[] down = null;
-      String path;
-
-      try {
-         path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-
-         File file = new File(path + "/" + name);
-
-         down = FileCopyUtils.copyToByteArray(file);
-         String filename = new String(file.getName().getBytes(), "8859_1");
-
-         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-         response.setContentLength(down.length);
-
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return down;
-   }
 
    // 포토폴리오 삭제
    @RequestMapping(value = "/USER_userPFdelete.do", method = RequestMethod.POST)
@@ -619,15 +597,12 @@ public class UserController {
    public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets , HttpSession session) {
       JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
       String joinemail = userDto.getJoinemail();
-      System.out.println("userDto:==========================="+userDto);
       
-      System.out.println("=============여기와?============" + targets);
       int res = 0;
       if (targets.getTargets().size() != 1) {
          for (int i = 0; i < targets.getTargets().size(); i++) {
             // 첫번째 값
             String title = targets.getTargets().get(0).getTitle();
-            System.out.println("==============================================");
             System.out.println(targets.getTargets().get(i));
             // 나머지 list(dto)에다 설정 set
             targets.getTargets().get(i).setTitle(title);

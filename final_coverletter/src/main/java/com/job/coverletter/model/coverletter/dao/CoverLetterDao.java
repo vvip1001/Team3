@@ -23,9 +23,14 @@ public interface CoverLetterDao {
 	public int PFdelete(String[] seq);
 	
 	
+	// 포토폴리오 그룹번호 가져오기
  	public CoverLetterDto getGroupno(String joinemail);
 	//pf잣성
 	public int PFwrite(CoverLetterDto dto);
+	
 	// 자기소개서 INSERT
 	public int CVinsert(CoverLetterDto dto);
+	
+	//자기소개서 가져오기
+	public List<CoverLetterDto> CVselectList(CoverLetterDto dto);
 }

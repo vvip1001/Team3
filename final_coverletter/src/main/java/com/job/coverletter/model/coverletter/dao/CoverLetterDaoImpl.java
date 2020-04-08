@@ -146,4 +146,10 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		return res;
 	}
 
+	@Override
+	public List<CoverLetterDto> CVselectList(CoverLetterDto dto) {
+		
+		return sqlSession.selectList(NAMESPACE + "CVselectList", dto);
+	}
+
 }

@@ -19,7 +19,7 @@
    <div class="container" style="height: 800px;">
    
 
-         <f:form action="USER_joinRes.do" method="post" modelAttribute="JoinUserDto" onsubmit="return confirmSubmit()">
+         <f:form action="USER_joinRes.do" method="post" modelAttribute="joinUserDto" onsubmit="return confirmSubmit()">
          
             <h1 id="hello">환영합니다</h1>
             <table id="jointable">
