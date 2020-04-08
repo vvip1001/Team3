@@ -1,14 +1,54 @@
-.container {
-	
+/*---------- 웹폰트 ----------*/
+@font-face {
+	font-family: 'yg-jalnan';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
+/*---------- 타이틀 영역 ----------*/
 h1 {
+	font-family: 'yg-jalnan' !important;
 	text-align: center !important;
 	margin: 4% 0% 4% 0% !important;
 	font-size: 36px !important;
 	font-weight: 700 !important;
 	cursor: default;
 }
+
+
+/*---------- 대본, 연습 영역 ----------*/
+.speech-box {
+	border: 2px solid black;
+	border-radius: 10px 10px 0px 0px !important;
+}
+
+/* 작성폼 */
+.textarea {
+	padding: 10px !important;
+	width: 100%;
+	height: 300px;
+	border: 0px;
+	resize: none;
+	font-size: 13px;
+}
+
+/* 다음문제, 대본녹음, 연습, 확인 버튼 */
+.speech-btn {
+	font-size: 17px !important;
+	font-family: 'yg-jalnan' !important;
+	text-align: center;
+	width: 100% !important;
+	height: 50px;
+	border-radius: 0px 0px 10px 10px !important;
+	background-color: #00BF6F !important;
+	border-bottom: 2px solid black !important;
+	border-right: 2px solid black !important;
+	border-left: 2px solid black !important;
+}
+
 
 .main {
 	display: flex;
@@ -32,11 +72,6 @@ h1 {
 	flex: 0.1;
 }
 
-.fieldset {
-	border: 2px solid #bcbcbc;
-	border-radius: 15px;
-	height: 360px;
-}
 
 .legend {
 	text-align: center;
