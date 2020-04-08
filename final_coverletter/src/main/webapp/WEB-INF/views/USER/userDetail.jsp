@@ -35,7 +35,7 @@
 					<h3>1.인적사항</h3>
 					<div class="col-md-1" id="photo">사진업로드</div>
 					<div id="p_up">
-							<f:input path="joinname" id="small" cssClass="col-md-4" placeholder ="이름" readonly="readonly"/>
+							<f:input path="joinname" id="small" cssClass="col-md-4" placeholder ="이름" readonly="true"/>
 							<f:input path="joinbirth" id="big" cssClass="col-md-4" placeholder ="생년월일(yyyyMMdd)"/>
 							<f:select path="joinsex" id="small" cssClass="col-md-4">
 								<f:option value="성별"></f:option>
@@ -43,7 +43,7 @@
 								<f:option value="여성"></f:option>
 								<f:option value="중성"></f:option>
 							</f:select>
-							<f:input path="joinemail" id="big" cssClass="col-md-4" placeholder ="이메일"/>
+							<f:input path="joinemail" id="big" cssClass="col-md-4" placeholder ="이메일" readonly="true"/>
 					</div>
 
 					<div>
@@ -92,7 +92,7 @@
 							<div id="default2">
 
 								<div>
-									<f:select path="career" id="small" cssClass="col-md-4">
+									<f:select path="career" id="small" cssClass="col-md-4" onchange="careerfunc(this)">
 										<f:option value="학력구분"></f:option>
 										<f:option value="대졸"></f:option>
 										<f:option value="전문대졸"></f:option>
@@ -118,7 +118,7 @@
 								</div>
 								<div>
 									<f:input path="major" id="bigbig1" placeholder="전공명" cssClass="col-md-4"/>
-									<f:input path="grade" id="bigbig1" placeholder="학점 / 4.5" cssClass="col-md-4"/>
+									<f:input path="grade" id="bigbig1" placeholder="학점 /4.5" cssClass="col-md-4"/>
 								</div>
 								
 								<div id="check12">
@@ -131,10 +131,10 @@
 							<div id="field2"></div>
 							<div id="custom_button2">
 								<button type="button" id="button2" onclick="add_div(this.id);">
-									<img alt="" src="${pageContext.request.contextPath}/resources/IMG/button.png">
+									 <span class="glyphicon glyphicon-plus"></span>
 								</button>
 								<button type="button" onclick="remove_div(this);">
-									<img alt=""	src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+									 <span class="glyphicon glyphicon-minus"></span>
 								</button>
 							</div>
 						</div>
@@ -205,19 +205,17 @@
 			<div>
 				<h3>4.자격증</h3>
 				<div id="default4">
-					<input class="col-md-4" id="msmall" type="text" placeholder="자격증명" name="certificate">
-					<input class="col-md-4" id="mbig" type="text" placeholder="발행기관" name="organization">
-					<input class="col-md-4" id="msmall" type="text" placeholder="취득일자" name="regdate">
+					<f:input path="certificate" id="msmall" placeholder="자격증명" cssClass="col-md-4"/>
+					<f:input path="organization" id="mbig" placeholder="발행기관" cssClass="col-md-4"/>
+					<f:input path="regdate" id="msmall" placeholder="취득일자(yy.MM.dd)" cssClass="col-md-4"/>
 				</div>
-				<div id="field4"></div>
+				<div id="field4" class="test"></div>
 				<div class="btn333" id="custom_button4">
 					<button id="button4" type="button" onclick="add_div(this.id);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/button.png">
+						 <span class="glyphicon glyphicon-plus"></span>
 					</button>
 					<button type="button" onclick="remove_div(this);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+						 <span class="glyphicon glyphicon-minus"></span>
 					</button>
 				</div>
 			</div>
@@ -225,19 +223,17 @@
 			<div>
 				<h3>5.어학점수</h3>
 				<div id="default5">
-					<input class="col-md-4" id="msmall" type="text" placeholder="공인시험명" name="languagename">
-					<input class="col-md-4" id="mbig" type="text" placeholder="공인시험 점수" name="languagescore">
-					<input class="col-md-4" id="msmall" type="text" placeholder="취득일자" name="languageregdate">
+					<f:input path="languagename" id="msmall" placeholder="공인시험명" cssClass="col-md-4"/>
+					<f:input path="languagescore" id="mbig" placeholder="공인시험명" cssClass="col-md-4"/>
+					<f:input path="languageregdate" id="msmall" placeholder="취득일자(yy.MM.dd)" cssClass="col-md-4"/>
 				</div>
 				<div id="field5"></div>
 				<div class="btn333" id="custom_button5">
 					<button type="button" id="button5" onclick="add_div(this.id);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/button.png">
+					 <span class="glyphicon glyphicon-plus"></span>
 					</button>
 					<button type="button" onclick="remove_div(this);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+						 <span class="glyphicon glyphicon-minus"></span>
 					</button>
 				</div>
 
@@ -246,25 +242,27 @@
 			<div>
 				<h3>6.공모전 참여이력</h3>
 				<div id="default6">
-					<input class="col-md-4" id="msmall" type="text" placeholder="공모전명" name="contest">
-					<input class="col-md-4" id="mbig" type="text" placeholder="시행기관" name="Startorganization">
-					<input class="col-md-4" id="msmall" type="text" placeholder="수상이력" name="prize">
+					<f:input path="contest" id="msmall" placeholder="공모전명" cssClass="col-md-4"/>
+					<f:input path="Startorganization" id="mbig" placeholder="시행기관" cssClass="col-md-4"/>
+					<f:input path="prize" id="msmall" placeholder="수상이력" cssClass="col-md-4"/>
 				</div>
 				<div id="field6"></div>
 				<div class="btn333" id="custom_button6">
 					<button type="button" id="button6" onclick="add_div(this.id);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/button.png">
+					 <span class="glyphicon glyphicon-plus"></span>
 					</button>
 					<button type="button" onclick="remove_div(this);">
-						<img alt=""
-							src="${pageContext.request.contextPath}/resources/IMG/minus.png">
+						 <span class="glyphicon glyphicon-minus"></span>
 					</button>
 				</div>
 			</div>
-			<div>
-				<input type="submit" value="저장하기">
+			<br/>
+			<div class="row">
+				<div class="col-md-12">
+					<input type="submit" class="btn btn-success" id="submit_btn" value="저장하기">
+				</div>
 			</div>
+			<br/>
 		</f:form>
 
 	</div>

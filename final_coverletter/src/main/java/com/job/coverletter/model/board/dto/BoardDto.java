@@ -33,6 +33,8 @@ public class BoardDto {
     private Date regdate;
     
     private MultipartFile uploadFile;
+    
+    
     /*---------- 페이징 ----------*/
     private int StartIndex;
     private int CntPerPage;

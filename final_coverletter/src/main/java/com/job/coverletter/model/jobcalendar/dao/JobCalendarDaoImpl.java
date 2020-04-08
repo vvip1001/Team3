@@ -21,13 +21,7 @@ public class JobCalendarDaoImpl implements JobCalendarDao {
 
 	@Override
 	public int boardJobListCount(JobCalendarDto dto) {
-		int res = 0;
-		try {
-			res = sqlSession.selectOne(NAMESPACE + "boardJobListCount", dto);
-		} catch (Exception e) {
-			System.out.println("[error] : boardJobListCount");
-			e.printStackTrace();
-		}
+		int res = sqlSession.selectOne(NAMESPACE + "boardJobListCount", dto);
 		return res;
 	}
 
@@ -43,14 +37,13 @@ public class JobCalendarDaoImpl implements JobCalendarDao {
 		return list;
 	}
 
-	
 	// 풀캘 데이터 조회
 	@Override
 	public List<JobCalendarDto> getFullCalendarData(String joinemail) {
 		return sqlSession.selectList(NAMESPACE + "getFullCalendarData", joinemail);
 	}
-	
-	// 채용캘린더 즐겨찾기 추가 
+
+	// 채용캘린더 즐겨찾기 추가
 	@Override
 	public int boardJobInsert(JobCalendarDto dto) {
 		int res = sqlSession.insert(NAMESPACE + "boardJobInsert", dto);

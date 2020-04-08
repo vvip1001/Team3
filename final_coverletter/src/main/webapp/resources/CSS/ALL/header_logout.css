@@ -66,6 +66,7 @@
    color: #fff;
    letter-spacing: -.5px;
    text-decoration: none;
+   margin-top: 5px !important;
 }
 
 #menu1 a:hover, #menu2 a:hover {
@@ -81,7 +82,7 @@
 #menu1 a:after, #menu2 a:after {
    position: absolute;
    left: 0;
-   bottom: -4px;
+   bottom: -0.1px;
    width: 0%;
    height: 5px;
    background-color: #ffe800;

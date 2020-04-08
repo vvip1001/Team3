@@ -1,12 +1,13 @@
 #item {
 	text-align: center;
-	margin-top: 5%;
+	margin-top: 7%;
 	margin-bottom: 4%;
 }
 
 th {
 	font-size: 20px;
 	width: 165px;
+	vertical-align: baseline;
 }
 
 #pdfwrap{
@@ -25,6 +26,16 @@ th {
 	text-align: center;
 }
 
+.PFtable textarea {
+	display: table-cell;
+	vertical-align: middle;
+	height: 122px;
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+
 .PFtable input {
 	display: table-cell;
 	vertical-align: middle;
@@ -34,13 +45,8 @@ th {
 	border-radius: 5px;
 }
 
-.PFtable textarea {
-	display: table-cell;
-	vertical-align: middle;
-	height: 40px;
-	width: 100%;
-	border: 1px solid black;
-	border-radius: 5px;
+#PFbtn input[type="file"] {
+	color: white;
 }
 
 
@@ -56,7 +62,8 @@ hr{
 }
 
 #PFdetail {
-
+	padding-top: 10px;
+	border-top: 1px solid #BDBDBD;
 	margin: 10px;
 }
 
@@ -64,7 +71,7 @@ hr{
 	margin: 70px 10px 20px 40px;
 	width: 45%;
 	height: 300px;
-	background-color: gray;
+
 }
 
 #function {
@@ -84,6 +91,7 @@ hr{
 	border: 1px solid #BDBDBD; 
 	border-radius: 5px;
 }
+
 
 .le {
 	text-align: center;
@@ -116,4 +124,20 @@ fieldset textarea{
 	background-color: #00bf6f; 
 	border-radius: 5px;
 	
+}
+
+
+
+
+.img_wrap {
+	position: relative;
+	color: #BDBDBD;
+	text-align: center;
+	vertical-align:middle;
+	line-height: 283px;
+}
+
+.img_wrap img{
+	position: absolute;
+	margin-left: -61%;
 }

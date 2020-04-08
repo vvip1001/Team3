@@ -11,13 +11,13 @@
 <!--   </resultMap> -->
 	
 	<insert id="payInsert" parameterType="supportPayDto">
-		INSERT INTO SUPPORTPAY VALUES(#{tid},#{cid},#{partner_order_id},#{partner_user_id},#{payment_method_type},#{amount_total},#{amount_tax_free},#{item_name},#{quantity},#{created_at})
+		INSERT INTO SUPPORTPAY VALUES(#{tid},#{cid},#{partner_order_id},#{joinemail},#{payment_method_type},#{amount_total},#{amount_tax_free},#{item_name},#{quantity},#{created_at})
 	</insert>
 	
 	<select id="payListCount" resultType="int" parameterType="supportPayDto">
 		SELECT COUNT(*)
 		FROM SUPPORTPAY
-		WHERE PARTNER_USER_ID = #{partner_user_id}
+		WHERE JOINEMAIL= #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'amount_total' and keyword != null and keyword != ''">
@@ -41,7 +41,7 @@
 		FROM (
 		SELECT A.*, ROW_NUMBER() OVER(ORDER BY CREATED_AT DESC) AS RNUM
 		FROM SUPPORTPAY A
-		WHERE PARTNER_USER_ID = #{partner_user_id}
+		WHERE JOINEMAIL = #{joinemail}
 		<trim prefix="AND" prefixOverrides="AND">
 			<if
 				test="category == 'amount_total' and keyword != null and keyword != ''">
