@@ -101,7 +101,41 @@ public class CoverLetterDaoImpl implements CoverLetterDao {
 		
 		return res;
 	}
+	
+	
+	@Override
+	public CoverLetterDto getGroupno(String joinemail) {
+		System.out.println("dao 그룹번호 실행 " + joinemail);
+		CoverLetterDto dto = new CoverLetterDto();
+		int res = 0;
+		if(sqlSession.selectOne(NAMESPACE + "getGroupno", joinemail) != null) {
+			res = sqlSession.selectOne(NAMESPACE + "getGroupno", joinemail);
+			dto.setGroupno(res);
+			return dto;
+		} else {
+			dto.setGroupno(res);
+			return dto;
+		}
+	}
 
+
+	@Override
+	public int PFwrite(CoverLetterDto dto) {
+		int res = 0;
+		System.out.println("dao 실행 들어가기");
+		
+		try {
+			res = sqlSession.insert(NAMESPACE + "PFinsert", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : PFwrite");
+			e.printStackTrace();
+		}
+		
+		System.out.println("dao 실행 끝");
+		
+		return res;
+	}
+	
 	// 자기소개서 INSERT
 	@Override
 	public int CVinsert(CoverLetterDto dto) {

@@ -79,6 +79,8 @@ CREATE TABLE TOTAL(
 
 INSERT INTO TOTAL(TOTALSEQ,JOINEMAIL,JOINNAME,JOINBIRTH,JOINSEX,MILILTARY,PHONE,ADDRESS,ITSKILL1,ITSKILL2,ITSKILL3,ITSKILL4,ITSKILL5,MAJOR) VALUES(TOTAL_SEQ.NEXTVAL,'abc@naver.com','조수민','940802','남성','군필','010-8842-1869','인천광역시 부평구','자바','파이썬','씨언어','씨큐리티','오라클','항소');
 
+INSERT INTO TOTAL VALUES(TOTAL_SEQ.NEXTVAL,#{joinemail},#{joinname},#{joinpw},#{joinbirth},#{joinsex},#{photo},#{mililtary},#{phone},#{address},null,'Y','category',#{itskill1},#{itskill2},#{itskill3},#{itskill4},#{itskill5},#{itscore1},#{itscore2},#{itscore3},#{itscore4},#{itscore5},#{certificate},#{languagename},#{languagescore},#{languageregdate},#{contest},#{prize},#{organization},#{startorganization},#{regdate},#{career},#{schoolname},#{admission},#{graduate},#{major},#{grade})
+
 UPDATE TOTAL SET 
 JOINBIRTH = '', JOINSEX = '', MILILTARY = '', PHONE = '', ADDRESS = '', 
 ITSKILL1 = '', ITSKILL2 = '', ITSKILL3 = '', ITSKILL4 = '', ITSKILL5 = '', MAJOR = ''
@@ -111,7 +113,6 @@ CREATE TABLE BOARD
     CONSTRAINT BOARD_TABLE_FK01 FOREIGN KEY(JOINEMAIL) REFERENCES JOINUSER(JOINEMAIL)
 );
 
-SELECT * FROM BOARD WHERE JOINEMAIL = 'abc@naver.com';
 SELECT * FROM BOARD;
 
 DELETE FROM BOARD WHERE JOINEMAIL = 'mintparc@gmail.com';
@@ -149,7 +150,7 @@ CREATE TABLE COVERLETTER
     JOINEMAIL         VARCHAR2(200)     NOT NULL,    -- 이메일
     CVCATEGORY        VARCHAR2(30)      NOT NULL,    -- 카테고리
     GROUPSEQ          NUMBER            NOT NULL,    -- 자소서, 포폴용 각각의 시퀀스
-    GROUPNO            NUMBER         ,    -- 그룹번호
+    GROUPNO            NUMBER         NOT NULL,    -- 그룹번호
     QUESTION          VARCHAR2(1000),                -- 자: 항목(질문), 포: 수행기간
     TITLE             VARCHAR2(500)     NOT NULL,    -- 자: 제목, 포: 프로젝트명
     SUBTITLE          VARCHAR2(500),                 -- 지: 소제목, 포: 개발목표
@@ -166,12 +167,9 @@ CREATE TABLE COVERLETTER
     CONSTRAINT COVERLETTER_TABLE_FK01 FOREIGN KEY(JOINEMAIL) REFERENCES JOINUSER(JOINEMAIL)
 );
 
-
-INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '자소서', COVERLETTER_SEQ.NEXTVAL, 0,'자신의 장점은?', '제목:', '소제목', '내용', SYSDATE, '파일')
-
-INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '포폴', PORTFOLIO_SEQ.NEXTVAL, 0, NULL, '제목:', NULL, NULL, SYSDATE, '이미지')
-
-
+//포폴 추가 예시
+INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '포폴', PORTFOLIO_SEQ.NEXTVAL, 0,
+       '수행기간','프로젝트명','개발목표','개발환경','구현기능','담당역할','참여도','기능설명','화면설명',SYSDATE,'경로')
 
 SELECT * FROM COVERLETTER;
 
@@ -200,6 +198,10 @@ SELECT * FROM JOBCALENDAR;
 
 SELECT * FROM JOBCALENDAR
 WHERE JOINEMAIL = 'abc@naver.com' AND NOT ENDDATE = '수시채용';
+
+SELECT COUNT(*)
+FROM JOBCALENDAR
+WHERE JOINEMAIL = 'abc@naver.com';
 
 --=====================================================================================================================
 -- 후원 내역 테이블

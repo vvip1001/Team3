@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.job.coverletter.CoverLetter"> <!-- 인터페이스 이름 형식으로 할 것 -->
 
-
-	   <resultMap type="coverLetterDto" id="coverLetterMap">
+	<resultMap type="coverLetterDto" id="coverLetterMap">
       <result property="coverletterseq" column="TOTALSEQ"/>
       <result property="joinemail" column="JOINEMAIL"/>
       <result property="cvcategory" column="CVCATEGORY"/>
@@ -23,7 +22,6 @@
    </resultMap>
    
 	<!-- 글목록(게시글 수) -->
-
 	<!-- 자소서 게시판 -->
 	<select id="boardCVListCount" resultType="int"
 		parameterType="coverLetterDto">
@@ -50,7 +48,7 @@
 
 	<!-- 글목록(페이징) : StartIndex(시작인덱스), CntPerPage(마지막인덱스) 가져오기 -->
 	<select id="boardCVList" parameterType="coverLetterDto"
-		resultType="coverLetterDto">
+		resultMap="coverLetterMap">
 		SELECT B.*
 		FROM (
 		SELECT A.*, ROW_NUMBER() OVER(ORDER BY GROUPSEQ DESC)
@@ -106,7 +104,7 @@
 
 	<!-- 글목록(페이징) : StartIndex(시작인덱스), CntPerPage(마지막인덱스) 가져오기 -->
 	<select id="boardPFList" parameterType="coverLetterDto"
-		resultType="coverLetterDto">
+		resultMap="coverLetterMap">
 		SELECT B.*
 		FROM (
 		SELECT A.*, ROW_NUMBER() OVER(ORDER BY GROUPSEQ DESC)
@@ -144,7 +142,19 @@
 			#{groupseq}
 		</foreach>
 	</delete>
+	
+	<select id="getGroupno" parameterType="String" resultType="int">
+		SELECT MAX(GROUPNO) FROM COVERLETTER WHERE JOINEMAIL = #{joinemail}
+	</select>
 
+
+	<!-- 포폴 게시판 등록 -->
+	<insert id="PFinsert" parameterType="coverLetterDto">
+		INSERT INTO COVERLETTER
+		VALUES(TOTAL_SEQ.NEXTVAL, #{joinemail}, '포폴', PORTFOLIO_SEQ.NEXTVAL, #{groupno},
+		#{question},#{title},#{subtitle},#{content},#{functions},#{positions},#{participation},#{functioninfo},#{viewinfo},SYSDATE,#{filepath})
+	</insert>
+	
 	<!-- 포폴 게시판 삭제 -->
 	<delete id="PFmuldel" parameterType="map">
 		DELETE FROM COVERLETTER WHERE CVCATEGORY = '포폴' AND GROUPSEQ IN
@@ -153,7 +163,8 @@
 			#{groupseq}
 		</foreach>
 	</delete>
-
+	
+	
 	<!-- 자기소개서 입력 (첫 문항) -->
 	<insert id="CVinsert" parameterType="coverLetterDto">
 		INSERT INTO COVERLETTER

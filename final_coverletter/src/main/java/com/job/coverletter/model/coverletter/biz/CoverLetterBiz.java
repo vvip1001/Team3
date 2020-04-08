@@ -20,9 +20,14 @@ public interface CoverLetterBiz {
 
 	public int CVdelete(String[] seq);
 
-	public int PFdelete(String[] seq);
-
 	// 자기소개서 INSERT
 	public int CVinsert(CoverLetterDto dto);
 
+	public int PFdelete(String[] seq);	
+	
+	
+	public CoverLetterDto getGroupno(String joinemail);
+	//pf작성
+	public int PFwrite(CoverLetterDto dto);
+	
 }

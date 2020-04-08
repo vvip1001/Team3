@@ -1,4 +1,5 @@
-
+var chk01 = false; //이메일유효성검사
+var chk02 = false; //비밀번호 일치 검사
 
 
 window.onload = function() {
@@ -30,7 +31,8 @@ function checkid() {
 
 // 서브밋 유효성검사
 function confirmSubmit() {
-	if(chk1 && chk2){
+	alert($("#joinemail").value())
+	if(chk01 && chk02){
 		var con = confirm("작성내용으로 회원가입 하시겠습니까?")
 		if(con){
 

@@ -35,7 +35,7 @@
 				<i class="fas fa-file-powerpoint fa-5x"></i>
 				<p>프로젝트 포트폴리오를</p>
 				<p>10분만에 작성하려면?</p>
-				<button class="btn">포트폴리오</button>
+				<button class="btn" onclick="location.href='USER_userPFwrite.do'">포트폴리오</button>
 			</div>
 			<div class="col-sm-4">
 				<i class="fas fa-microphone fa-5x"></i>

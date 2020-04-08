@@ -22,6 +22,10 @@ public interface CoverLetterDao {
 
 	public int PFdelete(String[] seq);
 	
+	
+ 	public CoverLetterDto getGroupno(String joinemail);
+	//pf잣성
+	public int PFwrite(CoverLetterDto dto);
 	// 자기소개서 INSERT
 	public int CVinsert(CoverLetterDto dto);
 }
