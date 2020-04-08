@@ -22,6 +22,8 @@
 
 
 	<div class="container">
+	 <h1>스피치 연습</h1>
+	 
 		<div class="row">
 			<div class="col-md-12"></div>
 		</div>
@@ -53,20 +55,28 @@
 				<div class="center">
 
 					<div class="internal">
-						<fieldset class="fieldset">
+						<fieldset class="speech-box">
 							<legend class="legend" id="legend1">대본 </legend>
 							<textarea id="korea" rows="15" cols="40" class="textarea"></textarea>
 						</fieldset>
+						<input type="button" onclick="nextQuestion();" value="다음 문제"
+						class="button3 btn speech-btn" id="nextQuestion" /> 
+						<input type="button"
+						value="대본녹음" class="speech btn speech-btn" id="speech" onclick="speech_to_text()" />
+						
 					</div>
 
 					<div class="internal_bewteen"></div>
 
 					<div class="internal">
-						<fieldset class="fieldset">
+						<fieldset class="speech-box">
 							<legend class="legend" id="legend2">연습</legend>
 							<textarea id="pract" rows="10" cols="40" class="textarea"></textarea>
 							<div id="answerRes"></div>
 						</fieldset>
+						<input type="button" value="연습녹음" class="speech btn speech-btn" id="answer"
+						onclick="pract_speech_to_text()" /> <input type="button"
+						value="확인" onclick="question();" id="quiz" class="button3 btn speech-btn" />
 					</div>
 
 				</div>
@@ -84,12 +94,8 @@
 				<div class="col-md-8">
 					<input type="hidden" id="randomSeq" />
 					<!-- 문제에 대한 seq -->
-					<input type="button" onclick="nextQuestion();" value="다음 문제"
-						class="button3" id="nextQuestion" /> <input type="button"
-						value="대본녹음" class="speech" id="speech" onclick="speech_to_text()" />
-					<input type="button" value="연습녹음" class="speech" id="answer"
-						onclick="pract_speech_to_text()" /> <input type="button"
-						value="확인" onclick="question();" id="quiz" class="button3" />
+					
+					
 				</div>
 				<div class="col-md-2"></div>
 			</div>

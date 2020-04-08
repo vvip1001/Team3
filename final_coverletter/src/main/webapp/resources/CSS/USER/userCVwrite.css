@@ -14,7 +14,7 @@ body {
 
 /*---------- 타이틀 영역 ----------*/
 h1 {
-	font-family: 'yg-jalnan';
+	font-family: 'yg-jalnan' !important;
 	text-align: center !important;
 	margin: 4% 0% 4% 0% !important;
 	font-size: 36px !important;
