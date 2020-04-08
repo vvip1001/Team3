@@ -216,8 +216,8 @@ $(document).ready(function(){
 	   
 	   var message = document.getElementById("message");
 	   var button = document.getElementById("speech");
-	   var korea = document.getElementById("content"); // div
-	   var pract = document.getElementById("pract"); // div
+	   var content = document.getElementById("content"); // div
+	   console.log(content);
 	   var isRecognizing = false;
 	})
 
@@ -256,7 +256,7 @@ $(document).ready(function(){
 	      console.log('You said: ', event.results[0][0].transcript);
 	      // 결과를 출력
 	      var resText = event.results[0][0].transcript;
-	      korea.textContent = resText;
+	      content.textContent = resText; // textera에 넣는거
 
 	      // text to sppech
 	      text_to_speech(resText);

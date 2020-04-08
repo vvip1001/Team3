@@ -230,6 +230,7 @@ $(function(){ // 타이머
 })
 ///////////////////////////////////////////////////////////타이머
 
+
 function fristQuestion(){ // 맨 처음 문제 뿌리기
 	var question = $("#question");
 	console.log(question);
