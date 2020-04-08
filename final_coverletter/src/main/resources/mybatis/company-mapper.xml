@@ -18,7 +18,7 @@
 
 	<!-- 페이징 카운트 -->
 	<select id="companyListCount" resultType="int">
-		SELECT COUNT(*) FROM company02
+		SELECT COUNT(*) FROM COMPANY02
 	</select>
 
 
@@ -28,7 +28,7 @@
 		select R1.* FROM(
 		SELECT companyseq, imgurl, business, enddate, oneintro, mainfield,
 		languages, companyname, location, salary, target
-		FROM company02 order by companyseq desc
+		FROM COMPANY02 order by companyseq desc
 		) R1
 		LIMIT #{listSize} OFFSET
 		#{startList}

@@ -10,7 +10,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/JS/jquery-3.4.1.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/JS/MAIN/main.js"></script>
+	src="${pageContext.request.contextPath}/resources/JS/MAIN/mainDetail.js"></script>
 <link
 	href="${pageContext.request.contextPath}/resources/CSS/MAIN/mainDetail.css"
 	rel="stylesheet">
@@ -27,7 +27,8 @@
 			<%@ include file="../ALL/header_login.jsp"%>
 		</c:otherwise>
 	</c:choose>
-
+ 
+	 
 		<div class="container" id="main">
 			<div class="container" id=null></div>
 			<form action="" method="post">
@@ -46,7 +47,7 @@
 				</div>
 				<div class="row" id="info">
 					<div class="col-md-12">
-						<h1 class="h1">${mainDetail.companyname }과(와)함께성장할인재를 찾습니다</h1>
+						<h1 class="h1">${mainDetail.companyname }과(와)함께 성장할 인재를 찾습니다</h1>
 					</div>
 				</div>
 			</form>
@@ -76,7 +77,7 @@
 		</div>
 		<div class="container" id="side"></div>
 
-		<div class="container" id="main">
+		<div class="container" id="enterprice_main">
 			<form action="" method="post">
 				<div class="row">
 					<div class="col-md-12">
@@ -84,7 +85,7 @@
 					</div>
 				</div>
 			</form>
-			<div class="intro">${mainDetail.intro }</div>
+			<div class="intro" id="intro_id">${mainDetail.intro }</div>
 		</div>
 		<div class="container" id="side"></div>
 		<div class="container" id="main">
@@ -95,41 +96,40 @@
 					</div>
 				</div>
 				<div id="welfare">
-					<div>
+					<div id="givetool">
 						<div class="title">개인장비</div>
-						<div class="content">${mainDetail.givetool }</div>
+						<div class="content" id="givetool_id">${mainDetail.givetool }</div>
 					</div>
 					<br>
 
-					<div>
+					<div id="selfgrowth">
 						<div class="title">자기 계발</div>
 
-						<div class="content">${mainDetail.selfgrowth }</div>
+						<div class="content" id="selefgrowth_id">${mainDetail.selfgrowth }</div>
 
 					</div>
 					<br>
 
-					<div>
+					<div id="mealtime">
 						<div class="title">식사 시간</div>
-						<div class="content">${mainDetail.mealtime }</div>
+						<div class="content" id="mealtime_id">${mainDetail.mealtime }</div>
 					</div>
 					<br>
 
-					<div>
+					<div id="holiday">
 						<div class="title">연차,휴가</div>
-						<div class="content">${mainDetail.holiday }</div>
-
+						<div class="content" id="holiday_id">${mainDetail.holiday }</div>
 					</div>
 					<br>
-					<div>
+					<div id="workinghour">
 						<div class="title">근무 형태</div>
-						<div class="content">${mainDetail.workinghour }</div>
+						<div class="content" id="workinghour_id">${mainDetail.workinghour }</div>
 
 					</div>
 					<br>
-					<div>
+					<div id="insurance">
 						<div class="title">보험,의료</div>
-						<div class="content">${mainDetail.insurance }</div>
+						<div class="content" id="insurance_id">${mainDetail.insurance }</div>
 
 					</div>
 					<br>
@@ -145,37 +145,35 @@
 					</div>
 				</div>
 				<div id="incorporation">
-					<div>
+					<div id=enterprice_incorporation>
 						<div class="title">설 립 일</div>
-						<div class="content">${mainDetail.incorporation }</div>
+						<div class="content" id="incorporation_id">${mainDetail.incorporation }</div>
 					</div>
 					<br>
-					<div>
+					<div id="totalmember">
 						<div class="title">구 성 원</div>
-						<div class="content">${mainDetail.totalmember }</div>
+						<div class="content" id="totalmember_id">${mainDetail.totalmember }</div>
 					</div>
 					<br>
-					<div>
+					<div id="homepage">
 						<div class="title">홈페이지</div>
-						<div class="content">
-							<a href="${mainDetail.homepage }">${mainDetail.homepage }</a>
+						<div class="content" >
+							<a href="${mainDetail.homepage }" id="homepage_id">${mainDetail.homepage }</a>
 						</div>
 					</div>
 					<br>
-					<div>
+					<div id="mainfield">
 						<div class="title">산업분야</div>
-						<div class="content">${mainDetail.mainfield }</div>
+						<div class="content" id="mainfield_id">${mainDetail.mainfield }</div>
 					</div>
 					<br>
 
  
-					<div>
+					<div id="location">
 						<div class="title">위 치</div>
-
 						<div class="content">
-			 	
-						<a href="MAIN_kakaomap.do?companyseq=${mainDetail.companyseq }">${mainDetail.location }</a> </div>
-
+							<a href="MAIN_kakaomap.do?companyseq=${mainDetail.companyseq }" id="location_id">${mainDetail.location }</a> 
+						</div>
 					</div>
 					<br>
 					

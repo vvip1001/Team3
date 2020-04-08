@@ -73,14 +73,22 @@
 	font-size: 15px;
 }
 
-#incorporation, #welfare {
+#welfare {
+	border: 1px solid #00bf6f;
+	padding: 12px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	display: flow-root;
+}
+
+#incorporation {
 	border: 1px solid #00bf6f;
 	padding-top: 24px;
-	padding-bottom: 24px;
 	padding-left: 10px;
 	margin-bottom: 10px;
 	font-size: 15px;
 	display: flow-root;
+	padding: 12px;
 }
 
 #incorporation .col-md-10 {
@@ -99,4 +107,13 @@
 #welfare .title, .content {
 	float: left;
 	margin-right: 24px;
+}
+
+/*복지 부분 디브로 감싸기*/
+#givetool, #selfgrowth, #mealtime, #holiday, #workinghour, #insurance {
+	height: 21px;
+}
+
+#enterprice_incorporation,#location, #totalmember, #homepage, #mainfield {
+	height: 21px;
 }
