@@ -21,6 +21,8 @@ public interface CoverLetterDao {
 
 	public int PFdelete(String[] seq);
 	
+	
+ 	public CoverLetterDto getGroupno(String joinemail);
 	//pf잣성
 	public int PFwrite(CoverLetterDto dto);
 }

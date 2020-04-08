@@ -1,16 +1,23 @@
 	//PFdetail 추가 
 	function plus() {
-		
+		var idx = 0;
 		var plus = $("#PFdetail").clone(true);
 		var chk = plus.children().next().children().next().children('#photo').children('.img_wrap').children();
 		var chk2 = plus.children().next().children().next().children().next().next().children("textarea");
 		var chk3 = plus.children().next().next().children().children("textarea");
-		console.log(chk2);
+		var input = plus.children().children().next();
+		console.log(input);
 		console.log(chk3);
 		
 		chk.removeAttr('src');
 		chk2.val('');
 		chk3.val('');
+
+		input.attr('name', 'targets[' + idx + '].filedpath');
+		chk2.attr('name', 'targets[' + idx + '].functioninfo');
+		chk3.attr('name', 'targets[' + idx + '].viewinfo');
+		
+		idx++;
 		
 		$("#filed").append(plus);		
 	}
@@ -85,60 +92,38 @@
                 heightLeft -= pageHeight;
             }
             
-            //파일 서버로 저장 
-           
-            //var pdf = btoa(encodeURIComponent(doc.output()));
-            var pdf = btoa(doc.output());
-            //var blob = doc.output('blob')
-            var data = new FormData();
-            data.append("pdf", pdf);
+            // 파일 저장
+            doc.save('portfolio.pdf');
             
-            //data.append("data" , pdf);
-            //var pdfdata = JSON.stringfy(data);
+            
+            PFform.submit();
 
-            console.log(pdf)
-            console.log(data.get("pdf"));
-            
-            
-            
-            //console.log(pdfdata);
-            var pdf_data = {title : $("#title").val,
-            				uploadfile : data};
-            
-//            $.ajax({
-//            	type:"post",
-//            	url:"PFinsert.do",
-//            	data:pdf_data,
-//            	dataType:"json",
-//            	success : function(msg) {
-//					alert("성공 ");
+            //파일 서버로 저장 
+//          var pdf = btoa(doc.output());
+//          
+//          var data = new FormData();
+//          data.append("pdf", pdf);
+//    
+//          $("#pfSrc").val(data);
+//
+//          var form = $("#test")[0];
+//          var formdata = new FormData(form);
+//          $.ajax({
+//          	type:"post",
+//          	enctype: 'multipart/form-data',
+//          	url:"PFinsert.do",
+//          	data:formdata,
+//          	processData: false,
+//              contentType: false,
+//          	success : function(msg) {
+//					alert("성공 : "+data);
 //					
 //				},
-//				error : function() {
-//					alert("통신실패");
+//				error : function(e) {
+//					alert("통신실패 : "+e);
 //				}
-//            });
-//            
-//            
-//            
-            
-            
-            
-            //$("#title").val(data);
-            
+//          });
           
-            
-            
-            // 파일 저장
-            //doc.save('final_coverletter/src/main/webapp/resources/PDF/sample.pdf');
-          
-//            console.log(doc);
-//            console.log(data);
-//            console.log(pdfdata);
-//            console.log(canvas.toDataURL());
-//            
-           
-            
 		});
 	}
 	

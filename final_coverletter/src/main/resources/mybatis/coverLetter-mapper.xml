@@ -121,13 +121,17 @@
 			#{groupseq}
 		</foreach>
 	</delete>
+	
+	<select id="getGroupno" resultType="coverLetterDto">
+		SELECT MAX(GROUPNO) FROM COVERLETTER WHERE JOINEMAIL = #{joinemail} AND CVCATEGORY = '포폴'
+	</select>
 
 
 	<!-- 포폴 게시판 등록 -->
-	<insert id="PFinsert" parameterType="joinuserdto">
-		INSERT INTO (TOTALSEQ,JOINEMAIL, GROUPSEQ, TITLE, REGDATE, FILEPATH)
-		VALUES (TOTAL_SEQ.NEXTVAL, 'USER@GMAIL.COM', '포폴', PORTFOLIO_SEQ.NEXTVAL,
-		#{title},SYSDATE,#{filepath})
+	<insert id="PFinsert" parameterType="coverLetterDto">
+		INSERT INTO COVERLETTER
+		VALUES(TOTAL_SEQ.NEXTVAL, #{joinemail}, '포폴', PORTFOLIO_SEQ.NEXTVAL, #{groupno},
+		#{question},#{title},#{subtitle},#{content},#{functions},#{positions},#{participation},#{functioninfo},#{viewinfo},SYSDATE,#{filepath})
 	</insert>
 	
 	<!-- 포폴 게시판 삭제 -->

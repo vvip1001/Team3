@@ -32,6 +32,17 @@ th{
 	border-radius: 5px;
 }
 
+#joinpw{
+	display: table-cell;
+	vertical-align: middle;
+	height: 40px;
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 5px;
+	
+	
+}
+
 .joininfo{
 	 display: table-cell;
 	 width: fit-content;

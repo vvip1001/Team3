@@ -94,20 +94,27 @@ public class UserController {
 		return "MAIN/main";
 	}
 
+	
+	
+//===============================================수정=======================================================================
 	// join
 	@RequestMapping(value = "/USER_join.do", method = RequestMethod.GET)
-	public String join() {
+	public String join(Model model) {
 		logger.info("joinpage go");
 
+		model.addAttribute("JoinUserDto",new JoinUserDto());	
+		
 		return "MAIN/join";
 	}
 
 	@RequestMapping(value = "/USER_joinRes.do", method = RequestMethod.POST)
-	public String joinRes(Model model, @ModelAttribute("JoinuserDto") @Valid JoinUserDto dto, BindingResult result) {
+	public String joinRes(Model model, @ModelAttribute("JoinUserDto") @Valid JoinUserDto dto, BindingResult result,Map<String,BindingResult> model2) throws Exception {
+		
+		
 		logger.info("joinRes.do");
 
 		model.addAttribute("joinuserDto", dto);
-		
+		model2.put(BindingResult.class.getName()+"JoinuserDto",result);
 
 		System.out.println("===============joinuserDto" + dto);
 
@@ -146,14 +153,10 @@ public class UserController {
 			return res;
 		}
 	}
+	
+//================================================================================================================
 
-	// PFwrite page go
-	@RequestMapping(value = "/USER_userPFwrite.do", method = RequestMethod.GET)
-	public String PFwrite() {
-		logger.info("PRwrite go");
-
-		return "USER/userPFwrite";
-	}
+	
 
 	// 마이페이지
 	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
@@ -200,6 +203,8 @@ public class UserController {
 //
 //		return "USER/userDetail";
 //	}
+
+//===============================================수정=======================================================================
 
 	// login
 	@RequestMapping(value = "/USER_login.do")
@@ -304,6 +309,9 @@ public class UserController {
 		model.addAttribute("EmailName", EmailName);
 		return "MAIN/mailSend";
 	}
+	
+	
+//==============================================================================================================
 
 	@RequestMapping(value = "/USER_detailRes.do", method = RequestMethod.POST)
 	public String personal_insert(Model model, @ModelAttribute("totalDto") @Valid TotalDto dto, BindingResult result) {

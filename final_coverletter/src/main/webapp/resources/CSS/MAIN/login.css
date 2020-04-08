@@ -36,6 +36,15 @@
 	     
 	}
 	
+	#joinpw{
+		display: table-cell;
+	    vertical-align: middle;
+	    height: 50px;
+	    width: 100%;
+	    border: 1px solid black;
+	    border-radius: 5px 5px 5px 5px; 
+	}
+	
 	.logininfo{
 	    display: table-cell;
 	    width: fit-content;

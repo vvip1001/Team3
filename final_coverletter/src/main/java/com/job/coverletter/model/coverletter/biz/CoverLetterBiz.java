@@ -22,6 +22,8 @@ public interface CoverLetterBiz {
 
 	public int PFdelete(String[] seq);	
 	
+	
+	public CoverLetterDto getGroupno(String joinemail);
 	//pf작성
 	public int PFwrite(CoverLetterDto dto);
 	

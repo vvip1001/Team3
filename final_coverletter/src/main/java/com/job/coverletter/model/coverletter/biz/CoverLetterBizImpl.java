@@ -42,10 +42,20 @@ public class CoverLetterBizImpl implements CoverLetterBiz {
 	public int PFdelete(String[] seq) {
 		return coverletterdao.PFdelete(seq);
 	}
-
+	
+	// 포폴 가장 큰 그룹번호 가져오기
+	@Override
+	public CoverLetterDto getGroupno(String joinemail) {
+		System.out.println("biz 그룹 실행 ");
+		
+		return coverletterdao.getGroupno(joinemail);
+	}
+	
 	@Override
 	public int PFwrite(CoverLetterDto dto) {
-
+		System.out.println("biz 실행 ");
 		return coverletterdao.PFwrite(dto);
 	}
+
+	
 }
