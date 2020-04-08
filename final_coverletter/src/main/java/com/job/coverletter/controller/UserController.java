@@ -71,8 +71,6 @@ public class UserController {
 	private JobCalendarBiz jobCalendarBiz;
 
 	String cvcategory = "";
-	String joinemail = "USER@GMAIL.COM";
-
 	@Autowired
 	private CoverLetterBiz coverletterBiz;
 
@@ -336,9 +334,12 @@ public class UserController {
 
 	// 마이페이지
 	@RequestMapping(value = "/USER_userMain.do", method = RequestMethod.GET)
-	public String userMain(Model model) {
+	public String userMain(Model model , HttpSession session) {
 		logger.info("userMain go");
-
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
+		System.out.println("************joinemail: "+joinemail);
+		
 		System.out.println("에러1");
 		CoverLetterDto cvdto = new CoverLetterDto();
 		cvdto.setCvcategory("자소서");
@@ -463,9 +464,11 @@ public class UserController {
 	// 이력서(자기소개서) 게시판
 	@RequestMapping(value = "/USER_userCVList.do")
 	public String boardListCV(@ModelAttribute("CoverLetterDto") CoverLetterDto dto,
-			@RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model) {
+			@RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model,HttpSession session) {
 		cvcategory = "자소서";
-
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
+		System.out.println(joinemail);
 		dto.setCvcategory(cvcategory);
 		dto.setJoinemail(joinemail);
 
@@ -524,9 +527,10 @@ public class UserController {
 	// 포트폴리오 게시판
 	@RequestMapping(value = "/USER_userPFList.do")
 	public String boardListPF(@ModelAttribute("CoverLetterDto") CoverLetterDto dto,
-			@RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model) {
+			@RequestParam(defaultValue = "1") int curPage, HttpServletRequest request, Model model , HttpSession session) {
 		cvcategory = "포폴";
-
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
 		dto.setCvcategory(cvcategory);
 		dto.setJoinemail(joinemail);
 
@@ -619,8 +623,11 @@ public class UserController {
 
 	// 자기소개서 INSERT
 	@RequestMapping(value = "/USER_userCVinsert.do", method = RequestMethod.POST)
-	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets) {
-
+	public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets , HttpSession session) {
+		
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		String joinemail = userDto.getJoinemail();
+		
 		if (targets.getTargets().size() != 1) {
 			for (int i = 0; i < targets.getTargets().size(); i++) {
 				// 첫번째 값
