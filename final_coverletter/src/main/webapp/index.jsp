@@ -25,7 +25,7 @@
 	
 	<a href="JOB_jobSearch.do">회사검색</a><br/>	
 	<a href="USER_userPFwrite.do">포폴쓰기</a>
-	
+		
 	
 	<a href ="BOARD_boardList.do">자유게시판</a><br/>
 	<a href ="USER_userPFList.do">포폴게시판</a><br/>

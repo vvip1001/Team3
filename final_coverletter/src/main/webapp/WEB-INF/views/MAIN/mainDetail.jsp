@@ -16,6 +16,9 @@
 	rel="stylesheet">
 </head>
 <body>
+
+	<div id="All">
+		<input type="hidden" id="companyseq" value="${mainDetail.companyseq }"/>
 	<c:choose>
 		<c:when test="${empty login }">
 			<%@ include file="../ALL/header_logout.jsp"%>
@@ -24,9 +27,6 @@
 			<%@ include file="../ALL/header_login.jsp"%>
 		</c:otherwise>
 	</c:choose>
-
-	<div id="All">
-		<input type="hidden" id="companyseq" value="${maindetail.companyseq }" />
 
 		<div class="container" id="main">
 			<div class="container" id=null></div>
@@ -44,7 +44,6 @@
 				<div class="row" id="oneintro">
 					<div class="col-md-12">${mainDetail.oneintro }</div>
 				</div>
-				<br/>
 				<div class="row" id="info">
 					<div class="col-md-12">
 						<h1 class="h1">${mainDetail.companyname }과(와)함께성장할인재를 찾습니다</h1>
@@ -168,11 +167,21 @@
 						<div class="content">${mainDetail.mainfield }</div>
 					</div>
 					<br>
+
+ 
 					<div>
 						<div class="title">위 치</div>
-						<div class="content">${mainDetail.location }</div>
+
+						<div class="content">
+			 	
+						<a href="MAIN_kakaomap.do?companyseq=${mainDetail.companyseq }">${mainDetail.location }</a> </div>
+
 					</div>
 					<br>
+					
+			
+
+
 				</div>
 			</form>
 		</div>

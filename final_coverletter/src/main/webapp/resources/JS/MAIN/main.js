@@ -1,7 +1,3 @@
-
-
-
-
 //Javascript
 var count = 0;
 // 스크롤 바닥 감지
@@ -11,9 +7,24 @@ window.onscroll = function(e) {
 	if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 		// 실행할 로직 (콘텐츠 추가)
 		count++;
-		
-		var totalCompanyItem =document.createElement("div")
-		totalCompanyItem.setAttribute("class", "totalCompanyItem")
+		$.ajax({
+			url:"MAIM_mainAjax.do",
+			type:"POST",
+			data: ({
+				imgurl : imgurl,
+				companyname : companyname,
+				business : business
+			}),
+	        dataType :"JSON",
+	        success : function(data){
+	         
+	        	alert("꾸꾸");
+	          
+			},
+		    error: function(){
+		       alert("통신 실패");
+		    }
+		})
 
 		var companyItemTop =document.createElement("div")
 		companyItemTop.setAttribute("class", "companyItemTop")
@@ -23,16 +34,25 @@ window.onscroll = function(e) {
 //		companyItemTop.appendChild(a)
 
 		
-		totalCompanyItem.appendChild(companyItemTop)
-		
-		$('article').append(totalCompanyItem);
 
-	
-		//var addContent = '<div class="col-md-12">'+111+'</div>';
+		// var totalCompanyItem = document.createElement("div")
+		// totalCompanyItem.setAttribute("class", "totalCompanyItem")
+		//
+		// var companyItemTop = document.createElement("div")
+		// companyItemTop.setAttribute("class", "companyItemTop")
+		//
+		// var a = document.createElement("a")
+		// a.setAttribute("href", "MAIN_mainDetail.do?companyseq=" + companyseq)
+		//
+		// totalCompanyItem.appendChild(companyItemTop)
+		// companyItemTop.appdendChid(a)
+
+		// $('article').append(totalCompanyItem);
+
+		// var addContent = '<div class="col-md-12">'+111+'</div>';
 		// article에 추가되는 콘텐츠를 append
-		//$('article').append(addContent);
+		// $('article').append(addContent);
 	}
-	
 };
 
 // Javascript
@@ -40,7 +60,7 @@ var lastScrollTop = 0;
 var delta = 5;
 var fixBoxHeight = fixBox.offsetHeight;
 var didScroll;
-// //스크롤 이벤트
+// 스크롤 이벤트
 window.onscroll = function(e) {
 	didScroll = true;
 
@@ -70,47 +90,3 @@ window.onscroll = function(e) {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 채용즐겨찾기
-//
-//
-// function bookcmark(){
-//	
-// var companyseq =$("compaynyseq").val();
-// var companyname =$("#comapnyname").val();
-// var business =$("info").val();
-//	
-//	
-// $.ajax({
-// type:"POST",
-// url:"MAIN_bookmarkAjax.do"
-//	
-//	
-//	
-// })
-//	
-//	
-//	
-//	
