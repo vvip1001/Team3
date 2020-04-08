@@ -86,19 +86,19 @@ public class UserController {
 
 	// join go
 	@RequestMapping(value = "/USER_join.do", method = RequestMethod.GET)
-	public String join() {
+	public String join(Model model) {
 		logger.info("joinpage go");
-
+		model.addAttribute("JoinUserDto", new JoinUserDto());
 		return "MAIN/join";
 	}
 
 	// 회원가입 res
 	@RequestMapping(value = "/USER_joinRes.do", method = RequestMethod.POST)
-	public String joinRes(Model model, @ModelAttribute("JoinuserDto") @Valid JoinUserDto dto, BindingResult result) {
+	public String joinRes(Model model, @ModelAttribute("JoinUserDto") @Valid JoinUserDto dto, BindingResult result, Map<String,BindingResult> model2) throws Exception {
 		logger.info("joinRes.do");
 
 		model.addAttribute("joinuserDto", dto);
-
+		model2.put(BindingResult.class.getName()+"JoinuserDto",result);
 		System.out.println("===============joinuserDto" + dto);
 
 		if (result.hasErrors()) {
@@ -440,7 +440,6 @@ public class UserController {
 			for (ObjectError error : list) {
 				System.out.println(error);
 			}
-
 			return "USER/userDetail";
 		} else {
 			logger.info("유효성 검사 통과");
@@ -511,7 +510,16 @@ public class UserController {
 
 		return down;
 	}
-
+	
+	
+	@RequestMapping(value="/USER_boardCVDetail.do", method = RequestMethod.GET)
+	public String boardCVDetail() {
+		logger.info("boardCVDetail");
+		
+		return "USER/userCVDetail";
+	}
+	
+	
 	// 자기소개서 삭제
 	@RequestMapping(value = "/USER_userCVdelete.do", method = RequestMethod.POST)
 	public String boardCVDelete(@RequestParam(name = "chk") String[] seq) {

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자기소개서 입력</title>
+<title>자기소개서 상세보기</title>
 <%@ include file="../ALL/header_login.jsp"%>
 <!-- include JQeury/CSS/JS -->
 <script type="text/javascript"

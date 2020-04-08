@@ -18,7 +18,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 		logger.info("[Interceptor] preHandle");
 		// spring 3.2 이상부터는 servlet-context.xml에서
 		// <exclude-mapping-path>태그를 통해 설정할 수 있다
-		if (request.getRequestURI().contains("/") || 
+		
+		if(request.getSession().getAttribute("login") != null) { 
+			return true; 
+		}else {
+			response.sendRedirect("/MAIN_main.do");
+		}
+		if (
 				request.getRequestURI().contains("/MAIN_main.do") || 
 				request.getRequestURI().contains("/MAIN_mainDetail.do") ||
 				request.getRequestURI().contains("/JOB_jobSearch.do") ||
@@ -33,14 +39,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("/USER_changepw.do")) {
 			return true; // 컨트롤러로 보내어 정상흐름 실행.
 		}
-		if (request.getSession().getAttribute("login") == null) { // 로그인 되어있지 않다면 모두
-			response.sendRedirect("/USER_login.do"); // 로그인 페이지로 보내라
-		}
-		
-		if(request.getSession().getAttribute("login") != null) { 
-			return true; 
-		}
 
+		
+		
 		return false; // DispatcherServlet >> preHandle()가 return false; @controller로 가는것을 막는다.
 	}
 

@@ -1,0 +1,59 @@
+#whole {
+   height: auto;
+   background-color: white;
+}
+
+#title {
+   font-size: 40px;
+   font-weight: bold;
+   margin-top: 2%;
+   text-align: center;
+}
+
+.subtitle {
+   font-size: 17px;
+   margin-left: 20%;
+   margin-top: 3%;
+}
+
+.line {
+   border: 1px solid #000;
+   width: 60%;
+   margin-top: 1%;
+   margin-left: 20%;
+}
+
+.content {
+   margin-left: 20%;
+   margin-top: 0.3%;
+   width: 60%;
+}
+
+.text {
+   border-left: thin;
+   border-right: thin;
+   border-top: thin;
+}
+
+#sign {
+   text-align: right;
+   margin-top:1%;
+   margin-right: 20%;
+}
+.form-control{
+   display: inline-block;
+   width: 70%;
+}
+#year{
+float: left;
+   width:8%;
+   margin-left: 60%;
+}
+#month{
+   float: left;
+   width:8%;
+}
+#day{
+   float: left;
+   width:8%;
+}
