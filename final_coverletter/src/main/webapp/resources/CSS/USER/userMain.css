@@ -17,6 +17,11 @@
 	font-style: normal;
 }
 
+.fa, .fas {
+    font-weight: 900;
+    font-size: 50px;
+}
+
 h2 {
 	font-family: 'yg-jalnan' !important;
 }

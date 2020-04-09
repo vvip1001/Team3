@@ -112,6 +112,7 @@ function createITChart() {
 					},
 					ticks : {
 						min : 0,
+						max : 10,
 						display : true
 					}
 				} ],

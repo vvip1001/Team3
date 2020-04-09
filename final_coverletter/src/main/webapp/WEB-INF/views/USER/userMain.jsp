@@ -64,7 +64,9 @@
 <!-- include chart.js -->
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-	
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />	
 <style type="text/css">
 #full {
 	margin: 40px 10px;
@@ -88,8 +90,8 @@
 		<div class="center1">
 			<div class="topside"></div>
 			<div class="center1height" align="center">
-				<br> <img alt="#" src="img/ex.png">
-				<h2>김라이언 님</h2>
+				<br> <span><i class="fas fa-user 3x"></i></span>
+				<h2>${login.joinname } 님</h2>
 				<br> <br>
 				<button class="btn" id="userUpdate">개인정보 수정</button>
 				<br/><br><br> 
