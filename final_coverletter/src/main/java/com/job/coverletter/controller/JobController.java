@@ -215,7 +215,7 @@ public class JobController {
 	}
 
 	// PFwrite page go
-	@RequestMapping(value = "/USER_userPFwrite.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/USER_userPFwrite.do")
 	public String PFwrite(Model model) {
 		logger.info("PRwrite go");
 
@@ -225,120 +225,109 @@ public class JobController {
 	}
 
 	// 포폴작성
-    @RequestMapping(value = "/PFinsert.do", method = { RequestMethod.POST }, consumes = { "multipart/form-data" })
-    public String PFinsert(Model model, @ModelAttribute("MultiRowTarget") @Valid MultiRowTarget targets,
-          BindingResult result, MultipartHttpServletRequest mprequest, HttpSession session) {
-       logger.info("PFinsert");
+	@RequestMapping(value = "/PFinsert.do", method = { RequestMethod.POST }, consumes = { "multipart/form-data" })
+	public String PFinsert(Model model, @ModelAttribute("MultiRowTarget") @Valid MultiRowTarget targets,
+			BindingResult result, MultipartHttpServletRequest mprequest, HttpSession session) {
+		logger.info("PFinsert");
 
-          JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
-          logger.info("확인22222222222!!!!!!!!!!!!!!!!!!!!!" + userDto);
+		JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+		logger.info("확인22222222222!!!!!!!!!!!!!!!!!!!!!" + userDto);
 
-          // 가장 큰 그룹번호 가져오기
-          int groupno = coverletterBiz.getGroupno(userDto.getJoinemail()).getGroupno();
-          groupno += 1;
+		// 가장 큰 그룹번호 가져오기
+		int groupno = coverletterBiz.getGroupno(userDto.getJoinemail()).getGroupno();
+		groupno += 1;
 
-          logger.info("확인!!!!!!!!!!!!!!!!!!!!!" + groupno);
-          
-          List<MultipartFile> list = new ArrayList<MultipartFile>();
-          List<MultipartFile> tmp = targets.getTargets().get(0).getFileUpload();
+		logger.info("확인!!!!!!!!!!!!!!!!!!!!!" + groupno);
 
-          System.out.println(targets.getTargets().get(0).getFileUpload());
-          System.out.println(targets.getTargets().get(1).getFileUpload());
-          
-          for(int z = 0 ; z < tmp.size() ; z++) {
-             list.add(tmp.get(z));
-          }
-          System.out.println("파일의 개수 : " + list.size());
-          
-          InputStream inputStream = null;
-          OutputStream outputStream = null;
-          
-          for(int y=list.size()-1; y>=0; y--) {
-             MultipartFile file = list.get(y);
-             
-             if(file.getSize() ==0) {
-                list.remove(y);
-                continue;
-             }
-             String name = file.getOriginalFilename();
-    
-//             이름과 설명을 넘김.
-             System.out.println("----------------------------------------");
+		List<MultipartFile> list =  targets.getTargets().get(0).getFileUpload();
+		System.out.println("파일의 개수 : " + list.size());
 
-             System.out.println("file = " + file.getSize());
-             try {
-                System.out.println("file = " + file.getInputStream());
-             } catch (IOException e1) {
-                e1.printStackTrace();
-             }
-          
-             System.out.println("name = " + name);
-             
-             
-             
-             try {
-                inputStream = file.getInputStream();
-                // 경로
-                String path = WebUtils.getRealPath(mprequest.getSession().getServletContext(), "/storage");
-                System.out.println("upload real path : " + path);
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
 
-                File storage = new File(path);
-                if (!storage.exists()) {
-                   storage.mkdir();
-                } // 해당 파일이 있으면 넘어간다.
+		for (int y = list.size() - 1; y >= 0; y--) {
+			MultipartFile file = list.get(y);
 
-                File newFile = new File(path + "/" + name);
-                if (!newFile.exists()) {
-                   newFile.createNewFile();
-                } // 새로운 파일이 없으면
+			if (file.getSize() == 0) {
+				list.remove(y);
+				continue;
+			}
+			String name = file.getOriginalFilename();
 
-                outputStream = new FileOutputStream(newFile); // 업로드 되는 파일
-                int read = 0;
-                byte[] b = new byte[(int) file.getSize()];
-                while ((read = inputStream.read(b)) != -1) {
-                   outputStream.write(b, 0, read);
-                }
+//	            이름과 설명을 넘김.
+			System.out.println("----------------------------------------");
 
-             } catch (IOException e) {
-                e.printStackTrace();
-             } finally {
-                try {
-                   inputStream.close();
-                   outputStream.close();
-                } catch (IOException e) {
-                   e.printStackTrace();
-                }
-             }
-          
-             System.out.println("if문 들어왔다lo");
+			System.out.println("file = " + file.getSize());
+			try {
+				System.out.println("file = " + file.getInputStream());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			System.out.println("name = " + name);
 
-             for (int i = 0; i < targets.getTargets().size(); i++) {
+			try {
+				inputStream = file.getInputStream();
+				// 경로
+				String path = WebUtils.getRealPath(mprequest.getSession().getServletContext(), "/storage");
+				System.out.println("upload real path : " + path);
 
-                String title = targets.getTargets().get(0).getTitle();
-                String subtitle = targets.getTargets().get(0).getSubtitle();
-                String question = targets.getTargets().get(0).getQuestion();
-                String content = targets.getTargets().get(0).getContent();
-                String functions = targets.getTargets().get(0).getFunctions();
-                String positions = targets.getTargets().get(0).getPositions();
-                String participation = targets.getTargets().get(0).getParticipation();
+				File storage = new File(path);
+				if (!storage.exists()) {
+					storage.mkdir();
+				} // 해당 파일이 있으면 넘어간다.
 
-                targets.getTargets().get(i).setTitle(title);
-                targets.getTargets().get(i).setSubtitle(subtitle);
-                targets.getTargets().get(i).setQuestion(question);
-                targets.getTargets().get(i).setContent(content);
-                targets.getTargets().get(i).setFunctions(functions);
-                targets.getTargets().get(i).setPositions(positions);
-                targets.getTargets().get(i).setParticipation(participation);
-                targets.getTargets().get(i).setFilepath(name);
-                targets.getTargets().get(i).setJoinemail(userDto.getJoinemail());
-                targets.getTargets().get(i).setGroupno(groupno);
-                System.out.println("========================insert 이전 dto 값 : " + targets.getTargets().get(i));
-                coverletterBiz.PFwrite(targets.getTargets().get(i));
-                System.out.println("========================dto 값 : " + targets.getTargets().get(i));
+				File newFile = new File(path + "/" + name);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+				} // 새로운 파일이 없으면
 
-             }
-          }
-          
-          return "redirect:/USER_userPFList.do";
-       }
-    }
+				outputStream = new FileOutputStream(newFile); // 업로드 되는 파일
+				int read = 0;
+				byte[] b = new byte[(int) file.getSize()];
+				while ((read = inputStream.read(b)) != -1) {
+					outputStream.write(b, 0, read);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					inputStream.close();
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			System.out.println("if문 들어왔다lo");
+
+			for (int i = 0; i < targets.getTargets().size(); i++) {
+
+				String title = targets.getTargets().get(0).getTitle();
+				String subtitle = targets.getTargets().get(0).getSubtitle();
+				String question = targets.getTargets().get(0).getQuestion();
+				String content = targets.getTargets().get(0).getContent();
+				String functions = targets.getTargets().get(0).getFunctions();
+				String positions = targets.getTargets().get(0).getPositions();
+				String participation = targets.getTargets().get(0).getParticipation();
+
+				targets.getTargets().get(i).setTitle(title);
+				targets.getTargets().get(i).setSubtitle(subtitle);
+				targets.getTargets().get(i).setQuestion(question);
+				targets.getTargets().get(i).setContent(content);
+				targets.getTargets().get(i).setFunctions(functions);
+				targets.getTargets().get(i).setPositions(positions);
+				targets.getTargets().get(i).setParticipation(participation);
+				targets.getTargets().get(i).setFilepath(name);
+				targets.getTargets().get(i).setJoinemail(userDto.getJoinemail());
+				targets.getTargets().get(i).setGroupno(groupno);
+				System.out.println("========================insert 이전 dto 값 : " + targets.getTargets().get(i));
+				coverletterBiz.PFwrite(targets.getTargets().get(i));
+				System.out.println("========================dto 값 : " + targets.getTargets().get(i));
+
+			}
+		}
+
+		return "redirect:/USER_userPFList.do";
+	}
+}

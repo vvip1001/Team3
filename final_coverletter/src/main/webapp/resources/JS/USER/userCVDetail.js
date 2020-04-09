@@ -44,6 +44,7 @@ window.onload = function() {
 	});
 	restructure_certificate()
 	restructure_language()
+	restructure_contest()
 }
 
 

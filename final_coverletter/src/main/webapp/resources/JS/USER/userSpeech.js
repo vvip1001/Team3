@@ -350,6 +350,7 @@ function formChange(select) {
 		fristQuestion();
 		$("#legend1").html("문제");
 		$("#legend2").html("정답");
+		$("#pract").html("");
 		$("#speech").val("정답녹음");
 		$("#answer").val("정답확인");
 		$("#speech").attr({"onclick":"pract_speech_to_text();"});

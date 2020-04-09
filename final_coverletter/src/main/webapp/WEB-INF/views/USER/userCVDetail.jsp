@@ -183,7 +183,7 @@
 						</div>
 						<div class="line"></div>
 						<div class="content">
-							<textarea class="text" rows="15" cols="104">${dto.content }</textarea>
+							<textarea class="text" rows="20" cols="104">${dto.content }</textarea>
 						</div>
 					</div>
 				</c:if>
@@ -194,7 +194,7 @@
 					</div>
 					<div class="line"></div>
 					<div class="content">
-						<textarea class="text" rows="15" cols="104">${dto.content }</textarea>
+						<textarea class="text" rows="20" cols="104">${dto.content }</textarea>
 					</div>
 				</div>
 			</c:forEach>
