@@ -173,6 +173,8 @@ INSERT INTO COVERLETTER VALUES(TOTAL_SEQ.NEXTVAL, 'abc@naver.com', '포폴', POR
 
 SELECT * FROM COVERLETTER;
 
+DELETE FROM COVERLETTER WHERE groupno=1
+
 --=====================================================================================================================
 -- 채용일정 캘린더
 DROP SEQUENCE JOBCALENDAR_SEQ;

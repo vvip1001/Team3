@@ -82,7 +82,7 @@
 					var geocoder = new kakao.maps.services.Geocoder();
 
 					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('서울특별시 송파구 동남로 193', function(result, status) {
+					geocoder.addressSearch('경기도 성남시 분당구 삼평동 판교로 242', function(result, status) {
 
 					    // 정상적으로 검색이 완료됐으면 
 					     if (status === kakao.maps.services.Status.OK) {
