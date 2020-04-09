@@ -1,4 +1,25 @@
+/*---------- 웹폰트 ----------*/
+@font-face {
+	font-family: 'yg-jalnan';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'MapoPeacefull';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*---------- 타이틀 ----------*/
 #item {
+<<<<<<< HEAD
    text-align: center;
    margin-top: 7%;
    margin-bottom: 4%;
@@ -14,9 +35,35 @@ th {
    width: 100%;
    height: 100%;
    
+=======
+	font-family: 'yg-jalnan';
+	text-align: center;
+	margin-top: 7%;
+	margin-bottom: 4%;
 }
 
+th {
+	font-family: 'yg-jalnan';
+	font-size: 20px;
+	width: 165px;
+	vertical-align: baseline;
+}
 
+/*---------- 입력영역 ----------*/
+textarea {
+	width: 100%;
+	height: 300px;
+	border: 0px;
+	resize: none;
+	font-size: 13px;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
+}
+
+fieldset {
+	width: 100%;
+}
+
+<<<<<<< HEAD
 .PFtable {
    margin-left: 20%;
    margin-bottom: 5%;
@@ -33,10 +80,51 @@ th {
    width: 100%;
    border: 1px solid black;
    border-radius: 5px;
+=======
+#function {
+	margin: 55px 30px 10px 10px;
+	width: 80% !important;
+	height: 300px;
+	border: 2px solid black;
+	border-radius: 5px;
 }
 
+/* 기능설명 라벨*/
+.le {
+	font-family: 'yg-jalnan';
+}
+
+#viewinfo {
+	/* margin: 10px 10px 20px 25px; */
+	margin-top: 10px;
+	width: 85%;
+	border: 2px solid black;
+	border-radius: 5px;
+	margin-left: 87px;
+}
+
+legend {
+	text-align: center;
+	display: block;
+	width: 20%;
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 21px;
+	line-height: inherit;
+	color: #333;
+	border: 0;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
+}
+
+/* 기능설명 & 화면설명 */
+#functioninfo, #viewinfo1 {
+	width: 96%;
+	height: 220px;
+	border: 0px;
+}
 
 .PFtable input {
+<<<<<<< HEAD
    display: table-cell;
    vertical-align: middle;
    height: 40px;
@@ -47,8 +135,71 @@ th {
 
 #PFbtn input[type="file"] {
    color: white;
+=======
+	display: table-cell;
+	vertical-align: middle;
+	height: 40px;
+	width: 100%;
+	border-radius: 5px;
 }
 
+/* 이미지 업로드 DIV */
+.img_wrap img {
+	border-radius: 5px;
+	position: absolute;
+	margin-left: -61%;
+	border: 2px solid black;
+}
+
+/*---------- 추가 버튼 ----------*/
+#plus {
+	margin-top: 40px;
+	margin-left: 50%;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: black;
+	z-index: 1;
+	color: white;
+	border: 1px;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
+}
+
+/*---------- 저장, 다운 버튼 그룹 ----------*/
+.btn-grp {
+	font-family: 'yg-jalnan';
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+#create_pdf {
+	margin-top: 5%;
+	width: 20%;
+	height: 50px;
+	color: white;
+	font-size: 15pt;
+	background-color: #00bf6f;
+	border-radius: 5px;
+}
+
+#pdfwrap {
+	width: 100%;
+	height: 100%;
+}
+
+.PFtable {
+	margin-left: 20%;
+	margin-bottom: 5%;
+	width: 60%;
+	border-collapse: inherit;
+	border-spacing: 20px;
+	text-align: center;
+}
+
+#PFbtn input[type="file"] {
+	color: white;
+}
 
 .PFinfo {
    display: table-cell;
@@ -56,9 +207,14 @@ th {
    height: fit-content;
 }
 
+<<<<<<< HEAD
 hr{
    border: 5px solid #BDBDBD;
 
+=======
+hr {
+	border: 5px solid #BDBDBD;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 }
 
 #PFdetail {
@@ -68,6 +224,7 @@ hr{
 }
 
 #photo {
+<<<<<<< HEAD
    margin: 70px 10px 20px 40px;
    width: 45%;
    height: 300px;
@@ -93,6 +250,13 @@ hr{
 }
 
 
+=======
+	margin: 70px 10px 20px 40px;
+	width: 45%;
+	height: 300px;
+}
+
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 .le {
    text-align: center;
    font-weight: bold;
@@ -100,6 +264,7 @@ hr{
    border-bottom: none;
 }
 
+<<<<<<< HEAD
 fieldset textarea{
    width: 95%;
    
@@ -155,4 +320,19 @@ fieldset textarea{
 .img_wrap img{
    position: absolute;
    margin-left: -61%;
+=======
+fieldset textarea {
+	width: 95%;
+	border: 0;
+	margin: 10px;
+}
+
+.img_wrap {
+	border-radius: 5px;
+	position: relative;
+	color: #BDBDBD;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 283px;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 }

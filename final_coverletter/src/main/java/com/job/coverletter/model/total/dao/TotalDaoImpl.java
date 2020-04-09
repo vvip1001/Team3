@@ -22,7 +22,7 @@ public class TotalDaoImpl implements TotalDao {
 	private SqlSessionTemplate sqlSession;
 
 	// 로그인
-	private String login = "cv@email.com";
+	//private String login = "cv@email.com";
 
 	@Override
 	public int ToTalInsert(TotalDto dto) {
@@ -49,9 +49,9 @@ public class TotalDaoImpl implements TotalDao {
 
 	/*-------------------------스킬차트-----------------------------*/
 	@Override
-	public JSONArray selectItSkill() {
+	public JSONArray selectItSkill(String joinemail) {
 		TotalDto dto = new TotalDto();
-		dto.setJoinemail(login);
+		dto.setJoinemail(joinemail);
 
 		List<Map<String, String>> list = null;
 		JSONArray arr = new JSONArray();
@@ -85,9 +85,9 @@ public class TotalDaoImpl implements TotalDao {
 	}
 
 	@Override
-	public JSONArray selectMySkill() {
+	public JSONArray selectMySkill(String joinemail) {
 		TotalDto dto = new TotalDto();
-		dto.setJoinemail(login);
+		dto.setJoinemail(joinemail);
 
 		List<TotalDto> list = null;
 		JSONArray arr = new JSONArray();

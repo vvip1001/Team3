@@ -21,7 +21,7 @@
 
          <f:form action="USER_joinRes.do" method="post" modelAttribute="joinUserDto" onsubmit="return confirmSubmit()">
          
-            <h1 id="hello">환영합니다</h1>
+            <h1 id="hello">환영합니다 😊 </h1>
             <table id="jointable">
                
                <tbody>
@@ -30,7 +30,7 @@
                   <tr>
                      <th>이 메 일*</th>
                      <td class="joininfo">
-                     <f:input path="joinemail" id="joinemail" readonly="true" placeholder="이메일을 입력을 위해 클릭하세요." onclick="checkid();"/>
+                     <f:input class="form-control" path="joinemail" id="joinemail" readonly="true" placeholder="이메일을 입력을 위해 클릭하세요." onclick="checkid();"/>
                      </td>
                   </tr>
                   <tr>
@@ -42,7 +42,7 @@
                   <tr>
                      <th>이    름*</th>
                      <td class="joininfo">
-                     <f:input id="joinname" path="joinname"  placeholder="이름을 입력하세요" />
+                     <f:input class="form-control" id="joinname" path="joinname"  placeholder="이름을 입력하세요" />
                      </td>
                      
                   </tr>
@@ -54,7 +54,7 @@
                   </tr>
                   <tr>
                      <th>비밀번호*</th>
-                     <td class="joininfo"><f:password id="joinpw" path="joinpw"  placeholder="비밀번호를 입력하세요"/></td>
+                     <td class="joininfo"><f:password class="form-control" id="joinpw" path="joinpw"  placeholder="비밀번호를 입력하세요"/></td>
                   </tr>
                    <tr>
                    <th></th>
@@ -64,7 +64,7 @@
                   </tr>
                   <tr>             
                      <th>비밀번호 확인*</th>
-                     <td class="joininfo"><input type="text" name="joinpw2" placeholder="비밀번호를 확인하세요"/></td>
+                     <td class="joininfo"><input class="form-control" type="text" name="joinpw2" placeholder="비밀번호를 확인하세요"/></td>
                   </tr>
                   <tr>
                   <th></th>
@@ -75,7 +75,7 @@
                   <tr>
                      <th>생년월일*</th>
                      <td class="joininfo">
-                        <f:input  path="joinbirth" id="joinbirth"  placeholder="yyyynnmm 숫자만입력해주세요" maxlength="8"/>
+                        <f:input class="form-control" path="joinbirth" id="joinbirth"  placeholder="yyyynnmm 숫자만입력해주세요" maxlength="8"/>
                      </td>
                   </tr>
                    <tr>
@@ -101,7 +101,7 @@
                </tbody>
                   <tr>
                      <td colspan="2" align="center" >
-                        <button id="join" type="submit" >회원가입</button>
+                        <button id="join" type="submit" class="btn" >회원가입</button>
                      </td>
                   </tr>
             </table>

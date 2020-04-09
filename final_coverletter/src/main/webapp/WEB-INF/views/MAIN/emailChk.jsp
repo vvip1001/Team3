@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/MAIN/emailChk.css?ver=3">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/JS/MAIN/emailChk.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <%
 int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
@@ -19,22 +21,22 @@ int RandomNumber=(int)(Math.floor(Math.random() * (9999-1000+1)) + 1000);
    <input type="hidden" id="number" name="number" value="<%=RandomNumber%>" >
    
    <fieldset id="feilde">
-   <legend>이메일 입력</legend>
-   <div>
+   <legend>이메일 중복확인</legend>
+   <div class="email-box">
    <input type="text" id="emailCheck" placeholder="email@google.com" >
-   <input type="button" id="validateID" value="중복확인" onclick="validate();" >
+   <input type="button" class="btn" id="validateID" value="중복확인" onclick="validate();" >
    <span id="errormessage"></span>
    </div>
    </fieldset>
    
    <fieldset id="feildeID" style="display: none;">
-   <legend>이메일 입력</legend>
-   <div>
+   <legend>이메일 중복확인</legend>
+   <div class="email-box">
    <input type="email" id="EmailID" name="EmailName" >
-   <input type="submit" value="인증코드전송"  id="submit"><br>
+   <input class="btn" type="submit" value="인증코드전송"  id="submit"><br>
    <input type="text" id="EmailCode" placeholder="인증코드 작성" >
-   <input type="button" value="확인하기" id="chk2" onclick="EmailChk2(<%=RandomNumber%>);">
-   <input type="button"  id="chk" value="인증성공" onclick="EmailChk();" style="display: none;" ><br>
+   <input class="btn" type="button" value="확인하기" id="chk2" onclick="EmailChk2(<%=RandomNumber%>);">
+   <input class="btn" type="button"  id="chk" value="인증성공" onclick="EmailChk();" style="display: none;" ><br>
    </div>
    </fieldset>
    </form>

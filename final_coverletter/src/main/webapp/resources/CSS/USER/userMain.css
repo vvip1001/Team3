@@ -8,8 +8,22 @@
 	font-style: normal;
 }
 
-h2{
-	font-family: 'yg-jalnan';
+@font-face {
+	font-family: 'MapoPeacefull';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.fa, .fas {
+    font-weight: 900;
+    font-size: 50px;
+}
+
+h2 {
+	font-family: 'yg-jalnan' !important;
 }
 
 .userContainer {
@@ -100,8 +114,10 @@ h2{
 	position: relative;
 }
 
+/* 모달 - 탈퇴하기 */
 #soo {
-	float: left;
+	display: block;
+	/* float: left; */
 	margin-left: 27.5%;
 	background-color: #00bf6f;
 	color: white;
@@ -128,13 +144,17 @@ h2{
 	margin: 0 auto;
 }
 
+/* 이력서, 포트폴리오, 채용즐찾 원형메뉴를 감싸는 div */
 .center2height_child_1 {
 	display: flex;
+	margin-top: 30px;
 }
 
+/* 이력서, 포트폴리오, 채용즐찾 원형메뉴 */
 .center2height_child_2 {
 	text-align: center;
-	height: 140px;
+	height: 100%;
+	width: 100%;
 	margin-top: 20px;
 	box-sizing: border-box;
 	box-shadow: 10px 10px 15px #b3b3b3;
@@ -144,6 +164,10 @@ h2{
 	flex: 1;
 	flex-flow: wrap;
 	transform: rotate(-0deg);
+}
+
+.center2height_child_2 a {
+	font-family: 'MapoPeacefull' !important;
 }
 
 .center2height_child_2_side {
@@ -218,10 +242,58 @@ h2{
 
 /*---------- chart ----------*/
 .chart {
+	font-family: 'MapoPeacefull' !important;
 	display: inline-block;
 	position: inherit;
 }
 
 canvas {
+	font-family: 'MapoPeacefull' !important;
 	width: 500px !important;
+}
+
+/*---------- 버튼들 ----------*/
+.btn {
+	font-family: 'MapoPeacefull' !important;
+	background-color: #00BF6F !important;
+	color: #fff !important;
+	margin-bottom: 10px !important;
+}
+
+.menu-txt {
+	display: block;
+	margin: 5px 5px;
+}
+
+/*---------- 모달 ----------*/
+.modal-header {
+	font-family: 'yg-jalnan';
+	text-align: center;
+	font-weight: bold;
+	background: #00BF6F;
+	border-radius: 6px 6px 0 0;
+	color: #fff !important;
+	font-size: 23px !important;
+	padding: 20px 26px;
+	margin-bottom: 0px !important;
+	width: 100% !important;
+}
+
+.modal-body {
+	font-family: 'MapoPeacefull';
+	background: #fff !important;
+	border-radius: 0 0 20px 20px;
+	padding: 20px 26px;
+	border-radius: 0 0 20px 20px;
+}
+
+.modal-footer {
+	font-family: 'MapoPeacefull';
+	padding: 0px !important;
+	text-align: right;
+	border-top: 0px solid #e5e5e5 !important;
+}
+
+#delete {
+	color: #f95252;
 }

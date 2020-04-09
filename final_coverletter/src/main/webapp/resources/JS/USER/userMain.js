@@ -111,6 +111,8 @@ function createITChart() {
 						display : true
 					},
 					ticks : {
+						min : 0,
+						max : 10,
 						display : true
 					}
 				} ],
@@ -131,7 +133,7 @@ function createMYChart() {
 			labels : myChartLabel,
 			datasets : [ {
 				data : myChartData,
-				backgroundColor : '#cbe2b0',
+				backgroundColor : 'rgba(255,240,92, 0.07)',
 				borderColor : '#f6d186',
 				borderCapStyle : 'round',
 			} ]

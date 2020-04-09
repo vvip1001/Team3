@@ -19,7 +19,6 @@
 </head>
 <body>
 	<%@ include file="../ALL/header_login.jsp"%>
-	<c:set var="login" value="mint@email.com"/>
 	
 	<div class="container">
 		<h1>자유게시판</h1>
@@ -64,7 +63,7 @@
 				
 				<!-- eq : 로그인 기능 완성되면 로그인 세션 이메일로 바꿔야 됨 -->
 				<c:choose>
-					<c:when test="${boardDetail.joinemail eq login }">
+					<c:when test="${boardDetail.joinemail eq login.joinemail }">
 						<tr>
 							<td colspan="4"><span class="board-update-delete">
 							<a href="#" onclick="location.href='BOARD_boardUpdateForm.do?boardseq=${boardDetail.boardseq }&curPage=${curPage }'">수정</a> |
@@ -103,11 +102,11 @@
 						<td class="reply-content">${reply.content }</td>
 						<td class="reply-update-delete">
 						<c:choose>		
-								<c:when test="${reply.joinemail eq login }">
+								<c:when test="${reply.joinemail eq login.joinemail }">
 									<span><a href="#" onclick="deleteAlert('댓글', ${reply.boardseq });">삭제</a></span>
 								</c:when>
 								<c:otherwise>
-									<span><a href="#" onclick="rereply('${reply.joinemail}', ${reply.boardseq }); " >답글</a></span>
+									<span><a href="#" onclick="rereply('${reply.joinemail }', ${reply.boardseq }); " >답글</a></span>
 								</c:otherwise>
 							</c:choose>
 						</td>

@@ -1,11 +1,33 @@
+/*---------- 웹폰트 ----------*/
+@font-face {
+	font-family: 'yg-jalnan';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'MapoPeacefull';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
 /*---------- container 영역 ----------*/
 .board-list {
+	font-family: 'MapoPeacefull';
 	height: 600px;
 	padding: 0% 1% 0% 1%;
 }
 
 /*---------- 타이틀 영역 ----------*/
 h1 {
+	font-family: 'yg-jalnan' !important;
 	text-align: center !important;
 	margin: 4% 0% 4% 0% !important;
     font-size: 36px !important;

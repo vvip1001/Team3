@@ -359,11 +359,11 @@ public class UserController {
       model.addAttribute("jblist", jblist);
 
       // IT역량 차트
-      JSONArray itSkill = totalBiz.selectItSkill();
+      JSONArray itSkill = totalBiz.selectItSkill(userDto.getJoinemail());
       model.addAttribute("itSkill", itSkill);
 
       // 스펙 차트
-      JSONArray mySkill = totalBiz.selectMySkill();
+      JSONArray mySkill = totalBiz.selectMySkill(userDto.getJoinemail());
       model.addAttribute("mySkill", mySkill);
 
       return "USER/userMain";

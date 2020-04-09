@@ -1,5 +1,25 @@
+/*---------- 웹폰트 ----------*/
+@font-face {
+	font-family: 'yg-jalnan';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'MapoPeacefull';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 /*---------- 타이틀 영역 ----------*/
 h1 {
+	font-family: 'yg-jalnan' !important;
 	text-align: center !important;
 	margin: 4% 0% 4% 0% !important;
     font-size: 36px !important;
@@ -8,8 +28,12 @@ h1 {
 }
 
 h2 {
-	font-size: 20px;
+	font-family: 'MapoPeacefull' !important;
+	font-size: 20px !important;
+	margin: 2% 0% 1% 0% !important;
+	cursor: default;
 }
+
 
 /*---------- 글쓰기 영역 ----------*/
 form {
@@ -23,6 +47,7 @@ form {
 
 /*---------- 글쓰기 영역 : 버튼 ----------*/
 #btn-group{
+	font-family: 'MapoPeacefull';
 	margin: 20px;
 	text-align: center;
 	position: relative;
@@ -35,4 +60,18 @@ form {
 #btn-group input[type="submit"]:hover, #btn-group input[type="button"]:hover {
 	background-color: #00BF6F;
 	color: #fff;
+}
+
+#paging-nav {
+   text-align: center;
+}
+
+#paging-nav a {
+   color: black;
+}
+
+/* 현재 페이지 색상 */
+.paging-focus{
+   background-color: #00bf6f !important;
+   color : #fff !important;
 }

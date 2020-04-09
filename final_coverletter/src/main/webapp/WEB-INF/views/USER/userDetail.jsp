@@ -32,18 +32,18 @@
 			modelAttribute="totalDto">
 			<div class="center">
 				<div id="profile">
-					<h3>1.인적사항</h3>
+					<h3>1. 인적사항</h3>
 					<div class="col-md-1" id="photo">사진업로드</div>
 					<div id="p_up">
-							<f:input path="joinname" id="small" cssClass="col-md-4" placeholder ="이름" readonly="true"/>
-							<f:input path="joinbirth" id="big" cssClass="col-md-4" placeholder ="생년월일(yyyyMMdd)"/>
-							<f:select path="joinsex" id="small" cssClass="col-md-4">
+							<f:input path="joinname" id="small" cssClass="col-md-4 form-control" placeholder ="이름" readonly="true"/>
+							<f:input path="joinbirth" id="big" cssClass="col-md-4 form-control" placeholder ="생년월일(yyyyMMdd)"/>
+							<f:select path="joinsex" id="small" cssClass="col-md-4 form-control">
 								<f:option value="성별"></f:option>
 								<f:option value="남성"></f:option>
 								<f:option value="여성"></f:option>
 								<f:option value="중성"></f:option>
 							</f:select>
-							<f:input path="joinemail" id="big" cssClass="col-md-4" placeholder ="이메일" readonly="true"/>
+							<f:input path="joinemail" id="big" cssClass="col-md-4 form-control" placeholder ="이메일" readonly="true"/>
 					</div>
 
 					<div>
@@ -63,15 +63,15 @@
 
 
 					<div id="p_down">
-					<f:select path="mililtary" id="small" cssClass="col-md-4">
+					<f:select path="mililtary" id="small" cssClass="col-md-4 form-control">
 						<f:option value="병역"></f:option>
 						<f:option value="미필"></f:option>
 						<f:option value="군필"></f:option>
 						<f:option value="면제"></f:option>
 						<f:option value="해당없음"></f:option>
 					</f:select> 
-					<f:input path="phone" id="big" cssClass="col-md-4" placeholder ="전화번호(010-1234-5678)"/>
-					<f:input path="address" id="bigbig" cssClass="col-md-4" placeholder ="주소" onclick="Address();" readonly="readonly" />
+					<f:input path="phone" id="big" cssClass="col-md-4 form-control" placeholder ="전화번호(010-1234-5678)"/>
+					<f:input path="address" id="bigbig" cssClass="col-md-4 form-control" placeholder ="주소" onclick="Address();" readonly="readonly" />
 					</div>
 					<div>
 						<div id="check5">
@@ -87,21 +87,21 @@
 				</div>
 
 				<div>
-					<h3>2.학력</h3>
+					<h3>2. 학력</h3>
 					<div>
 						<div>
 							<div id="default2">
 
 								<div>
-									<f:select path="career" id="small" cssClass="col-md-4" onchange="careerfunc(this)">
+									<f:select path="career" id="small" cssClass="col-md-4 form-control" onchange="careerfunc(this)">
 										<f:option value="학력구분"></f:option>
 										<f:option value="대졸"></f:option>
 										<f:option value="전문대졸"></f:option>
 										<f:option value="고졸"></f:option>
 									</f:select> 
-									<f:input path="schoolname" id="big2" placeholder="학교명" cssClass="col-md-4"/>
-									<f:input path="admission" id="big1" placeholder="입학년월(13.03)" cssClass="col-md-4"/>
-									<f:input path="graduate" id="big1" placeholder="졸업년월(20.03)" cssClass="col-md-4"/>
+									<f:input path="schoolname" id="big2" placeholder="학교명" cssClass="col-md-4 form-control"/>
+									<f:input path="admission" id="big1" placeholder="입학년월(13.03)" cssClass="col-md-4 form-control"/>
+									<f:input path="graduate" id="big1" placeholder="졸업년월(20.03)" cssClass="col-md-4 form-control"/>
 								</div>
 								<div>
 									<div id="check8">
@@ -118,8 +118,8 @@
 									</div>
 								</div>
 								<div>
-									<f:input path="major" id="bigbig1" placeholder="전공명" cssClass="col-md-4"/>
-									<f:input path="grade" id="bigbig1" placeholder="학점 /4.5" cssClass="col-md-4"/>
+									<f:input path="major" id="bigbig1" placeholder="전공명" cssClass="col-md-4 form-control"/>
+									<f:input path="grade" id="bigbig1" placeholder="학점 /4.5" cssClass="col-md-4 form-control"/>
 								</div>
 								
 								<div id="check12">
@@ -143,10 +143,10 @@
 				</div>
 
 				<div>
-					<h3 id="h3">3.IT역량(가장 자신있는 기술을 5개 입력)</h3>
-					<span id="essential"> * 필수입력</span> <br> <br>
+					<h3 id="h3">3. IT역량(가장 자신있는 기술을 5개 입력)</h3>
+					<span id="essential">   * 필수입력</span> <br> <br>
 					<div id="itdiv" class="row">
-						<f:input path="itskill1" id="small" placeholder="기술1" cssClass="col-md-4"/>
+						<f:input path="itskill1" id="small" placeholder="기술1" cssClass="col-md-4 form-control"/>
 						<div class="container1" class="col-md-4">
 							<div class="slider-container" style="width: 300px;">
 								<f:input path="itscore1" id="slider1" cssClass="slider"/>
@@ -156,7 +156,7 @@
 								<div id="check14"><f:errors path="itskill1" /></div>
 								<div id="check19"><f:errors path="itscore1" /></div>
 							</div>
-						<f:input path="itskill2" id="small" placeholder="기술2" cssClass="col-md-4"/>
+						<f:input path="itskill2" id="small" placeholder="기술2" cssClass="col-md-4 form-control"/>
 						<div class="container1">
 							<div class="slider-container" style="width: 300px;">
 								<f:input path="itscore2" id="slider2" cssClass="slider"/>
@@ -166,7 +166,7 @@
 								<div id="check15"><f:errors path="itskill2" /></div>
 								<div id="check20"><f:errors path="itscore2" /></div>
 							</div>
-						<f:input path="itskill3" id="small" placeholder="기술3" cssClass="col-md-4"/>
+						<f:input path="itskill3" id="small" placeholder="기술3" cssClass="col-md-4 form-control"/>
 						<div class="container1">
 							<div class="slider-container" style="width: 300px;">
 								<f:input path="itscore3" id="slider3" cssClass="slider"/>
@@ -176,7 +176,7 @@
 								<div id="check16"><f:errors path="itskill3" /></div>
 								<div id="check21"><f:errors path="itscore3" /></div>
 							</div>
-						<f:input path="itskill4" id="small" placeholder="기술4" cssClass="col-md-4"/>
+						<f:input path="itskill4" id="small" placeholder="기술4" cssClass="col-md-4 form-control"/>
 						<div class="container1">
 							<div class="slider-container" style="width: 300px;">
 								<f:input path="itscore4" id="slider4" cssClass="slider"/>
@@ -186,7 +186,7 @@
 								<div id="check17"><f:errors path="itskill4" /></div>
 								<div id="check22"><f:errors path="itscore4" /></div>
 							</div>
-						<f:input path="itskill5" id="small" placeholder="기술5" cssClass="col-md-4"/>
+						<f:input path="itskill5" id="small" placeholder="기술5" cssClass="col-md-4 form-control"/>
 						<div class="container1">
 							<div class="slider-container" style="width: 300px;">
 								<f:input path="itscore5" id="slider5" cssClass="slider"/>
@@ -204,11 +204,11 @@
 			<br />
 
 			<div>
-				<h3>4.자격증</h3>
+				<h3>4. 자격증</h3>
 				<div id="default4">
-					<f:input path="certificate" id="msmall" placeholder="자격증명" cssClass="col-md-4"/>
-					<f:input path="organization" id="mbig" placeholder="발행기관" cssClass="col-md-4"/>
-					<f:input path="regdate" id="msmall" placeholder="취득일자(yy.MM.dd)" cssClass="col-md-4"/>
+					<f:input path="certificate" id="msmall" placeholder="자격증명" cssClass="col-md-4 form-control"/>
+					<f:input path="organization" id="mbig" placeholder="발행기관" cssClass="col-md-4 form-control"/>
+					<f:input path="regdate" id="msmall" placeholder="취득일자(yy.MM.dd)" cssClass="col-md-4 form-control"/>
 				</div>
 				<div id="field4" class="test"></div>
 				<div class="btn333" id="custom_button4">
@@ -222,11 +222,11 @@
 			</div>
 
 			<div>
-				<h3>5.어학점수</h3>
+				<h3>5. 어학점수</h3>
 				<div id="default5">
-					<f:input path="languagename" id="msmall" placeholder="공인시험명" cssClass="col-md-4"/>
-					<f:input path="languagescore" id="mbig" placeholder="공인시험명" cssClass="col-md-4"/>
-					<f:input path="languageregdate" id="msmall" placeholder="취득일자(yy.MM.dd)" cssClass="col-md-4"/>
+					<f:input path="languagename" id="msmall" placeholder="공인시험명" cssClass="col-md-4 form-control"/>
+					<f:input path="languagescore" id="mbig" placeholder="공인시험명" cssClass="col-md-4 form-control"/>
+					<f:input path="languageregdate" id="msmall" placeholder="취득일자(yy.MM.dd)" cssClass="col-md-4 form-control"/>
 				</div>
 				<div id="field5"></div>
 				<div class="btn333" id="custom_button5">
@@ -241,11 +241,11 @@
 			</div>
 
 			<div>
-				<h3>6.공모전 참여이력</h3>
+				<h3>6. 공모전 참여이력</h3>
 				<div id="default6">
-					<f:input path="contest" id="msmall" placeholder="공모전명" cssClass="col-md-4"/>
-					<f:input path="Startorganization" id="mbig" placeholder="시행기관" cssClass="col-md-4"/>
-					<f:input path="prize" id="msmall" placeholder="수상이력" cssClass="col-md-4"/>
+					<f:input path="contest" id="msmall" placeholder="공모전명" cssClass="col-md-4 form-control"/>
+					<f:input path="Startorganization" id="mbig" placeholder="시행기관" cssClass="col-md-4 form-control"/>
+					<f:input path="prize" id="msmall" placeholder="수상이력" cssClass="col-md-4 form-control"/>
 				</div>
 				<div id="field6"></div>
 				<div class="btn333" id="custom_button6">

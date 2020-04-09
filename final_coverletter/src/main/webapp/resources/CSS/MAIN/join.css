@@ -1,26 +1,45 @@
-#info{
-	font-size: 15px;
-	color: #DF7401;
+/*---------- 웹폰트 ----------*/
+@font-face {
+	font-family: 'yg-jalnan';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
-th{
-	font-size: 20px;
-	width: 165px;
+@font-face {
+	font-family: 'MapoPeacefull';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
+/*---------- 타이틀 ----------*/
 #hello {
 	text-align: center;
 	margin-top: 4%;
 	margin-bottom: 1%;
-	
+	font-family: 'yg-jalnan';
 }
 
+/*---------- *값은 필수입니다 ----------*/
+#info {
+	font-size: 15px;
+	color: red;
+	font-weight: bold;
+}
+
+/*---------- 전체 테이블 ----------*/
 #jointable {
+	font-family: 'MapoPeacefull';
 	margin-left: 20%;
 	width: 60%;
-	border-collapse:inherit; 
+	border-collapse: inherit;
 	border-spacing: 12px;
-	text-align: center; 
+	text-align: center;
 }
 
 #jointable input[type="text"] {
@@ -28,28 +47,46 @@ th{
 	vertical-align: middle;
 	height: 40px;
 	width: 100%;
-	border: 1px solid black;
 	border-radius: 5px;
 }
 
-#joinpw{
+/* 비번확인 */
+#joinpw {
 	display: table-cell;
 	vertical-align: middle;
 	height: 40px;
 	width: 100%;
-	border: 1px solid black;
 	border-radius: 5px;
-	
-	
 }
 
-.joininfo{
-	 display: table-cell;
-	 width: fit-content;
-	 height: fit-content;
+th {
+	font-size: 20px;
+	width: 165px;
 }
 
-.checkcell{
+/*---------- submit 버튼 (회원가입) ----------*/
+#join {
+	font-family: 'yg-jalnan' !important;
+	margin: auto;
+    /* margin-top: 5%; */
+    /* margin-left: 5%; */
+    width: 100%;
+    height: 50px;
+    background-color: #00bf6f;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.joininfo {
+	display: table-cell;
+	width: fit-content;
+	height: fit-content;
+}
+
+.checkcell {
 	vertical-align: middle;
 	text-align: left;
 	width: fit-content;
@@ -57,17 +94,6 @@ th{
 }
 
 
-#join{
-	margin-top: 5%;
-	margin-left: 5%; 
-	width: 100%;
-	height: 50px;
-	background-color: #00bf6f;
-	border-radius: 5px;
-	color: white;
-	text-align: center;
-	font-size: 15px;
-}
 
 .joinsex {
 	display: table-cell;
@@ -78,6 +104,7 @@ th{
 	top: -5.5px;
 	float: left;
 }
+
 #jointable label {
 	top: 4px;
 	font-size: 17px;
