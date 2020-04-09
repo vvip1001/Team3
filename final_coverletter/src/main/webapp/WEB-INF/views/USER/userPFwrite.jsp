@@ -74,12 +74,9 @@
 					</div>
 
 
-
-
-
 					<div id="PFdetail">
 						<div id="PFbtn">
-							<button id="minus" onclick="minus(this);" style="float: left;">
+							<button id="minus" onclick="minus(this);" class="btn" type="button">
 								<!-- <img alt="minus" src="resources/IMG/minus.png" style="width: 20px; height: 20px;"> -->
 								삭제
 							</button>
