@@ -67,7 +67,7 @@
 							<th>글번호</th>
 							<th>글제목</th>
 							<th>작성일</th>
-							<th>다운로드</th>
+							<th>PDF변환</th>
 						</tr>
 					</thead>
 
@@ -90,7 +90,7 @@
 										<td class="board-date"><fmt:formatDate
 												value="${dto.regdate}" pattern="yy-MM-dd HH:mm" /></td>
 										<td class="board-down"><input type="button" class="btn"
-											value="다운로드" onclick="fileDownLoad();"></td>
+											value="이동하기" onclick="location.href='USER_userCVDetail.do?title=${dto.title }'"></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -99,7 +99,7 @@
 				</table>
 				<input type="button" id="deleteSub" class="btn" value="삭제"
 					onclick="deleteSubmit();">
-					<a href="USER_boardCVDetail.do">이동</a>
+					<a href="USER_userCVDetail.do">이동</a>
 			</form>
 		</div>
 		<!-- 글목록 영역 끝 -->

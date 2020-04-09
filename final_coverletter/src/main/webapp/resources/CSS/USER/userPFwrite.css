@@ -19,6 +19,23 @@
 
 /*---------- 타이틀 ----------*/
 #item {
+<<<<<<< HEAD
+   text-align: center;
+   margin-top: 7%;
+   margin-bottom: 4%;
+}
+
+th {
+   font-size: 20px;
+   width: 165px;
+   vertical-align: baseline;
+}
+
+#pdfwrap{
+   width: 100%;
+   height: 100%;
+   
+=======
 	font-family: 'yg-jalnan';
 	text-align: center;
 	margin-top: 7%;
@@ -39,12 +56,31 @@ textarea {
 	border: 0px;
 	resize: none;
 	font-size: 13px;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 }
 
 fieldset {
 	width: 100%;
 }
 
+<<<<<<< HEAD
+.PFtable {
+   margin-left: 20%;
+   margin-bottom: 5%;
+   width: 60%;
+   border-collapse: inherit;
+   border-spacing: 20px;
+   text-align: center;
+}
+
+.PFtable textarea {
+   display: table-cell;
+   vertical-align: middle;
+   height: 122px;
+   width: 100%;
+   border: 1px solid black;
+   border-radius: 5px;
+=======
 #function {
 	margin: 55px 30px 10px 10px;
 	width: 80% !important;
@@ -77,6 +113,7 @@ legend {
 	line-height: inherit;
 	color: #333;
 	border: 0;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 }
 
 /* 기능설명 & 화면설명 */
@@ -87,6 +124,18 @@ legend {
 }
 
 .PFtable input {
+<<<<<<< HEAD
+   display: table-cell;
+   vertical-align: middle;
+   height: 40px;
+   width: 100%;
+   border: 1px solid black;
+   border-radius: 5px;
+}
+
+#PFbtn input[type="file"] {
+   color: white;
+=======
 	display: table-cell;
 	vertical-align: middle;
 	height: 40px;
@@ -113,6 +162,7 @@ legend {
 	z-index: 1;
 	color: white;
 	border: 1px;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 }
 
 /*---------- 저장, 다운 버튼 그룹 ----------*/
@@ -152,34 +202,125 @@ legend {
 }
 
 .PFinfo {
-	display: table-cell;
-	width: fit-content;
-	height: fit-content;
+   display: table-cell;
+   width: fit-content;
+   height: fit-content;
 }
 
+<<<<<<< HEAD
+hr{
+   border: 5px solid #BDBDBD;
+
+=======
 hr {
 	border: 5px solid #BDBDBD;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 }
 
 #PFdetail {
-	padding-top: 10px;
-	border-top: 1px solid #BDBDBD;
-	margin: 10px;
+   padding-top: 10px;
+   border-top: 1px solid #BDBDBD;
+   margin: 10px;
 }
 
 #photo {
+<<<<<<< HEAD
+   margin: 70px 10px 20px 40px;
+   width: 45%;
+   height: 300px;
+
+}
+
+#function {
+   margin: 70px 10px 10px 10px;
+   width: 45%;
+   height: 300px;
+   border: 1px solid #BDBDBD;
+   border-radius: 5px;
+   
+}
+
+#viewinfo {
+   margin: 10px 10px 20px 25px;
+   margin-top: 10px;
+   width: 95%;
+   height: 250px;
+   border: 1px solid #BDBDBD; 
+   border-radius: 5px;
+}
+
+
+=======
 	margin: 70px 10px 20px 40px;
 	width: 45%;
 	height: 300px;
 }
 
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 .le {
-	text-align: center;
-	font-weight: bold;
-	width: 20%;
-	border-bottom: none;
+   text-align: center;
+   font-weight: bold;
+   width: 20%;
+   border-bottom: none;
 }
 
+<<<<<<< HEAD
+fieldset textarea{
+   width: 95%;
+   
+   border: 0;
+   margin: 10px;
+}
+
+#plus{
+   margin-top: 5%;
+   margin-left: 50%;    
+   border: 0;
+   border-radius: 20%;
+}
+
+#plusbtn{
+   
+   width: 40px;
+}
+
+#create_pdf1{
+   margin-left: 30%;
+   margin-top: 5%;
+   width: 20%;
+   height: 50px;
+   color: white;
+   font-size: 15pt;
+   background-color: #00bf6f; 
+   border-radius: 5px;
+   
+}
+#create_pdf2{
+   margin-left: 2%;
+   margin-top: 5%;
+   width: 20%;
+   height: 50px;
+   color: white;
+   font-size: 15pt;
+   background-color: #00bf6f; 
+   border-radius: 5px;
+   
+}
+
+
+
+.img_wrap {
+   position: relative;
+   color: #BDBDBD;
+   text-align: center;
+   vertical-align:middle;
+   line-height: 283px;
+}
+
+.img_wrap img{
+   position: absolute;
+   margin-left: -61%;
+=======
 fieldset textarea {
 	width: 95%;
 	border: 0;
@@ -193,4 +334,5 @@ fieldset textarea {
 	text-align: center;
 	vertical-align: middle;
 	line-height: 283px;
+>>>>>>> 72aef49ac3f87c7fe8eb2e29d7121c73ede1a47c
 }

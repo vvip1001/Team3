@@ -60,11 +60,13 @@ public class CoverLetterBizImpl implements CoverLetterBiz {
 		return coverletterdao.PFwrite(dto);
 	}
 
-	
-
 	@Override
 	public int CVinsert(CoverLetterDto dto) {
-		// TODO Auto-generated method stub
 		return coverletterdao.CVinsert(dto);
+	}
+
+	@Override
+	public List<CoverLetterDto> CVselectList(CoverLetterDto dto) {
+		return coverletterdao.CVselectList(dto);
 	}
 }
