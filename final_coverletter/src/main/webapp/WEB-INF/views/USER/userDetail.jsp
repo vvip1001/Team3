@@ -68,6 +68,7 @@
 						<f:option value="미필"></f:option>
 						<f:option value="군필"></f:option>
 						<f:option value="면제"></f:option>
+						<f:option value="해당없음"></f:option>
 					</f:select> 
 					<f:input path="phone" id="big" cssClass="col-md-4 form-control" placeholder ="전화번호(010-1234-5678)"/>
 					<f:input path="address" id="bigbig" cssClass="col-md-4 form-control" placeholder ="주소" onclick="Address();" readonly="readonly" />

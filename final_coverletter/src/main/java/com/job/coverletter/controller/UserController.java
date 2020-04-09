@@ -483,33 +483,6 @@ public class UserController {
       return "USER/userCVdown";
    }
 
-   // 이력서(자기소개서) 파일 다운로드
-   @RequestMapping(value = "/CVdownload.do", method = RequestMethod.POST)
-   @ResponseBody
-   public byte[] CVfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
-      // 연속적인 바이트들의 흐름 : byte[]
-      byte[] down = null;
-      String path;
-
-      try {
-         path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-
-         File file = new File(path + "/" + name);
-
-         down = FileCopyUtils.copyToByteArray(file);
-         String filename = new String(file.getName().getBytes(), "8859_1");
-
-         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-         response.setContentLength(down.length);
-
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return down;
-   }
 
    // 자기소개서 삭제
    @RequestMapping(value = "/USER_userCVdelete.do", method = RequestMethod.POST)
@@ -518,6 +491,37 @@ public class UserController {
       return "redirect:/USER_userCVList.do";
    }
 
+   
+   // 이력서 디테일
+   @RequestMapping(value="USER_userCVDetail.do", method=RequestMethod.GET)
+   public String userCVDetail(Model model, String title, HttpSession session) {
+	   logger.info("userCVDetail");
+	   
+	   JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
+	   
+	   //totalDto -- 아이디
+	   TotalDto totalDto = totalBiz.selectOne(userDto.getJoinemail());
+	   
+	   CoverLetterDto dto = new CoverLetterDto();
+	   dto.setJoinemail(userDto.getJoinemail());
+	   dto.setTitle(title);
+	   
+	   //User 이력서 
+	   List<CoverLetterDto> CVDto = coverletterBiz.CVselectList(dto);
+	   
+	   logger.info("확인1 totalDto: =========================>> " + totalDto);
+	   logger.info("확인2 CVDto : =========================>> " + CVDto);
+	   
+	   
+	   model.addAttribute("totalDto", totalDto);
+	   model.addAttribute("CVDto", CVDto);
+	   
+	   
+	   return "USER/userCVDetail";
+   }
+   
+   
+   
    // 포트폴리오 게시판
    @RequestMapping(value = "/USER_userPFList.do")
    public String boardListPF(@ModelAttribute("CoverLetterDto") CoverLetterDto dto,
@@ -544,33 +548,6 @@ public class UserController {
       return "USER/userPFdown";
    }
 
-   // 포트폴리오 파일 다운로드
-   @RequestMapping(value = "/PFdownload.do", method = RequestMethod.POST)
-   @ResponseBody
-   public byte[] PFfileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
-      // 연속적인 바이트들의 흐름 : byte[]
-      byte[] down = null;
-      String path;
-
-      try {
-         path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-
-         File file = new File(path + "/" + name);
-
-         down = FileCopyUtils.copyToByteArray(file);
-         String filename = new String(file.getName().getBytes(), "8859_1");
-
-         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-         response.setContentLength(down.length);
-
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return down;
-   }
 
    // 포토폴리오 삭제
    @RequestMapping(value = "/USER_userPFdelete.do", method = RequestMethod.POST)
@@ -620,15 +597,12 @@ public class UserController {
    public String CVWriteInsert(Model model, @ModelAttribute("MultiRowTarget") MultiRowTarget targets , HttpSession session) {
       JoinUserDto userDto = (JoinUserDto) session.getAttribute("login");
       String joinemail = userDto.getJoinemail();
-      System.out.println("userDto:==========================="+userDto);
       
-      System.out.println("=============여기와?============" + targets);
       int res = 0;
       if (targets.getTargets().size() != 1) {
          for (int i = 0; i < targets.getTargets().size(); i++) {
             // 첫번째 값
             String title = targets.getTargets().get(0).getTitle();
-            System.out.println("==============================================");
             System.out.println(targets.getTargets().get(i));
             // 나머지 list(dto)에다 설정 set
             targets.getTargets().get(i).setTitle(title);

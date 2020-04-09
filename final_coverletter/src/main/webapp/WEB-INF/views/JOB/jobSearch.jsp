@@ -236,7 +236,7 @@
 								<span>${dto.salary}</span>
 								<span>&nbsp;&nbsp;${dto.target}</span><br />
 								<br /> 
-								<input type="button" class="btn_compnay" value="기업정보" disabled="disabled" />
+								<input type="button" class="btn_compnay" value="기업정보" onclick="location.href='MAIN_kakaomap.do?companyseq=${dto.companyseq}'" />
 							</div>
 						</div>
 				

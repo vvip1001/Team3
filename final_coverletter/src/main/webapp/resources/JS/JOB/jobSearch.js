@@ -460,11 +460,12 @@ function creatDiv(companyseq, imgurl, business, enddate, oneintro, mainfield, la
 	//h5 시작
 	var h5 = document.createElement("h5")
 	var a = document.createElement("a")
-	a.setAttribute("href", "JOB_companyDetail.do?companyseq="+companyseq)	// pk 추가 
+	a.setAttribute("href", "JOB_jobDetail.do?companyseq="+companyseq)	// pk 추가 
 	h5.appendChild(a)
 	var b_left = document.createElement("b")
 	b_left.textContent = StringCut(45, business)
-	h5.appendChild(b_left)
+	a.appendChild(b_left)
+	h5.appendChild(a)
 	var span = document.createElement("span")
 	span.style.fontSize = "10px"
 	span.textContent = "  "+enddate 		// 마감날짜 추가
@@ -532,8 +533,8 @@ function creatDiv(companyseq, imgurl, business, enddate, oneintro, mainfield, la
 	button.setAttribute("type", "button")
 	button.setAttribute("class", "btn_compnay")
 	button.setAttribute("value", "기업정보")
-	button.setAttribute("disabled", "disabled")
-	company_right.appendChild(button)
+	
+	company_right.innerHTML = '<input type="button" class="btn_compnay" value="기업정보" onclick="location.href=\'MAIN_kakaomap.do?companyseq=${dto.companyseq}\'"/>'
 	
 	//company_right 영역 추가
 	companyDiv_10.appendChild(company_right)

@@ -195,5 +195,11 @@
 	</insert>
 
 
+	<!-- 타이틀로 자기소개서 가져오기 -->
+	<select id="CVselectList" parameterType="coverLetterDto" resultMap="coverLetterMap">
+		SELECT * FROM COVERLETTER
+		WHERE TITLE = #{title} AND JOINEMAIL = #{joinemail}
+	</select>
+
 
 </mapper>
